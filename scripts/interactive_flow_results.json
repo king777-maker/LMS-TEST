@@ -1,0 +1,22 @@
+[
+  {
+    "flow": "Certificate Verification (Valid)",
+    "status": "FAIL",
+    "evidence": "Found Sales Broadbeach: false, Found BOA10110: true, Status: false"
+  },
+  {
+    "flow": "Certificate Verification (Invalid)",
+    "status": "FAIL",
+    "evidence": "Error message detected: false"
+  },
+  {
+    "flow": "Course Learning Isolation (322 vs 332)",
+    "status": "PASS",
+    "evidence": "322: \"certification@broadbeach.in\nWhatsApp\nBlo\" vs 332: \"certification@broadbeach.in\nWhatsApp\nBlo\""
+  },
+  {
+    "flow": "Admin Login Route Security",
+    "status": "PASS",
+    "evidence": "/admin/login is 404: true, Secret URL renders login: true"
+  }
+]

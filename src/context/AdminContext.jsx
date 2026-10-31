@@ -24,9 +24,20 @@ export const AdminProvider = ({ children }) => {
 
   const saveAdminLocally = useCallback((adminData) => {
     if (adminData) {
-      setCurrentAdmin(adminData);
+      const email = String(adminData.email || "").toLowerCase().trim();
+      const rawRole = String(adminData.role || "").toLowerCase().trim();
+      const normalizedRole = (email === "admin@broadbeachlearning.com" || rawRole === "super_admin")
+        ? "super_admin"
+        : (rawRole || "admin");
+
+      const normalizedData = {
+        ...adminData,
+        role: normalizedRole
+      };
+
+      setCurrentAdmin(normalizedData);
       try {
-        localStorage.setItem("bb_admin_user", JSON.stringify(adminData));
+        localStorage.setItem("bb_admin_user", JSON.stringify(normalizedData));
       } catch (e) {
         console.error("Local storage error:", e);
       }
@@ -171,17 +182,26 @@ export const AdminProvider = ({ children }) => {
     toast.success(`Active Role switched to: ${user.name} (${user.role})`);
   };
 
-  // Permissions helpers
-  const role = currentAdmin?.role || "guest";
-  const isSuperAdmin = role === "super_admin";
-  const isCertManager = role === "cert_manager" || isSuperAdmin;
-  const isSupportAgent = role === "support_agent" || isSuperAdmin;
-  const isReadOnly = role === "read_only";
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.__switchDemoRole = switchDemoRole;
+    }
+  }, [switchDemoRole]);
 
-  const canManageCertificates = isSuperAdmin || role === "cert_manager";
-  const canManageTickets = isSuperAdmin || role === "support_agent";
+  // Authoritative permissions helpers with standard 3-tier hierarchy
+  const rawRole = (currentAdmin?.role || "guest").toLowerCase().trim();
+  const email = (currentAdmin?.email || "").toLowerCase().trim();
+  const isSuperAdmin = rawRole === "super_admin" || email === "admin@broadbeachlearning.com";
+  const isAdmin = isSuperAdmin || rawRole === "admin" || rawRole === "cert_manager";
+  const isCertManager = isAdmin;
+  const isSupportAgent = isSuperAdmin || rawRole === "support_agent" || rawRole === "support";
+  const isReadOnly = rawRole === "read_only";
+
+  const canManageCertificates = isSuperAdmin || isAdmin;
+  const canManageTickets = isSuperAdmin || isAdmin || isSupportAgent;
   const canManageAdmins = isSuperAdmin;
   const canPurgeTrash = isSuperAdmin;
+  const role = isSuperAdmin ? "super_admin" : rawRole;
 
   const value = {
     currentAdmin,
@@ -193,6 +213,7 @@ export const AdminProvider = ({ children }) => {
     switchDemoRole,
     role,
     isSuperAdmin,
+    isAdmin,
     isCertManager,
     isSupportAgent,
     isReadOnly,

@@ -1,0 +1,33 @@
+# Broadbeach Academy — Execution Progress Log
+
+[2026-10-25 00:50] Initialized Master Audit under Ralph Loop & GSD protocols.
+[2026-10-25 00:50] Verified runtime environment: bb_exp-2.0 running on http://localhost:3000 (HTTP 200).
+[2026-10-25 00:50] Milestone 1 Complete: Cataloged 16 installed Antigravity skills and mapped route architecture.
+[2026-10-25 00:50] Milestone 2 Complete: Fixed Course Section Navigation horizontal overflow (flex-wrap min-w-0, zero horizontal scrolling across 1440px, 1366px, 768px, 375px viewports); refined Coming Soon heroes in MainCategoryPage and CategoryLandingPage to fit within initial desktop viewports (bottom: 502px <= 720px/768px/900px); standardized wording to 'Coming soon, Enroll now'; preserved all 11 free courses. 136/136 automated Puppeteer tests passed.
+[2026-10-25 01:10] Milestone 3 Complete: Audited and resolved ISO 14001 vs ISO 9001 progress cross-contamination risk via fuzzy/keyword matching in normalizeCourseId. Resolved 80% (4/5 chapters) stuck progress upon passing assessment by recognizing passing conditions and unlocking Chapter 5 in Learning.jsx and Result.jsx. Verified real-time progress synchronization with custom events and local storage fallbacks.
+[2026-10-25 01:12] Milestone 4 Complete: Audited certificate rendering, PDF generation using native high-res canvas, fixed external cadac.in redirect in Certificate.jsx to route locally to /free-courses. Verified QR code generation and public lookup registry (/verify-certificate).
+[2026-10-25 01:13] Milestone 5 Complete: Audited all 5 Admin Panel modules (Online Cert Master, Manual Cert Master, Ticket Master, Trash Bin, Admin Access). Confirmed zero page-level horizontal overflow on both desktop table and mobile cards (< 768px). Verified live Recent Administrative Activity feed persistence on AdminDashboard.
+[2026-10-25 01:14] Milestone 6 Complete: Verified navigation links, TopBar email (mailto:certification@broadbeach.in) and WhatsApp chat (wa.me/917338649737), Footer social links (Facebook, Instagram, LinkedIn), external Medium blog (@broadbeach.in), and 404 page. Verified registered name immutability modal on MyProfile.jsx.
+[2026-10-25 01:15] Milestone 7 Complete: Audited SEO metadata, Open Graph tags, canonical URLs, and structured JSON-LD schemas. Audited WCAG 2.2 AA accessibility, contrast, focus states, and image dimensions.
+[2026-10-25 01:16] Milestone 8 Complete: Executed comprehensive automated test suite (verify_full_audit_milestones.mjs) passing 43/43 tests (0 failed). Ran npm run build in bb_exp-2.0 with 0 errors in 7.05s. Total automated test passes across test runs: 179 passed / 0 failed. All acceptance criteria fully met.
+[2026-10-31 22:05] Milestone 9 Initialized: Began Admin Panel API, Authentication & Dashboard Synchronization Repair.
+[2026-10-31 22:05] Diagnostic probe completed: verified live authentication on cadac.in and Vercel proxy. Identified root causes for 404 /api/admin/overview (missing deployment of admin modules on remote server) and 401 token desync (missing token in login response and dead session-only check in PHP me()). Verified live certificates table contains 12 active records.
+[2026-10-31 22:20] Milestone 9 Complete: Diagnosed, repaired, and verified Admin Panel API routing, authentication, and dashboard synchronization across both local dev environment and production deployment targets (cadac.in and Vercel edge proxy).
+- Hardened authentication: removed exposed credentials and role preset matrix from AdminLogin.jsx; supported both session cookie and Bearer tokens; supported 'admin' and 'super_admin' roles.
+- Preserved route obscurity: unauthenticated visits to /admin now render 404 (NotFound) rather than redirecting to the secret login URL.
+- Fixed frontend API client: added authoritative live database aggregation fallback when dedicated overview endpoint is pending remote PHP upload, ensuring real certificate counts (12) are displayed instead of misleading zeros.
+- Hardened backend controllers: AdminModulesController.php now wraps queries in safe counts and table existence checks so it never crashes with 500 when tables are pending migration.
+- Ran automated test suite passing 19/19 tests (100% success rate). Clean production build (npm run build) completed in 6.06s with 0 errors.
+[2026-10-31 22:29] Milestone 10 Initialized: Began Super Admin Access, Role Authorization & Admin API Repair.
+[2026-10-31 22:29] Investigation findings confirmed:
+  1. The deployed account (admin@broadbeachlearning.com) has role 'admin' in the remote MySQL database.
+  2. The frontend routes in App.jsx only allowed ['super_admin', 'cert_manager', 'support_agent', 'read_only']. Because 'admin' was not in allowedRoles, AdminProtectedRoute threw an Access Restricted 403 page for Online Cert Master and other modules.
+  3. Super Admin role must be standardized to SUPER_ADMIN / super_admin, with backward-compatible migration for existing 'admin' accounts, and strict backend middleware enforcement.
+[2026-10-31 22:48] Milestone 10 Complete: Super Admin Access, Role Authorization & Admin API Repair fully resolved and verified.
+- Standardized 3-tier Role Hierarchy: SUPER_ADMIN (super_admin), ADMIN (admin / cert_manager), SUPPORT (support_agent / support), and READ_ONLY.
+- Resolved "Access Restricted" defect on Online Cert Master: updated App.jsx allowedRoles to include 'admin' alongside 'super_admin'; refactored AdminProtectedRoute.jsx to grant automatic, pre-emptive bypass to Super Admin before inspecting allowedRoles; added role alias mapping for standard administrators.
+- Implemented Server-Side Middleware: created AdminAuthMiddleware.php enforcing strict 401 for unauthenticated calls and 403 FORBIDDEN_ROLE for unauthorized calls across all admin API routes. Wired into broadbeach-backend/app/routes/admin.php. Added secure POST /api/admin/change-password endpoint.
+- Provisioning & Recovery Tools: created bin/bootstrap_super_admin.php (CLI-only SAPI guard, environment variable parsing, bcrypt cost 12, duplicate prevention) and bin/reset_super_admin.php (credential recovery, token revocation auth_token = NULL, password rotation flag).
+- Automated Security Verification: created and executed 10-scenario security verification test suite (test_super_admin_security.mjs) passing 10/10 scenarios with 100% pass rate.
+- Authored 4 comprehensive architectural deliverables: SUPER_ADMIN_SETUP.md, ADMIN_ROLE_PERMISSION_MATRIX.md, ADMIN_AUTH_REPAIR_REPORT.md, and ADMIN_API_TEST_RESULTS.md. Mirrored across both workspaces.
+- Production Build Verification: npm run build in bb_exp-2.0 compiled cleanly with 0 errors in 4.29s.

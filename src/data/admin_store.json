@@ -18,7 +18,7 @@
         "BBA-REC-7731-M1F"
       ],
       "created_at": "2026-08-01T10:00:00.000Z",
-      "last_login": "2026-10-24T10:30:00.000Z"
+      "last_login": "2026-10-31T17:17:08.020Z"
     },
     {
       "id": 2,
@@ -37,7 +37,7 @@
         "BBA-REC-3382-K8L"
       ],
       "created_at": "2026-08-15T11:30:00.000Z",
-      "last_login": "2026-10-23T16:45:00.000Z"
+      "last_login": "2026-10-31T17:17:31.311Z"
     },
     {
       "id": 3,
@@ -640,6 +640,78 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "LOG-MVWNZ5F3-315",
+      "timestamp": "2026-10-31T17:17:31.311Z",
+      "created_at": "2026-10-31T17:17:31.311Z",
+      "actor_name": "Sarah Jenkins",
+      "performed_by": "Sarah Jenkins",
+      "actor_email": "cert.manager@broadbeach.in",
+      "performed_by_email": "cert.manager@broadbeach.in",
+      "actor_role": "cert_manager",
+      "action_category": "AUTH",
+      "module": "System",
+      "action": "ADMIN_LOGIN_MFA_SUCCESS",
+      "target_type": "admin_user",
+      "target_id": "2",
+      "details": "Admin Sarah Jenkins completed Two-Step Authentication successfully.",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MVWNYNG4-871",
+      "timestamp": "2026-10-31T17:17:08.020Z",
+      "created_at": "2026-10-31T17:17:08.020Z",
+      "actor_name": "Administrator",
+      "performed_by": "Administrator",
+      "actor_email": "admin@broadbeachlearning.com",
+      "performed_by_email": "admin@broadbeachlearning.com",
+      "actor_role": "super_admin",
+      "action_category": "AUTH",
+      "module": "System",
+      "action": "ADMIN_LOGIN_MFA_SUCCESS",
+      "target_type": "admin_user",
+      "target_id": "1",
+      "details": "Admin Administrator completed Two-Step Authentication successfully.",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MVWNWDFW-480",
+      "timestamp": "2026-10-31T17:15:21.740Z",
+      "created_at": "2026-10-31T17:15:21.740Z",
+      "actor_name": "Administrator",
+      "performed_by": "Administrator",
+      "actor_email": "admin@broadbeachlearning.com",
+      "performed_by_email": "admin@broadbeachlearning.com",
+      "actor_role": "super_admin",
+      "action_category": "AUTH",
+      "module": "System",
+      "action": "ADMIN_LOGIN_MFA_SUCCESS",
+      "target_type": "admin_user",
+      "target_id": "1",
+      "details": "Admin Administrator completed Two-Step Authentication successfully.",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MVWMYIJ0-147",
+      "timestamp": "2026-10-31T16:49:02.028Z",
+      "created_at": "2026-10-31T16:49:02.028Z",
+      "actor_name": "Administrator",
+      "performed_by": "Administrator",
+      "actor_email": "admin@broadbeachlearning.com",
+      "performed_by_email": "admin@broadbeachlearning.com",
+      "actor_role": "super_admin",
+      "action_category": "AUTH",
+      "module": "System",
+      "action": "ADMIN_LOGIN_MFA_SUCCESS",
+      "target_type": "admin_user",
+      "target_id": "1",
+      "details": "Admin Administrator completed Two-Step Authentication successfully.",
+      "status": "success",
+      "outcome": "Success"
+    },
     {
       "id": "LOG-MVPJLOZH-381",
       "timestamp": "2026-10-26T17:40:41.789Z",

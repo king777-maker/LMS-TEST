@@ -294,6 +294,31 @@ const AdminDashboard = () => {
         </div>
       </div>
 
+      {/* Synchronization Status Banner (Active Live DB Sync) */}
+      {data?.is_partial_sync && !error && (
+        <div className="p-4 bg-amber-50/90 border border-amber-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-amber-900 text-xs">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
+            <div>
+              <p className="font-bold text-amber-900">
+                Connected to Live Database (cadac.in Production DB: {data.sync_source || "certificates"})
+              </p>
+              <p className="text-amber-700/90 text-[11px] mt-0.5">
+                Loaded {data.online_certificates_count} verified certificates directly from backend database. Dedicated /api/admin/overview endpoint awaiting server file sync.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => fetchOverviewData(true)}
+            className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 active:scale-95 text-white rounded-xl text-xs font-bold transition shadow-xs shrink-0 cursor-pointer flex items-center gap-1.5"
+          >
+            <FaSyncAlt className={`text-xs ${refreshing ? "animate-spin" : ""}`} />
+            Refresh
+          </button>
+        </div>
+      )}
+
       {/* Authoritative Dashboard Error State */}
       {error && (
         <div className="p-4 bg-red-50/90 border border-red-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-red-800 text-xs">
@@ -301,7 +326,7 @@ const AdminDashboard = () => {
             <FaExclamationTriangle className="text-red-500 text-base shrink-0" />
             <div>
               <p className="font-semibold">{error}</p>
-              <p className="text-red-600/80 text-[11px] mt-0.5">Authoritative metrics could not be synchronized with the backend. Displayed counters show 0 until live connection is restored.</p>
+              <p className="text-red-600/80 text-[11px] mt-0.5">Authoritative metrics could not be synchronized with the backend. Displayed counters show '—' until live connection is restored.</p>
             </div>
           </div>
           <button
@@ -342,6 +367,8 @@ const AdminDashboard = () => {
                 <span className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                   {loading ? (
                     <span className="inline-block w-12 h-8 bg-slate-100 animate-pulse rounded-md" />
+                  ) : error && !data.online_certificates_count ? (
+                    <span className="text-slate-400 font-bold" title="Backend synchronization offline">—</span>
                   ) : (
                     kpi.count
                   )}

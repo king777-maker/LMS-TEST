@@ -26,8 +26,8 @@ const AdminLogin = () => {
   const [step, setStep] = useState(1);
   const [challengeId, setChallengeId] = useState("");
 
-  const [email, setEmail] = useState("admin@broadbeachlearning.com");
-  const [password, setPassword] = useState("broad_beach_admin_2026");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [totpCode, setTotpCode] = useState("");
   const [loading, setLoading] = useState(false);
@@ -77,12 +77,6 @@ const AdminLogin = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleRoleQuickFill = (roleEmail, rolePass) => {
-    setEmail(roleEmail);
-    setPassword(rolePass);
-    setErrorMsg("");
   };
 
   return (
@@ -282,66 +276,6 @@ const AdminLogin = () => {
               </button>
             </div>
           </form>
-        )}
-
-        {/* Quick Demo Credentials Matrix (Step 1 only) */}
-        {step === 1 && (
-          <div className="mt-3.5 pt-3 sm:mt-4 sm:pt-3.5 border-t border-blue-900/50">
-            <div className="text-[10px] sm:text-[11px] font-bold text-blue-300/70 uppercase tracking-wider mb-2 text-center">
-              Role Preset Fill (QA / Evaluation)
-            </div>
-            <div className="grid grid-cols-2 gap-1.5 sm:gap-2 text-xs">
-              <button
-                type="button"
-                onClick={() =>
-                  handleRoleQuickFill("admin@broadbeachlearning.com", "broad_beach_admin_2026")
-                }
-                className="p-1.5 sm:p-2 rounded-xl bg-[#0B1E38]/60 hover:bg-[#0B1E38] border border-amber-400/40 text-white text-left transition cursor-pointer group"
-              >
-                <div className="font-extrabold text-[10px] sm:text-[11px] text-amber-300 group-hover:text-amber-200 flex items-center justify-between">
-                  <span>Super Admin</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-blue-200/70 truncate">All 5 Modules</div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleRoleQuickFill("cert.manager@broadbeach.in", "CertManager@2026!")}
-                className="p-1.5 sm:p-2 rounded-xl bg-[#0B1E38]/60 hover:bg-[#0B1E38] border border-blue-400/40 text-white text-left transition cursor-pointer group"
-              >
-                <div className="font-extrabold text-[10px] sm:text-[11px] text-blue-300 group-hover:text-blue-200 flex items-center justify-between">
-                  <span>Cert Manager</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-blue-200/70 truncate">Online &amp; Manual</div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleRoleQuickFill("support.agent@broadbeach.in", "SupportAgent@2026!")}
-                className="p-1.5 sm:p-2 rounded-xl bg-[#0B1E38]/60 hover:bg-[#0B1E38] border border-emerald-400/40 text-white text-left transition cursor-pointer group"
-              >
-                <div className="font-extrabold text-[10px] sm:text-[11px] text-emerald-300 group-hover:text-emerald-200 flex items-center justify-between">
-                  <span>Support Agent</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-blue-200/70 truncate">Ticket Master</div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleRoleQuickFill("readonly.admin@broadbeach.in", "ReadOnly@2026!")}
-                className="p-1.5 sm:p-2 rounded-xl bg-[#0B1E38]/60 hover:bg-[#0B1E38] border border-slate-400/40 text-white text-left transition cursor-pointer group"
-              >
-                <div className="font-extrabold text-[10px] sm:text-[11px] text-slate-300 group-hover:text-white flex items-center justify-between">
-                  <span>Read Only</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-blue-200/70 truncate">Auditor View</div>
-              </button>
-            </div>
-          </div>
         )}
       </div>
 

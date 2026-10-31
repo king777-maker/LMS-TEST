@@ -27,7 +27,7 @@ import {
 } from "react-icons/fa";
 
 const AdminLayout = ({ children }) => {
-  const { currentAdmin, logout, switchDemoRole } = useAdmin();
+  const { currentAdmin, isSuperAdmin, logout, switchDemoRole } = useAdmin();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -404,7 +404,7 @@ const AdminLayout = ({ children }) => {
                     {currentAdmin?.name || "Admin"}
                   </div>
                   <div className="text-slate-400 text-[10px] uppercase font-mono">
-                    {currentAdmin?.role || "super_admin"}
+                    {isSuperAdmin ? "super_admin" : (currentAdmin?.role || "admin")}
                   </div>
                 </div>
               </div>
@@ -603,20 +603,13 @@ const AdminLayout = ({ children }) => {
               )}
             </div>
 
-            {/* Role Demo Switcher (Desktop) */}
+            {/* Server-Verified Role Indicator */}
             <div className="hidden md:flex items-center gap-1.5 bg-slate-100 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs">
               <span className="text-slate-400 font-medium">Role:</span>
-              <select
-                aria-label="Active role selection"
-                value={currentAdmin?.role || "super_admin"}
-                onChange={(e) => switchDemoRole(e.target.value)}
-                className="bg-transparent text-[#0B1E36] font-bold focus:outline-hidden cursor-pointer"
-              >
-                <option value="super_admin">Super Admin</option>
-                <option value="cert_manager">Certificate Manager</option>
-                <option value="support_agent">Support Agent</option>
-                <option value="read_only">Read-Only Admin</option>
-              </select>
+              <span className={`font-extrabold capitalize ${isSuperAdmin ? "text-amber-600 font-black" : "text-[#0B1E36]"}`}>
+                {isSuperAdmin ? "Super Admin" : (currentAdmin?.role || "Administrator").replace("_", " ")}
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" title="Server-Verified Session" />
             </div>
 
             {/* Administrator Profile Menu */}
@@ -635,11 +628,11 @@ const AdminLayout = ({ children }) => {
                     {currentAdmin?.name || "Administrator"}
                   </span>
                   <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
-                    {currentAdmin?.role === "super_admin"
+                    {isSuperAdmin
                       ? "Super Admin"
-                      : currentAdmin?.role === "cert_manager"
-                      ? "Cert Manager"
-                      : currentAdmin?.role === "support_agent"
+                      : currentAdmin?.role === "cert_manager" || currentAdmin?.role === "admin"
+                      ? "Admin"
+                      : currentAdmin?.role === "support_agent" || currentAdmin?.role === "support"
                       ? "Support Agent"
                       : "Read-Only"}
                   </span>

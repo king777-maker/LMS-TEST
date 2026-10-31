@@ -545,7 +545,7 @@ function App() {
             <Route
               path={adminRoutes.onlineCerts}
               element={
-                <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "support_agent", "read_only"]}>
+                <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager", "support_agent", "read_only"]}>
                   <AdminLayout>
                     <OnlineCertMaster />
                   </AdminLayout>
@@ -555,7 +555,7 @@ function App() {
             <Route
               path={adminRoutes.manualCerts}
               element={
-                <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "read_only"]}>
+                <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager", "read_only"]}>
                   <AdminLayout>
                     <ManualCertMaster />
                   </AdminLayout>
@@ -565,7 +565,7 @@ function App() {
             <Route
               path={adminRoutes.tickets}
               element={
-                <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "support_agent", "read_only"]}>
+                <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager", "support_agent", "read_only"]}>
                   <AdminLayout>
                     <TicketMaster />
                   </AdminLayout>
@@ -575,7 +575,7 @@ function App() {
             <Route
               path={adminRoutes.trash}
               element={
-                <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "support_agent", "read_only"]}>
+                <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager"]}>
                   <AdminLayout>
                     <TrashBin />
                   </AdminLayout>
@@ -619,7 +619,7 @@ function App() {
                 <Route
                   path="/admin/online-certs"
                   element={
-                    <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "support_agent", "read_only"]}>
+                    <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager", "support_agent", "read_only"]}>
                       <AdminLayout>
                         <OnlineCertMaster />
                       </AdminLayout>
@@ -629,7 +629,7 @@ function App() {
                 <Route
                   path="/admin/manual-certs"
                   element={
-                    <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "read_only"]}>
+                    <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager", "read_only"]}>
                       <AdminLayout>
                         <ManualCertMaster />
                       </AdminLayout>
@@ -639,7 +639,7 @@ function App() {
                 <Route
                   path="/admin/tickets"
                   element={
-                    <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "support_agent", "read_only"]}>
+                    <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager", "support_agent", "read_only"]}>
                       <AdminLayout>
                         <TicketMaster />
                       </AdminLayout>
@@ -649,7 +649,7 @@ function App() {
                 <Route
                   path="/admin/trash"
                   element={
-                    <AdminProtectedRoute allowedRoles={["super_admin", "cert_manager", "support_agent", "read_only"]}>
+                    <AdminProtectedRoute allowedRoles={["super_admin", "admin", "cert_manager"]}>
                       <AdminLayout>
                         <TrashBin />
                       </AdminLayout>
