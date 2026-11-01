@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAdmin } from "../../context/AdminContext";
 import { adminRoutes } from "../../utils/adminRoutes";
-import { NotFound } from "../../pages/NotFound";
+import AdminLogin from "../../pages/admin/AdminLogin";
 import { FaLock } from "react-icons/fa";
 
 const AdminProtectedRoute = ({ children, allowedRoles }) => {
@@ -19,9 +19,9 @@ const AdminProtectedRoute = ({ children, allowedRoles }) => {
     );
   }
 
-  // Preserve route obscurity: unauthenticated visits to /admin render 404 rather than leaking secret login URL
+  // When unauthenticated, render the dedicated Admin Login portal so the administrator can sign in
   if (!isAuthenticated || !currentAdmin) {
-    return <NotFound />;
+    return <AdminLogin />;
   }
 
   // Super Admin has authoritative, unconditional access to all administration modules

@@ -115,10 +115,9 @@ function BlogRedirect() {
 function App() {
   const location = useLocation();
   const isAdminRoute =
-    (location.pathname.startsWith(ADMIN_BASE_PATH) ||
-      location.pathname.startsWith("/admin") ||
-      isSecretAdminLoginPath(location.pathname)) &&
-    location.pathname !== "/admin/login";
+    location.pathname.startsWith(ADMIN_BASE_PATH) ||
+    location.pathname.startsWith("/admin") ||
+    isSecretAdminLoginPath(location.pathname);
 
   return (
     <AuthProvider>
@@ -519,8 +518,8 @@ function App() {
             {/* Configurable cryptographically random admin login route */}
             <Route path={adminRoutes.login} element={<AdminLogin />} />
 
-            {/* Predictable /admin/login is strictly disabled: returns 404 with NO redirects */}
-            <Route path="/admin/login" element={<NotFound />} />
+            {/* Support standard /admin/login directly */}
+            <Route path="/admin/login" element={<AdminLogin />} />
 
             <Route
               path={adminRoutes.base}

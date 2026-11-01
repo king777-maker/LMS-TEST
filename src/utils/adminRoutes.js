@@ -80,7 +80,7 @@ export function isSecretAdminLoginPath(pathname) {
 
 export function getAdminPath(subRoute = "") {
   if (subRoute === "login" || subRoute === "/login") {
-    return adminRoutes.login;
+    return "/admin/login";
   }
   const clean = subRoute.startsWith("/") ? subRoute : `/${subRoute}`;
   return `${ADMIN_BASE_PATH}${clean}`;
