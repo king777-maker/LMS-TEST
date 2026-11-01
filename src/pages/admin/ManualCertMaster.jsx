@@ -128,8 +128,10 @@ const ManualCertMaster = () => {
     } catch (err) {
       if (err.isNotFound || err.status === 404 || String(err.message).includes("not found")) {
         setRouteNotFound(true);
+        toast.dismiss("manual-cert-error");
+      } else {
+        toast.error(err.message || "Failed to load manual certificates.", { id: "manual-cert-error" });
       }
-      toast.error(err.message || "Failed to load manual certificates.", { id: "manual-cert-error" });
     } finally {
       setLoading(false);
     }

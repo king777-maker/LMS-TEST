@@ -150,7 +150,9 @@ const AdminAccess = () => {
           ]);
         }
       }
-      toast.error(err.message || "Failed to load administrative personnel.", { id: "admin-users-fetch-error" });
+      if (!err.isNotFound && err.status !== 404 && !String(err.message).includes("not found")) {
+        toast.error(err.message || "Failed to load administrative personnel.", { id: "admin-users-fetch-error" });
+      }
     } finally {
       setLoadingAdmins(false);
     }

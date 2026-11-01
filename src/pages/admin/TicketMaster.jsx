@@ -120,8 +120,10 @@ const TicketMaster = () => {
     } catch (err) {
       if (err.isNotFound || err.status === 404 || String(err.message).includes("not found")) {
         setRouteNotFound(true);
+        toast.dismiss("tickets-fetch-error");
+      } else {
+        toast.error(err.message || "Failed to load support tickets.", { id: "tickets-fetch-error" });
       }
-      toast.error(err.message || "Failed to load support tickets.", { id: "tickets-fetch-error" });
     } finally {
       setLoading(false);
     }

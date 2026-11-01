@@ -52,8 +52,10 @@ const TrashBin = () => {
     } catch (err) {
       if (err.isNotFound || err.status === 404 || String(err.message).includes("not found")) {
         setRouteNotFound(true);
+        toast.dismiss("trash-fetch-error");
+      } else {
+        toast.error(err.message || "Failed to load Trash Bin records.", { id: "trash-fetch-error" });
       }
-      toast.error(err.message || "Failed to load Trash Bin records.", { id: "trash-fetch-error" });
     } finally {
       setLoading(false);
     }
