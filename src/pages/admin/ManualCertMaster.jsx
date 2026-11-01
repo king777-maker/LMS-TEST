@@ -24,6 +24,8 @@ import {
   FaCopy,
   FaExternalLinkAlt,
   FaRedo,
+  FaSyncAlt,
+  FaClock,
   FaTimes,
   FaHistory,
   FaBuilding,
@@ -62,6 +64,7 @@ const ManualCertMaster = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [routeNotFound, setRouteNotFound] = useState(false);
 
   // Create Modal
   const [createModalOpen, setCreateModalOpen] = useState(
@@ -114,6 +117,7 @@ const ManualCertMaster = () => {
   const fetchCertificates = async () => {
     try {
       setLoading(true);
+      setRouteNotFound(false);
       const res = await getManualCertificates({
         search,
         status: statusFilter,
@@ -122,7 +126,10 @@ const ManualCertMaster = () => {
         setCertificates(res.data);
       }
     } catch (err) {
-      toast.error(err.message || "Failed to load manual certificates.");
+      if (err.isNotFound || err.status === 404 || String(err.message).includes("not found")) {
+        setRouteNotFound(true);
+      }
+      toast.error(err.message || "Failed to load manual certificates.", { id: "manual-cert-error" });
     } finally {
       setLoading(false);
     }
@@ -393,7 +400,7 @@ const ManualCertMaster = () => {
             className="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl transition cursor-pointer"
             title="Refresh"
           >
-            <FaRedo size={12} className={loading ? "animate-spin" : ""} />
+            <FaSyncAlt className={`text-xs ${loading ? "animate-spin" : ""}`} />
           </button>
         </div>
       </div>
@@ -616,6 +623,30 @@ const ManualCertMaster = () => {
                     </tr>
                   );
                 })
+              ) : routeNotFound ? (
+                <tr>
+                  <td colSpan={8} className="py-12 px-6 text-center">
+                    <div className="max-w-md mx-auto p-6 bg-amber-50/80 border border-amber-200 rounded-2xl text-amber-900 text-xs">
+                      <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3 text-lg font-bold">
+                        <FaClock />
+                      </div>
+                      <h3 className="font-extrabold text-sm text-[#0B315B] mb-1">
+                        Manual Cert Master — Awaiting Server Deployment
+                      </h3>
+                      <p className="text-amber-800/90 leading-relaxed mb-4">
+                        The backend route <code className="bg-white px-1.5 py-0.5 rounded border border-amber-300 font-mono text-[11px]">GET /api/admin/manual-certificates</code> and the <code className="bg-white px-1.5 py-0.5 rounded border border-amber-300 font-mono text-[11px]">manual_certificates</code> table are staged. Deploy <code className="bg-white px-1.5 py-0.5 rounded border border-amber-300 font-mono text-[11px]">cadac_admin_sync.php</code> to activate live offline issuance.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={fetchCertificates}
+                        className="px-4 py-2 bg-[#0B315B] hover:bg-[#071F3B] text-white rounded-xl font-bold transition flex items-center gap-2 mx-auto cursor-pointer"
+                      >
+                        <FaSyncAlt className={`text-xs ${loading ? "animate-spin" : ""}`} />
+                        Retry Connection
+                      </button>
+                    </div>
+                  </td>
+                </tr>
               ) : (
                 <tr>
                   <td colSpan={8} className="py-12 text-center text-slate-400">

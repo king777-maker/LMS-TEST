@@ -25,6 +25,7 @@ import {
   FaUserTimes,
   FaListAlt,
   FaRedo,
+  FaSyncAlt,
   FaFilter,
   FaLock,
   FaInfoCircle,
@@ -133,7 +134,23 @@ const AdminAccess = () => {
       }
     } catch (err) {
       console.error("Failed to load admins:", err);
-      toast.error(err.message || "Failed to load administrative personnel.");
+      if (err.isNotFound || err.status === 404 || String(err.message).includes("not found")) {
+        // Fallback to active authenticated super admin
+        if (currentAdmin) {
+          setAdmins([
+            {
+              id: currentAdmin.id || 1,
+              name: currentAdmin.name || "Academic Super Admin",
+              email: currentAdmin.email || "admin@broadbeachlearning.com",
+              role: currentAdmin.role || "super_admin",
+              status: "active",
+              last_login: new Date().toISOString(),
+              is_active_session: true,
+            },
+          ]);
+        }
+      }
+      toast.error(err.message || "Failed to load administrative personnel.", { id: "admin-users-fetch-error" });
     } finally {
       setLoadingAdmins(false);
     }
@@ -849,7 +866,7 @@ const AdminAccess = () => {
               onClick={() => fetchLogs(logCategory, logSearch)}
               className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2"
             >
-              <FaRedo className={`text-xs ${loadingLogs ? "animate-spin" : ""}`} />
+              <FaSyncAlt className={`text-xs ${loadingLogs ? "animate-spin" : ""}`} />
               Refresh Logs
             </button>
           </div>

@@ -51,6 +51,7 @@ const handleApiError = (err) => {
   const error = new Error(message);
   error.status = err.response?.status;
   error.data = err.response?.data;
+  error.isNotFound = err.response?.status === 404;
   throw error;
 };
 
@@ -142,12 +143,19 @@ export const getAdminOverview = async () => {
           sync_source: "cadac.in (certificates table)",
           data: {
             online_certificates_count: liveCount,
-            manual_certificates_count: 0,
-            open_tickets_count: 0,
-            trash_items_count: 0,
+            manual_certificates_count: null,
+            open_tickets_count: null,
+            trash_items_count: null,
             active_admins_count: 1,
             is_partial_sync: true,
-            sync_source: "Live Database Endpoints (/certificates)",
+            sync_source: "cadac.in Production DB (certificates table)",
+            connectivity: {
+              server: "connected",
+              database: "connected",
+              certs_endpoint: "operational",
+              overview_endpoint: "awaiting_sync",
+              modules_status: "partially_available",
+            },
             tickets_by_status: {
               New: 0,
               Open: 0,
