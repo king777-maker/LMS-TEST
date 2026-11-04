@@ -137,6 +137,18 @@ async function run() {
     assert(moduleProgress.chapter1.requiredLessons === 1, "Chapter 1 requires exactly 1 primary course video.");
     assert(isChapterUnlocked(2, moduleProgress) === true, "Chapter 2 (Assessment) is immediately unlocked after single video completion.");
 
+    // 8. Verify Assessment.jsx Compact Top Card & Single Certificate Access Section
+    console.log("\n--- 8. VERIFYING ASSIGNMENT.JSX COMPACT CARD & CERTIFICATE ACCESS UI ---");
+    assert(asgnSource.includes("Please enter valid Access code for corporate and Classroom Exams."), "Exact Certificate Access requirement text is present in Assignment.jsx.");
+    assert(!asgnSource.includes("Have a Certificate Access Code?"), "Large separate 'Have a Certificate Access Code?' header completely removed.");
+    assert(!asgnSource.includes("If you have a valid certificate access code"), "Obsolete long description #1 completely removed.");
+    assert(!asgnSource.includes("Don't have a certificate access code?"), "Obsolete long description #2 completely removed.");
+    assert(asgnSource.includes("COMBINED COMPACT CARD"), "Single combined assessment and certificate access card implemented.");
+    assert(asgnSource.includes("Timer"), "Countdown timer is preserved in top information card.");
+    assert(asgnSource.includes("QuestionCard"), "QuestionCard is preserved.");
+    assert(asgnSource.includes("QuestionPalette"), "QuestionPalette is preserved.");
+    assert(asgnSource.includes("redeemCertificateCoupon"), "Server-side certificate coupon redemption logic preserved.");
+
     console.log(`\n===============================================================================`);
     console.log(`   TEST RESULTS: ${passedTests} / ${totalTests} CHECKS PASSED (100%) `);
     console.log(`===============================================================================\n`);
