@@ -340,4 +340,24 @@ export const verifyCertificate = (certificateNumber) => {
     });
 };
 
+/* =========================================
+   COURSE PROGRESS & CHAPTER UNLOCKING
+========================================= */
+
+export const getCourseProgressApi = (certificationId, userId = null) => {
+    const params = { certification_id: certificationId };
+    if (userId) params.user_id = userId;
+    return api.get("/course-progress", { params });
+};
+
+export const completeLessonApi = (data) => {
+    return api.post("/complete-lesson", data);
+};
+
+export const getCourseMaterialsApi = (certificationId, userId = null) => {
+    const params = { certification_id: certificationId };
+    if (userId) params.user_id = userId;
+    return api.get("/course-materials", { params });
+};
+
 export default api;

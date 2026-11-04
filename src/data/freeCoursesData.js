@@ -98,6 +98,8 @@ export const getAuthoritativeCourseName = (idOrSlug, fallback = "") => {
 export const freeCoursesData = [
   {
     id: "322",
+    video_url: "https://drive.google.com/file/d/1pUO72EJ_DekcT4rEnCZ0239G7s8cQ9g0/preview",
+    drive_file_id: "1pUO72EJ_DekcT4rEnCZ0239G7s8cQ9g0",
     altId: "1",
     slug: "iso-9001-2026-qms-awareness",
     altSlug: "iso-9001-2015-quality-management-foundation",
@@ -177,6 +179,8 @@ export const freeCoursesData = [
   },
   {
     id: "332",
+    video_url: "https://drive.google.com/file/d/1QELRjEfntnKZ2bFVfXx94QrcIMttSLzF/preview",
+    drive_file_id: "1QELRjEfntnKZ2bFVfXx94QrcIMttSLzF",
     altId: "2",
     slug: "iso-14001-2026-ems-awareness",
     altSlug: "iso-14001-2015-environmental-foundation",
@@ -255,6 +259,8 @@ export const freeCoursesData = [
   },
   {
     id: "323",
+    video_url: "https://drive.google.com/file/d/1d8fXlmI7RynuPhO_sgCtsQM1Bd7WQ0Qn/preview",
+    drive_file_id: "1d8fXlmI7RynuPhO_sgCtsQM1Bd7WQ0Qn",
     altId: "3",
     slug: "iso-45001-2018-ohsms-awareness",
     altSlug: "iso-45001-2018-ohs-awareness-course",
@@ -333,6 +339,8 @@ export const freeCoursesData = [
   },
   {
     id: "324",
+    video_url: "https://drive.google.com/file/d/1ata4Mu3Fq-US5W1LR3Sz0nbw1RbecBMv/preview",
+    drive_file_id: "1ata4Mu3Fq-US5W1LR3Sz0nbw1RbecBMv",
     altId: "4",
     slug: "iso-22000-2018-fsms-awareness",
     altSlug: "iso-22000-2018-food-safety-foundation",
@@ -411,6 +419,8 @@ export const freeCoursesData = [
   },
   {
     id: "325",
+    video_url: "https://drive.google.com/file/d/1B0lAdFBcJjpCpYRFjGzpQF_rUPv5KMen/preview",
+    drive_file_id: "1B0lAdFBcJjpCpYRFjGzpQF_rUPv5KMen",
     altId: "5",
     slug: "iso-19011-2026-awareness",
     altSlug: "iso-19011-2018-auditing-guidelines-overview",
@@ -489,6 +499,8 @@ export const freeCoursesData = [
   },
   {
     id: "333",
+    video_url: "https://drive.google.com/file/d/1nBU1umbTslqdgl7Lt1JfUhV1MhnwhCu1/preview",
+    drive_file_id: "1nBU1umbTslqdgl7Lt1JfUhV1MhnwhCu1",
     altId: "6",
     slug: "iso-27001-2022-isms-awareness",
     altSlug: "iso-27001-2022-information-security-foundation",
@@ -567,6 +579,8 @@ export const freeCoursesData = [
   },
   {
     id: "326",
+    video_url: "https://drive.google.com/file/d/1f3IPJVBmxft4RFWT_1tNP0fcLVmqFgEH/preview",
+    drive_file_id: "1f3IPJVBmxft4RFWT_1tNP0fcLVmqFgEH",
     altId: "7",
     slug: "5s-workplace-management",
     altSlug: "5s-wm",
@@ -645,6 +659,8 @@ export const freeCoursesData = [
   },
   {
     id: "327",
+    video_url: "https://drive.google.com/file/d/1N6W0gecj1oY2keSxzWDX_ZMLB0ctH-eZ/preview",
+    drive_file_id: "1N6W0gecj1oY2keSxzWDX_ZMLB0ctH-eZ",
     altId: "8",
     slug: "7qc-tools-certification",
     altSlug: "7-qc-tools",
@@ -723,6 +739,8 @@ export const freeCoursesData = [
   },
   {
     id: "328",
+    video_url: "https://drive.google.com/file/d/16rIvkCdLNu9t0prtwdwbeWVRibRdwhXZ/preview",
+    drive_file_id: "16rIvkCdLNu9t0prtwdwbeWVRibRdwhXZ",
     altId: "9",
     slug: "project-management-level-1",
     altSlug: "project-management-fnd",
@@ -801,6 +819,8 @@ export const freeCoursesData = [
   },
   {
     id: "329",
+    video_url: "https://drive.google.com/file/d/1fxp0MwEy6hEvw5jKbnEeoX-7eadJUZR_/preview",
+    drive_file_id: "1fxp0MwEy6hEvw5jKbnEeoX-7eadJUZR_",
     altId: "10",
     slug: "lean-six-sigma-whitebelt",
     altSlug: "lean-six-sigma-white-belt",
@@ -879,6 +899,8 @@ export const freeCoursesData = [
   },
   {
     id: "330",
+    video_url: "https://drive.google.com/file/d/10H6QOlqWd_IJdASNAJyyZ5Q3z9the8xu/preview",
+    drive_file_id: "10H6QOlqWd_IJdASNAJyyZ5Q3z9the8xu",
     altId: "11",
     slug: "root-cause-analysis",
     altSlug: "rca-certification",

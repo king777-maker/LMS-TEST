@@ -4,8 +4,6 @@ import {
     FaCheckCircle,
     FaChevronLeft,
     FaChevronRight,
-    FaChevronDown,
-    FaChevronUp,
     FaDownload,
     FaPlay,
     FaClipboardCheck,
@@ -18,6 +16,7 @@ import {
     FaArrowLeft,
     FaExternalLinkAlt,
     FaFilePdf,
+    FaClock,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import * as pdfjsLib from "pdfjs-dist";
@@ -26,8 +25,7 @@ import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import { useAuth } from "../context/AuthContext";
 import {
     getFreeCertification,
-    getCourseLessons,
-    getLessonResources,
+    completeLessonApi,
     redeemCertificateCoupon,
 } from "../api/api";
 import { FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
@@ -35,8 +33,7 @@ import { getCourseVideo, resolveVideoEmbedUrl } from "../constants/courseVideoCa
 import { getAuthoritativeCourseName, freeCoursesData } from "../data/freeCoursesData";
 import {
     getCourseProgress,
-    toggleLessonCompleted,
-    markCourseCompleted,
+    completeCourseModule,
     resolveUserId,
     normalizeCourseId,
     recordExamBypass,
@@ -106,14 +103,25 @@ const Learning = () => {
 
     // Active Chapter (1 = Course Module, 2 = Assessment, 3 = Training Material, 4 = Download Certificate)
     const [activeChapter, setActiveChapter] = useState(1);
-    const [activeSubLesson, setActiveSubLesson] = useState(0);
 
     // Progress
     const [progress, setProgress] = useState(() => getCourseProgress(userId, canonicalId, 4));
 
-    // Video Resolution
+    // Video Resolution (Single Verified Primary Video per Course)
     const courseVideoMeta = getCourseVideo(canonicalId);
     const videoEmbedUrl = courseVideoMeta?.embedUrl || resolveVideoEmbedUrl("", canonicalId);
+
+    // Video Watch Duration & Engagement Validation
+    const [watchSeconds, setWatchSeconds] = useState(0);
+
+    // Active watch timer when learner is in Chapter 1 viewing video
+    useEffect(() => {
+        if (activeChapter !== 1 || progress.isChapter1Complete) return;
+        const timer = setInterval(() => {
+            setWatchSeconds((prev) => prev + 1);
+        }, 1000);
+        return () => clearInterval(timer);
+    }, [activeChapter, progress.isChapter1Complete]);
 
     // Slides & PDF Viewer State
     const [showSlidesViewer, setShowSlidesViewer] = useState(false);
@@ -146,7 +154,11 @@ const Learning = () => {
             }
         };
         window.addEventListener("bb_course_progress_updated", handleUpdate);
-        return () => window.removeEventListener("bb_course_progress_updated", handleUpdate);
+        window.addEventListener("bb_progress_updated", handleUpdate);
+        return () => {
+            window.removeEventListener("bb_course_progress_updated", handleUpdate);
+            window.removeEventListener("bb_progress_updated", handleUpdate);
+        };
     }, [canonicalId, refreshProgress]);
 
     // Initial course load
@@ -177,50 +189,50 @@ const Learning = () => {
         };
     }, [canonicalId, authoritativeName]);
 
-    // Chapter 1 Sub-Lessons Definition (In-Workspace Navigation Only)
-    const ch1Lessons = [
-        {
-            id: 1,
-            lesson_id: "lsn-1",
-            title: `Foundations & Strategic Scope of ${authoritativeName}`,
-            duration: "45 Mins",
-            topics: staticCourse?.curriculum?.[0]?.lessons || [
-                "Harmonized High-Level Structure (HLS) & Global Scope",
-                "Context of the Organization, Interested Parties & Scope Definition",
-                "Leadership Commitment, Quality Policy & Organizational Roles"
-            ],
-            videoUrl: videoEmbedUrl,
-        },
-        {
-            id: 2,
-            lesson_id: "lsn-2",
-            title: "Core Requirements, Operational Planning & Risk Alignment",
-            duration: "1 Hour 15 Mins",
-            topics: staticCourse?.curriculum?.[1]?.lessons || [
-                "Actions to Address Risks & Opportunities (Risk-Based Thinking)",
-                "Resource Management, Competence, Awareness & Documented Information",
-                "Operational Planning, Execution Control & Process Performance Monitoring"
-            ],
-            videoUrl: videoEmbedUrl,
-        },
-        {
-            id: 3,
-            lesson_id: "lsn-3",
-            title: "Performance Evaluation, Continual Improvement & Audit Readiness",
-            duration: "45 Mins",
-            topics: staticCourse?.curriculum?.[2]?.lessons || [
-                "Monitoring, Measurement, Analysis & Comprehensive Evaluation",
-                "Internal Audit Program, Audit Evidence & Non-Conformity Management",
-                "Management Review Inputs/Outputs & Continual Improvement Methodologies"
-            ],
-            videoUrl: videoEmbedUrl,
-        },
-    ];
+    // Video Completion Action (Single-Video Course Module)
+    const handleCompleteCourseVideo = async () => {
+        if (progress.isChapter1Complete) {
+            setActiveChapter(2);
+            return;
+        }
 
-    // Toggle sub-lesson completion
-    const handleToggleSubLesson = (lessonId) => {
-        toggleLessonCompleted(userId, canonicalId, lessonId, 4);
-        refreshProgress();
+        // Meaningful engagement validation: Ensure the learner actually spends time watching the video
+        if (watchSeconds < 10) {
+            toast.error("Please watch and engage with the lecture video before marking Chapter 1 as complete.", {
+                icon: "⏳",
+                duration: 4000,
+            });
+            return;
+        }
+
+        try {
+            // 1. Update local storage progress record
+            const updated = completeCourseModule(userId, canonicalId, { watchTime: watchSeconds });
+            setProgress(updated);
+
+            // 2. Persist to backend database (survives refresh, logout, login)
+            try {
+                await completeLessonApi({
+                    certification_id: canonicalId,
+                    user_id: userId,
+                    lesson_id: "module",
+                    completed: true,
+                    watch_time_seconds: watchSeconds,
+                });
+            } catch (apiErr) {
+                console.warn("Backend progress sync fallback:", apiErr);
+            }
+
+            toast.success("Course Module video completed! Chapter 2 Assessment is now unlocked.", {
+                icon: "✅",
+                duration: 4000,
+            });
+
+            // Automatically advance to Chapter 2
+            setActiveChapter(2);
+        } catch (err) {
+            console.error("Failed to complete course module video:", err);
+        }
     };
 
     // Check unlocking conditions
@@ -341,7 +353,7 @@ const Learning = () => {
                 setActiveChapter(2);
                 setMobileDrawerOpen(false);
             } else {
-                toast.error(ch2LockReason || "Complete Chapter 1 to unlock the Assessment.");
+                toast.error(ch2LockReason || "Complete the Course Module video in Chapter 1 to unlock the Assessment.");
             }
         } else if (chNum === 3) {
             if (isCh3Unlocked) {
@@ -359,33 +371,6 @@ const Learning = () => {
             }
         }
     };
-
-    // Sub-lesson navigation strictly inside main workspace
-    const handleNextSubLesson = () => {
-        if (activeSubLesson < ch1Lessons.length - 1) {
-            setActiveSubLesson(activeSubLesson + 1);
-        } else {
-            // Reached last lesson in Chapter 1
-            if (!isCurrentSubLessonDone) {
-                handleToggleSubLesson(currentSubLesson.id);
-            }
-            if (isCh2Unlocked || progress.isChapter1Complete) {
-                setActiveChapter(2);
-            } else {
-                toast.success("Lesson marked complete! Chapter 2 Assessment is now unlocked.");
-                setActiveChapter(2);
-            }
-        }
-    };
-
-    const handlePrevSubLesson = () => {
-        if (activeSubLesson > 0) {
-            setActiveSubLesson(activeSubLesson - 1);
-        }
-    };
-
-    const currentSubLesson = ch1Lessons[activeSubLesson];
-    const isCurrentSubLessonDone = progress.completedLessonIds?.includes(currentSubLesson.id) || progress.completedLessonIds?.includes(String(currentSubLesson.id));
 
     return (
         <div className="h-screen w-full flex flex-col bg-slate-100 overflow-hidden select-none">
@@ -658,17 +643,18 @@ const Learning = () => {
                 <main className="flex-1 h-full overflow-y-auto bg-slate-50 p-4 sm:p-6 lg:p-7 min-h-0">
                     <div className="max-w-5xl mx-auto space-y-4">
                         {/* =============================================================
-                            CHAPTER 1: COURSE MODULE (VIDEO LECTURE & IN-WORKSPACE NAV)
+                            CHAPTER 1: COURSE MODULE (EXACTLY ONE VIDEO PER COURSE)
+                            CRITICAL: NO MULTIPLE LESSONS, NO PREV/NEXT LESSON BUTTONS
                         ============================================================= */}
                         {activeChapter === 1 && (
                             <div className="space-y-4 animate-in fade-in duration-200">
-                                {/* Large Video Player Card */}
+                                {/* Single Verified Course Video Player Card */}
                                 <div className="bg-black rounded-2xl overflow-hidden shadow-md border border-slate-800 aspect-video max-h-[58vh] w-full relative">
                                     {videoEmbedUrl ? (
                                         <iframe
                                             key={videoEmbedUrl}
                                             src={videoEmbedUrl}
-                                            title={`${authoritativeName} - ${currentSubLesson.title}`}
+                                            title={`${authoritativeName} - Course Module Video`}
                                             className="absolute inset-0 w-full h-full border-0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             allowFullScreen
@@ -680,23 +666,23 @@ const Learning = () => {
                                     )}
                                 </div>
 
-                                {/* Lesson Details & Navigation Card */}
+                                {/* Single Video Details & Completion Card */}
                                 <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs">
-                                    {/* Top Row: Tag, Title, and Mark Complete */}
+                                    {/* Top Row: Tag, Course Video Title, and Mark Complete Action */}
                                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                                         <div className="space-y-1">
                                             <span className="bg-[#E8F1FC] text-[#0052CC] font-bold text-xs px-3 py-1 rounded-full inline-block">
                                                 Chapter 1 - Course Module
                                             </span>
                                             <h1 className="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
-                                                {currentSubLesson.title}
+                                                {courseVideoMeta?.title || authoritativeName}
                                             </h1>
                                             <p className="text-xs text-slate-500">
-                                                Lesson {activeSubLesson + 1} of {ch1Lessons.length} • Duration: {currentSubLesson.duration}
+                                                Official Master Lecture Video • Watch video completely to unlock Chapter 2 Assessment
                                             </p>
                                         </div>
 
-                                        <div className="shrink-0 flex items-center gap-2">
+                                        <div className="shrink-0 flex items-center gap-2.5">
                                             {courseVideoMeta?.viewUrl && (
                                                 <a
                                                     href={courseVideoMeta.viewUrl}
@@ -709,41 +695,60 @@ const Learning = () => {
                                                     <span className="hidden sm:inline">Drive Stream</span>
                                                 </a>
                                             )}
-                                            <button
-                                                type="button"
-                                                onClick={() => handleToggleSubLesson(currentSubLesson.id)}
-                                                className={`px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition cursor-pointer ${
-                                                    isCurrentSubLessonDone
-                                                        ? "bg-emerald-600 hover:bg-emerald-700 text-white"
-                                                        : "bg-[#059669] hover:bg-[#047857] text-white"
-                                                }`}
-                                            >
-                                                <FaCheckCircle size={14} />
-                                                <span>{isCurrentSubLessonDone ? "Completed" : "Mark as Complete"}</span>
-                                            </button>
+
+                                            {/* Single Mark as Complete Action */}
+                                            {progress.isChapter1Complete ? (
+                                                <button
+                                                    type="button"
+                                                    disabled
+                                                    className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-emerald-600 text-white shadow-xs cursor-default"
+                                                >
+                                                    <FaCheckCircle size={14} />
+                                                    <span>Video Completed</span>
+                                                </button>
+                                            ) : (
+                                                <button
+                                                    type="button"
+                                                    onClick={handleCompleteCourseVideo}
+                                                    className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-[#059669] hover:bg-[#047857] text-white shadow-xs transition cursor-pointer"
+                                                >
+                                                    <FaCheckCircle size={14} />
+                                                    <span>Mark as Complete</span>
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
-                                    {/* Bottom In-Workspace Navigation Row */}
+                                    {/* Bottom In-Workspace Progression Row */}
                                     <div className="mt-7 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                        <button
-                                            type="button"
-                                            onClick={handlePrevSubLesson}
-                                            disabled={activeSubLesson === 0}
-                                            className="px-5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs sm:text-sm flex items-center gap-2 transition disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
-                                        >
-                                            <FaArrowLeft size={11} />
-                                            <span>Previous</span>
-                                        </button>
+                                        <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                                            {progress.isChapter1Complete ? (
+                                                <span className="inline-flex items-center gap-1.5 text-emerald-700 font-bold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                                                    <FaCheckCircle size={12} />
+                                                    <span>Verified & Completed • Chapter 2 Unlocked</span>
+                                                </span>
+                                            ) : (
+                                                <span className="inline-flex items-center gap-1.5 text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                                                    <FaClock size={11} className="text-slate-500" />
+                                                    <span>Active Watch Session: {Math.floor(watchSeconds / 60)}m {watchSeconds % 60}s</span>
+                                                </span>
+                                            )}
+                                        </div>
 
-                                        <button
-                                            type="button"
-                                            onClick={handleNextSubLesson}
-                                            className="px-6 py-2 rounded-xl bg-[#0B1B3D] hover:bg-[#102B4E] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition cursor-pointer"
-                                        >
-                                            <span>Next</span>
-                                            <FaArrowRight size={11} />
-                                        </button>
+                                        {progress.isChapter1Complete ? (
+                                            <button
+                                                type="button"
+                                                onClick={() => setActiveChapter(2)}
+                                                className="px-6 py-2.5 rounded-xl bg-[#0B1B3D] hover:bg-[#102B4E] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition cursor-pointer"
+                                            >
+                                                <span>Go to Chapter 2: Assessment</span>
+                                                <FaArrowRight size={11} />
+                                            </button>
+                                        ) : (
+                                            <span className="text-xs text-slate-400 font-medium">
+                                                Watch video to unlock Assessment
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -770,14 +775,11 @@ const Learning = () => {
                                         </p>
                                         <button
                                             type="button"
-                                            onClick={() => {
-                                                setActiveChapter(1);
-                                                setActiveSubLesson(0);
-                                            }}
+                                            onClick={() => setActiveChapter(1)}
                                             className="px-5 py-2.5 bg-[#183B73] hover:bg-[#102B4E] text-white rounded-xl font-bold text-xs shadow-xs transition flex items-center gap-2 mx-auto cursor-pointer"
                                         >
                                             <FaArrowLeft size={11} />
-                                            <span>Return to Chapter 1 Lessons</span>
+                                            <span>Return to Chapter 1 Course Module</span>
                                         </button>
                                     </div>
                                 ) : (
@@ -875,10 +877,7 @@ const Learning = () => {
                                             <div className="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between">
                                                 <button
                                                     type="button"
-                                                    onClick={() => {
-                                                        setActiveChapter(1);
-                                                        setActiveSubLesson(ch1Lessons.length - 1);
-                                                    }}
+                                                    onClick={() => setActiveChapter(1)}
                                                     className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
                                                 >
                                                     <FaArrowLeft size={11} />

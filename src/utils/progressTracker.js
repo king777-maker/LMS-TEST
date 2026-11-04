@@ -143,7 +143,7 @@ const getStoredRecord = (userId, courseId) => {
 
   for (const key of keys) {
     try {
-      const raw = localStorage.getItem(key);
+      const raw = typeof localStorage !== "undefined" ? localStorage.getItem(key) : null;
       if (raw) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) {
@@ -205,10 +205,17 @@ export const getCourseProgress = (userId = 0, courseId = 0, totalLessonsCount = 
   // 4. Calculate percentage & completion
   const hasAssessment = completedLessonIds.includes(4) || completedLessonIds.includes(5) || completedLessonIds.includes(9999);
   
-  // Strict 4-Chapter Sequential Completion Logic
-  const requiredModuleLessons = 3;
-  const moduleLessonsDone = completedLessonIds.filter(id => id === 1 || id === 2 || id === 3 || id === "1" || id === "2" || id === "3").length;
-  const isChapter1Complete = moduleLessonsDone >= requiredModuleLessons;
+  // Strict 4-Chapter Sequential Completion Logic (Single Video per Course)
+  const requiredModuleLessons = 1;
+  const isChapter1Complete = Boolean(
+    record.isChapter1Complete ||
+    record.chapter1?.completed ||
+    record.isCompleted ||
+    isCertCompleted ||
+    completedLessonIds.length > 0 ||
+    record.completedLessons > 0
+  );
+  const moduleLessonsDone = isChapter1Complete ? 1 : 0;
 
   const isAssessmentPassed = Boolean(
     record.assessmentPassed ||
@@ -274,16 +281,16 @@ export const getCourseProgress = (userId = 0, courseId = 0, totalLessonsCount = 
       title: "Course Module",
       unlocked: true,
       completed: isChapter1Complete,
-      progress: Math.min(100, Math.round((moduleLessonsDone / requiredModuleLessons) * 100)),
+      progress: isChapter1Complete ? 100 : 0,
       completedLessons: moduleLessonsDone,
-      requiredLessons: requiredModuleLessons
+      requiredLessons: 1
     },
     chapter2: {
       chapter_number: 2,
       title: "Assessment",
       unlocked: isChapter2Unlocked,
       completed: isChapter2Complete,
-      lockReason: isChapter2Unlocked ? "" : "Complete all Course Module lessons in Chapter 1 to unlock the Assessment."
+      lockReason: isChapter2Unlocked ? "" : "Complete the Course Module video in Chapter 1 to unlock the Assessment."
     },
     chapter3: {
       chapter_number: 3,
@@ -349,12 +356,14 @@ export const toggleLessonCompleted = (userId, courseId, lessonId, totalLessonsCo
   };
 
   try {
-    localStorage.setItem(key, JSON.stringify(progressRecord));
-    localStorage.setItem("bb_last_progress_update", JSON.stringify({
-      courseId: cId,
-      userId: uId,
-      timestamp: Date.now(),
-    }));
+    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+      localStorage.setItem(key, JSON.stringify(progressRecord));
+      localStorage.setItem("bb_last_progress_update", JSON.stringify({
+        courseId: cId,
+        userId: uId,
+        timestamp: Date.now(),
+      }));
+    }
   } catch (e) {
     console.error("Progress persistence error:", e);
   }
@@ -718,7 +727,7 @@ export const isChapterUnlocked = (chapterNum, progress) => {
 export const getChapterLockReason = (chapterNum, progress) => {
   const num = Number(chapterNum);
   if (num === 2 && !isChapterUnlocked(2, progress)) {
-    return "Complete all Course Module lessons in Chapter 1 to unlock the Assessment.";
+    return "Complete the Course Module video in Chapter 1 to unlock the Assessment.";
   }
   if (num === 3 && !isChapterUnlocked(3, progress)) {
     return "Pass the Chapter 2 Assessment (70% or higher) to unlock Training Course Materials.";
@@ -766,6 +775,86 @@ export const recordAssessmentPassed = (userId, courseId, resultData = {}) => {
   if (typeof window !== "undefined") {
     window.dispatchEvent(
       new CustomEvent("bb_progress_updated", { detail: progressRecord })
+    );
+  }
+
+  return progressRecord;
+};
+
+/**
+ * Complete the single Course Module video in Chapter 1.
+ * Unlocks Chapter 2 (Assessment), syncs with server/localStorage, and dispatches real-time update.
+ */
+export const completeCourseModule = (userId, courseId, validationData = {}) => {
+  const uId = resolveUserId(userId);
+  const cId = normalizeCourseId(courseId);
+  const key = `${STORAGE_PREFIX}${uId}_${cId}`;
+
+  const record = getStoredRecord(uId, cId);
+  let currentIds = Array.isArray(record.completedLessonIds)
+    ? Array.from(new Set(record.completedLessonIds.map(Number)))
+    : [];
+
+  if (!currentIds.includes(1)) {
+    currentIds.push(1);
+  }
+
+  const progressRecord = {
+    ...record,
+    userId: uId,
+    courseId: cId,
+    completedLessonIds: currentIds,
+    completedCount: 1,
+    totalLessons: 4,
+    totalCount: 4,
+    isChapter1Complete: true,
+    isChapter2Unlocked: true,
+    chapter1: {
+      chapter_number: 1,
+      title: "Course Module",
+      unlocked: true,
+      completed: true,
+      progress: 100,
+      completedLessons: 1,
+      requiredLessons: 1
+    },
+    chapter2: {
+      chapter_number: 2,
+      title: "Assessment",
+      unlocked: true,
+      completed: Boolean(record.assessmentPassed || record.isChapter2Complete),
+      lockReason: ""
+    },
+    percentage: record.isCompleted ? 100 : (record.assessmentPassed ? 70 : 40),
+    status: record.isCompleted ? "Completed" : "In Progress",
+    watchTimeSeconds: validationData.watchTime || validationData.watch_time || 0,
+    moduleCompletedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  try {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(key, JSON.stringify(progressRecord));
+      localStorage.setItem("bb_last_progress_update", JSON.stringify({
+        courseId: cId,
+        userId: uId,
+        timestamp: Date.now(),
+      }));
+    }
+  } catch (e) {
+    console.error("Progress persistence error:", e);
+  }
+
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("bb_progress_updated", {
+        detail: progressRecord,
+      })
+    );
+    window.dispatchEvent(
+      new CustomEvent("bb_course_progress_updated", {
+        detail: { courseId: cId, userId: uId, progress: progressRecord },
+      })
     );
   }
 

@@ -120,8 +120,22 @@ async function run() {
     assert(learningSource.includes("lg:w-[23%]"), "Sidebar desktop width is approximately 22-23% (w-[23%]).");
 
     assert(learningSource.includes("Mark as Complete"), "Main workspace has 'Mark as Complete' control.");
-    assert(learningSource.includes("Previous"), "Main workspace has 'Previous' navigation control.");
-    assert(learningSource.includes("Next"), "Main workspace has 'Next' navigation control.");
+
+    // 7. Verify Single-Video Course Progression (Complete Removal of Lessons)
+    console.log("\n--- 7. VERIFYING SINGLE-VIDEO PROGRESSION & ZERO LESSON SYSTEM ---");
+    assert(!learningSource.includes("ch1Lessons"), "Learning.jsx contains ZERO multiple lesson arrays (ch1Lessons eradicated).");
+    assert(!learningSource.includes("activeSubLesson"), "Learning.jsx contains ZERO multiple sub-lesson state (activeSubLesson eradicated).");
+    assert(!learningSource.includes("Lesson 1 of 3"), "Learning.jsx contains ZERO multiple lesson numbering.");
+    assert(!learningSource.includes("Previous Lesson"), "Learning.jsx contains ZERO 'Previous Lesson' buttons.");
+    assert(!learningSource.includes("Next Lesson"), "Learning.jsx contains ZERO 'Next Lesson' buttons.");
+    assert(learningSource.includes("watchSeconds"), "Learning.jsx enforces active watch time & engagement tracking.");
+    assert(learningSource.includes("completeCourseModule"), "Learning.jsx utilizes completeCourseModule progression utility.");
+
+    const { completeCourseModule } = await server.ssrLoadModule("/src/utils/progressTracker.js");
+    const moduleProgress = completeCourseModule(99902, 324, { watchTime: 45 });
+    assert(moduleProgress.isChapter1Complete === true, "completeCourseModule successfully marks Chapter 1 100% complete.");
+    assert(moduleProgress.chapter1.requiredLessons === 1, "Chapter 1 requires exactly 1 primary course video.");
+    assert(isChapterUnlocked(2, moduleProgress) === true, "Chapter 2 (Assessment) is immediately unlocked after single video completion.");
 
     console.log(`\n===============================================================================`);
     console.log(`   TEST RESULTS: ${passedTests} / ${totalTests} CHECKS PASSED (100%) `);

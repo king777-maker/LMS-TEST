@@ -1062,14 +1062,14 @@ const Assignment = () => {
                         Assessment Prerequisites Incomplete
                     </h2>
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                        You must complete all lessons in <strong>Chapter 1 — Course Module</strong> before attempting this examination.
+                        You must complete the course video in <strong>Chapter 1 — Course Module</strong> before attempting this examination.
                     </p>
                     <button
                         type="button"
                         onClick={() => navigate(`/learning/${id}`)}
                         className="w-full py-3.5 bg-[#183B73] hover:bg-[#102B4E] text-white rounded-xl font-bold transition flex items-center justify-center gap-2 cursor-pointer text-xs shadow-md"
                     >
-                        <span>Return to Chapter 1 Lessons</span>
+                        <span>Return to Chapter 1 Course Module</span>
                     </button>
                 </div>
             </div>

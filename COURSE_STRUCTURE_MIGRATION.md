@@ -83,3 +83,4 @@ CREATE TABLE IF NOT EXISTS `learner_lesson_progress` (
 1. **Existing Completions Preserved:** Learners who previously completed assessments retain their passing scores and certified status.
 2. **Dynamic Name Standardization:** Titles are rendered dynamically using `getAuthoritativeCourseName()`, preventing ISO 9001 labels from appearing on other courses.
 3. **No Schema Reset:** Zero table drops or data purges were executed.
+

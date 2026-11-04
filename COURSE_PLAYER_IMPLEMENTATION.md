@@ -92,3 +92,4 @@ Every Free Course adheres strictly to this four-chapter sequence:
 3. **Backend Access Control:**
    - Updated `CourseProgressController.php` to calculate and return `chapter1`, `chapter2`, `chapter3`, and `chapter4` unlocking status and reasons.
    - Enforced HTTP 403 Forbidden on `/api/assessment` if Chapter 1 is incomplete, and HTTP 403 on `/api/course-materials` if Chapter 2 is not passed.
+
