@@ -442,7 +442,30 @@ const TicketMaster = () => {
 
       {/* Ticket Table */}
       <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
-        <div className="overflow-x-auto">
+        {routeNotFound && (
+        <div className="mb-4 p-4 bg-amber-50/90 border border-amber-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-amber-900 text-xs shadow-xs">
+          <div className="flex items-center gap-2.5">
+            <FaClock className="text-amber-600 text-base shrink-0" />
+            <div>
+              <p className="font-bold text-[#0B315B]">
+                Support Ticket Master — Operating in Staged Mode
+              </p>
+              <p className="text-amber-800/90 leading-relaxed text-[11px] mt-0.5">
+                Backend route <code className="bg-white px-1.5 py-0.5 rounded border border-amber-300 font-mono text-[10px]">GET /api/admin/tickets</code> is awaiting server deployment of <code className="bg-white px-1.5 py-0.5 rounded border border-amber-300 font-mono text-[10px]">cadac_admin_sync.php</code>. Support tickets are preserved in browser storage and can be managed immediately.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={fetchTickets}
+            className="px-3.5 py-2 bg-[#0B315B] hover:bg-[#071F3B] text-white rounded-xl font-bold transition flex items-center gap-2 shrink-0 cursor-pointer text-xs"
+          >
+            <FaSyncAlt className={`text-xs ${loading ? "animate-spin" : ""}`} />
+            Retry Server Sync
+          </button>
+        </div>
+      )}
+      <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="bg-slate-50/80 border-b border-slate-200/80 text-[11px] font-black uppercase tracking-wider text-slate-500">
