@@ -114,6 +114,7 @@ function BlogRedirect() {
 
 function App() {
   const location = useLocation();
+  const isLearningPlayer = location.pathname.startsWith("/learning");
   const isAdminRoute =
     location.pathname.startsWith(ADMIN_BASE_PATH) ||
     location.pathname.startsWith("/admin") ||
@@ -133,9 +134,9 @@ function App() {
           {/* =====================================================
               HEADER (LEARNER PORTAL)
           ===================================================== */}
-          {!isAdminRoute && <Header />}
+          {!isAdminRoute && !isLearningPlayer && <Header />}
 
-          <main>
+          <main className={isLearningPlayer ? "h-screen overflow-hidden" : ""}>
             <Toaster
               position="top-right"
               containerStyle={{
@@ -683,12 +684,12 @@ function App() {
         {/* =====================================================
             COOKIE CONSENT PREFERENCES
         ===================================================== */}
-        {!isAdminRoute && <CookieConsent />}
+        {!isAdminRoute && !isLearningPlayer && <CookieConsent />}
 
         {/* =====================================================
             FOOTER
         ===================================================== */}
-        {!isAdminRoute && <Footer />}
+        {!isAdminRoute && !isLearningPlayer && <Footer />}
 
       </div>
       </AuthPromptProvider>

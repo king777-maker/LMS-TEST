@@ -1,4 +1,4 @@
-import { markCourseCompleted, normalizeCourseId, resolveUserId, recordExamBypass } from "../utils/progressTracker";
+import { markCourseCompleted, normalizeCourseId, resolveUserId, recordExamBypass, getCourseProgress, isChapterUnlocked } from "../utils/progressTracker";
 import { FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
 import { COURSE_ASSESSMENT_CATALOG, getAssessmentForCourse } from "../data/assessmentCatalog";
 import { getAuthoritativeCourseName } from "../data/freeCoursesData";
@@ -1043,6 +1043,38 @@ const Assignment = () => {
         submitExam,
     ]);
 
+
+    // =====================================================
+    // STRICT SEQUENTIAL CHAPTER LOCKING GUARD
+    // =====================================================
+    const courseProgressRecord = getCourseProgress(resolveUserId(authUser?.id), assessmentId, 4);
+    if (!isChapterUnlocked(2, courseProgressRecord)) {
+        return (
+            <div className="min-h-screen bg-[#F4F7FC] flex items-center justify-center p-4">
+                <div className="max-w-md w-full bg-white rounded-3xl border border-amber-200 p-8 shadow-xl text-center animate-in fade-in duration-200">
+                    <div className="w-16 h-16 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                        🔒
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-full inline-block mb-2">
+                        Chapter 2 Locked
+                    </span>
+                    <h2 className="text-xl font-bold text-slate-900 mb-2">
+                        Assessment Prerequisites Incomplete
+                    </h2>
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        You must complete all lessons in <strong>Chapter 1 — Course Module</strong> before attempting this examination.
+                    </p>
+                    <button
+                        type="button"
+                        onClick={() => navigate(`/learning/${id}`)}
+                        className="w-full py-3.5 bg-[#183B73] hover:bg-[#102B4E] text-white rounded-xl font-bold transition flex items-center justify-center gap-2 cursor-pointer text-xs shadow-md"
+                    >
+                        <span>Return to Chapter 1 Lessons</span>
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     // =====================================================
     // LOADING

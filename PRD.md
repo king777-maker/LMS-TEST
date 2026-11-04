@@ -65,3 +65,23 @@ Conduct a complete end-to-end audit of Broadbeach Academy, identify all function
   - [x] Harden frontend route protection (`AdminProtectedRoute.jsx`, `AdminContext.jsx`, `AdminLayout.jsx`, `App.jsx`).
   - [x] Execute 10-scenario automated security test suite with 100% pass rate.
   - [x] Author core architectural deliverables: `SUPER_ADMIN_SETUP.md`, `ADMIN_ROLE_PERMISSION_MATRIX.md`, `ADMIN_AUTH_REPAIR_REPORT.md`, `ADMIN_API_TEST_RESULTS.md`.
+
+- [x] **Milestone 11: Google Drive Master Video Import & Free Course LMS Integration**
+  - [x] Enumerate and probe all 11 master lecture videos from Google Drive folder `3. FINAL VIDEOS` (`1w6AJns2wztncg5-2l6dWzF5sY-2EhOBy`).
+  - [x] Map each video file 1-to-1 with 100% confidence to the 11 Free Certification Courses in Broadbeach Academy catalog.
+  - [x] Create universal multi-provider video resolver (`src/constants/courseVideoCatalog.js`) supporting Google Drive preview embeds, YouTube privacy-enhanced embeds, and direct MP4 streams.
+  - [x] Upgrade `Learning.jsx` video player, replacing the hardcoded YouTube regex with dynamic multi-source resolution and adding "Official HD Video" badge and "Full HD Stream" viewer.
+  - [x] Overhaul `LessonVideo.jsx` from a non-functional static mockup into a responsive video learning player with progress completion tracking.
+  - [x] Update `freeCoursesData.js` with direct video URLs and Google Drive file IDs.
+  - [x] Generate database migration script (`database/2026_11_04_update_course_videos.sql`) and bundle into `cadac_admin_sync.php`.
+  - [x] Execute automated verification test suite (11/11 passed) and verify clean production build (`npm run build` in 11.37s with 0 errors).
+  - [x] Author comprehensive project deliverables: `VIDEO_IMPORT_INVENTORY.md`, `COURSE_VIDEO_MAPPING.md`, `IMPLEMENTATION_REPORT.md`, `QA_TEST_REPORT.md`, and `DEPLOYMENT_GUIDE.md`.
+
+- [x] **Milestone 12: Course Player UI/UX Redesign, Four-Chapter Standardized Structure & Viewport Scroll Control**
+  - [x] Strict Viewport Scroll Control: Implemented a fixed-height 100dvh application layout (`h-screen overflow-hidden`) with a compact 56px LMS header, independent sidebar scrolling, and contained workspace scrolling. Suppressed marketing Header and Footer in `src/App.jsx` on learning routes.
+  - [x] Exactly Four Chapters: Standardized all 11 Free Courses into Chapter 1 (Course Module), Chapter 2 (Assessment), Chapter 3 (Training Course Material), and Chapter 4 (Download Certificate).
+  - [x] Assessment UI Upgrade: Eradicated "Format: Timed Multiple Choice" and replaced with a prominent, high-contrast gold & navy "START EXAM" button launching `/assignment/:id`.
+  - [x] Eradicate "Slides Unavailable" & Deploy Certificate Access: Completely removed the "Slides Unavailable" button. Implemented authenticated Certificate Access section displaying exact statement: *"Please enter valid Access code for corporate and Classroom Exams."* with working access code verification.
+  - [x] Standardize Course Content: Reusable curriculum component dynamically displaying `{Course Name} — Course Content` across all courses.
+  - [x] Sequential Unlocking & Security Enforcement: Implemented strict prerequisite progression matrix (Ch1 -> Ch2 -> Ch3 -> Ch4). Guarded `/assignment/:id` against direct URL bypass when Chapter 1 is incomplete.
+  - [x] Automated Testing & Build: Executed programmatic Vite test suite passing 91/91 checks (100% pass rate). Production build (`npm run build`) succeeded in 5.75s with 0 errors.
