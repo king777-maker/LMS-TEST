@@ -270,77 +270,84 @@ const FreeCoursesPage = () => {
       </section>
 
       {/* =========================================================
-          FILTER, SEARCH & CATALOG CONTAINER
+          FILTER, SEARCH & CATALOG CONTAINER (Standardized Design Tokens)
       ========================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
         
-        {/* Search & Category Filter Bar */}
-        <div className="bg-white rounded-[16px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-slate-200/90 p-4 sm:p-6 space-y-4">
-          
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* Unified Search & Category Filter Toolbar */}
+        <div className="bg-white rounded-[16px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-slate-200/90 p-3.5 sm:p-5">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3.5">
             
-            {/* Search Input */}
-            <div className="relative w-full md:w-80">
-              <FaSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs sm:text-sm pointer-events-none" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search standard or keyword (e.g. 9001, Six Sigma)..."
-                className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer font-bold"
-                  aria-label="Clear search"
-                >
-                  ✕
-                </button>
-              )}
+            {/* Left: Standardized Filter Category Buttons */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none min-w-0 flex-1">
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setCurrentPage(1);
+                    }}
+                    className={`h-[42px] px-4 rounded-[10px] text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer flex items-center justify-center shrink-0 border select-none active:scale-[0.98] ${
+                      isActive
+                        ? "bg-[#10365D] text-white border-[#10365D] shadow-xs font-semibold"
+                        : "bg-white text-[#1E293B] border-[#E2E8F0] hover:bg-slate-50 hover:border-slate-300 hover:text-[#10365D]"
+                    }`}
+                  >
+                    <span className={isActive ? "!text-white" : "!text-[#1E293B]"}>{cat}</span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Sort & Count */}
-            <div className="flex items-center justify-between w-full md:w-auto gap-3 text-xs sm:text-sm">
-              <span className="text-slate-500 font-medium">
-                Showing <strong className="text-slate-800">{filteredCourses.length}</strong> {filteredCourses.length === 1 ? "Course" : "Courses"}
-              </span>
+            {/* Right: Search Field & Sorting Dropdown (Matched 42px Height & Alignment) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0">
+              
+              {/* Search Field */}
+              <div className="relative w-full sm:w-64 md:w-72">
+                <FaSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs sm:text-sm pointer-events-none" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setCurrentPage(1);
+                  }}
+                  placeholder="Search Free Courses..."
+                  className="w-full h-[42px] pl-10 pr-8 rounded-[10px] border border-[#E2E8F0] bg-white text-xs sm:text-sm text-[#1E293B] placeholder:text-slate-400 focus:border-[#0052CC] focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer font-bold p-1"
+                    aria-label="Clear search"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
 
-              <div className="flex items-center gap-1.5">
-                <span className="text-slate-400 font-medium">Sort:</span>
+              {/* Sorting Dropdown */}
+              <div className="relative shrink-0">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 outline-none cursor-pointer focus:border-blue-500 transition-colors"
+                  aria-label="Sort courses by"
+                  className="w-full sm:w-auto h-[42px] pl-3.5 pr-8 bg-white border border-[#E2E8F0] hover:border-slate-300 rounded-[10px] text-xs sm:text-sm font-semibold text-[#1E293B] outline-none cursor-pointer focus:border-[#0052CC] focus:ring-2 focus:ring-blue-100 transition-colors"
                 >
                   <option value="popular">Most Enrolled</option>
                   <option value="rating">Highest Rated</option>
                   <option value="title">Alphabetical (A-Z)</option>
                 </select>
+                <FaChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none" />
               </div>
+
             </div>
 
           </div>
-
-          {/* Category Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none pt-2 border-t border-slate-100">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs whitespace-nowrap transition-all duration-200 cursor-pointer border ${
-                  selectedCategory === cat
-                    ? "lms-tab-active bg-[#10365D] !text-white border-[#10365D] font-semibold shadow-xs"
-                    : "lms-tab-inactive bg-white text-[#1E293B] border-[#E2E8F0] font-medium hover:bg-slate-50 hover:text-[#10365D] hover:border-slate-300"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
         </div>
 
       </section>

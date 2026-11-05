@@ -140,14 +140,14 @@ const Courses = () => {
               <button
                 type="button"
                 onClick={() => updateParam("type", "all")}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
+                className={`h-[42px] px-4 rounded-[10px] text-xs sm:text-[13px] font-semibold transition-all flex items-center gap-2 cursor-pointer border select-none active:scale-[0.98] ${
                   typeFilter === "all"
-                    ? "lms-tab-active bg-[#10365D] !text-white border-[#10365D] font-semibold shadow-xs"
-                    : "lms-tab-inactive bg-white text-[#1E293B] border-[#E2E8F0] font-medium hover:bg-slate-50 hover:text-[#10365D] hover:border-slate-300"
+                    ? "bg-[#10365D] text-white border-[#10365D] shadow-xs font-semibold"
+                    : "bg-white text-[#1E293B] border-[#E2E8F0] hover:bg-slate-50 hover:border-slate-300"
                 }`}
               >
                 <span>All Certifications</span>
-                <span className={`text-[11px] px-2 py-0.5 rounded-full ${typeFilter === "all" ? "bg-white/20 text-[#FFD43B] font-bold" : "bg-slate-100 text-slate-600 font-semibold"}`}>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${typeFilter === "all" ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700"}`}>
                   {allCourses.length}
                 </span>
               </button>
@@ -156,15 +156,15 @@ const Courses = () => {
               <button
                 type="button"
                 onClick={() => updateParam("type", "free")}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
+                className={`h-[42px] px-4 rounded-[10px] text-xs sm:text-[13px] font-semibold transition-all flex items-center gap-2 cursor-pointer border select-none active:scale-[0.98] ${
                   typeFilter === "free"
-                    ? "bg-emerald-700 !text-white border-emerald-700 font-semibold shadow-xs"
-                    : "bg-white text-emerald-800 border-emerald-200/80 font-medium hover:bg-emerald-50"
+                    ? "bg-[#10365D] text-white border-[#10365D] shadow-xs font-semibold"
+                    : "bg-white text-[#1E293B] border-[#E2E8F0] hover:bg-slate-50 hover:border-slate-300"
                 }`}
               >
-                <FiGift className={typeFilter === "free" ? "text-[#FFD43B]" : "text-emerald-700"} />
+                <FiGift className={typeFilter === "free" ? "text-[#FFD43B]" : "text-emerald-600"} />
                 <span>Free Programs (100% Free)</span>
-                <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${typeFilter === "free" ? "bg-white/20 text-white" : "bg-emerald-100 text-emerald-800"}`}>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${typeFilter === "free" ? "bg-white/20 text-white" : "bg-emerald-50 text-emerald-700 border border-emerald-200"}`}>
                   {freeCount}
                 </span>
               </button>
@@ -173,15 +173,15 @@ const Courses = () => {
               <button
                 type="button"
                 onClick={() => updateParam("type", "paid")}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
+                className={`h-[42px] px-4 rounded-[10px] text-xs sm:text-[13px] font-semibold transition-all flex items-center gap-2 cursor-pointer border select-none active:scale-[0.98] ${
                   typeFilter === "paid"
-                    ? "lms-tab-active bg-[#10365D] !text-white border-[#10365D] font-semibold shadow-xs"
-                    : "lms-tab-inactive bg-white text-[#1E293B] border-[#E2E8F0] font-medium hover:bg-slate-50 hover:text-[#10365D] hover:border-slate-300"
+                    ? "bg-[#10365D] text-white border-[#10365D] shadow-xs font-semibold"
+                    : "bg-white text-[#1E293B] border-[#E2E8F0] hover:bg-slate-50 hover:border-slate-300"
                 }`}
               >
-                <FiAward className={typeFilter === "paid" ? "text-[#FFD43B]" : "text-[#1E293B]"} />
+                <FiAward className={typeFilter === "paid" ? "text-[#FFD43B]" : "text-amber-500"} />
                 <span>Paid Professional</span>
-                <span className={`text-[11px] px-2 py-0.5 rounded-full ${typeFilter === "paid" ? "bg-white/20 text-[#FFD43B] font-bold" : "bg-slate-100 text-slate-600 font-semibold"}`}>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${typeFilter === "paid" ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700"}`}>
                   {paidCount}
                 </span>
               </button>
@@ -218,22 +218,22 @@ const Courses = () => {
             {/* Right Side Content */}
             <div className="col-span-12 lg:col-span-9 xl:col-span-10">
               {/* Search & Secondary Filter Header */}
-              <div className="flex flex-col lg:flex-row justify-between gap-5 mb-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 mb-6">
                 <div className="relative w-full max-w-[650px]">
-                  <FiSearch className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 text-xl" />
+                  <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-base" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={handleSearchChange}
                     placeholder="Search by course title, standard (e.g. ISO 9001), or topic..."
-                    className="w-full h-[58px] rounded-full border border-[#D7DFF3] bg-white pl-14 pr-6 outline-none focus:border-[#2168D8] focus:ring-2 focus:ring-[#2168D8]/10 transition-all text-sm"
+                    className="w-full h-[46px] rounded-[10px] border border-[#E2E8F0] bg-white pl-11 pr-8 outline-none focus:border-[#0052CC] focus:ring-2 focus:ring-blue-100 transition-all text-sm text-[#1E293B]"
                     aria-label="Search courses"
                   />
                   {searchQuery && (
                     <button
                       type="button"
                       onClick={() => updateParam("search", "")}
-                      className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
                       aria-label="Clear search"
                     >
                       <FiX />
@@ -241,11 +241,11 @@ const Courses = () => {
                   )}
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 shrink-0">
                   <select
                     value={selectedCategory}
                     onChange={(e) => updateParam("category", e.target.value)}
-                    className="w-full sm:w-[260px] h-[58px] rounded-xl border border-[#D7DFF3] px-5 bg-white font-medium text-slate-700 outline-none focus:border-[#2168D8]"
+                    className="w-full sm:w-[240px] h-[46px] rounded-[10px] border border-[#E2E8F0] px-3.5 bg-white font-medium text-xs sm:text-sm text-[#1E293B] outline-none cursor-pointer focus:border-[#0052CC] focus:ring-2 focus:ring-blue-100"
                     aria-label="Filter by specialization track"
                   >
                     <option value="All">All Categories</option>

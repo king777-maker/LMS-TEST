@@ -33,7 +33,6 @@ import { useAuth } from "../context/AuthContext";
 import { getMyCourses, raiseStudentTicket, getMyTickets } from "../api/api";
 import { getCourseProgress, resolveUserId } from "../utils/progressTracker";
 import { getCategoryImage } from "../data/coursesResolver";
-import TabButton from "../components/common/TabButton";
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -464,26 +463,26 @@ const MyProfile = () => {
               <button
                 type="button"
                 onClick={() => setIsTicketModalOpen(true)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:scale-95 text-[#07162c] font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer shadow-md"
+                className="w-full sm:w-auto h-[42px] inline-flex items-center justify-center gap-2 px-4 rounded-[10px] bg-amber-400 hover:bg-amber-300 active:scale-[0.98] text-[#07162c] font-bold text-xs sm:text-[13px] transition-all duration-150 cursor-pointer shadow-sm select-none"
               >
-                <FaTicketAlt />
+                <FaTicketAlt className="text-xs shrink-0" />
                 <span>Raise a Ticket</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setIsEditModalOpen(true)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all duration-200 cursor-pointer shadow-xs"
+                className="w-full sm:w-auto h-[42px] inline-flex items-center justify-center gap-2 px-4 rounded-[10px] bg-white/10 hover:bg-white/20 active:scale-[0.98] text-white font-semibold text-xs sm:text-[13px] border border-white/20 transition-all duration-150 cursor-pointer select-none"
               >
-                <FaEdit className="text-amber-300" />
+                <FaEdit className="text-amber-300 text-xs shrink-0" />
                 <span>Edit Profile</span>
               </button>
 
               <Link
                 to="/my-courses"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-semibold text-xs sm:text-sm shadow-md transition-all duration-200"
+                className="w-full sm:w-auto h-[42px] inline-flex items-center justify-center gap-2 px-4 rounded-[10px] bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-[13px] shadow-sm transition-all duration-150 select-none"
               >
-                <FaBookOpen />
+                <FaBookOpen className="text-xs shrink-0" />
                 <span>My Courses</span>
               </Link>
             </div>
@@ -553,29 +552,71 @@ const MyProfile = () => {
         <div className="bg-white rounded-2xl border border-slate-200 shadow-xs mb-8 overflow-hidden">
           
           {/* Tab Headers */}
-          <div
-            role="tablist"
-            aria-label="Student profile tabs"
-            className="p-3 bg-slate-50/70 border-b border-slate-200/80 flex items-center gap-2 overflow-x-auto custom-dropdown-scroll"
-          >
-            {[
-              { id: "overview", label: "Overview", icon: FaGraduationCap },
-              { id: "courses", label: "My Enrolled Courses", icon: FaBookOpen, badge: stats.totalEnrolled },
-              { id: "certificates", label: "Certificates & Credentials", icon: FaAward, badge: stats.certificatesAvailable },
-              { id: "details", label: "Personal Details", icon: FaUserGraduate },
-              { id: "tickets", label: "Support Tickets", icon: FaTicketAlt, badge: tickets.length },
-            ].map((tab) => (
-              <TabButton
-                key={tab.id}
-                id={tab.id}
-                label={tab.label}
-                icon={tab.icon}
-                badge={tab.badge}
-                isActive={activeTab === tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className="whitespace-nowrap shrink-0"
-              />
-            ))}
+          <div className="flex border-b border-slate-200 overflow-x-auto custom-dropdown-scroll">
+            <button
+              type="button"
+              onClick={() => setActiveTab("overview")}
+              className={`flex items-center gap-2 px-6 py-4 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+                activeTab === "overview"
+                  ? "border-blue-600 text-blue-700 bg-blue-50/40"
+                  : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              }`}
+            >
+              <FaGraduationCap />
+              <span>Overview</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab("courses")}
+              className={`flex items-center gap-2 px-6 py-4 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+                activeTab === "courses"
+                  ? "border-blue-600 text-blue-700 bg-blue-50/40"
+                  : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              }`}
+            >
+              <FaBookOpen />
+              <span>My Enrolled Courses ({stats.totalEnrolled})</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab("certificates")}
+              className={`flex items-center gap-2 px-6 py-4 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+                activeTab === "certificates"
+                  ? "border-blue-600 text-blue-700 bg-blue-50/40"
+                  : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              }`}
+            >
+              <FaAward />
+              <span>Certificates & Credentials ({stats.certificatesAvailable})</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab("details")}
+              className={`flex items-center gap-2 px-6 py-4 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+                activeTab === "details"
+                  ? "border-blue-600 text-blue-700 bg-blue-50/40"
+                  : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              }`}
+            >
+              <FaUserGraduate />
+              <span>Personal Details</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab("tickets")}
+              className={`flex items-center gap-2 px-6 py-4 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+                activeTab === "tickets"
+                  ? "border-blue-600 text-blue-700 bg-blue-50/40"
+                  : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              }`}
+            >
+              <FaTicketAlt />
+              <span>Support Tickets ({tickets.length})</span>
+            </button>
           </div>
 
           {/* Tab Content Panels */}

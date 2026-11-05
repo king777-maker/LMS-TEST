@@ -336,7 +336,7 @@ const RaiseATicket = () => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-7 py-3 rounded-xl bg-[#0B315B] hover:bg-[#183B73] text-white font-bold transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
+                className="h-[48px] px-7 rounded-[12px] bg-[#0052CC] hover:bg-[#0747A6] active:scale-[0.98] text-white font-bold text-sm transition-all shadow-xs flex items-center justify-center gap-2 disabled:opacity-50 select-none cursor-pointer"
               >
                 {submitting ? (
                   <>

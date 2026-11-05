@@ -1361,13 +1361,13 @@ const Assignment = () => {
                                     placeholder="ENTER ACCESS CODE"
                                     autoComplete="off"
                                     disabled={certificateCouponLoading}
-                                    className="flex-1 sm:w-64 h-9 sm:h-10 bg-slate-50 border border-slate-200 rounded-xl px-3.5 text-xs text-[#0B1B3D] font-bold uppercase tracking-wider outline-none focus:bg-white focus:border-[#0052CC] focus:ring-2 focus:ring-blue-100 transition disabled:bg-slate-100 disabled:cursor-not-allowed"
+                                    className="flex-1 sm:w-64 h-[40px] bg-slate-50 border border-slate-200 rounded-[10px] px-3.5 text-xs text-[#10365D] font-bold uppercase tracking-wider outline-none focus:bg-white focus:border-[#0052CC] focus:ring-2 focus:ring-blue-100 transition disabled:bg-slate-100 disabled:cursor-not-allowed"
                                 />
 
                                 <button
                                     type="submit"
                                     disabled={certificateCouponLoading}
-                                    className="h-9 sm:h-10 px-5 rounded-xl bg-[#0B1B3D] hover:bg-[#102B4E] text-white text-xs font-bold flex items-center justify-center gap-2 transition whitespace-nowrap cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
+                                    className="h-[40px] px-5 rounded-[10px] bg-[#10365D] hover:bg-[#07162C] text-white text-xs font-semibold flex items-center justify-center gap-2 transition whitespace-nowrap cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed shrink-0 select-none active:scale-[0.98]"
                                 >
                                     {certificateCouponLoading ? (
                                         <>

@@ -492,7 +492,7 @@ const Contact = () => {
                                 <div className="pt-2">
                                     <button
                                         type="submit"
-                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#0B315B] hover:bg-[#15467e] text-white font-bold text-sm tracking-wide transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg focus:outline-hidden focus:ring-2 focus:ring-[#0B315B] focus:ring-offset-2"
+                                        className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2.5 px-8 rounded-[12px] bg-[#0052CC] hover:bg-[#0747A6] active:scale-[0.98] text-white font-bold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-xs focus:outline-hidden focus:ring-2 focus:ring-[#0052CC] focus:ring-offset-2 select-none"
                                     >
                                         <FaPaperPlane className="text-xs" />
                                         <span>Send Inquiry Message</span>

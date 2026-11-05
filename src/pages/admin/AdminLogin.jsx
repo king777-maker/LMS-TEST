@@ -186,7 +186,7 @@ const AdminLogin = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-1 py-2.5 bg-[#0B315B] hover:bg-[#143D6D] disabled:bg-slate-700 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm rounded-xl border border-amber-400/40 shadow-md shadow-blue-950/60 transition flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-amber-400/40"
+              className="w-full mt-1 h-[46px] bg-[#0B315B] hover:bg-[#143D6D] disabled:bg-slate-700 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm rounded-[10px] border border-amber-400/40 shadow-md shadow-blue-950/60 transition flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-amber-400/40 active:scale-[0.98] select-none"
             >
               {loading ? (
                 <>

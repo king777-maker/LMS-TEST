@@ -646,22 +646,22 @@ const MyCourses = () => {
                                                         />
                                                     </div>
 
-                                                    <div className="pt-2 flex flex-col sm:flex-row gap-2">
+                                                    <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
                                                         <Link
                                                             to={`/learning/${courseId}`}
-                                                            className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-4 py-2.5 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
+                                                            className="flex-1 h-[42px] flex items-center justify-center gap-2 rounded-[10px] bg-[#0052CC] hover:bg-[#0747A6] px-4 text-xs sm:text-[13px] font-semibold text-white transition-all shadow-xs active:scale-[0.98] select-none"
                                                         >
                                                             <FaPlay className="text-[10px]" />
-                                                            {isDone ? "Review Course" : "Continue Learning"}
+                                                            <span>{isDone ? "Review Course" : "Continue Learning"}</span>
                                                         </Link>
 
                                                         {isDone && (
                                                             <Link
                                                                 to={`/certificate/${courseId}`}
-                                                                className="flex items-center justify-center gap-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 px-4 py-2.5 text-xs font-bold text-[#07162c] transition-colors shadow-sm"
+                                                                className="h-[42px] flex items-center justify-center gap-2 rounded-[10px] bg-amber-400 hover:bg-amber-300 px-4 text-xs sm:text-[13px] font-bold text-[#07162C] transition-all shadow-xs active:scale-[0.98] select-none shrink-0"
                                                             >
-                                                                <FaAward />
-                                                                Certificate
+                                                                <FaAward className="text-sm" />
+                                                                <span>Certificate</span>
                                                             </Link>
                                                         )}
                                                     </div>

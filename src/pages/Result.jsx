@@ -687,9 +687,9 @@ const Result = () => {
                             <button
                                 type="button"
                                 onClick={() => handleViewCertificates()}
-                                className="w-full sm:w-auto px-7 py-3.5 h-12 rounded-xl border-2 border-[#0B1B3D] bg-white hover:bg-[#0B1B3D] text-[#0B1B3D] hover:text-white font-bold text-sm flex items-center justify-center gap-2.5 transition shadow-xs cursor-pointer group"
+                                className="w-full sm:w-auto px-7 h-[48px] rounded-[12px] border-2 border-[#10365D] bg-white hover:bg-[#10365D] text-[#10365D] hover:text-white font-bold text-sm flex items-center justify-center gap-2.5 transition-all shadow-xs cursor-pointer group active:scale-[0.98] select-none"
                             >
-                                <FaAward className="text-base text-amber-500 group-hover:text-amber-400" />
+                                <FaAward className="text-base text-amber-500 group-hover:text-[#FFD43B]" />
                                 <span>View Certificates</span>
                             </button>
 
@@ -698,7 +698,7 @@ const Result = () => {
                                 type="button"
                                 onClick={() => handleDownloadCertificate()}
                                 disabled={downloading}
-                                className="w-full sm:w-auto px-8 py-3.5 h-12 rounded-xl bg-[#059669] hover:bg-[#047857] text-white font-bold text-sm flex items-center justify-center gap-2.5 transition shadow-sm hover:shadow-md cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                                className="w-full sm:w-auto px-8 h-[48px] rounded-[12px] bg-[#059669] hover:bg-[#047857] text-white font-bold text-sm flex items-center justify-center gap-2.5 transition-all shadow-xs hover:shadow-md cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98] select-none"
                             >
                                 {downloading ? (
                                     <>
@@ -717,7 +717,7 @@ const Result = () => {
                             <button
                                 type="button"
                                 onClick={handleBackToCourse}
-                                className="w-full sm:w-auto px-7 py-3.5 h-12 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm flex items-center justify-center gap-2.5 transition border border-slate-200 cursor-pointer"
+                                className="w-full sm:w-auto px-7 h-[48px] rounded-[12px] bg-slate-100 hover:bg-slate-200 text-[#1E293B] font-bold text-sm flex items-center justify-center gap-2.5 transition-all border border-[#E2E8F0] cursor-pointer active:scale-[0.98] select-none"
                             >
                                 <FaArrowLeft className="text-xs text-slate-500" />
                                 <span>Back to Course</span>

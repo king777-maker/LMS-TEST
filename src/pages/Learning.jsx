@@ -701,7 +701,7 @@ const Learning = () => {
                                                 <button
                                                     type="button"
                                                     disabled
-                                                    className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-emerald-600 text-white shadow-xs cursor-default"
+                                                    className="h-[42px] px-5 rounded-[10px] font-bold text-xs sm:text-[13px] flex items-center gap-2 bg-emerald-600 text-white shadow-xs cursor-default select-none"
                                                 >
                                                     <FaCheckCircle size={14} />
                                                     <span>Video Completed</span>
@@ -710,7 +710,7 @@ const Learning = () => {
                                                 <button
                                                     type="button"
                                                     onClick={handleCompleteCourseVideo}
-                                                    className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-[#059669] hover:bg-[#047857] text-white shadow-xs transition cursor-pointer"
+                                                    className="h-[42px] px-5 rounded-[10px] font-bold text-xs sm:text-[13px] flex items-center gap-2 bg-[#059669] hover:bg-[#047857] text-white shadow-xs transition cursor-pointer select-none active:scale-[0.98]"
                                                 >
                                                     <FaCheckCircle size={14} />
                                                     <span>Mark as Complete</span>
@@ -739,7 +739,7 @@ const Learning = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => setActiveChapter(2)}
-                                                className="px-6 py-2.5 rounded-xl bg-[#0B1B3D] hover:bg-[#102B4E] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition cursor-pointer"
+                                                className="h-[42px] px-5 rounded-[10px] bg-[#10365D] hover:bg-[#07162C] text-white font-bold text-xs sm:text-[13px] flex items-center gap-2 shadow-xs transition cursor-pointer select-none active:scale-[0.98]"
                                             >
                                                 <span>Go to Chapter 2: Assessment</span>
                                                 <FaArrowRight size={11} />

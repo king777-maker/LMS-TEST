@@ -259,7 +259,7 @@ const LoginPage = () => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#0B315B] hover:bg-[#15467e] text-white font-bold text-sm tracking-wide shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 focus:outline-hidden focus:ring-2 focus:ring-[#0B315B] focus:ring-offset-2 disabled:opacity-70"
+                className="w-full h-[48px] px-6 rounded-[12px] bg-[#0052CC] hover:bg-[#0747A6] active:scale-[0.98] text-white font-bold text-sm tracking-wide shadow-xs transition-all cursor-pointer flex items-center justify-center gap-2 focus:outline-hidden focus:ring-2 focus:ring-[#0052CC] focus:ring-offset-2 disabled:opacity-70 select-none"
               >
                 {submitting ? (
                   <>

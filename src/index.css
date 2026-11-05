@@ -382,11 +382,11 @@ textarea {
 /* Standardized Buttons */
 .btn-base {
   display: inline-flex;
-  items-center: center;
+  align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.875rem;
-  border-radius: 0.75rem;
+  border-radius: 0.625rem;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   user-select: none;
@@ -401,6 +401,78 @@ textarea {
 
 .btn-base:active {
   transform: scale(0.98);
+}
+
+/* Standard Sizing Tokens */
+.btn-sm {
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+.btn-md {
+  height: 42px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.btn-lg {
+  height: 48px;
+  padding-left: 22px;
+  padding-right: 22px;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+/* Centralized Active / Inactive State System (Phase 3) */
+.btn-state-active,
+button[data-state="active"],
+.active-filter-btn {
+  background-color: #10365D !important;
+  color: #FFFFFF !important;
+  border-color: #10365D !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-state-active svg,
+button[data-state="active"] svg,
+.active-filter-btn svg {
+  color: #FFD43B !important;
+}
+
+.btn-state-inactive,
+button[data-state="inactive"],
+.inactive-filter-btn {
+  background-color: #FFFFFF !important;
+  color: #1E293B !important;
+  border: 1px solid #E2E8F0 !important;
+  font-weight: 500;
+}
+
+.btn-state-inactive:hover,
+button[data-state="inactive"]:hover,
+.inactive-filter-btn:hover {
+  background-color: #F8FAFC !important;
+  color: #10365D !important;
+  border-color: #CBD5E1 !important;
+}
+
+.btn-state-inactive svg,
+button[data-state="inactive"] svg,
+.inactive-filter-btn svg {
+  color: #1E293B !important;
+}
+
+/* High specificity safeguard against dark text on dark active buttons */
+button.btn-state-active,
+button[aria-selected="true"],
+.btn-state-active span {
+  color: #FFFFFF !important;
 }
 
 .btn-primary {
@@ -512,50 +584,3 @@ textarea {
   color: #047857;
   border: 1px solid #a7f3d0;
 }
-
-/* ==========================================================================
-   GLOBAL HIGH-CONTRAST TAB SYSTEM
-   Guarantees active tabs always render with pure white text and brand yellow icons,
-   completely preventing inherited dark text from overriding active states.
-   ========================================================================== */
-.lms-tab-active,
-[role="tab"][aria-selected="true"] {
-  background-color: #10365D !important;
-  color: #FFFFFF !important;
-  border-color: #10365D !important;
-  font-weight: 600 !important;
-}
-
-.lms-tab-active span,
-.lms-tab-active p,
-[role="tab"][aria-selected="true"] span,
-[role="tab"][aria-selected="true"] p {
-  color: #FFFFFF !important;
-}
-
-.lms-tab-active svg,
-[role="tab"][aria-selected="true"] svg {
-  color: #FFD43B !important;
-  fill: currentColor;
-}
-
-.lms-tab-inactive,
-[role="tab"][aria-selected="false"] {
-  background-color: #FFFFFF !important;
-  color: #1E293B !important;
-  border-color: #E2E8F0 !important;
-  font-weight: 500 !important;
-}
-
-.lms-tab-inactive span,
-.lms-tab-inactive p,
-[role="tab"][aria-selected="false"] span,
-[role="tab"][aria-selected="false"] p {
-  color: #1E293B !important;
-}
-
-.lms-tab-inactive svg,
-[role="tab"][aria-selected="false"] svg {
-  color: #1E293B !important;
-}
-

@@ -35,7 +35,6 @@ import { getCourseDetails, getFreeCertifications, enrollCourse } from "../../api
 import { resolveCourse, getAllPortalCourses } from "../../data/coursesResolver";
 import { isCourseOnlineAvailable, LAUNCH_STATUS_CONFIG } from "../../constants/courseAvailability";
 import EnrollmentEnquiryForm from "../../components/course/EnrollmentEnquiryForm";
-import TabButton from "../../components/common/TabButton";
 
 // Subcomponents
 import HeroMeta from "../../components/course/HeroMeta";
@@ -421,48 +420,57 @@ const CourseDetails = () => {
                   <button
                     type="button"
                     onClick={handleStartCourse}
-                    className="h-[46px] px-7 rounded-xl font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-98 text-[#07162c] shadow-lg hover:shadow-amber-500/25 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap"
+                    className="h-[48px] px-7 rounded-[12px] font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-[#07162C] shadow-lg hover:shadow-amber-500/25 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none"
                   >
-                    <GraduationCap size={19} className="text-[#07162c]" />
+                    <GraduationCap size={18} className="text-[#07162C] shrink-0" />
                     <span>Start Course</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={16} className="shrink-0" />
                   </button>
                 ) : (
                   <button
                     type="button"
                     onClick={() => scrollToSection("offline-enquiry-section")}
-                    className="h-[46px] px-7 rounded-xl font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-98 text-[#07162c] shadow-lg hover:shadow-amber-500/25 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap"
+                    className="h-[48px] px-7 rounded-[12px] font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-[#07162C] shadow-lg hover:shadow-amber-500/25 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none"
                   >
-                    <FileText size={18} className="text-[#07162c]" />
+                    <FileText size={18} className="text-[#07162C] shrink-0" />
                     <span>{LAUNCH_STATUS_CONFIG.cta}</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={16} className="shrink-0" />
                   </button>
                 )}
               </div>
 
-              {/* Aligned Course Section Navigation Controls */}
+              {/* Standardized Course Section Navigation Controls (Uniform Height & Alignment) */}
               <div
-                className="pt-2 grid grid-cols-2 md:grid-cols-4 gap-2 pb-1 w-full min-w-0"
+                className="pt-2 grid grid-cols-2 lg:grid-cols-4 gap-2.5 w-full pb-1"
                 role="tablist"
                 aria-label="Course section navigation"
               >
                 {[
                   { id: "course-overview", label: "Course Overview", icon: Compass },
-                  { id: "course-syllabus", label: "Syllabus", icon: BookOpen, badge: course.modules?.length ? `${course.modules.length} Modules` : null },
+                  { id: "course-syllabus", label: `Syllabus (${course.modules?.length || 5})`, icon: BookOpen },
                   { id: "certification-verification", label: "Certification & Verification", icon: Award },
                   { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
-                ].map((tab) => (
-                  <TabButton
-                    key={tab.id}
-                    id={`hero-${tab.id}`}
-                    label={tab.label}
-                    icon={tab.icon}
-                    badge={tab.badge}
-                    isActive={activeTab === tab.id}
-                    onClick={() => scrollToSection(tab.id)}
-                    className="w-full"
-                  />
-                ))}
+                ].map((tab) => {
+                  const IconComp = tab.icon;
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      onClick={() => scrollToSection(tab.id)}
+                      className={`h-[42px] px-3 sm:px-3.5 rounded-[10px] font-semibold text-xs transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 border outline-none active:scale-[0.98] whitespace-nowrap select-none ${
+                        isActive
+                          ? "bg-[#F8D85A] text-[#07162C] border-[#F8D85A] font-bold shadow-xs"
+                          : "bg-white/10 hover:bg-white/20 text-white border-white/20 hover:border-white/30"
+                      }`}
+                    >
+                      <IconComp size={15} className={isActive ? "text-[#07162C] shrink-0" : "text-[#F8D85A] shrink-0"} />
+                      <span className="truncate">{tab.label}</span>
+                    </button>
+                  );
+                })}
               </div>
 
             </div>
@@ -542,29 +550,34 @@ const CourseDetails = () => {
               </div>
             )}
 
-            {/* Sticky In-Page Navigation Bar */}
-            <div
-              role="tablist"
-              aria-label="Course section navigation"
-              className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 border-b border-slate-200/80 pb-2.5 w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1 min-w-0"
-            >
+            {/* Standardized Sticky In-Page Navigation Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 border-b border-slate-200/80 pb-3 max-w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1.5 select-none">
               {[
                 { id: "course-overview", label: "Course Overview", icon: Compass },
-                { id: "course-syllabus", label: "Syllabus", icon: BookOpen, badge: course.modules?.length ? `${course.modules.length} Modules` : null },
+                { id: "course-syllabus", label: `Syllabus (${course.modules?.length || 5})`, icon: BookOpen },
                 { id: "certification-verification", label: "Certification & Verification", icon: Award },
                 { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
-              ].map((tab) => (
-                <TabButton
-                  key={tab.id}
-                  id={tab.id}
-                  label={tab.label}
-                  icon={tab.icon}
-                  badge={tab.badge}
-                  isActive={activeTab === tab.id}
-                  onClick={() => scrollToSection(tab.id)}
-                  className="w-full"
-                />
-              ))}
+              ].map((tab) => {
+                const IconComponent = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => scrollToSection(tab.id)}
+                    className={`h-[42px] px-3.5 rounded-[10px] text-xs sm:text-[13px] font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer border shadow-xs outline-none active:scale-[0.98] whitespace-nowrap ${
+                      isActive
+                        ? "bg-[#10365D] text-white border-[#10365D] shadow-xs font-semibold"
+                        : "bg-white text-[#1E293B] border-[#E2E8F0] hover:bg-slate-50 hover:border-slate-300 hover:text-[#10365D]"
+                    }`}
+                  >
+                    <IconComponent size={16} className={isActive ? "text-[#FFD43B] shrink-0" : "text-[#1E293B] shrink-0"} />
+                    <span className="truncate">{tab.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* SECTION 1: COURSE OVERVIEW */}
