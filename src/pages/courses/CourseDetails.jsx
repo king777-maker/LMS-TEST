@@ -35,6 +35,7 @@ import { getCourseDetails, getFreeCertifications, enrollCourse } from "../../api
 import { resolveCourse, getAllPortalCourses } from "../../data/coursesResolver";
 import { isCourseOnlineAvailable, LAUNCH_STATUS_CONFIG } from "../../constants/courseAvailability";
 import EnrollmentEnquiryForm from "../../components/course/EnrollmentEnquiryForm";
+import TabButton from "../../components/common/TabButton";
 
 // Subcomponents
 import HeroMeta from "../../components/course/HeroMeta";
@@ -441,36 +442,27 @@ const CourseDetails = () => {
 
               {/* Aligned Course Section Navigation Controls */}
               <div
-                className="pt-2 flex flex-wrap items-center gap-2 pb-1 w-full min-w-0"
+                className="pt-2 grid grid-cols-2 md:grid-cols-4 gap-2 pb-1 w-full min-w-0"
                 role="tablist"
                 aria-label="Course section navigation"
               >
                 {[
                   { id: "course-overview", label: "Course Overview", icon: Compass },
-                  { id: "course-syllabus", label: `Syllabus (${course.modules?.length || 5} Modules)`, icon: BookOpen },
+                  { id: "course-syllabus", label: "Syllabus", icon: BookOpen, badge: course.modules?.length ? `${course.modules.length} Modules` : null },
                   { id: "certification-verification", label: "Certification & Verification", icon: Award },
                   { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
-                ].map((tab) => {
-                  const IconComp = tab.icon;
-                  const isActive = activeTab === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      onClick={() => scrollToSection(tab.id)}
-                      className={`min-h-[40px] px-3 sm:px-3.5 py-2 rounded-xl font-bold text-xs transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 border outline-none active:scale-98 text-center ${
-                        isActive
-                          ? "bg-[#F8D85A] text-[#07162c] border-[#F8D85A] shadow-sm"
-                          : "bg-white/10 hover:bg-white/20 text-white border-white/20 hover:border-white/30"
-                      }`}
-                    >
-                      <IconComp size={15} className={isActive ? "text-[#07162c] shrink-0" : "text-[#F8D85A] shrink-0"} />
-                      <span className="leading-tight">{tab.label}</span>
-                    </button>
-                  );
-                })}
+                ].map((tab) => (
+                  <TabButton
+                    key={tab.id}
+                    id={`hero-${tab.id}`}
+                    label={tab.label}
+                    icon={tab.icon}
+                    badge={tab.badge}
+                    isActive={activeTab === tab.id}
+                    onClick={() => scrollToSection(tab.id)}
+                    className="w-full"
+                  />
+                ))}
               </div>
 
             </div>
@@ -551,31 +543,28 @@ const CourseDetails = () => {
             )}
 
             {/* Sticky In-Page Navigation Bar */}
-            <div className="flex flex-wrap items-center gap-2 border-b border-slate-200/80 pb-2.5 max-w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1 min-w-0">
+            <div
+              role="tablist"
+              aria-label="Course section navigation"
+              className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 border-b border-slate-200/80 pb-2.5 w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1 min-w-0"
+            >
               {[
                 { id: "course-overview", label: "Course Overview", icon: Compass },
-                { id: "course-syllabus", label: `Syllabus (${course.modules?.length || 5} Modules)`, icon: BookOpen },
+                { id: "course-syllabus", label: "Syllabus", icon: BookOpen, badge: course.modules?.length ? `${course.modules.length} Modules` : null },
                 { id: "certification-verification", label: "Certification & Verification", icon: Award },
                 { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
-              ].map((tab) => {
-                const IconComponent = tab.icon;
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => scrollToSection(tab.id)}
-                    className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 cursor-pointer border shadow-xs outline-none active:scale-95 text-center ${
-                      isActive
-                        ? "bg-[#0B315B] text-white border-[#0B315B]"
-                        : "bg-white text-slate-700 hover:bg-[#1E5FA8] hover:text-white border-slate-200/80"
-                    }`}
-                  >
-                    <IconComponent size={15} className={isActive ? "text-[#F8D85A] shrink-0" : "shrink-0"} />
-                    <span className="leading-tight">{tab.label}</span>
-                  </button>
-                );
-              })}
+              ].map((tab) => (
+                <TabButton
+                  key={tab.id}
+                  id={tab.id}
+                  label={tab.label}
+                  icon={tab.icon}
+                  badge={tab.badge}
+                  isActive={activeTab === tab.id}
+                  onClick={() => scrollToSection(tab.id)}
+                  className="w-full"
+                />
+              ))}
             </div>
 
             {/* SECTION 1: COURSE OVERVIEW */}

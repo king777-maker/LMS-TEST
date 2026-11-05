@@ -140,14 +140,14 @@ const Courses = () => {
               <button
                 type="button"
                 onClick={() => updateParam("type", "all")}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
                   typeFilter === "all"
-                    ? "bg-[#0B1B3D] text-white shadow-md"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    ? "lms-tab-active bg-[#10365D] !text-white border-[#10365D] font-semibold shadow-xs"
+                    : "lms-tab-inactive bg-white text-[#1E293B] border-[#E2E8F0] font-medium hover:bg-slate-50 hover:text-[#10365D] hover:border-slate-300"
                 }`}
               >
                 <span>All Certifications</span>
-                <span className={`text-[11px] px-2 py-0.5 rounded-full ${typeFilter === "all" ? "bg-white/20 text-white" : "bg-white text-slate-600 font-semibold"}`}>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full ${typeFilter === "all" ? "bg-white/20 text-[#FFD43B] font-bold" : "bg-slate-100 text-slate-600 font-semibold"}`}>
                   {allCourses.length}
                 </span>
               </button>
@@ -156,15 +156,15 @@ const Courses = () => {
               <button
                 type="button"
                 onClick={() => updateParam("type", "free")}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
                   typeFilter === "free"
-                    ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
-                    : "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/60"
+                    ? "bg-emerald-700 !text-white border-emerald-700 font-semibold shadow-xs"
+                    : "bg-white text-emerald-800 border-emerald-200/80 font-medium hover:bg-emerald-50"
                 }`}
               >
-                <FiGift className={typeFilter === "free" ? "text-amber-300" : "text-emerald-600"} />
+                <FiGift className={typeFilter === "free" ? "text-[#FFD43B]" : "text-emerald-700"} />
                 <span>Free Programs (100% Free)</span>
-                <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${typeFilter === "free" ? "bg-white/20 text-white" : "bg-emerald-600 text-white"}`}>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${typeFilter === "free" ? "bg-white/20 text-white" : "bg-emerald-100 text-emerald-800"}`}>
                   {freeCount}
                 </span>
               </button>
@@ -173,15 +173,15 @@ const Courses = () => {
               <button
                 type="button"
                 onClick={() => updateParam("type", "paid")}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer border ${
                   typeFilter === "paid"
-                    ? "bg-[#1E3A66] text-white shadow-md"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    ? "lms-tab-active bg-[#10365D] !text-white border-[#10365D] font-semibold shadow-xs"
+                    : "lms-tab-inactive bg-white text-[#1E293B] border-[#E2E8F0] font-medium hover:bg-slate-50 hover:text-[#10365D] hover:border-slate-300"
                 }`}
               >
-                <FiAward className="text-amber-500" />
+                <FiAward className={typeFilter === "paid" ? "text-[#FFD43B]" : "text-[#1E293B]"} />
                 <span>Paid Professional</span>
-                <span className={`text-[11px] px-2 py-0.5 rounded-full ${typeFilter === "paid" ? "bg-white/20 text-white" : "bg-white text-slate-600 font-semibold"}`}>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full ${typeFilter === "paid" ? "bg-white/20 text-[#FFD43B] font-bold" : "bg-slate-100 text-slate-600 font-semibold"}`}>
                   {paidCount}
                 </span>
               </button>

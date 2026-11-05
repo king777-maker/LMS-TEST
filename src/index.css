@@ -512,3 +512,50 @@ textarea {
   color: #047857;
   border: 1px solid #a7f3d0;
 }
+
+/* ==========================================================================
+   GLOBAL HIGH-CONTRAST TAB SYSTEM
+   Guarantees active tabs always render with pure white text and brand yellow icons,
+   completely preventing inherited dark text from overriding active states.
+   ========================================================================== */
+.lms-tab-active,
+[role="tab"][aria-selected="true"] {
+  background-color: #10365D !important;
+  color: #FFFFFF !important;
+  border-color: #10365D !important;
+  font-weight: 600 !important;
+}
+
+.lms-tab-active span,
+.lms-tab-active p,
+[role="tab"][aria-selected="true"] span,
+[role="tab"][aria-selected="true"] p {
+  color: #FFFFFF !important;
+}
+
+.lms-tab-active svg,
+[role="tab"][aria-selected="true"] svg {
+  color: #FFD43B !important;
+  fill: currentColor;
+}
+
+.lms-tab-inactive,
+[role="tab"][aria-selected="false"] {
+  background-color: #FFFFFF !important;
+  color: #1E293B !important;
+  border-color: #E2E8F0 !important;
+  font-weight: 500 !important;
+}
+
+.lms-tab-inactive span,
+.lms-tab-inactive p,
+[role="tab"][aria-selected="false"] span,
+[role="tab"][aria-selected="false"] p {
+  color: #1E293B !important;
+}
+
+.lms-tab-inactive svg,
+[role="tab"][aria-selected="false"] svg {
+  color: #1E293B !important;
+}
+

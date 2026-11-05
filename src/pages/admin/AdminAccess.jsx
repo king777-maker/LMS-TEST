@@ -9,6 +9,7 @@ import {
   getAuditLogs,
 } from "../../api/adminApi";
 import PinVerificationModal from "../../components/Admin/PinVerificationModal";
+import TabButton from "../../components/common/TabButton";
 import toast from "react-hot-toast";
 import {
   FaUserShield,
@@ -331,40 +332,26 @@ const AdminAccess = () => {
         </div>
 
         {/* Tab switchers */}
-        <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-xl self-start sm:self-center border border-slate-200">
-          <button
-            onClick={() => setActiveTab("admins")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
-              activeTab === "admins"
-                ? "bg-[#0B315B] text-white shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <FaUserShield className="text-xs" />
-            Personnel ({admins.length})
-          </button>
-          <button
-            onClick={() => setActiveTab("matrix")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
-              activeTab === "matrix"
-                ? "bg-[#0B315B] text-white shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <FaShieldAlt className="text-xs" />
-            Permissions Matrix
-          </button>
-          <button
-            onClick={() => setActiveTab("audit")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
-              activeTab === "audit"
-                ? "bg-[#0B315B] text-white shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <FaHistory className="text-xs" />
-            Audit Logs
-          </button>
+        <div
+          role="tablist"
+          aria-label="Admin Access Management views"
+          className="flex items-center gap-2 p-1 rounded-xl self-start sm:self-center"
+        >
+          {[
+            { id: "admins", label: `Personnel (${admins.length})`, icon: FaUserShield },
+            { id: "matrix", label: "Permissions Matrix", icon: FaShieldAlt },
+            { id: "audit", label: "Audit Logs", icon: FaHistory },
+          ].map((tab) => (
+            <TabButton
+              key={tab.id}
+              id={tab.id}
+              label={tab.label}
+              icon={tab.icon}
+              isActive={activeTab === tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className="h-[38px] min-h-[38px] px-3.5 py-1.5 text-xs rounded-xl"
+            />
+          ))}
         </div>
       </div>
 

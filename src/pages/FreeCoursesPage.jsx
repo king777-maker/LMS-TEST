@@ -324,16 +324,16 @@ const FreeCoursesPage = () => {
           </div>
 
           {/* Category Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none pt-2 border-t border-slate-100">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none pt-2 border-t border-slate-100">
             {categories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs whitespace-nowrap transition-all duration-200 cursor-pointer border ${
                   selectedCategory === cat
-                    ? "bg-[#102B4E] text-white shadow-xs"
-                    : "bg-slate-100 hover:bg-slate-200 text-slate-600"
+                    ? "lms-tab-active bg-[#10365D] !text-white border-[#10365D] font-semibold shadow-xs"
+                    : "lms-tab-inactive bg-white text-[#1E293B] border-[#E2E8F0] font-medium hover:bg-slate-50 hover:text-[#10365D] hover:border-slate-300"
                 }`}
               >
                 {cat}
