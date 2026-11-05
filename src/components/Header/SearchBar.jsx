@@ -93,7 +93,7 @@ const SearchBar = ({ onSelectCourse }) => {
 
       {/* Autocomplete / Live Search Results Dropdown */}
       {isFocused && query.trim() && (
-        <div className="absolute right-0 top-full mt-2 w-[calc(100vw-20px)] max-w-[360px] sm:max-w-[380px] bg-white text-slate-800 rounded-xl shadow-2xl border border-slate-200/90 overflow-hidden animate-fadeInSlideDown">
+        <div className="absolute right-0 top-full mt-2 w-[min(calc(100vw-24px),380px)] bg-white text-slate-800 rounded-xl shadow-2xl border border-slate-200/90 overflow-hidden animate-fadeInSlideDown">
           <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-semibold uppercase tracking-wider">
             <span>Search Results ({results.length})</span>
             {results.length > 0 && <span className="text-blue-600">Press Esc to close</span>}

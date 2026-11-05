@@ -124,7 +124,7 @@ function App() {
     <AuthProvider>
       <AdminProvider>
         <AuthPromptProvider>
-          <div className={`min-h-screen ${isAdminRoute ? "bg-slate-100" : "bg-white overflow-hidden"}`}>
+          <div className={`min-h-screen ${isAdminRoute ? "bg-slate-100" : "bg-white overflow-x-clip"}`}>
 
           {/* =====================================================
               SCROLL TO TOP (LEARNER PORTAL)

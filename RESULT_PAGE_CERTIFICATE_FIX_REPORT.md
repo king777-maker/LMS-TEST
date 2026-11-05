@@ -147,3 +147,4 @@ The automated test suite (`scripts/run_vite_tests.mjs`) was executed to verify a
 | `src/pages/Certificate.jsx` | Modified | Fixed eligibility check for 4-chapter system, eliminated temporal dead zone bug, and added certificate number fallbacks. |
 | `src/utils/certificateGenerator.js` | Modified | Fixed QR code name parameter bug and added course-named PDF filenames. |
 | `scripts/run_vite_tests.mjs` | Modified | Added Section 9 to verify the result page certificate actions and functional requirements. |
+
