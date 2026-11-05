@@ -9,7 +9,6 @@ import {
   FaInstagram,
   FaAward,
   FaUserCircle,
-  FaClock,
   FaHome,
   FaBook,
   FaGift,
@@ -19,6 +18,7 @@ import {
 } from "react-icons/fa";
 import { navigationCategories } from "../../data/coursesData";
 import BrandLogo from "./BrandLogo";
+import PromoBadge from "./PromoBadge";
 
 const corporateLinks = [
   { label: "About Broadbeach", path: "/about" },
@@ -364,23 +364,10 @@ const MobileNavbar = ({
                                               onClick={onClose}
                                               className="flex items-center justify-between py-2 text-left transition-colors group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-300"
                                             >
-                                              <div className="min-w-0 pr-2">
-                                                <p className="text-xs font-semibold text-slate-100 group-hover:text-amber-300 transition-colors leading-snug certification-course-name">
-                                                  {course.title}
-                                                </p>
-                                                <div className="flex items-center gap-2 text-[10px] text-slate-400 mt-0.5">
-                                                  <span className="text-blue-300 font-semibold">{course.code}</span>
-                                                  <span>•</span>
-                                                  <span>{course.duration}</span>
-                                                  {course.tag && (
-                                                    <>
-                                                      <span>•</span>
-                                                      <span className="text-amber-400 font-medium">{course.tag}</span>
-                                                    </>
-                                                  )}
-                                                </div>
-                                              </div>
-                                              <FaChevronRight className="text-[9px] text-slate-500 group-hover:text-amber-300 shrink-0 transition-transform group-hover:translate-x-0.5" />
+                                              <span className="text-xs font-medium text-slate-100 group-hover:text-amber-300 transition-colors leading-snug pr-2">
+                                                {course.title}
+                                              </span>
+                                              {course.badge && <PromoBadge badge={course.badge} />}
                                             </Link>
                                           </li>
                                         ))}
@@ -401,17 +388,10 @@ const MobileNavbar = ({
                                   onClick={onClose}
                                   className="flex items-center justify-between py-2 text-left transition-colors group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-300"
                                 >
-                                  <div className="min-w-0 pr-2">
-                                    <p className="text-xs font-semibold text-slate-100 group-hover:text-amber-300 transition-colors leading-snug certification-course-name">
-                                      {course.title}
-                                    </p>
-                                    <div className="flex items-center gap-2 text-[10px] text-slate-400 mt-0.5">
-                                      <span className="text-blue-300 font-semibold">{course.code}</span>
-                                      <span>•</span>
-                                      <span>{course.duration}</span>
-                                    </div>
-                                  </div>
-                                  <FaChevronRight className="text-[9px] text-slate-500 group-hover:text-amber-300 shrink-0 transition-transform group-hover:translate-x-0.5" />
+                                  <span className="text-xs font-medium text-slate-100 group-hover:text-amber-300 transition-colors leading-snug pr-2">
+                                    {course.title}
+                                  </span>
+                                  {course.badge && <PromoBadge badge={course.badge} />}
                                 </Link>
                               </li>
                             ))}
