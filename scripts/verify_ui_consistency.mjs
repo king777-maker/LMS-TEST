@@ -126,3 +126,4 @@ if (passed === total) {
 } else {
   process.exit(1);
 }
+

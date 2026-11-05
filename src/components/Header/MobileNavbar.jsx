@@ -19,6 +19,7 @@ import {
 import { navigationCategories } from "../../data/coursesData";
 import BrandLogo from "./BrandLogo";
 import PromoBadge from "./PromoBadge";
+import { formatDropdownCourseTitle } from "../../utils/courseTitleFormatter";
 
 const corporateLinks = [
   { label: "About Broadbeach", path: "/about" },
@@ -365,7 +366,7 @@ const MobileNavbar = ({
                                               className="flex items-center justify-between py-2 text-left transition-colors group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-300"
                                             >
                                               <span className="text-xs font-medium text-slate-100 group-hover:text-amber-300 transition-colors leading-snug pr-2">
-                                                {course.title}
+                                                {formatDropdownCourseTitle(course)}
                                               </span>
                                               {course.badge && <PromoBadge badge={course.badge} />}
                                             </Link>
@@ -389,7 +390,7 @@ const MobileNavbar = ({
                                   className="flex items-center justify-between py-2 text-left transition-colors group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-300"
                                 >
                                   <span className="text-xs font-medium text-slate-100 group-hover:text-amber-300 transition-colors leading-snug pr-2">
-                                    {course.title}
+                                    {formatDropdownCourseTitle(course)}
                                   </span>
                                   {course.badge && <PromoBadge badge={course.badge} />}
                                 </Link>
