@@ -149,6 +149,18 @@ async function run() {
     assert(asgnSource.includes("QuestionPalette"), "QuestionPalette is preserved.");
     assert(asgnSource.includes("redeemCertificateCoupon"), "Server-side certificate coupon redemption logic preserved.");
 
+    // 9. Verify Result.jsx Certificate Actions & Direct Download
+    console.log("\n--- 9. VERIFYING RESULT.JSX CERTIFICATE ACTIONS & FUNCTIONAL FIX ---");
+    const resultSource = fs.readFileSync(path.resolve("src/pages/Result.jsx"), "utf8");
+    assert(resultSource.includes("View Certificates"), "Button 1: 'View Certificates' is present with exact wording.");
+    assert(resultSource.includes("Download Certificate"), "Button 2: 'Download Certificate' is present with exact wording.");
+    assert(resultSource.includes("Back to Course"), "Button 3: 'Back to Course' is present with exact wording.");
+    assert(!resultSource.includes("Download PDF"), "Obsolete 'Download PDF' button is completely eradicated.");
+    assert(resultSource.includes("downloadCertificatePDF"), "Direct certificate PDF generation is integrated via downloadCertificatePDF.");
+    assert(resultSource.includes("availableCertificates"), "Multiple certificate records handling is supported.");
+    assert(resultSource.includes("handleViewCertificates"), "View certificates handler correctly implemented.");
+    assert(resultSource.includes("handleDownloadCertificate"), "Direct download certificate handler correctly implemented.");
+
     console.log(`\n===============================================================================`);
     console.log(`   TEST RESULTS: ${passedTests} / ${totalTests} CHECKS PASSED (100%) `);
     console.log(`===============================================================================\n`);

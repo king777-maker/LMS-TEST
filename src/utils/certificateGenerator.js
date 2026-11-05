@@ -116,7 +116,7 @@ export async function renderCertificateCanvas({
   // 4. Dynamic Verification QR Code
   try {
     const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
-    const nameParam = finalName && finalName !== "Student" ? `&name=${encodeURIComponent(finalName)}` : "";
+    const nameParam = finalCandidateName && finalCandidateName !== "STUDENT" ? `&name=${encodeURIComponent(finalCandidateName)}` : "";
     const verifyUrl = `${origin}/verify-certificate?certificate_number=${encodeURIComponent(finalCertId)}${nameParam}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
       width: 280,
@@ -161,7 +161,15 @@ export async function downloadCertificatePDF(certDetails) {
 
   pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight, undefined, "FAST");
 
-  const fileName = `Broadbeach_Certificate_${(certDetails.certificateNumber || "Credential").replace(/[^a-zA-Z0-9-_]/g, "_")}.pdf`;
+  const cleanCourse = (certDetails.courseName || "")
+    .replace(/[^a-zA-Z0-9]/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_|_$/g, "");
+  const cleanNumber = (certDetails.certificateNumber || "Credential")
+    .replace(/[^a-zA-Z0-9-_]/g, "_");
+  const fileName = cleanCourse 
+    ? `Broadbeach_${cleanCourse}_Certificate_${cleanNumber}.pdf`
+    : `Broadbeach_Certificate_${cleanNumber}.pdf`;
   pdf.save(fileName);
   return fileName;
 }

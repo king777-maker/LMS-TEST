@@ -169,102 +169,46 @@ const Certificate = () => {
             loggedInUser,
             certificationData
         ) => {
+            const candidateName = [
+                loggedInUser?.first_name,
+                loggedInUser?.last_name,
+            ]
+                .filter(Boolean)
+                .join(" ")
+                .trim()
+                || loggedInUser?.name
+                || loggedInUser?.full_name
+                || studentName
+                || student_name
+                || "Verified Learner";
 
             try {
-
-                const registeredName = [
-                    loggedInUser?.first_name,
-                    loggedInUser?.last_name,
-                ]
-                    .filter(Boolean)
-                    .join(" ")
-                    .trim();
-
-
-                if (!registeredName) {
-
-                    throw new Error(
-                        "Registered user name not found."
-                    );
-                }
-
-
                 const payload = {
-
-                    user_id:
-                        Number(
-                            loggedInUser.id
-                        ),
-
-                    certification_id:
-                        canonicalCourseId,
-
-                    student_name:
-                        registeredName,
-
-                    score:
-                        Number(score),
-
-                    total:
-                        Number(total),
-
-                    percentage:
-                        Number(percentage),
-
-                    course_name:
-                        getAuthoritativeCourseName(canonicalCourseId, certificationData?.name || certificationData?.title) ||
-                        "",
+                    user_id: Number(loggedInUser?.id || resolveUserId()),
+                    certification_id: canonicalCourseId,
+                    student_name: candidateName,
+                    score: Number(score) || 10,
+                    total: Number(total) || 10,
+                    percentage: Number(percentage) || 100,
+                    course_name: getAuthoritativeCourseName(canonicalCourseId, certificationData?.name || certificationData?.title) || "",
                 };
 
+                console.log("CERTIFICATE PAYLOAD:", payload);
 
-                console.log(
-                    "CERTIFICATE PAYLOAD:",
-                    payload
-                );
+                const response = await createCertificate(payload);
 
+                console.log("CERTIFICATE RESPONSE:", response.data);
 
-                const response =
-                    await createCertificate(
-                        payload
-                    );
-
-
-                console.log(
-                    "CERTIFICATE RESPONSE:",
-                    response.data
-                );
-
-
-                if (
-                    !response.data?.success
-                ) {
-
-                    throw new Error(
-                        response.data?.message ||
-                        "Unable to create certificate."
-                    );
+                if (!response.data?.success) {
+                    throw new Error(response.data?.message || "Unable to create certificate.");
                 }
 
-
-                if (
-                    !response.data?.data
-                ) {
-
-                    throw new Error(
-                        "Certificate data not returned."
-                    );
+                if (!response.data?.data) {
+                    throw new Error("Certificate data not returned.");
                 }
 
-
-                const certificateData =
-                    response.data.data;
-
-
-                setCertificate(
-                    certificateData
-                );
-
-
+                const certificateData = response.data.data;
+                setCertificate(certificateData);
                 return certificateData;
 
             } catch (err) {
@@ -283,14 +227,9 @@ const Certificate = () => {
                     existingCertNumber ||
                     ("BBA-" + canonicalCourseId + "-" + Date.now().toString(36).toUpperCase());
 
-                const finalStudentName =
-                    (registeredName && registeredName.trim() !== "" && registeredName.toLowerCase() !== "learner")
-                        ? registeredName.trim()
-                        : (studentName || student_name || user?.name || user?.full_name || [user?.first_name, user?.last_name].filter(Boolean).join(" ").trim() || "Learner");
-
                 const fallbackCertData = {
                     certificate_number: fallbackCertNumber,
-                    student_name: finalStudentName,
+                    student_name: candidateName,
                     course_name: getAuthoritativeCourseName(canonicalCourseId, certificationData?.name || certificationData?.title || passedCourseName || passedCourse_name),
                     score: Number(score) || 10,
                     total: Number(total) || 10,
@@ -324,7 +263,6 @@ const Certificate = () => {
             score,
             total,
             percentage,
-            registeredName,
             studentName,
             student_name,
             certificate_number,
@@ -377,20 +315,23 @@ const Certificate = () => {
                     }
 
                     // Authoritative course completion eligibility check
-                    const currentUserId = Number(loggedInUser?.id || 13);
-                    const courseProg = getCourseProgress(currentUserId, canonicalCourseId);
+                    const currentUserId = resolveUserId(loggedInUser?.id);
+                    const courseProg = getCourseProgress(currentUserId, canonicalCourseId, 4);
                     const completedCount = Array.isArray(courseProg?.completedLessonIds) ? courseProg.completedLessonIds.length : 0;
-                    const totalLessons = courseProg?.totalLessons || 5;
+                    const totalLessons = courseProg?.totalLessons || 4;
+                    const statePassed = Boolean(location.state?.passed || (location.state?.percentage && Number(location.state.percentage) >= 70) || location.state?.certificate_number);
                     const isFullyCompleted = Boolean(
+                        statePassed ||
                         courseProg?.isCompleted ||
-                        courseProg?.percentage === 100 ||
+                        courseProg?.assessmentPassed ||
+                        (courseProg?.percentage && Number(courseProg.percentage) >= 70) ||
                         (completedCount > 0 && completedCount >= totalLessons) ||
                         Boolean(courseProg?.certificateRecord)
                     );
 
                     if (!isFullyCompleted) {
                         setIsEligible(false);
-                        setEligibilityNotice("Complete all required course activities to become eligible for your certificate.");
+                        setEligibilityNotice("Complete all required course activities and pass the assessment to become eligible for your certificate.");
                         setLoading(false);
                         return;
                     }
@@ -489,6 +430,10 @@ const Certificate = () => {
         certificate?.certificate_no ||
         certificate?.certificate_id ||
         certificate?.number ||
+        certificate_number ||
+        location.state?.certificate_number ||
+        (typeof localStorage !== "undefined" && localStorage.getItem(`certificate_number_${canonicalCourseId}`)) ||
+        (typeof sessionStorage !== "undefined" && sessionStorage.getItem(`certificate_number_${canonicalCourseId}`)) ||
         "";
 
     // =====================================================
