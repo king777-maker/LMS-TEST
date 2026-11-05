@@ -5,12 +5,10 @@ import { navigationCategories } from "../../data/coursesData";
 import BrandLogo from "./BrandLogo";
 import SearchBar from "./SearchBar";
 import CourseDropdown from "./CourseDropdown";
-import ProfessionalCourseDropdown from "./ProfessionalCourseDropdown";
 
 const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
   const navigate = useNavigate();
   const [openDropdownId, setOpenDropdownId] = useState(null);
-  const [activeSubcategoryId, setActiveSubcategoryId] = useState("quality-management");
   const closeTimeoutRef = useRef(null);
   const navContainerRef = useRef(null);
 
@@ -127,12 +125,6 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                 const isOpen = openDropdownId === category.id;
                 // Align last two dropdowns to the right of their trigger to prevent right-edge viewport clipping
                 const isRightAligned = index >= navigationCategories.length - 2;
-                const hasSubcategories = Array.isArray(category.subcategories) && category.subcategories.length > 0;
-
-                // Active subcategory for mega-menu
-                const activeSubcat = hasSubcategories
-                  ? category.subcategories.find((sc) => sc.id === activeSubcategoryId) || category.subcategories[0]
-                  : null;
 
                 return (
                   <div
@@ -163,28 +155,17 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     </button>
 
                     {/* =========================================================
-                        DROPDOWN MENUS (Fixed Height & Independent Scrolling)
+                        STANDARDIZED DROPDOWN MENU (~500px, Viewport-Bounded)
                     ========================================================= */}
                     {isOpen && (
-                      hasSubcategories ? (
-                        <ProfessionalCourseDropdown
-                          category={category}
-                          activeSubcategoryId={activeSubcategoryId}
-                          setActiveSubcategoryId={setActiveSubcategoryId}
-                          onClose={handleCloseDropdown}
-                          cancelClose={cancelClose}
-                          scheduleClose={scheduleClose}
-                        />
-                      ) : (
-                        <CourseDropdown
-                          category={category}
-                          courses={category.courses}
-                          isRightAligned={isRightAligned}
-                          onClose={handleCloseDropdown}
-                          cancelClose={cancelClose}
-                          scheduleClose={scheduleClose}
-                        />
-                      )
+                      <CourseDropdown
+                        category={category}
+                        courses={category.courses}
+                        isRightAligned={isRightAligned}
+                        onClose={handleCloseDropdown}
+                        cancelClose={cancelClose}
+                        scheduleClose={scheduleClose}
+                      />
                     )}
                   </div>
                 );

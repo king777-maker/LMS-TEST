@@ -56,22 +56,19 @@ if (fs.existsSync(courseDropdownPath)) {
   assert(!content.includes("FaGraduationCap"), "CourseDropdown contains zero graduation cap icons");
   assert(!content.includes("FaBook"), "CourseDropdown contains zero book icons");
   assert(content.includes("divide-y"), "CourseDropdown uses subtle horizontal dividers between courses");
-  assert(content.includes("w-[520px]"), "CourseDropdown desktop width is standardized (~520px)");
-  assert(content.includes("Explore all"), "CourseDropdown features fixed footer explore link");
+  assert(content.includes("w-[500px]"), "CourseDropdown desktop width is standardized (~500px)");
+  assert(content.includes("rounded-[16px]"), "CourseDropdown has exact 16px border radius");
+  assert(content.includes("min-h-[50px]"), "CourseDropdown course rows have standardized ~50px height");
+  assert(content.includes("px-6"), "CourseDropdown course rows have 24-28px horizontal padding");
+  assert(content.includes("Explore All"), "CourseDropdown features fixed footer explore link");
 }
 
-// 3. ProfessionalCourseDropdown Verification
-console.log("\n--- 3. VERIFYING PROFESSIONAL CERTIFICATIONS TWO-PANEL DROPDOWN ---");
-const profDropdownPath = path.join(rootDir, "src/components/Header/ProfessionalCourseDropdown.jsx");
-assert(fs.existsSync(profDropdownPath), "ProfessionalCourseDropdown.jsx exists");
-if (fs.existsSync(profDropdownPath)) {
-  const content = fs.readFileSync(profDropdownPath, "utf-8");
-  assert(content.includes("PromoBadge"), "ProfessionalCourseDropdown imports PromoBadge");
-  assert(content.includes("Specialized Tracks"), "ProfessionalCourseDropdown left panel displays tracks");
-  assert(content.includes("divide-y"), "ProfessionalCourseDropdown right panel divides courses with subtle separators");
-  assert(!content.includes("course.duration"), "ProfessionalCourseDropdown right panel contains zero course durations");
-  assert(!content.includes("course.code"), "ProfessionalCourseDropdown right panel contains zero course codes");
-  assert(!content.includes("FaClock"), "ProfessionalCourseDropdown contains zero clock icons");
+// 3. Global Application Verification
+console.log("\n--- 3. VERIFYING GLOBAL APPLICATION & SUB-TRACK SUPPORT ---");
+if (fs.existsSync(courseDropdownPath)) {
+  const content = fs.readFileSync(courseDropdownPath, "utf-8");
+  assert(content.includes("hasSubcategories"), "CourseDropdown seamlessly supports categories with subcategories");
+  assert(content.includes("displayCourses"), "CourseDropdown computes accurate filtered course list");
 }
 
 // 4. MainNavbar Integration Verification
@@ -80,8 +77,7 @@ const mainNavPath = path.join(rootDir, "src/components/Header/MainNavbar.jsx");
 assert(fs.existsSync(mainNavPath), "MainNavbar.jsx exists");
 if (fs.existsSync(mainNavPath)) {
   const content = fs.readFileSync(mainNavPath, "utf-8");
-  assert(content.includes("CourseDropdown"), "MainNavbar imports and renders CourseDropdown");
-  assert(content.includes("ProfessionalCourseDropdown"), "MainNavbar imports and renders ProfessionalCourseDropdown");
+  assert(content.includes("<CourseDropdown"), "MainNavbar renders CourseDropdown globally");
   assert(!content.includes("certification-course-name"), "MainNavbar replaced legacy bloated inline markup");
   assert(!content.includes("FaClock"), "MainNavbar contains zero legacy clock icon references");
 }
