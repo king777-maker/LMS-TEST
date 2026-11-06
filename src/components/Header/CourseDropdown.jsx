@@ -102,13 +102,13 @@ const CourseDropdown = ({
       style={{
         transform: shiftX ? `translateX(calc(-50% + ${shiftX}px))` : "translateX(-50%)",
       }}
-      className="absolute top-full left-1/2 w-[830px] 2xl:w-[850px] max-w-[calc(100vw-32px)] mt-2 bg-white text-slate-800 rounded-[20px] shadow-[0_20px_50px_rgba(10,25,47,0.14)] border border-slate-200/80 z-50 overflow-hidden animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex flex-col transition-transform duration-150"
+      className="hidden xl:flex absolute top-full left-1/2 w-[840px] max-w-[calc(100vw-32px)] mt-1.5 bg-white text-slate-800 rounded-[18px] shadow-[0_20px_50px_rgba(10,25,47,0.14)] border border-slate-200/80 z-50 overflow-hidden animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col transition-transform duration-150 select-none"
     >
       {/* =========================================================
           1. COMPACT FIXED HEADER SECTION (~50px height)
           Category Title (Left)  |  Accurate Course Count (Right)
       ========================================================= */}
-      <div className="shrink-0 h-[50px] px-5 sm:px-6 border-b border-slate-100 flex items-center justify-between bg-white select-none">
+      <div className="shrink-0 h-[50px] px-6 border-b border-slate-100 flex items-center justify-between bg-white select-none">
         <h3 className="text-[13px] sm:text-[13.5px] font-black uppercase tracking-wider text-[#0A192F]">
           {categoryTitle}
         </h3>
@@ -119,7 +119,7 @@ const CourseDropdown = ({
 
       {/* Optional Track Filter Bar for categories with multiple tracks (e.g. Professional Certifications) */}
       {hasSubcategories && (
-        <div className="shrink-0 px-5 sm:px-6 py-1.5 bg-slate-50/90 border-b border-slate-100 flex items-center gap-1.5 overflow-x-auto custom-dropdown-scroll select-none">
+        <div className="shrink-0 px-6 py-1.5 bg-slate-50/90 border-b border-slate-100 flex items-center gap-1.5 overflow-x-auto custom-dropdown-scroll select-none">
           <button
             type="button"
             onClick={() => setSelectedSubcatId("all")}
@@ -152,7 +152,7 @@ const CourseDropdown = ({
           2. COMPACT COURSE LIST (44px row height, all 11 fit in 1 screen)
           - For <= 11 items: overflow-visible, NO internal vertical scrollbar!
           - For > 11 items: overflow-y-auto custom-dropdown-scroll max-h-[calc(100vh-140px)]
-          - Single-line title, 15-16px font, font-weight 500-600, navy text
+          - Single-line title, 14.5px font, font-weight 600, navy text
       ========================================================= */}
       <div
         className={
@@ -170,11 +170,11 @@ const CourseDropdown = ({
               role="menuitem"
               to={getCourseUrl(course)}
               onClick={onClose}
-              className="flex items-center justify-between h-[44px] min-h-[44px] px-5 sm:px-6 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0"
+              className="flex items-center justify-between h-[44px] min-h-[44px] px-6 py-2 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0"
             >
-              {/* Single-line Course Name (Zero Icons, Zero Vertical Separators, Navy text, 15px font) */}
+              {/* Single-line Course Name (Zero Icons, Zero Vertical Separators, Navy text, 14.5px font) */}
               <span
-                className="flex-1 min-w-0 pr-4 text-[15px] sm:text-[15.5px] font-medium sm:font-semibold text-[#0A192F] group-hover:text-[#0052CC] transition-colors leading-none truncate text-left"
+                className="flex-1 min-w-0 pr-4 text-[14.5px] font-semibold text-[#0A192F] group-hover:text-[#0052CC] transition-colors leading-none truncate text-left"
                 title={formattedTitle}
               >
                 {formattedTitle}
@@ -196,12 +196,12 @@ const CourseDropdown = ({
       {/* =========================================================
           3. COMPACT FIXED FOOTER SECTION (~48px height, permanently visible)
       ========================================================= */}
-      <div className="shrink-0 h-[48px] px-5 sm:px-6 border-t border-slate-100 bg-slate-50/80 rounded-b-[20px] flex items-center justify-between select-none">
+      <div className="shrink-0 h-[48px] px-6 border-t border-slate-100 bg-slate-50/80 rounded-b-[18px] flex items-center justify-between select-none">
         <Link
           role="menuitem"
           to={categoryUrl}
           onClick={onClose}
-          className="w-full flex items-center justify-between text-[13px] sm:text-[13.5px] font-bold text-[#0052CC] hover:text-blue-700 transition-colors cursor-pointer"
+          className="w-full flex items-center justify-between text-[13px] font-bold text-[#0052CC] hover:text-blue-700 transition-colors cursor-pointer"
         >
           <span>Explore All {category?.title} Programs</span>
           <FaChevronRight className="text-[11px]" />
