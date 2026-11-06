@@ -6,16 +6,18 @@ import { formatDropdownCourseTitle } from "../../utils/courseTitleFormatter";
 
 /**
  * CourseDropdown Component — Broadbeach Academy LMS
- * Standardized, compact, premium course-list navigation dropdown across all LMS categories.
+ * Premium, No-Scroll Navigation Dropdown across all LMS categories.
  *
- * Primary Objectives:
- * - Displays ALL 11 Free Courses simultaneously on standard desktop/laptop screens without an internal scrollbar.
- * - Width: 820–850px (w-[820px] 2xl:w-[840px] max-w-[calc(100vw-32px)])
- * - Compact Header: ~50px height, Category title left, count badge right
- * - Compact Course Rows: exactly 42px height, vertically centered, continuous single-line titles, right badges
- * - Compact Footer: ~50px height, "Explore All [Category] Programs →", permanently visible
- * - Total height for 11 courses: ~562px (50px header + 11 * 42px rows + 50px footer), fitting within 768p/800p/900p/1080p viewports
- * - Automatic boundary clamp preventing viewport clipping.
+ * Requirements:
+ * 1. Centered beneath the navigation item with dynamic viewport boundary clamping.
+ * 2. Width: 820–850px on standard desktop/laptop screens (w-[830px] 2xl:w-[850px] max-w-[calc(100vw-32px)]).
+ * 3. Compact Course Rows: exactly 44px height, vertically centered, 15–16px font, font-weight 500-600.
+ * 4. Header: compact 50px height, category title on left, course count badge on right.
+ * 5. Footer: compact 48-50px height, "Explore All [Category] Programs →", permanently visible.
+ * 6. NO INTERNAL SCROLLBAR: When displayCourses <= 11 (Free Courses), overflow-y: auto is completely
+ *    removed in favor of natural content flow (overflow-visible), ensuring all 11 courses are 100% visible
+ *    simultaneously without scrolling.
+ * 7. Visual Design: Rounded corners (20px), soft subtle shadow, white background, navy text, thin separators.
  */
 const CourseDropdown = ({
   category,
@@ -62,7 +64,9 @@ const CourseDropdown = ({
     return `/courses/${course.id || course.slug}`;
   };
 
-  // Viewport boundary clamp: automatically shifts the dropdown if it touches or overflows viewport edges
+  // Centering & Viewport boundary clamp:
+  // Starts centered beneath the navigation trigger (left: 50%, translate: -50%),
+  // and dynamically shifts left or right if viewport bounds would be crossed.
   useEffect(() => {
     const handleReposition = () => {
       if (!dropdownRef.current) return;
@@ -84,6 +88,9 @@ const CourseDropdown = ({
     return () => window.removeEventListener("resize", handleReposition);
   }, [category, selectedSubcatId]);
 
+  // Does content fit without scrolling?
+  const isNoScrollMode = displayCourses.length <= 11;
+
   return (
     <div
       ref={dropdownRef}
@@ -92,17 +99,17 @@ const CourseDropdown = ({
       aria-label={`${category?.title || "Course"} options`}
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
-      style={shiftX ? { transform: `translateX(${shiftX}px)` } : undefined}
-      className={`absolute top-full ${
-        isRightAligned ? "right-0" : "left-0"
-      } w-[820px] 2xl:w-[840px] max-w-[calc(100vw-32px)] mt-1.5 bg-white text-slate-800 rounded-[18px] shadow-[0_20px_50px_rgba(10,25,47,0.16)] border border-slate-200/90 z-50 overflow-hidden animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex flex-col max-h-[calc(100vh-96px)] transition-transform duration-150`}
+      style={{
+        transform: shiftX ? `translateX(calc(-50% + ${shiftX}px))` : "translateX(-50%)",
+      }}
+      className="absolute top-full left-1/2 w-[830px] 2xl:w-[850px] max-w-[calc(100vw-32px)] mt-2 bg-white text-slate-800 rounded-[20px] shadow-[0_20px_50px_rgba(10,25,47,0.14)] border border-slate-200/80 z-50 overflow-hidden animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex flex-col transition-transform duration-150"
     >
       {/* =========================================================
           1. COMPACT FIXED HEADER SECTION (~50px height)
-          Category Name (Left)  |  Accurate Course Count (Right)
+          Category Title (Left)  |  Accurate Course Count (Right)
       ========================================================= */}
       <div className="shrink-0 h-[50px] px-5 sm:px-6 border-b border-slate-100 flex items-center justify-between bg-white select-none">
-        <h3 className="text-[13px] 2xl:text-[14px] font-black uppercase tracking-wider text-[#0A192F]">
+        <h3 className="text-[13px] sm:text-[13.5px] font-black uppercase tracking-wider text-[#0A192F]">
           {categoryTitle}
         </h3>
         <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100/80 shrink-0">
@@ -142,14 +149,17 @@ const CourseDropdown = ({
       )}
 
       {/* =========================================================
-          2. COMPACT COURSE LIST (42px row height, all 11 fit in 1 screen)
-          Height: exactly 42px per row, no vertical scrollbar for 11 items
-          Vertically centered, continuous title text, right promo badge
+          2. COMPACT COURSE LIST (44px row height, all 11 fit in 1 screen)
+          - For <= 11 items: overflow-visible, NO internal vertical scrollbar!
+          - For > 11 items: overflow-y-auto custom-dropdown-scroll max-h-[calc(100vh-140px)]
+          - Single-line title, 15-16px font, font-weight 500-600, navy text
       ========================================================= */}
       <div
-        className={`flex-1 min-h-0 overflow-y-auto ${
-          displayCourses.length <= 11 ? "scrollbar-none" : "custom-dropdown-scroll"
-        } divide-y divide-slate-100/70 overscroll-contain`}
+        className={
+          isNoScrollMode
+            ? "flex-1 min-h-0 overflow-visible divide-y divide-slate-100/80"
+            : "flex-1 min-h-0 overflow-y-auto custom-dropdown-scroll max-h-[calc(100vh-140px)] divide-y divide-slate-100/80 overscroll-contain"
+        }
       >
         {displayCourses.map((course) => {
           const formattedTitle = formatDropdownCourseTitle(course);
@@ -160,11 +170,11 @@ const CourseDropdown = ({
               role="menuitem"
               to={getCourseUrl(course)}
               onClick={onClose}
-              className="flex items-center justify-between h-[42px] min-h-[42px] px-5 sm:px-6 text-slate-800 hover:text-blue-600 hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/70 last:border-b-0"
+              className="flex items-center justify-between h-[44px] min-h-[44px] px-5 sm:px-6 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0"
             >
-              {/* Single Continuous Title Text Element (Zero Icons, Zero Pipes, Zero Secondary Columns) */}
+              {/* Single-line Course Name (Zero Icons, Zero Vertical Separators, Navy text, 15px font) */}
               <span
-                className="flex-1 min-w-0 pr-3 text-[14px] sm:text-[14.5px] font-semibold text-[#0A192F] group-hover:text-blue-600 transition-colors leading-none truncate text-left"
+                className="flex-1 min-w-0 pr-4 text-[15px] sm:text-[15.5px] font-medium sm:font-semibold text-[#0A192F] group-hover:text-[#0052CC] transition-colors leading-none truncate text-left"
                 title={formattedTitle}
               >
                 {formattedTitle}
@@ -184,14 +194,14 @@ const CourseDropdown = ({
       </div>
 
       {/* =========================================================
-          3. COMPACT FIXED FOOTER SECTION (~50px height, permanently visible)
+          3. COMPACT FIXED FOOTER SECTION (~48px height, permanently visible)
       ========================================================= */}
-      <div className="shrink-0 h-[50px] px-5 sm:px-6 border-t border-slate-100 bg-slate-50/80 rounded-b-[18px] flex items-center justify-between select-none">
+      <div className="shrink-0 h-[48px] px-5 sm:px-6 border-t border-slate-100 bg-slate-50/80 rounded-b-[20px] flex items-center justify-between select-none">
         <Link
           role="menuitem"
           to={categoryUrl}
           onClick={onClose}
-          className="w-full flex items-center justify-between text-xs sm:text-[13px] font-bold text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
+          className="w-full flex items-center justify-between text-[13px] sm:text-[13.5px] font-bold text-[#0052CC] hover:text-blue-700 transition-colors cursor-pointer"
         >
           <span>Explore All {category?.title} Programs</span>
           <FaChevronRight className="text-[11px]" />
