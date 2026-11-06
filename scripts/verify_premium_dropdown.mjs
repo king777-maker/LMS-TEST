@@ -106,29 +106,31 @@ const courseDropdownSrc = fs.readFileSync(courseDropdownPath, "utf-8");
 assert(courseDropdownSrc.includes("categoryTitle"), "Dropdown displays category title on the left");
 assert(courseDropdownSrc.includes("courseCount"), "Dropdown displays accurate course count badge on the right");
 assert(courseDropdownSrc.includes("border-b border-slate-100"), "Dropdown header has subtle bottom border");
+assert(courseDropdownSrc.includes("h-[50px]") || courseDropdownSrc.includes("52px"), "Dropdown header is compact (~50-52px height)");
 
 // Section 3 & 5: Course row design
 assert(courseDropdownSrc.includes("formatDropdownCourseTitle"), "CourseDropdown utilizes formatDropdownCourseTitle");
-assert(courseDropdownSrc.includes("h-[48px]") || courseDropdownSrc.includes("min-h-[48px]"), "Course rows use ~48px height");
+assert(courseDropdownSrc.includes("h-[42px]") || courseDropdownSrc.includes("44px"), "Course rows use compact ~42-44px height");
 assert(courseDropdownSrc.includes("text-[#0A192F]"), "Course titles use dark navy text");
 assert(courseDropdownSrc.includes("truncate"), "Course titles use accessible text truncation");
 assert(courseDropdownSrc.includes("PromoBadge"), "CourseDropdown includes right-aligned PromoBadge");
 assert(!courseDropdownSrc.includes("<FaPlay") && !courseDropdownSrc.includes("<FaBook"), "Course titles have zero leading icons");
 
 // Section 6: Dimensions
-assert(courseDropdownSrc.includes("w-[780px]") || courseDropdownSrc.includes("800px") || courseDropdownSrc.includes("820px"), "Desktop width is approximately 780–840px");
+assert(courseDropdownSrc.includes("w-[820px]") || courseDropdownSrc.includes("830px") || courseDropdownSrc.includes("840px") || courseDropdownSrc.includes("850px"), "Desktop width is 820–850px");
 assert(courseDropdownSrc.includes("rounded-[18px]"), "Border radius is 18px (rounded-[18px])");
-assert(courseDropdownSrc.includes("max-h-[min(620px"), "Maximum height is constrained to approximately 620px");
+assert(courseDropdownSrc.includes("max-h-[calc(100vh-96px)]") || courseDropdownSrc.includes("max-h-[calc(100vh-100px)]") || courseDropdownSrc.includes("max-h-[min(620px"), "Maximum height is dynamically constrained to available vertical space");
 assert(courseDropdownSrc.includes("max-w-[calc(100vw-32px)]"), "Maximum width is constrained by viewport space");
 
-// Section 7: Scrolling structure
-assert(courseDropdownSrc.includes("overflow-y-auto custom-dropdown-scroll"), "Course list is independently scrollable");
+// Section 7: Scrolling structure & All 11 courses visibility
+assert(courseDropdownSrc.includes("displayCourses.length <= 11 ? \"scrollbar-none\""), "Scrollbar is eliminated when all 11 courses fit on one screen");
 assert(courseDropdownSrc.includes("shrink-0"), "Header and footer remain fixed with shrink-0");
 
 // Section 8: Footer
 assert(courseDropdownSrc.includes("Explore All"), "Footer contains 'Explore All [Category] Programs'");
 assert(courseDropdownSrc.includes("FaChevronRight"), "Footer contains right-facing chevron");
 assert(courseDropdownSrc.includes("text-blue-600"), "Footer text is blue");
+assert(courseDropdownSrc.includes("h-[50px]") || courseDropdownSrc.includes("52px"), "Footer is compact (~50-52px height)");
 
 // Responsive clamp
 assert(courseDropdownSrc.includes("getBoundingClientRect") || courseDropdownSrc.includes("shiftX"), "Dropdown includes viewport boundary clamp");
@@ -203,3 +205,4 @@ if (passedCount === totalCount) {
 } else {
   process.exit(1);
 }
+

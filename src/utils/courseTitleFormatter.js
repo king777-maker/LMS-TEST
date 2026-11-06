@@ -67,3 +67,4 @@ export const formatDropdownCourseTitle = (course) => {
 };
 
 export default formatDropdownCourseTitle;
+

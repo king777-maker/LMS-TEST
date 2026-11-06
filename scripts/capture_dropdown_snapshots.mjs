@@ -16,9 +16,9 @@ async function captureDropdownSnapshots() {
   });
 
   const page = await browser.newPage();
-  await page.setViewport({ width: 1440, height: 900 });
+  await page.setViewport({ width: 1920, height: 1080 });
   await page.goto('http://localhost:3000/', { waitUntil: 'domcontentloaded', timeout: 15000 });
-  await new Promise(r => setTimeout(r, 1000));
+  await new Promise(r => setTimeout(r, 1200));
 
   const categories = [
     { name: 'dropdown_free_courses', text: 'Free Courses' },
