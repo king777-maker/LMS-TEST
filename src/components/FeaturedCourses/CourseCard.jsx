@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import EnrollButton from "../common/EnrollButton";
 import { useAuthPrompt } from "../../context/AuthPromptContext";
 import { isCourseOnlineAvailable } from "../../constants/courseAvailability";
 
@@ -116,23 +117,10 @@ const CourseCard = ({ course }) => {
                     </div>
 
                     {/* ENROLL BUTTON */}
-                    <button
-                        type="button"
+                    <EnrollButton
+                        label="Enroll Now"
                         onClick={handleEnroll}
-                        className="
-                            w-full
-                            bg-[#102F53] hover:bg-[#0a213c]
-                            text-[#F8D85A]
-                            py-2.5 px-4
-                            rounded-xl
-                            text-sm font-semibold
-                            shadow-sm hover:shadow
-                            transition-all duration-200
-                            cursor-pointer
-                        "
-                    >
-                        Enroll Now
-                    </button>
+                    />
 
                 </div>
 

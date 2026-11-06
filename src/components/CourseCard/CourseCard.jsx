@@ -1,5 +1,6 @@
 import { FaUsers, FaClock, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import EnrollButton from "../common/EnrollButton";
 const CourseCard = ({ course }) => {
     const navigate = useNavigate();
     return (
@@ -92,13 +93,12 @@ const CourseCard = ({ course }) => {
 
                 {/* Button */}
 
-                <button
-                    type="button"
-                    onClick={() => navigate(`/enroll/${course.id}`)}
-                    className="mt-2 bg-[#2563EB] hover:bg-[#1E3A66] text-white rounded-xl px-2 py-2 font-semibold transition"
-                >
-                    Enroll Now
-                </button>
+                <div className="mt-4">
+                    <EnrollButton
+                        label="Enroll Now"
+                        onClick={() => navigate(`/enroll/${course.id}`)}
+                    />
+                </div>
 
                 {/* Divider */}
 

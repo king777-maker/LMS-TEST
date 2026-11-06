@@ -103,18 +103,20 @@ p, li, dd {
 /* ========================================================
    NATIVE FORM CONTROL & BUTTON NORMALIZATION
    ======================================================== */
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  font-feature-settings: inherit;
-  font-variation-settings: inherit;
-  font-size: 100%;
-  font-weight: inherit;
-  line-height: inherit;
-  color: inherit;
+@layer base {
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
 }
 
 input[type="text"],
@@ -513,6 +515,59 @@ button[aria-selected="true"],
 .btn-secondary:hover {
   background-color: #e2e8f0;
   color: #0f172a;
+}
+
+/* ========================================================
+   STANDARDIZED ENROLL BUTTON DESIGN SYSTEM TOKENS
+   - Default: #2563EB, Text: #FFFFFF, Font: 16px/600, Radius: 14px, Height: 58px
+   - Hover: #1D4ED8, Elevation: shadow-lg, -translate-y-0.5
+   - Active: #1E40AF, scale: 0.99
+   - Focus: ring 4px #93C5FD/60
+   - Disabled: bg #CBD5E1, text #475569
+   ======================================================== */
+.btn-enroll {
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border-radius: 14px !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+  outline: none;
+}
+
+.btn-enroll:hover:not(:disabled) {
+  background-color: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+.btn-enroll:active:not(:disabled) {
+  background-color: #1E40AF !important;
+  color: #FFFFFF !important;
+  transform: translateY(0) scale(0.99);
+}
+
+.btn-enroll:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(147, 197, 253, 0.6) !important;
+}
+
+.btn-enroll:disabled {
+  background-color: #CBD5E1 !important;
+  color: #475569 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-enroll span,
+.btn-enroll svg {
+  color: inherit !important;
 }
 
 /* Standardized Input Fields */

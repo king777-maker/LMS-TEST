@@ -26,6 +26,7 @@ import { navigationCategories } from "../data/coursesData";
 import { getCategoryImage } from "../data/coursesResolver";
 import { getHeaderMenu, enrollCourse, submitCourseEnquiry } from "../api/api";
 import EnrollmentEnquiryForm from "../components/course/EnrollmentEnquiryForm";
+import EnrollButton from "../components/common/EnrollButton";
 import { isCourseOnlineAvailable, LAUNCH_STATUS_CONFIG, FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
 
 const MainCategoryPage = () => {
@@ -751,37 +752,29 @@ const MainCategoryPage = () => {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-2.5">
                       <Link
                         to={`/courses/${course.id}`}
-                        className="py-2.5 px-3 rounded-xl border border-slate-300 hover:bg-slate-50 active:scale-98 text-slate-700 text-xs font-bold text-center transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                        className="h-[58px] px-3 rounded-[14px] border border-slate-300 hover:bg-slate-50 active:scale-[0.99] text-slate-700 text-[15px] font-semibold text-center transition-all cursor-pointer flex items-center justify-center gap-1.5"
                       >
                         <span>Syllabus</span>
-                        <FaExternalLinkAlt className="text-[9px]" />
+                        <FaExternalLinkAlt className="text-xs text-slate-400" />
                       </Link>
 
                       {!isCourseOnlineAvailable(course.id, course) ? (
-                        <button
-                          type="button"
+                        <EnrollButton
+                          label="Enroll Now"
                           onClick={() => {
                             setSelectedCourseForEnquiry(course);
                             const el = document.getElementById("offline-enquiry-section");
                             if (el) el.scrollIntoView({ behavior: "smooth" });
                           }}
-                          className="py-2.5 px-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 active:scale-98 text-[#0B315B] text-[11px] sm:text-xs font-bold text-center shadow-xs transition-all cursor-pointer flex items-center justify-center gap-1 leading-tight"
-                        >
-                          <span>Coming soon, Enroll now</span>
-                          <FaArrowRight className="text-[8px] shrink-0" />
-                        </button>
+                        />
                       ) : (
-                        <button
-                          type="button"
+                        <EnrollButton
+                          label="Enroll Now"
                           onClick={() => handleStartCourse(course.id, course.slug)}
-                          className="py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-98 text-white text-xs font-bold text-center shadow-xs transition-all cursor-pointer flex items-center justify-center gap-1.5"
-                        >
-                          <span>Start Course</span>
-                          <FaArrowRight className="text-[9px]" />
-                        </button>
+                        />
                       )}
                     </div>
                   </div>

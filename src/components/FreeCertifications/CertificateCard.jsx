@@ -4,6 +4,7 @@ import { useAuthPrompt } from "../../context/AuthPromptContext";
 import toast from "react-hot-toast";
 import { FaUserFriends, FaStar, FaArrowRight } from "react-icons/fa";
 import { getAuthoritativeCourseName } from "../../data/freeCoursesData";
+import EnrollButton from "../common/EnrollButton";
 
 const CertificateCard = ({ certificate }) => {
     const navigate = useNavigate();
@@ -124,28 +125,13 @@ const CertificateCard = ({ certificate }) => {
                     </div>
 
                     {/* ENROLL BUTTON */}
-                    <button
-                        type="button"
+                    <EnrollButton
+                        label="Enroll Now"
                         onClick={(event) => {
                             event.stopPropagation();
                             handleEnroll();
                         }}
-                        className="
-                            w-full
-                            bg-[#102B4E] group-hover:bg-[#4F46E5]
-                            text-white
-                            py-2.5 px-4
-                            rounded-xl
-                            text-xs font-bold
-                            shadow-xs group-hover:shadow-indigo-500/20
-                            transition-all duration-200
-                            cursor-pointer
-                            flex items-center justify-center gap-2
-                        "
-                    >
-                        <span>Enroll Now</span>
-                        <FaArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    />
                 </div>
             </div>
         </div>

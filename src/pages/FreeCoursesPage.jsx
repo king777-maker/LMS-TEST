@@ -23,6 +23,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import { freeCoursesData, getAuthoritativeCourseName } from "../data/freeCoursesData";
+import EnrollButton from "../components/common/EnrollButton";
 import { getFreeCertifications, enrollCourse } from "../api/api";
 import { FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
 
@@ -474,25 +475,21 @@ const FreeCoursesPage = () => {
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-2.5">
                         {/* Syllabus Link */}
                         <Link
                           to={`/free-courses/${course.slug}`}
-                          className="py-2.5 px-3 rounded-xl border border-slate-300 hover:bg-slate-50 active:scale-98 text-slate-700 text-xs font-bold text-center transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                          className="h-[58px] px-3 rounded-[14px] border border-slate-300 hover:bg-slate-50 active:scale-[0.99] text-slate-700 text-[15px] font-semibold text-center transition-all cursor-pointer flex items-center justify-center gap-1.5"
                         >
                           <span>Syllabus</span>
-                          <FaExternalLinkAlt className="text-[9px]" />
+                          <FaExternalLinkAlt className="text-xs text-slate-400" />
                         </Link>
 
                         {/* Direct Free Enrollment */}
-                        <button
-                          type="button"
+                        <EnrollButton
+                          label="Enroll Now"
                           onClick={() => handleStartCourse(course.id, course.slug)}
-                          className="py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-98 text-white text-xs font-bold text-center shadow-xs transition-all cursor-pointer flex items-center justify-center gap-1.5"
-                        >
-                          <span>Enroll Free</span>
-                          <FaArrowRight className="text-[9px]" />
-                        </button>
+                        />
                       </div>
                     </div>
 
