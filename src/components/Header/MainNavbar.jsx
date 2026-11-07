@@ -105,12 +105,12 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       className="w-full bg-gradient-to-r from-[#174b85] via-[#1a5597] to-[#174b85] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
       <div className="max-w-[1720px] mx-auto px-2.5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[52px] sm:h-[56px] gap-2 sm:gap-3 min-w-0">
+        <div className="flex items-center justify-between h-[36px] sm:h-[37px] gap-2 sm:gap-3 min-w-0">
           
           {/* =======================================================
               LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
           ======================================================= */}
-          <div className="flex items-center gap-2 sm:gap-6 shrink-0 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-5 shrink-0 min-w-0">
             {/* Anchored Brand Logo on Far Left Corner */}
             <BrandLogo />
 
@@ -127,7 +127,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     key={category.id}
                     onMouseEnter={() => handleMouseEnter(category.id)}
                     onMouseLeave={handleMouseLeave}
-                    className="py-2"
+                    className="flex items-center"
                   >
                     <button
                       type="button"
@@ -138,7 +138,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                       onMouseLeave={handleMouseLeave}
                       onClick={() => handleTriggerClick(category)}
                       onKeyDown={(e) => handleKeyDown(e, category)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] 2xl:text-[13.5px] font-medium transition-all duration-150 cursor-pointer whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
+                      className={`flex items-center gap-1.5 px-2.5 sm:px-3 h-[27px] sm:h-[28px] rounded-md text-[12.5px] 2xl:text-[13px] font-medium transition-all duration-150 cursor-pointer whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                         isOpen
                           ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                           : "text-white/90 hover:bg-white/10 hover:text-white"
@@ -146,7 +146,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     >
                       <span>{category.title}</span>
                       <FaChevronDown
-                        className={`text-[9px] transition-transform duration-200 ${
+                        className={`text-[8px] transition-transform duration-200 ${
                           isOpen ? "rotate-180 text-amber-300" : "text-white/70"
                         }`}
                       />
@@ -171,12 +171,12 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
               aria-expanded={isMobileOpen}
               aria-controls="mobile-navigation-drawer"
               onClick={onToggleMobile}
-              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer border border-white/20 transition-all"
+              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 h-[26px] sm:h-[28px] rounded-md bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer border border-white/20 transition-all leading-none"
             >
               {isMobileOpen ? (
-                <FaTimes className="text-sm" />
+                <FaTimes className="text-xs" />
               ) : (
-                <FaBars className="text-sm" />
+                <FaBars className="text-xs" />
               )}
               <span className="hidden sm:inline">Browse Categories</span>
             </button>

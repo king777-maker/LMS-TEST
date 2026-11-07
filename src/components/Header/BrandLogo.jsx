@@ -6,12 +6,12 @@ const BrandLogo = ({ className = "" }) => {
     <Link
       to="/"
       aria-label="Broadbeach Academy Home"
-      className={`inline-flex items-center gap-2.5 transition-all duration-200 hover:opacity-95 select-none ${className}`}
+      className={`inline-flex items-center gap-2 transition-all duration-200 hover:opacity-95 select-none ${className}`}
     >
       {/* Gold Shield Emblem */}
       <div className="relative flex items-center justify-center shrink-0">
         <svg
-          className="w-8 h-8 sm:w-9 sm:h-9 drop-shadow-sm transition-transform duration-200 group-hover:scale-105"
+          className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-sm transition-transform duration-200 group-hover:scale-105"
           viewBox="0 0 28 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -48,14 +48,14 @@ const BrandLogo = ({ className = "" }) => {
       {/* Main Brand Wordmark */}
       <div className="flex flex-col justify-center leading-none">
         <div className="flex items-center gap-1 leading-none">
-          <span className="text-[15px] sm:text-[17px] font-black tracking-tight text-white drop-shadow-xs">
+          <span className="text-[13.5px] sm:text-[15px] font-black tracking-tight text-white drop-shadow-xs">
             Broadbeach
           </span>
-          <span className="text-[#FFC72C] text-[13px] sm:text-[15px] font-black tracking-tight leading-none">
+          <span className="text-[#FFC72C] text-[12px] sm:text-[13px] font-black tracking-tight leading-none">
             • Online
           </span>
         </div>
-        <span className="text-[7.5px] sm:text-[8.5px] font-extrabold tracking-[0.26em] text-white/90 uppercase mt-0.5 leading-none">
+        <span className="text-[6.5px] sm:text-[7.5px] font-extrabold tracking-[0.24em] text-white/90 uppercase mt-0.5 leading-none">
           ACADEMY
         </span>
       </div>

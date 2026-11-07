@@ -63,13 +63,13 @@ const SearchBar = ({ onSelectCourse }) => {
   return (
     <div ref={containerRef} className="relative z-40">
       <div
-        className={`flex items-center h-[34px] sm:h-[36px] px-2 sm:px-3 rounded-xl transition-all duration-300 ${
+        className={`flex items-center h-[26px] sm:h-[28px] px-2 sm:px-2.5 rounded-lg transition-all duration-300 ${
           isFocused
             ? "w-36 min-[360px]:w-48 sm:w-60 lg:w-72 bg-white/20 border-white/40 shadow-[0_10px_30px_rgba(0,0,0,0.08)] ring-2 ring-white/30"
             : "w-20 min-[360px]:w-28 sm:w-44 lg:w-56 bg-white/10 hover:bg-white/15 border-white/20"
         } border`}
       >
-        <FaSearch className="text-white/80 text-[11px] flex-shrink-0 mr-1.5 sm:mr-2" />
+        <FaSearch className="text-white/80 text-[10px] flex-shrink-0 mr-1.5" />
         <input
           type="text"
           value={query}
@@ -77,7 +77,7 @@ const SearchBar = ({ onSelectCourse }) => {
           onFocus={() => setIsFocused(true)}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search..."
-          className="w-full min-w-0 bg-transparent text-white placeholder-white/75 text-xs outline-none font-medium"
+          className="w-full min-w-0 bg-transparent text-white placeholder-white/75 text-[11px] sm:text-xs outline-none font-medium leading-none"
         />
         {query && (
           <button
@@ -86,7 +86,7 @@ const SearchBar = ({ onSelectCourse }) => {
             onClick={handleClear}
             className="text-white/80 hover:text-white p-0.5 ml-1 cursor-pointer"
           >
-            <FaTimes className="text-[10px]" />
+            <FaTimes className="text-[9.5px]" />
           </button>
         )}
       </div>

@@ -64,26 +64,26 @@ const TopBar = ({
 
   return (
     <div className="w-full bg-[#07162c] text-slate-200 border-b border-white/10 text-xs select-none relative z-50">
-      <div className="max-w-[1720px] mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between h-[44px] sm:h-[48px] gap-1 sm:gap-3 min-w-0">
+      <div className="max-w-[1720px] mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between h-[30px] gap-1 sm:gap-3 min-w-0">
         
         {/* =========================================================
             LEFT: CONTACT EMAIL
         ========================================================= */}
-        <div className="flex items-center gap-1.5 sm:gap-3 shrink min-w-0">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 flex items-center justify-center shadow-xs shrink-0">
-              <FaEnvelope className="text-[9px] sm:text-[10px]" />
+            <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 flex items-center justify-center shadow-xs shrink-0">
+              <FaEnvelope className="text-[8px] sm:text-[9px]" />
             </span>
             <a
               href="mailto:certification@broadbeach.in"
               aria-label="Send email to certification@broadbeach.in"
-              className="text-slate-100 hover:text-amber-300 text-[11px] sm:text-[12px] font-medium transition-colors tracking-tight truncate max-w-[100px] min-[400px]:max-w-[130px] sm:max-w-none"
+              className="text-slate-100 hover:text-amber-300 text-[10.5px] sm:text-[11.5px] font-medium transition-colors tracking-tight truncate max-w-[100px] min-[400px]:max-w-[130px] sm:max-w-none"
             >
               <span className="hidden min-[360px]:inline">certification@broadbeach.in</span>
             </a>
           </div>
 
-          <div className="h-3.5 w-px bg-white/15" />
+          <div className="h-3 w-px bg-white/15" />
 
           {/* WhatsApp Direct Chat - on Left Side of Header Only */}
           <a
@@ -91,10 +91,10 @@ const TopBar = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contact Broadbeach Academy on WhatsApp (+91 7338649737)"
-            className="flex items-center gap-1.5 text-slate-100 hover:text-emerald-400 text-[11px] sm:text-[12px] font-medium transition-colors group cursor-pointer"
+            className="flex items-center gap-1.5 text-slate-100 hover:text-emerald-400 text-[10.5px] sm:text-[11.5px] font-medium transition-colors group cursor-pointer"
           >
-            <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white flex items-center justify-center shadow-xs shrink-0 transition-all">
-              <FaWhatsapp className="text-[10px] sm:text-[11px]" />
+            <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white flex items-center justify-center shadow-xs shrink-0 transition-all">
+              <FaWhatsapp className="text-[9px] sm:text-[10px]" />
             </span>
             <span className="hidden sm:inline font-medium text-slate-200 group-hover:text-emerald-300 transition-colors">
               WhatsApp
@@ -105,43 +105,43 @@ const TopBar = ({
         {/* =========================================================
             RIGHT: SOCIALS + BLOG + CONTACT + CTAs
         ========================================================= */}
-        <div className="flex items-center gap-1 sm:gap-2.5 lg:gap-4 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
           
           {/* Social Icons (Desktop & Tablet) */}
-          <div className="hidden md:flex items-center gap-1.5 text-slate-300">
+          <div className="hidden md:flex items-center gap-1 text-slate-300">
             <a
               href="https://www.facebook.com/broadbeach.innovations.71/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="w-7 h-7 rounded-full bg-white/5 hover:bg-[#1877F2] hover:text-white flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#1877F2] hover:text-white flex items-center justify-center transition-all duration-200"
             >
-              <FaFacebookF className="text-[11px]" />
+              <FaFacebookF className="text-[9.5px] sm:text-[10px]" />
             </a>
             <a
               href="https://www.linkedin.com/company/37528405/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-7 h-7 rounded-full bg-white/5 hover:bg-[#0A66C2] hover:text-white flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#0A66C2] hover:text-white flex items-center justify-center transition-all duration-200"
             >
-              <FaLinkedinIn className="text-[11px]" />
+              <FaLinkedinIn className="text-[9.5px] sm:text-[10px]" />
             </a>
             <a
               href="https://www.instagram.com/broadbeachinnovations"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-7 h-7 rounded-full bg-white/5 hover:bg-[#E4405F] hover:text-white flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#E4405F] hover:text-white flex items-center justify-center transition-all duration-200"
             >
-              <FaInstagram className="text-[11px]" />
+              <FaInstagram className="text-[9.5px] sm:text-[10px]" />
             </a>
           </div>
 
-          <div className="hidden md:block h-3.5 w-px bg-white/15" />
+          <div className="hidden md:block h-3 w-px bg-white/15" />
 
           {/* Informational Links */}
-          <div className="hidden lg:flex items-center gap-3.5 text-[12px]">
+          <div className="hidden lg:flex items-center gap-2.5 sm:gap-3 text-[11px] sm:text-[11.5px]">
             <a
               href="https://medium.com/@broadbeach.in"
               target="_blank"
@@ -161,9 +161,9 @@ const TopBar = ({
           {/* Verify Certificate CTA */}
           <Link
             to="/verify-certificate"
-            className="group flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1 sm:py-1.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 text-[#07162c] font-bold text-[11px] sm:text-[12px] rounded-full shadow-xs transition-all duration-200 hover:shadow-md cursor-pointer whitespace-nowrap"
+            className="group flex items-center gap-1 px-2.5 sm:px-3 h-[22px] sm:h-[23px] bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 text-[#07162c] font-bold text-[10.5px] sm:text-[11px] rounded-full shadow-xs transition-all duration-200 hover:shadow-md cursor-pointer whitespace-nowrap leading-none"
           >
-            <FaAward className="text-[10px] sm:text-[11px] text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
+            <FaAward className="text-[9px] sm:text-[10px] text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
             <span className="hidden min-[360px]:inline">Verify Certificate</span>
             <span className="min-[360px]:hidden">Verify</span>
           </Link>
@@ -186,14 +186,14 @@ const TopBar = ({
                 aria-haspopup="true"
                 aria-controls="profile-dropdown-menu"
                 aria-label="User profile, courses and certificates menu"
-                className="flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-white/10 hover:bg-white/20 active:scale-95 rounded-full text-slate-100 text-xs font-semibold border border-white/20 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="flex items-center gap-1.5 px-2 sm:px-2.5 h-[22px] sm:h-[23px] bg-white/10 hover:bg-white/20 active:scale-95 rounded-full text-slate-100 text-[10.5px] sm:text-[11px] font-semibold border border-white/20 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400 leading-none"
               >
                 {/* Initials Avatar */}
-                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-tr from-amber-400 to-amber-500 text-[#07162c] font-extrabold text-[10px] flex items-center justify-center shrink-0 shadow-xs border border-white/20">
+                <div className="w-4 h-4 sm:w-[18px] sm:h-[18px] rounded-full bg-gradient-to-tr from-amber-400 to-amber-500 text-[#07162c] font-extrabold text-[8.5px] sm:text-[9px] flex items-center justify-center shrink-0 shadow-xs border border-white/20">
                   {userInitials}
                 </div>
                 <span className="max-w-[70px] sm:max-w-[100px] truncate">{currentUser.name}</span>
-                <FaChevronDown className={`text-[9px] text-slate-400 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
+                <FaChevronDown className={`text-[8px] text-slate-400 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {/* Accessible Dropdown Panel */}
@@ -290,11 +290,11 @@ const TopBar = ({
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-1 sm:gap-2">
+            <div className="flex items-center gap-1 sm:gap-1.5">
               <button
                 type="button"
                 onClick={onOpenLogin}
-                className="text-slate-300 hover:text-white font-semibold text-[11px] sm:text-[12px] px-1.5 sm:px-2.5 py-1 transition-colors cursor-pointer"
+                className="text-slate-300 hover:text-white font-semibold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none"
               >
                 Log In
               </button>
@@ -302,7 +302,7 @@ const TopBar = ({
               <button
                 type="button"
                 onClick={onOpenRegister}
-                className="text-slate-300 hover:text-white font-semibold text-[11px] sm:text-[12px] px-1.5 sm:px-2.5 py-1 transition-colors cursor-pointer"
+                className="text-slate-300 hover:text-white font-semibold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none"
               >
                 Register
               </button>
