@@ -1,51 +1,46 @@
-name: Deploy Vite SPA to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch:
+    branches:
+      - main
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout Source Code
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: "npm"
+          node-version: 20
+          cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install Project Dependencies
         run: npm ci
 
-      - name: Build production bundle
+      - name: Compile Application (Build)
         run: npm run build
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
+      - name: Upload Production Files Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: './dist' # If you use Vite, this is './dist'. If you use Create React App, change this to './build'
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy Compiled Site to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
