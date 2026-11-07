@@ -432,34 +432,34 @@ const CourseDetails = () => {
                 </div>
               </div>
 
-              {/* Working Start Course CTA */}
-              <div className="pt-1 flex flex-wrap items-center gap-3 w-full sm:w-auto">
+              {/* Working Start Course CTA (Own row, ~60px height, aligned left, gold & dark navy) */}
+              <div className="w-full flex items-center justify-start my-1 sm:my-1.5">
                 {isOnlineCourse ? (
                   <button
                     type="button"
                     onClick={handleStartCourse}
-                    className="h-[50px] px-8 rounded-[14px] font-bold text-sm sm:text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
+                    className="h-[60px] min-h-[60px] px-8 rounded-[14px] font-bold text-base sm:text-[17px] bg-[#FFB800] hover:bg-[#F5A900] active:bg-[#E6A600] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-3 outline-none whitespace-nowrap select-none self-start focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
                   >
-                    <GraduationCap size={20} className="text-[#0B1F3A] shrink-0" />
+                    <GraduationCap size={22} className="text-[#0B1F3A] shrink-0" />
                     <span>Start Course</span>
-                    <ArrowRight size={18} className="text-[#0B1F3A] shrink-0" />
+                    <ArrowRight size={20} className="text-[#0B1F3A] shrink-0" />
                   </button>
                 ) : (
                   <button
                     type="button"
                     onClick={() => scrollToSection("offline-enquiry-section")}
-                    className="h-[50px] px-8 rounded-[14px] font-bold text-sm sm:text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
+                    className="h-[60px] min-h-[60px] px-8 rounded-[14px] font-bold text-base sm:text-[17px] bg-[#FFB800] hover:bg-[#F5A900] active:bg-[#E6A600] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-3 outline-none whitespace-nowrap select-none self-start focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
                   >
-                    <FileText size={20} className="text-[#0B1F3A] shrink-0" />
+                    <FileText size={22} className="text-[#0B1F3A] shrink-0" />
                     <span>{LAUNCH_STATUS_CONFIG.cta}</span>
-                    <ArrowRight size={18} className="text-[#0B1F3A] shrink-0" />
+                    <ArrowRight size={20} className="text-[#0B1F3A] shrink-0" />
                   </button>
                 )}
               </div>
 
-              {/* Standardized Course Section Navigation Controls (Uniform Height & Alignment) */}
+              {/* Standardized Course Section Navigation Controls (Equal Height, Consistent Gaps & Responsive Grid) */}
               <div
-                className="pt-2 grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 w-full pb-1"
+                className="w-full grid grid-cols-2 min-[1200px]:grid-cols-4 gap-2.5 sm:gap-3 xl:gap-3.5 pt-1.5 pb-1"
                 role="tablist"
                 aria-label="Course section navigation"
               >
@@ -475,17 +475,20 @@ const CourseDetails = () => {
                       data-active-theme={isActive ? "gold" : undefined}
                       style={isActive ? { color: "#0B1F3A" } : undefined}
                       onClick={() => scrollToSection(tab.id)}
-                      className={`h-[42px] sm:h-[44px] px-2.5 sm:px-3 xl:px-3.5 rounded-[10px] font-semibold text-[11.5px] sm:text-xs xl:text-[12.5px] transition-all duration-150 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border outline-none active:scale-[0.98] whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E] ${
+                      className={`h-[48px] min-h-[48px] px-2 xl:px-2.5 rounded-[12px] font-semibold text-[11px] sm:text-[11.5px] xl:text-[12px] transition-all duration-150 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border outline-none active:scale-[0.98] select-none focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E] ${
                         isActive
                           ? "bg-[#FFD95A] text-[#0B1F3A] border-[#FFD95A] font-bold shadow-none"
-                          : "bg-[#193E63] text-white hover:text-white border-white/20 hover:bg-[#24517A]"
+                          : "bg-[#193E63] text-white hover:text-white border-white/20 hover:bg-[#204E7C]"
                       }`}
                     >
                       <IconComp
                         size={15}
-                        className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFD95A]"}`}
+                        className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFB800]"}`}
                       />
-                      <span className="whitespace-nowrap" style={isActive ? { color: "#0B1F3A" } : undefined}>
+                      <span
+                        className="tracking-tight leading-tight text-center sm:text-left sm:tracking-normal whitespace-normal sm:whitespace-nowrap"
+                        style={isActive ? { color: "#0B1F3A" } : undefined}
+                      >
                         {tab.label}
                       </span>
                     </button>
@@ -571,7 +574,7 @@ const CourseDetails = () => {
             )}
 
             {/* Standardized Sticky In-Page Navigation Bar */}
-            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 border-b border-slate-200/80 pb-3 max-w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1.5 select-none">
+            <div className="grid grid-cols-2 min-[1200px]:grid-cols-4 gap-2.5 sm:gap-3 xl:gap-3.5 border-b border-slate-200/80 pb-3 max-w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1.5 select-none">
               {courseTabs.map((tab) => {
                 const IconComponent = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -584,17 +587,20 @@ const CourseDetails = () => {
                     data-active-theme={isActive ? "gold" : undefined}
                     style={isActive ? { color: "#0B1F3A" } : undefined}
                     onClick={() => scrollToSection(tab.id)}
-                    className={`h-[42px] sm:h-[44px] px-2.5 sm:px-3.5 rounded-[10px] text-[11.5px] sm:text-xs xl:text-[12.5px] font-semibold transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer border outline-none active:scale-[0.98] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 ${
+                    className={`h-[48px] min-h-[48px] px-2 xl:px-2.5 rounded-[12px] text-[11px] sm:text-[11.5px] xl:text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer border outline-none active:scale-[0.98] select-none focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 ${
                       isActive
                         ? "bg-[#FFD95A] text-[#0B1F3A] border-[#FFD95A] font-bold shadow-none"
-                        : "bg-[#193E63] text-white border-white/20 hover:bg-[#24517A] hover:text-white"
+                        : "bg-[#193E63] text-white border-white/20 hover:bg-[#204E7C] hover:text-white"
                     }`}
                   >
                     <IconComponent
                       size={15}
-                      className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFD95A]"}`}
+                      className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFB800]"}`}
                     />
-                    <span className="whitespace-nowrap" style={isActive ? { color: "#0B1F3A" } : undefined}>
+                    <span
+                      className="tracking-tight leading-tight text-center sm:text-left sm:tracking-normal whitespace-normal sm:whitespace-nowrap"
+                      style={isActive ? { color: "#0B1F3A" } : undefined}
+                    >
                       {tab.label}
                     </span>
                   </button>

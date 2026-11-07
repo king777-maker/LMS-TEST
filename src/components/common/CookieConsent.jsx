@@ -82,11 +82,11 @@ export const CookieConsent = () => {
                     setShowPreferences(true);
                     setIsOpen(true);
                 }}
-                className="fixed bottom-4 left-4 z-40 bg-[#0B315B] text-white hover:text-[#F7C600] border border-white/20 p-2.5 rounded-full shadow-lg transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F7C600]"
+                className="fixed bottom-3.5 right-3.5 sm:bottom-5 sm:right-5 z-30 bg-[#0B2E53] hover:bg-[#193E63] text-white hover:text-[#FFB800] border border-white/20 p-2 sm:p-2.5 rounded-full shadow-lg transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FFB800] select-none cursor-pointer"
                 title="Manage Cookie & Privacy Preferences"
                 aria-label="Manage Cookie & Privacy Preferences"
             >
-                <FaShieldAlt className="w-4 h-4 text-[#F7C600]" />
+                <FaShieldAlt className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFB800]" />
             </button>
 
             {/* CONSENT BANNER & MODAL */}
