@@ -33,7 +33,8 @@ import {
 
 import { getCourseDetails, getFreeCertifications, enrollCourse } from "../../api/api";
 import { resolveCourse, getAllPortalCourses } from "../../data/coursesResolver";
-import { isCourseOnlineAvailable, LAUNCH_STATUS_CONFIG } from "../../constants/courseAvailability";
+import { isCourseOnlineAvailable, LAUNCH_STATUS_CONFIG, FREE_COURSE_DB_MAP } from "../../constants/courseAvailability";
+import { AUTHORITATIVE_FREE_COURSE_NAMES } from "../../data/freeCoursesData";
 import EnrollmentEnquiryForm from "../../components/course/EnrollmentEnquiryForm";
 
 // Subcomponents
@@ -323,7 +324,22 @@ const CourseDetails = () => {
     .slice(0, 3);
 
   const courseImage = course.course_image || course.image;
-  const isFree = course.price === 0 || course.price === "0" || String(course.id).includes("free");
+  const isFree =
+    course.price === 0 ||
+    course.price === "0" ||
+    String(course.id).includes("free") ||
+    Boolean(FREE_COURSE_DB_MAP[String(course.id).toLowerCase()]) ||
+    Boolean(FREE_COURSE_DB_MAP[String(courseSlugParam).toLowerCase()]) ||
+    Boolean(AUTHORITATIVE_FREE_COURSE_NAMES[String(course.id)]) ||
+    Boolean(AUTHORITATIVE_FREE_COURSE_NAMES[String(courseSlugParam).toLowerCase()]) ||
+    (course.category && course.category.toLowerCase().includes("free"));
+
+  const courseTabs = [
+    { id: "course-overview", label: "Course Overview", icon: Compass },
+    { id: "course-syllabus", label: "Syllabus", icon: BookOpen },
+    { id: "certification-verification", label: "Certification & Verification", icon: Award },
+    { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
+  ];
 
   return (
     <div className="course-page bg-[#F8FAFD] min-h-screen">
@@ -391,26 +407,28 @@ const CourseDetails = () => {
               </p>
 
               {/* Meta stats row */}
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-slate-200">
-                <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
-                  <Clock3 size={15} className="text-[#F8D85A]" />
-                  <span>Duration: <strong>{course.duration || "30 Hours"}</strong></span>
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm">
+                {!isFree && course.duration && (
+                  <div className="flex items-center gap-1.5 bg-[#24496D] text-white px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
+                    <Clock3 size={15} className="text-[#FFD95A] shrink-0" />
+                    <span>Duration: <strong className="font-semibold text-white">{course.duration}</strong></span>
+                  </div>
+                )}
+
+                <div className="flex items-center gap-1.5 bg-[#24496D] text-white px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
+                  <GraduationCap size={15} className="text-[#FFD95A] shrink-0" />
+                  <span>Level: <strong className="font-semibold text-white">{course.level || "Beginner"}</strong></span>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
-                  <GraduationCap size={15} className="text-[#F8D85A]" />
-                  <span>Level: <strong>{course.level || "Intermediate"}</strong></span>
+                <div className="flex items-center gap-1.5 bg-[#24496D] text-white px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
+                  <Languages size={15} className="text-[#FFD95A] shrink-0" />
+                  <span>Language: <strong className="font-semibold text-white">{course.language || "English"}</strong></span>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
-                  <Languages size={15} className="text-[#F8D85A]" />
-                  <span>Language: <strong>{course.language || "English"}</strong></span>
-                </div>
-
-                <div className="flex items-center gap-1 text-amber-300 font-semibold bg-amber-400/15 px-3 py-1.5 rounded-xl border border-amber-400/20">
-                  <Star size={14} className="fill-amber-400 text-amber-400" />
-                  <span>4.9</span>
-                  <span className="text-slate-300 font-normal">({course.reviews || 240}+)</span>
+                <div className="flex items-center gap-1.5 bg-[#344B50] px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
+                  <Star size={14} className="fill-[#FFD95A] text-[#FFD95A] shrink-0" />
+                  <span className="text-[#FFD95A] font-bold">4.9</span>
+                  <span className="text-white font-normal">({course.reviews || 240}+)</span>
                 </div>
               </div>
 
@@ -420,37 +438,32 @@ const CourseDetails = () => {
                   <button
                     type="button"
                     onClick={handleStartCourse}
-                    className="h-[48px] px-7 rounded-[12px] font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-[#07162C] shadow-lg hover:shadow-amber-500/25 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none"
+                    className="h-[50px] px-8 rounded-[14px] font-bold text-sm sm:text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
                   >
-                    <GraduationCap size={18} className="text-[#07162C] shrink-0" />
+                    <GraduationCap size={20} className="text-[#0B1F3A] shrink-0" />
                     <span>Start Course</span>
-                    <ArrowRight size={16} className="shrink-0" />
+                    <ArrowRight size={18} className="text-[#0B1F3A] shrink-0" />
                   </button>
                 ) : (
                   <button
                     type="button"
                     onClick={() => scrollToSection("offline-enquiry-section")}
-                    className="h-[48px] px-7 rounded-[12px] font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-[#07162C] shadow-lg hover:shadow-amber-500/25 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none"
+                    className="h-[50px] px-8 rounded-[14px] font-bold text-sm sm:text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
                   >
-                    <FileText size={18} className="text-[#07162C] shrink-0" />
+                    <FileText size={20} className="text-[#0B1F3A] shrink-0" />
                     <span>{LAUNCH_STATUS_CONFIG.cta}</span>
-                    <ArrowRight size={16} className="shrink-0" />
+                    <ArrowRight size={18} className="text-[#0B1F3A] shrink-0" />
                   </button>
                 )}
               </div>
 
               {/* Standardized Course Section Navigation Controls (Uniform Height & Alignment) */}
               <div
-                className="pt-2 grid grid-cols-2 lg:grid-cols-4 gap-2.5 w-full pb-1"
+                className="pt-2 grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 w-full pb-1"
                 role="tablist"
                 aria-label="Course section navigation"
               >
-                {[
-                  { id: "course-overview", label: "Course Overview", icon: Compass },
-                  { id: "course-syllabus", label: `Syllabus (${course.modules?.length || 5})`, icon: BookOpen },
-                  { id: "certification-verification", label: "Certification & Verification", icon: Award },
-                  { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
-                ].map((tab) => {
+                {courseTabs.map((tab) => {
                   const IconComp = tab.icon;
                   const isActive = activeTab === tab.id;
                   return (
@@ -459,15 +472,22 @@ const CourseDetails = () => {
                       type="button"
                       role="tab"
                       aria-selected={isActive}
+                      data-active-theme={isActive ? "gold" : undefined}
+                      style={isActive ? { color: "#0B1F3A" } : undefined}
                       onClick={() => scrollToSection(tab.id)}
-                      className={`h-[42px] px-3 sm:px-3.5 rounded-[10px] font-semibold text-xs transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 border outline-none active:scale-[0.98] whitespace-nowrap select-none ${
+                      className={`h-[42px] sm:h-[44px] px-2.5 sm:px-3 xl:px-3.5 rounded-[10px] font-semibold text-[11.5px] sm:text-xs xl:text-[12.5px] transition-all duration-150 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border outline-none active:scale-[0.98] whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E] ${
                         isActive
-                          ? "bg-[#F8D85A] text-[#07162C] border-[#F8D85A] font-bold shadow-xs"
-                          : "bg-white/10 hover:bg-white/20 text-white border-white/20 hover:border-white/30"
+                          ? "bg-[#FFD95A] text-[#0B1F3A] border-[#FFD95A] font-bold shadow-none"
+                          : "bg-[#193E63] text-white hover:text-white border-white/20 hover:bg-[#24517A]"
                       }`}
                     >
-                      <IconComp size={15} className={isActive ? "text-[#07162C] shrink-0" : "text-[#F8D85A] shrink-0"} />
-                      <span className="truncate">{tab.label}</span>
+                      <IconComp
+                        size={15}
+                        className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFD95A]"}`}
+                      />
+                      <span className="whitespace-nowrap" style={isActive ? { color: "#0B1F3A" } : undefined}>
+                        {tab.label}
+                      </span>
                     </button>
                   );
                 })}
@@ -524,7 +544,7 @@ const CourseDetails = () => {
                       <PlayCircle size={14} className="text-[#F8D85A]" /> Start Course Preview
                     </span>
                     <span className="font-semibold text-white bg-black/50 backdrop-blur-xs px-2 py-0.5 rounded text-[11px]">
-                      {course.duration || "Self-Paced"}
+                      {isFree ? "Self-Paced" : (course.duration || "Self-Paced")}
                     </span>
                   </div>
                 </div>
@@ -551,13 +571,8 @@ const CourseDetails = () => {
             )}
 
             {/* Standardized Sticky In-Page Navigation Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 border-b border-slate-200/80 pb-3 max-w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1.5 select-none">
-              {[
-                { id: "course-overview", label: "Course Overview", icon: Compass },
-                { id: "course-syllabus", label: `Syllabus (${course.modules?.length || 5})`, icon: BookOpen },
-                { id: "certification-verification", label: "Certification & Verification", icon: Award },
-                { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
-              ].map((tab) => {
+            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 border-b border-slate-200/80 pb-3 max-w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1.5 select-none">
+              {courseTabs.map((tab) => {
                 const IconComponent = tab.icon;
                 const isActive = activeTab === tab.id;
                 return (
@@ -566,15 +581,22 @@ const CourseDetails = () => {
                     type="button"
                     role="tab"
                     aria-selected={isActive}
+                    data-active-theme={isActive ? "gold" : undefined}
+                    style={isActive ? { color: "#0B1F3A" } : undefined}
                     onClick={() => scrollToSection(tab.id)}
-                    className={`h-[42px] px-3.5 rounded-[10px] text-xs sm:text-[13px] font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer border shadow-xs outline-none active:scale-[0.98] whitespace-nowrap ${
+                    className={`h-[42px] sm:h-[44px] px-2.5 sm:px-3.5 rounded-[10px] text-[11.5px] sm:text-xs xl:text-[12.5px] font-semibold transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer border outline-none active:scale-[0.98] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 ${
                       isActive
-                        ? "bg-[#10365D] text-white border-[#10365D] shadow-xs font-semibold"
-                        : "bg-white text-[#1E293B] border-[#E2E8F0] hover:bg-slate-50 hover:border-slate-300 hover:text-[#10365D]"
+                        ? "bg-[#FFD95A] text-[#0B1F3A] border-[#FFD95A] font-bold shadow-none"
+                        : "bg-[#193E63] text-white border-white/20 hover:bg-[#24517A] hover:text-white"
                     }`}
                   >
-                    <IconComponent size={16} className={isActive ? "text-[#FFD43B] shrink-0" : "text-[#1E293B] shrink-0"} />
-                    <span className="truncate">{tab.label}</span>
+                    <IconComponent
+                      size={15}
+                      className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFD95A]"}`}
+                    />
+                    <span className="whitespace-nowrap" style={isActive ? { color: "#0B1F3A" } : undefined}>
+                      {tab.label}
+                    </span>
                   </button>
                 );
               })}
@@ -940,21 +962,21 @@ const CourseDetails = () => {
                   <button
                     type="button"
                     onClick={handleStartCourse}
-                    className="w-full h-[48px] sm:h-[50px] px-6 rounded-xl font-bold text-sm sm:text-base bg-gradient-to-r from-[#102B4E] to-[#1E5FA8] hover:from-[#0B315B] hover:to-[#164C82] text-white shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none active:scale-[0.98]"
+                    className="w-full h-[50px] px-6 rounded-[14px] font-bold text-sm sm:text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2"
                   >
-                    <GraduationCap size={19} className="text-[#F8D85A]" />
+                    <GraduationCap size={20} className="text-[#0B1F3A] shrink-0" />
                     <span>Start Course Now</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={18} className="text-[#0B1F3A] shrink-0" />
                   </button>
                 ) : (
                   <button
                     type="button"
                     onClick={() => scrollToSection("offline-enquiry-section")}
-                    className="w-full h-[48px] sm:h-[50px] px-6 rounded-xl font-bold text-sm sm:text-base bg-gradient-to-r from-[#E0A708] to-[#FFC72C] hover:from-[#C99404] hover:to-[#EAA905] text-[#0A192F] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none active:scale-[0.98]"
+                    className="w-full h-[50px] px-6 rounded-[14px] font-bold text-sm sm:text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2"
                   >
-                    <FileText size={18} className="text-[#0A192F]" />
+                    <FileText size={19} className="text-[#0B1F3A] shrink-0" />
                     <span>Enquire Now</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={17} className="text-[#0B1F3A] shrink-0" />
                   </button>
                 )}
 
@@ -990,12 +1012,14 @@ const CourseDetails = () => {
 
                 {/* Course Details Specs */}
                 <div className="space-y-2.5 pt-2 text-xs sm:text-[13px] text-slate-600">
-                  <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                    <span className="flex items-center gap-2 text-slate-500">
-                      <Clock3 size={15} className="text-[#1E5FA8]" /> Duration
-                    </span>
-                    <span className="font-semibold text-slate-800">{course.duration || "30 Hours"}</span>
-                  </div>
+                  {!isFree && course.duration && (
+                    <div className="flex items-center justify-between py-2 border-b border-slate-100">
+                      <span className="flex items-center gap-2 text-slate-500">
+                        <Clock3 size={15} className="text-[#1E5FA8]" /> Duration
+                      </span>
+                      <span className="font-semibold text-slate-800">{course.duration}</span>
+                    </div>
+                  )}
                   <div className="flex items-center justify-between py-2 border-b border-slate-100">
                     <span className="flex items-center gap-2 text-slate-500">
                       <BookOpen size={15} className="text-[#1E5FA8]" /> Modules

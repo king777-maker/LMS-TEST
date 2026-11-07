@@ -470,11 +470,16 @@ button[data-state="inactive"] svg,
   color: #1E293B !important;
 }
 
-/* High specificity safeguard against dark text on dark active buttons */
+/* High specificity safeguard against dark text on dark active buttons, unless styled with gold active theme */
 button.btn-state-active,
-button[aria-selected="true"],
+button[aria-selected="true"]:not([data-active-theme="gold"]):not(.text-\[\#0B1F3A\]),
 .btn-state-active span {
   color: #FFFFFF !important;
+}
+
+button[aria-selected="true"][data-active-theme="gold"],
+button[aria-selected="true"][data-active-theme="gold"] span {
+  color: #0B1F3A !important;
 }
 
 .btn-primary {
