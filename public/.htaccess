@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Enforce strict standard MIME types for ES module scripts
+  AddType application/javascript .js .mjs .jsx
+  AddType text/css .css
+  AddType image/svg+xml .svg
+  AddType application/wasm .wasm
+  AddType application/json .json
+
+  # If requested file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Fallback to index.html for React Router SPA deep links
+  RewriteRule ^ index.html [L]
+</IfModule>
+
