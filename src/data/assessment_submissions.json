@@ -310,5 +310,33 @@
     "result": "pass",
     "certificate_number": "BOA33213745",
     "submitted_at": "2026-10-26T16:55:52.295Z"
+  },
+  {
+    "id": "SUB-322-1794017838141",
+    "user_id": 99,
+    "student_name": "QA Test Learner",
+    "certification_id": 322,
+    "course_title": "ISO 9001:2026 QMS",
+    "score": 8,
+    "total": 10,
+    "percentage": 80,
+    "passing_percentage": 70,
+    "result": "pass",
+    "certificate_number": "BOA32299596",
+    "submitted_at": "2026-11-07T02:17:18.141Z"
+  },
+  {
+    "id": "SUB-322-1794017838182",
+    "user_id": 99,
+    "student_name": "QA Test Learner",
+    "certification_id": 322,
+    "course_title": "ISO 9001:2026 QMS",
+    "score": 3,
+    "total": 10,
+    "percentage": 30,
+    "passing_percentage": 70,
+    "result": "fail",
+    "certificate_number": null,
+    "submitted_at": "2026-11-07T02:17:18.182Z"
   }
 ]

@@ -78,6 +78,25 @@
   ],
   "online_certificates": [
     {
+      "id": 14,
+      "certificate_number": "BOA32299596",
+      "user_id": 99,
+      "student_name": "QA Test Learner",
+      "candidate_email": "qa.test@broadbeach.in",
+      "course_id": 322,
+      "course_name": "ISO 9001:2026 QMS",
+      "score": 8,
+      "total_questions": 10,
+      "percentage": 80,
+      "completion_date": "2026-11-07T02:17:18.145Z",
+      "issued_at": "2026-11-07T02:17:18.146Z",
+      "status": "active",
+      "verification_status": "Verified",
+      "source": "online",
+      "chapters_completed": 5,
+      "total_chapters": 5
+    },
+    {
       "id": 13,
       "certificate_number": "BOA332101189",
       "user_id": 101,
@@ -640,6 +659,18 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": 17,
+      "user_id": 99,
+      "user_email": "qa.test@broadbeach.in",
+      "user_role": "student",
+      "action": "CERTIFICATE_ISSUED",
+      "entity_type": "online_certificate",
+      "entity_id": "BOA32299596",
+      "details": "Online certificate BOA32299596 issued to QA Test Learner for ISO 9001:2026 QMS with score 8/10 (80%)",
+      "ip_address": "::1",
+      "timestamp": "2026-11-07T02:17:18.146Z"
+    },
     {
       "id": "LOG-MVWNZ5F3-315",
       "timestamp": "2026-10-31T17:17:31.311Z",
