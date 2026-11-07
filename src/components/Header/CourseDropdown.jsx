@@ -9,15 +9,18 @@ import { formatDropdownCourseTitle } from "../../utils/courseTitleFormatter";
  * Premium, No-Scroll Navigation Dropdown across all LMS categories.
  *
  * Requirements:
- * 1. Centered beneath the navigation item with dynamic viewport boundary clamping.
- * 2. Width: 820–850px on standard desktop/laptop screens (w-[830px] 2xl:w-[850px] max-w-[calc(100vw-32px)]).
- * 3. Compact Course Rows: exactly 44px height, vertically centered, 15–16px font, font-weight 500-600.
- * 4. Header: compact 50px height, category title on left, course count badge on right.
- * 5. Footer: compact 48-50px height, "Explore All [Category] Programs →", permanently visible.
+ * 1. Centered beneath the navbar with dynamic viewport boundary clamping.
+ * 2. Width: 780–820px on standard desktop/laptop screens (w-[800px] max-w-[calc(100vw-32px)]).
+ * 3. Free Courses: Dropdown header completely removed (NO "FREE COURSES" heading, NO "11 Courses" count badge,
+ *    NO header container or bottom separator). Starts directly with the first course row:
+ *    "ISO 9001:2026 (QMS) Certified Professional".
+ * 4. Compact Course Rows: exactly 41px height, vertically centered, 14–15px font, font-weight 500-600,
+ *    single-line truncate, right-aligned badges (NEW, HOT, POPULAR), subtle row separators.
+ * 5. Footer: compact 42px height, "Explore All [Category] Programs →", permanently visible.
  * 6. NO INTERNAL SCROLLBAR: When displayCourses <= 11 (Free Courses), overflow-y: auto is completely
- *    removed in favor of natural content flow (overflow-visible), ensuring all 11 courses are 100% visible
- *    simultaneously without scrolling.
- * 7. Visual Design: Rounded corners (20px), soft subtle shadow, white background, navy text, thin separators.
+ *    removed in favor of natural content flow (overflow-visible), ensuring all 11 courses and footer are 100%
+ *    visible simultaneously without scrolling on 1366x768 and 1440x900 screens.
+ * 7. Visual Design: Rounded corners (16px), soft subtle shadow, white background, navy text, thin separators.
  */
 const CourseDropdown = ({
   category,
@@ -30,6 +33,9 @@ const CourseDropdown = ({
   const [selectedSubcatId, setSelectedSubcatId] = useState("all");
   const dropdownRef = useRef(null);
   const [shiftX, setShiftX] = useState(0);
+
+  const isFreeCourses = category?.id === "free-courses" || category?.id === "free";
+  const shouldShowHeader = !isFreeCourses && !category?.hideHeader;
 
   const hasSubcategories = Array.isArray(category?.subcategories) && category.subcategories.length > 0;
 
@@ -100,25 +106,27 @@ const CourseDropdown = ({
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
       style={{
-        width: "780px",
+        width: "800px",
         maxWidth: "calc(100vw - 32px)",
         left: "50%",
         transform: shiftX ? `translateX(calc(-50% + ${shiftX}px))` : "translateX(-50%)",
       }}
-      className="hidden xl:flex absolute top-full left-1/2 w-[780px] max-w-[calc(100vw-32px)] mt-0.5 bg-white text-slate-800 rounded-[16px] shadow-[0_16px_40px_rgba(10,25,47,0.12)] border border-slate-200/80 z-50 animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col transition-transform duration-150 select-none"
+      className="hidden xl:flex absolute top-full left-1/2 w-[800px] max-w-[calc(100vw-32px)] mt-0.5 bg-white text-slate-800 rounded-[16px] shadow-[0_16px_40px_rgba(10,25,47,0.12)] border border-slate-200/80 z-50 animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col transition-transform duration-150 select-none"
     >
       {/* =========================================================
-          1. COMPACT FIXED HEADER SECTION (44px height)
-          Category Title (Left, 15px bold) | Accurate Count (Right, 12px)
+          CATEGORY HEADER (Completely removed for Free Courses:
+          No "FREE COURSES" heading, No "11 Courses" badge, No separator)
       ========================================================= */}
-      <div className="shrink-0 h-[44px] px-[18px] border-b border-slate-100 flex items-center justify-between bg-white rounded-t-[16px] select-none">
-        <h3 className="text-[15px] font-bold uppercase tracking-wider text-[#0A192F]">
-          {categoryTitle}
-        </h3>
-        <span className="text-[12px] font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100/80 shrink-0">
-          {courseCount} {courseCount === 1 ? "Course" : "Courses"}
-        </span>
-      </div>
+      {shouldShowHeader && (
+        <div className="shrink-0 h-[42px] px-[18px] border-b border-slate-100 flex items-center justify-between bg-white rounded-t-[16px] select-none">
+          <h3 className="text-[14.5px] font-bold uppercase tracking-wider text-[#0A192F]">
+            {categoryTitle}
+          </h3>
+          <span className="text-[12px] font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100/80 shrink-0">
+            {courseCount} {courseCount === 1 ? "Course" : "Courses"}
+          </span>
+        </div>
+      )}
 
       {/* Optional Track Filter Bar for categories with multiple tracks (e.g. Professional Certifications) */}
       {hasSubcategories && (
@@ -142,7 +150,7 @@ const CourseDropdown = ({
               className={`shrink-0 px-3 py-0.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                 selectedSubcatId === subcat.id
                   ? "bg-[#0A192F] text-white shadow-xs"
-                  : "bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200/80"
+                : "bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200/80"
               }`}
             >
               {subcat.shortTitle || subcat.title} ({subcat.courses?.length || 0})
@@ -152,9 +160,10 @@ const CourseDropdown = ({
       )}
 
       {/* =========================================================
-          2. COMPACT COURSE LIST (40px row height, all 11 fit in 1 screen)
+          2. COMPACT COURSE LIST (41px row height, all 11 fit in 1 screen)
           - For <= 11 items: overflow-visible, NO internal vertical scrollbar!
           - For > 11 items: overflow-y-auto custom-dropdown-scroll max-h-[calc(100vh-140px)]
+          - Starts directly with the first course row for Free Courses
           - Single-line title, 14.5px font, font-weight 500-600, navy text, 1.3 line-height
       ========================================================= */}
       <div
@@ -164,8 +173,9 @@ const CourseDropdown = ({
             : "flex flex-col overflow-y-auto custom-dropdown-scroll max-h-[calc(100vh-140px)] divide-y divide-slate-100/80 overscroll-contain"
         }
       >
-        {displayCourses.map((course) => {
+        {displayCourses.map((course, index) => {
           const formattedTitle = formatDropdownCourseTitle(course);
+          const isFirstItem = index === 0;
 
           return (
             <Link
@@ -173,7 +183,11 @@ const CourseDropdown = ({
               role="menuitem"
               to={getCourseUrl(course)}
               onClick={onClose}
-              className="flex items-center justify-between h-[40px] min-h-[40px] px-[18px] py-1.5 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0"
+              className={`flex items-center justify-between h-[41px] min-h-[41px] px-[18px] py-1 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0 ${
+                isFirstItem && !shouldShowHeader && !hasSubcategories
+                  ? "rounded-t-[16px]"
+                  : ""
+              }`}
             >
               {/* Single-line Course Name (Zero Icons, Zero Extra Metadata, 14.5px, 500-600 weight, Navy text, 1.3 line-height) */}
               <span
@@ -183,7 +197,7 @@ const CourseDropdown = ({
                 {formattedTitle}
               </span>
 
-              {/* Optional Right-Aligned Promotional Badge */}
+              {/* Right-Aligned Promotional Badges (NEW, HOT, POPULAR) */}
               {course.badge && <PromoBadge badge={course.badge} />}
             </Link>
           );
@@ -197,10 +211,10 @@ const CourseDropdown = ({
       </div>
 
       {/* =========================================================
-          3. COMPACT FIXED FOOTER SECTION (44px height, permanently visible)
+          3. COMPACT FIXED FOOTER SECTION (42px height, permanently visible)
           Footer Text: 14px bold, right-aligned arrow, subtle divider
       ========================================================= */}
-      <div className="shrink-0 h-[44px] px-[18px] border-t border-slate-100 bg-slate-50/80 rounded-b-[16px] flex items-center justify-between select-none">
+      <div className="shrink-0 h-[42px] px-[18px] border-t border-slate-100 bg-slate-50/80 rounded-b-[16px] flex items-center justify-between select-none">
         <Link
           role="menuitem"
           to={categoryUrl}
