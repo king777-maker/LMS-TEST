@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../config/auth_helper.php";
+
 /**
  * ============================================================================
  * BROADBEACH ACADEMY — STUDENT / LEARNER SUPPORT TICKET CONTROLLER
@@ -107,21 +109,21 @@ class TicketController
      */
     private function getLearnerIdentity(): array
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            @session_start();
+        $authUser = getAuthenticatedUser($this->db);
+        if ($authUser) {
+            return [
+                "id" => (int)$authUser["id"],
+                "email" => $authUser["email"],
+                "name" => $authUser["name"] ?? $authUser["full_name"] ?? "Learner",
+                "authenticated" => true
+            ];
         }
 
-        $sessionUser = $_SESSION["user"] ?? $_SESSION["student"] ?? null;
-        $sessionEmail = $sessionUser["email"] ?? null;
-        $sessionName = $sessionUser["name"] ?? $sessionUser["full_name"] ?? null;
-
-        // Check Bearer token or custom headers if available
-        $headers = function_exists("getallheaders") ? getallheaders() : [];
-        $headerEmail = $headers["X-User-Email"] ?? $headers["x-user-email"] ?? null;
-
         return [
-            "email" => $sessionEmail ?: $headerEmail,
-            "name" => $sessionName
+            "id" => 0,
+            "email" => null,
+            "name" => "Learner",
+            "authenticated" => false
         ];
     }
 
@@ -270,11 +272,13 @@ class TicketController
         }
 
         $auth = $this->getLearnerIdentity();
-        $email = trim($_GET["email"] ?? $auth["email"] ?? "");
-
-        if (empty($email)) {
-            $this->jsonResponse(true, "No learner email provided.", [], 200);
+        // Strict Security: Authenticate the learner and enforce ownership
+        if (!$auth["authenticated"] || empty($auth["email"])) {
+            $this->jsonResponse(false, "User not logged in. Active authentication required to access support tickets.", [], 401);
+            return;
         }
+
+        $email = $auth["email"];
 
         if (!$this->db) {
             $this->jsonResponse(false, "Database connection unavailable.", null, 503);
@@ -421,3 +425,4 @@ class TicketController
         }
     }
 }
+

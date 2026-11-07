@@ -41,10 +41,22 @@ export const AuthProvider = ({ children }) => {
         `${firstName} ${lastName}`.trim() ||
         "Student";
 
+      // Persist or preserve token
+      const existingToken = localStorage.getItem("bb_user_token") || "";
+      const token = userData.token || userData.auth_token || existingToken;
+      if (token) {
+        try {
+          localStorage.setItem("bb_user_token", token);
+        } catch (e) {
+          console.error("Local storage token error:", e);
+        }
+      }
+
       const normalized = {
         ...userData,
         name: fullName,
         full_name: fullName,
+        ...(token ? { token } : {}),
       };
 
       setUser(normalized);
@@ -64,6 +76,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("bb_user");
         localStorage.removeItem("user");
         localStorage.removeItem("bb_user_id");
+        localStorage.removeItem("bb_user_token");
       } catch (e) {
         console.error("Local storage error:", e);
       }
@@ -74,7 +87,7 @@ export const AuthProvider = ({ children }) => {
   // Check auth against server session on mount
   const checkAuth = useCallback(async () => {
     // Only verify profile if user was previously saved locally (guest visitors skip unauthenticated 401s)
-    const hasStoredUser = !!localStorage.getItem("bb_user") || !!localStorage.getItem("bb_user_id");
+    const hasStoredUser = !!localStorage.getItem("bb_user") || !!localStorage.getItem("bb_user_id") || !!localStorage.getItem("bb_user_token");
     if (!hasStoredUser) {
       setLoading(false);
       return;

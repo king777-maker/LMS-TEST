@@ -42,8 +42,13 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
     if (typeof window !== "undefined") {
         const userToken = localStorage.getItem("bb_user_token");
-        if (userToken && !config.headers.Authorization) {
-            config.headers.Authorization = `Bearer ${userToken}`;
+        if (userToken) {
+            if (!config.headers.Authorization) {
+                config.headers.Authorization = `Bearer ${userToken}`;
+            }
+            if (!config.headers["X-User-Token"]) {
+                config.headers["X-User-Token"] = userToken;
+            }
         }
     }
     return config;
