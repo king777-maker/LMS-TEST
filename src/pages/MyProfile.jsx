@@ -244,7 +244,13 @@ const MyProfile = () => {
   const loadMyTickets = useCallback(async () => {
     try {
       setLoadingTickets(true);
-      const res = await getMyTickets({ email: user?.email });
+      const emailToUse = (
+        user?.email ||
+        (typeof window !== "undefined" && JSON.parse(localStorage.getItem("bb_user") || "{}")?.email) ||
+        (typeof window !== "undefined" && localStorage.getItem("bb_user_email")) ||
+        "learner@broadbeach.in"
+      ).trim();
+      const res = await getMyTickets({ email: emailToUse });
       const list = res?.data?.data || res?.data || [];
       setTickets(Array.isArray(list) ? list : []);
     } catch (err) {
@@ -255,10 +261,8 @@ const MyProfile = () => {
   }, [user?.email]);
 
   useEffect(() => {
-    if (user?.email) {
-      loadMyTickets();
-    }
-  }, [user?.email, loadMyTickets]);
+    loadMyTickets();
+  }, [loadMyTickets]);
 
   // Handle learner ticket submission
   const handleSubmitTicket = async (e) => {
@@ -278,6 +282,20 @@ const MyProfile = () => {
 
     try {
       setSubmittingTicket(true);
+      const requesterEmail = (
+        user?.email ||
+        (typeof window !== "undefined" && JSON.parse(localStorage.getItem("bb_user") || "{}")?.email) ||
+        (typeof window !== "undefined" && localStorage.getItem("bb_user_email")) ||
+        "learner@broadbeach.in"
+      ).trim();
+
+      const requesterName = (
+        user?.name ||
+        user?.full_name ||
+        (typeof window !== "undefined" && JSON.parse(localStorage.getItem("bb_user") || "{}")?.name) ||
+        "Learner"
+      ).trim();
+
       const payload = {
         subject: ticketForm.subject.trim(),
         category: ticketForm.category,
@@ -286,13 +304,16 @@ const MyProfile = () => {
         course_name: ticketForm.course_name ? ticketForm.course_name.trim() : null,
         certificate_id: ticketForm.certificate_id ? ticketForm.certificate_id.trim() : null,
         priority: ticketForm.priority || "medium",
-        requester_name: user?.name || user?.full_name || "Learner",
-        requester_email: user?.email || "learner@broadbeach.in",
+        requester_name: requesterName,
+        requester_email: requesterEmail,
       };
 
       const res = await raiseStudentTicket(payload);
-      if (res?.data?.success && res.data.data) {
-        toast.success(`Support ticket #${res.data.data.id} created successfully!`);
+      const ticketData = res?.data?.data || res?.data;
+      const ticketId = ticketData?.id || ticketData?.ticket_id;
+
+      if (res?.data?.success || res?.status === 201 || res?.status === 200 || ticketId) {
+        toast.success(`Support ticket #${ticketId || "created"} submitted successfully!`);
         setIsTicketModalOpen(false);
         setTicketForm({
           subject: "",
@@ -462,6 +483,7 @@ const MyProfile = () => {
             <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0 w-full sm:w-auto">
               <button
                 type="button"
+                data-testid="raise-ticket-btn"
                 onClick={() => setIsTicketModalOpen(true)}
                 className="w-full sm:w-auto h-[42px] inline-flex items-center justify-center gap-2 px-4 rounded-[10px] bg-amber-400 hover:bg-amber-300 active:scale-[0.98] text-[#07162c] font-bold text-xs sm:text-[13px] transition-all duration-150 cursor-pointer shadow-sm select-none"
               >
@@ -1105,6 +1127,7 @@ const MyProfile = () => {
                   </div>
                   <button
                     type="button"
+                    data-testid="raise-ticket-tab-btn"
                     onClick={() => setIsTicketModalOpen(true)}
                     className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-xs transition-colors cursor-pointer shrink-0"
                   >
@@ -1891,22 +1914,38 @@ const MyProfile = () => {
                     Your inquiry is currently in queue with our administration support team. Official replies from ticket managers will be posted directly here.
                   </div>
                 ) : (
-                  viewingTicket.replies.map((r, rIdx) => (
-                    <div key={r.id || rIdx} className="p-4 rounded-2xl bg-blue-50/60 border border-blue-200 space-y-1.5 ml-4">
-                      <div className="flex items-center justify-between text-xs text-blue-900">
-                        <span className="font-bold flex items-center gap-1.5">
-                          <FaShieldAlt className="text-blue-600 text-[10px]" />
-                          {r.sender_name || "Support Officer"} (Broadbeach Staff)
-                        </span>
-                        <span className="font-mono text-[11px] text-slate-500">
-                          {r.timestamp ? new Date(r.timestamp).toLocaleString("en-GB") : "Recently"}
-                        </span>
+                  viewingTicket.replies.map((r, rIdx) => {
+                    const isStaff = r.sender_role !== "learner" && r.sender_type !== "requester";
+                    return (
+                      <div
+                        key={r.id || rIdx}
+                        className={`p-4 rounded-2xl border space-y-1.5 ${
+                          isStaff
+                            ? "bg-blue-50/60 border-blue-200 ml-4"
+                            : "bg-slate-50 border-slate-200 mr-4"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between text-xs">
+                          <span className={`font-bold flex items-center gap-1.5 ${isStaff ? "text-blue-900" : "text-slate-800"}`}>
+                            {isStaff ? (
+                              <>
+                                <FaShieldAlt className="text-blue-600 text-[10px]" />
+                                {r.sender_name || "Support Officer"} (Broadbeach Staff)
+                              </>
+                            ) : (
+                              <span>{r.sender_name || "You"} (Learner Follow-up)</span>
+                            )}
+                          </span>
+                          <span className="font-mono text-[11px] text-slate-500">
+                            {r.timestamp || r.created_at ? new Date(r.timestamp || r.created_at).toLocaleString("en-GB") : "Recently"}
+                          </span>
+                        </div>
+                        <p className="text-xs sm:text-sm text-slate-800 whitespace-pre-wrap leading-relaxed">
+                          {r.message}
+                        </p>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-800 whitespace-pre-wrap leading-relaxed">
-                        {r.message}
-                      </p>
-                    </div>
-                  ))
+                    );
+                  })
                 )}
               </div>
             </div>

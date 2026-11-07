@@ -752,7 +752,30 @@ export function adminDevMiddleware() {
             assigned_to: "support.agent@broadbeach.in",
             created_at: isoNow,
             updated_at: isoNow,
-            replies: [],
+            replies: [
+              {
+                id: "MSG-" + Date.now().toString(36),
+                sender_name: requesterName,
+                sender_email: requesterEmail,
+                sender_type: "requester",
+                sender_role: "learner",
+                message: description,
+                timestamp: isoNow,
+                created_at: isoNow,
+              },
+            ],
+            messages: [
+              {
+                id: "MSG-" + Date.now().toString(36),
+                sender_name: requesterName,
+                sender_email: requesterEmail,
+                sender_type: "requester",
+                sender_role: "learner",
+                message: description,
+                timestamp: isoNow,
+                created_at: isoNow,
+              },
+            ],
             internal_notes: [],
           };
 
@@ -800,7 +823,11 @@ export function adminDevMiddleware() {
             .map((t) => {
               // SECURITY: Never leak internal staff notes to learner!
               const { internal_notes, ...safeTicket } = t;
-              return safeTicket;
+              return {
+                ...safeTicket,
+                messages: safeTicket.messages || safeTicket.replies || [],
+                replies: safeTicket.replies || safeTicket.messages || [],
+              };
             });
 
           return sendJson(res, 200, {
@@ -808,6 +835,79 @@ export function adminDevMiddleware() {
             status: true,
             count: myTickets.length,
             data: myTickets,
+          });
+        }
+
+        // Learner Ticket Detail (GET /api/tickets/:id)
+        const isLearnerTicketDetail =
+          method === "GET" &&
+          !pathname.endsWith("/my") &&
+          !pathname.includes("/admin/") &&
+          (pathname.match(/^\/api\/tickets\/([^/]+)$/) ||
+            pathname.match(/^\/broadbeachlearning.com\/broadbeach-backend\/api\/tickets\/([^/]+)$/));
+
+        if (isLearnerTicketDetail) {
+          const match = pathname.match(/(?:tickets)\/([^/]+)$/);
+          const ticketId = match ? match[1] : null;
+          const store = loadStore();
+          const found = (store.tickets || []).find((t) => String(t.id) === ticketId);
+          if (!found) {
+            return sendJson(res, 404, { success: false, status: false, message: `Ticket #${ticketId} not found.` });
+          }
+          const { internal_notes, ...safeTicket } = found;
+          return sendJson(res, 200, {
+            success: true,
+            status: true,
+            data: {
+              ...safeTicket,
+              messages: safeTicket.messages || safeTicket.replies || [],
+              replies: safeTicket.replies || safeTicket.messages || [],
+            },
+          });
+        }
+
+        // Learner Ticket Reply (POST /api/tickets/:id/reply)
+        const isLearnerTicketReply =
+          method === "POST" &&
+          !pathname.includes("/admin/") &&
+          (pathname.match(/^\/api\/tickets\/([^/]+)\/reply$/) ||
+            pathname.match(/^\/broadbeachlearning.com\/broadbeach-backend\/api\/tickets\/([^/]+)\/reply$/));
+
+        if (isLearnerTicketReply) {
+          const match = pathname.match(/(?:tickets)\/([^/]+)\/reply$/);
+          const ticketId = match ? match[1] : null;
+          const body = await readJsonBody(req);
+          const store = loadStore();
+          const ticket = (store.tickets || []).find((t) => String(t.id) === ticketId);
+          if (!ticket) {
+            return sendJson(res, 404, { success: false, status: false, message: `Ticket #${ticketId} not found.` });
+          }
+          const replyMsg = (body.message || body.reply || "").trim();
+          if (!replyMsg) {
+            return sendJson(res, 422, { success: false, status: false, message: "Reply message cannot be empty." });
+          }
+          const replyObj = {
+            id: "REP-" + Date.now().toString(36),
+            sender_name: body.sender_name || body.name || ticket.requester_name || "Learner",
+            sender_email: body.sender_email || body.email || ticket.requester_email || "learner@broadbeach.in",
+            sender_type: "requester",
+            sender_role: "learner",
+            message: replyMsg,
+            timestamp: new Date().toISOString(),
+            created_at: new Date().toISOString(),
+          };
+          if (!Array.isArray(ticket.replies)) ticket.replies = [];
+          if (!Array.isArray(ticket.messages)) ticket.messages = [];
+          ticket.replies.push(replyObj);
+          ticket.messages.push(replyObj);
+          ticket.updated_at = new Date().toISOString();
+          ticket.status = "Open";
+          saveStore(store);
+          return sendJson(res, 200, {
+            success: true,
+            status: true,
+            message: "Reply posted successfully.",
+            data: replyObj,
           });
         }
 

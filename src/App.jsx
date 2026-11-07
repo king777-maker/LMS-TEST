@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { AuthPromptProvider } from "./context/AuthPromptContext";
 import { AdminProvider } from "./context/AdminContext";
@@ -462,6 +462,10 @@ function App() {
             <Route
               path="/my-profile"
               element={<MyProfile />}
+            />
+            <Route
+              path="/profile"
+              element={<Navigate to="/my-profile" replace />}
             />
             <Route
               path="/cookie-policy"

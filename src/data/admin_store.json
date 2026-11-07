@@ -417,6 +417,175 @@
   ],
   "tickets": [
     {
+      "id": "TICK-2026-9818",
+      "subject": "ISO 27001 Certificate Name Correction Request",
+      "category": "Certificate Verification",
+      "description": "Hello Support Team, my legal government photo ID has my middle name GVH expanded. Please verify attached documentation and issue updated certificate credentials.",
+      "message": "Hello Support Team, my legal government photo ID has my middle name GVH expanded. Please verify attached documentation and issue updated certificate credentials.",
+      "priority": "medium",
+      "status": "New",
+      "requester_name": "Siddarth GVH",
+      "requester_email": "siddarth.learner@broadbeach.in",
+      "course_name": null,
+      "certificate_id": null,
+      "assigned_to": "support.agent@broadbeach.in",
+      "created_at": "2026-11-07T02:53:14.623Z",
+      "updated_at": "2026-11-07T02:53:14.623Z",
+      "replies": [
+        {
+          "id": "MSG-mw5t6n7k",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Hello Support Team, my legal government photo ID has my middle name GVH expanded. Please verify attached documentation and issue updated certificate credentials.",
+          "timestamp": "2026-11-07T02:53:14.623Z",
+          "created_at": "2026-11-07T02:53:14.623Z"
+        }
+      ],
+      "messages": [
+        {
+          "id": "MSG-mw5t6n7k",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Hello Support Team, my legal government photo ID has my middle name GVH expanded. Please verify attached documentation and issue updated certificate credentials.",
+          "timestamp": "2026-11-07T02:53:14.623Z",
+          "created_at": "2026-11-07T02:53:14.623Z"
+        }
+      ],
+      "internal_notes": []
+    },
+    {
+      "id": "TICK-2026-7000",
+      "subject": "Exam Retake Fee Waiver Request",
+      "category": "Assessment & Progress",
+      "description": "Requesting permission to retake Lead Auditor assessment module.",
+      "message": "Requesting permission to retake Lead Auditor assessment module.",
+      "priority": "high",
+      "status": "In Progress",
+      "requester_name": "Siddarth GVH",
+      "requester_email": "siddarth.learner@broadbeach.in",
+      "course_name": "ISO 45001:2018 Lead Auditor",
+      "certificate_id": null,
+      "assigned_to": "support.agent@broadbeach.in",
+      "created_at": "2026-11-07T02:48:37.187Z",
+      "updated_at": "2026-11-07T02:48:37.242Z",
+      "replies": [
+        {
+          "id": "MSG-mw5t0p4z",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Requesting permission to retake Lead Auditor assessment module.",
+          "timestamp": "2026-11-07T02:48:37.187Z",
+          "created_at": "2026-11-07T02:48:37.187Z"
+        },
+        {
+          "id": "REP-mw5t0p6i",
+          "sender_name": "Administrator",
+          "sender_email": "admin@broadbeachlearning.com",
+          "sender_role": "super_admin",
+          "message": "Approved! Your assessment retake has been unlocked without any fee. Good luck with your exam.",
+          "timestamp": "2026-11-07T02:48:37.242Z"
+        }
+      ],
+      "messages": [
+        {
+          "id": "MSG-mw5t0p4z",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Requesting permission to retake Lead Auditor assessment module.",
+          "timestamp": "2026-11-07T02:48:37.187Z",
+          "created_at": "2026-11-07T02:48:37.187Z"
+        }
+      ],
+      "internal_notes": []
+    },
+    {
+      "id": "TICK-2026-5138",
+      "subject": "Verification Test: ISO 9001 Certificate Inconsistency",
+      "category": "Certificate Verification",
+      "description": "My certificate BOA10113241 is showing incorrect issue date.",
+      "message": "My certificate BOA10113241 is showing incorrect issue date.",
+      "priority": "high",
+      "status": "Open",
+      "requester_name": "Siddarth GVH",
+      "requester_email": "siddarth.learner@broadbeach.in",
+      "course_name": "ISO 9001:2015 Lead Auditor",
+      "certificate_id": "BOA10113241",
+      "assigned_to": "support.agent@broadbeach.in",
+      "created_at": "2026-11-07T02:48:12.542Z",
+      "updated_at": "2026-11-07T02:48:12.637Z",
+      "replies": [
+        {
+          "id": "MSG-mw5t064e",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "My certificate BOA10113241 is showing incorrect issue date.",
+          "timestamp": "2026-11-07T02:48:12.542Z",
+          "created_at": "2026-11-07T02:48:12.542Z"
+        },
+        {
+          "id": "REP-mw5t0671",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Thank you so much! Verified on the registry and it is now accurate.",
+          "timestamp": "2026-11-07T02:48:12.637Z",
+          "created_at": "2026-11-07T02:48:12.637Z"
+        }
+      ],
+      "messages": [
+        {
+          "id": "MSG-mw5t064e",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "My certificate BOA10113241 is showing incorrect issue date.",
+          "timestamp": "2026-11-07T02:48:12.542Z",
+          "created_at": "2026-11-07T02:48:12.542Z"
+        },
+        {
+          "id": "REP-mw5t0671",
+          "sender_name": "Siddarth GVH",
+          "sender_email": "siddarth.learner@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Thank you so much! Verified on the registry and it is now accurate.",
+          "timestamp": "2026-11-07T02:48:12.637Z",
+          "created_at": "2026-11-07T02:48:12.637Z"
+        }
+      ],
+      "internal_notes": []
+    },
+    {
+      "id": "TICK-2026-3838",
+      "subject": "Test Ticket",
+      "category": "General Support",
+      "description": "Testing ticket submission",
+      "message": "Testing ticket submission",
+      "priority": "medium",
+      "status": "New",
+      "requester_name": "Test Learner",
+      "requester_email": "test@broadbeach.in",
+      "course_name": null,
+      "certificate_id": null,
+      "assigned_to": "support.agent@broadbeach.in",
+      "created_at": "2026-11-07T02:34:59.397Z",
+      "updated_at": "2026-11-07T02:34:59.397Z",
+      "replies": [],
+      "internal_notes": []
+    },
+    {
       "id": "TCK-2026-0101",
       "subject": "Unable to download certificate after completing assessment",
       "requester_name": "Vikram Mehta",
@@ -659,6 +828,96 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "LOG-MW5T6N7K-363",
+      "timestamp": "2026-11-07T02:53:14.624Z",
+      "created_at": "2026-11-07T02:53:14.624Z",
+      "actor_name": "Siddarth GVH",
+      "performed_by": "Siddarth GVH",
+      "actor_email": "siddarth.learner@broadbeach.in",
+      "performed_by_email": "siddarth.learner@broadbeach.in",
+      "actor_role": "learner",
+      "action_category": "TICKET",
+      "module": "Ticket Master",
+      "action": "TICKET_CREATED",
+      "target_type": "ticket",
+      "target_id": "TICK-2026-9818",
+      "details": "Learner support ticket TICK-2026-9818 [Certificate Verification] submitted by Siddarth GVH (siddarth.learner@broadbeach.in): \"ISO 27001 Certificate Name Correction Request\".",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MW5T0P6I-139",
+      "timestamp": "2026-11-07T02:48:37.242Z",
+      "created_at": "2026-11-07T02:48:37.242Z",
+      "actor_name": "Administrator",
+      "performed_by": "Administrator",
+      "actor_email": "admin@broadbeachlearning.com",
+      "performed_by_email": "admin@broadbeachlearning.com",
+      "actor_role": "super_admin",
+      "action_category": "TICKET",
+      "module": "Ticket Master",
+      "action": "TICKET_REPLIED",
+      "target_type": "ticket",
+      "target_id": "TICK-2026-7000",
+      "details": "Sent official response to ticket TICK-2026-7000.",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MW5T0P50-573",
+      "timestamp": "2026-11-07T02:48:37.188Z",
+      "created_at": "2026-11-07T02:48:37.188Z",
+      "actor_name": "Siddarth GVH",
+      "performed_by": "Siddarth GVH",
+      "actor_email": "siddarth.learner@broadbeach.in",
+      "performed_by_email": "siddarth.learner@broadbeach.in",
+      "actor_role": "learner",
+      "action_category": "TICKET",
+      "module": "Ticket Master",
+      "action": "TICKET_CREATED",
+      "target_type": "ticket",
+      "target_id": "TICK-2026-7000",
+      "details": "Learner support ticket TICK-2026-7000 [Assessment & Progress] submitted by Siddarth GVH (siddarth.learner@broadbeach.in): \"Exam Retake Fee Waiver Request\".",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MW5T064F-912",
+      "timestamp": "2026-11-07T02:48:12.543Z",
+      "created_at": "2026-11-07T02:48:12.543Z",
+      "actor_name": "Siddarth GVH",
+      "performed_by": "Siddarth GVH",
+      "actor_email": "siddarth.learner@broadbeach.in",
+      "performed_by_email": "siddarth.learner@broadbeach.in",
+      "actor_role": "learner",
+      "action_category": "TICKET",
+      "module": "Ticket Master",
+      "action": "TICKET_CREATED",
+      "target_type": "ticket",
+      "target_id": "TICK-2026-5138",
+      "details": "Learner support ticket TICK-2026-5138 [Certificate Verification] submitted by Siddarth GVH (siddarth.learner@broadbeach.in): \"Verification Test: ISO 9001 Certificate Inconsistency\".",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MW5SJ64N-480",
+      "timestamp": "2026-11-07T02:34:59.399Z",
+      "created_at": "2026-11-07T02:34:59.399Z",
+      "actor_name": "Test Learner",
+      "performed_by": "Test Learner",
+      "actor_email": "test@broadbeach.in",
+      "performed_by_email": "test@broadbeach.in",
+      "actor_role": "learner",
+      "action_category": "TICKET",
+      "module": "Ticket Master",
+      "action": "TICKET_CREATED",
+      "target_type": "ticket",
+      "target_id": "TICK-2026-3838",
+      "details": "Learner support ticket TICK-2026-3838 [General Support] submitted by Test Learner (test@broadbeach.in): \"Test Ticket\".",
+      "status": "success",
+      "outcome": "Success"
+    },
     {
       "id": 17,
       "user_id": 99,
