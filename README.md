@@ -79,3 +79,4 @@ git push -u origin main
 - [x] Dynamic certificate QR code generator configured for configurable test domains
 - [x] Production remote completely disconnected (`git remote -v` is empty)
 - [x] Production database isolated from testing operations
+
