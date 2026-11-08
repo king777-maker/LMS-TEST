@@ -81,6 +81,8 @@ import CookiePolicy from "./pages/CookiePolicy";
 import RaiseATicket from "./pages/RaiseATicket";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/common/CookieConsent";
+import MaintenancePage from "./pages/MaintenancePage";
+import { IS_MAINTENANCE_MODE } from "./config/maintenance";
 
 
 
@@ -119,6 +121,21 @@ function App() {
     location.pathname.startsWith(ADMIN_BASE_PATH) ||
     location.pathname.startsWith("/admin") ||
     isSecretAdminLoginPath(location.pathname);
+
+  // Centralized Maintenance Mode Interception:
+  // All public website and deep course routes render the custom Under Maintenance page.
+  // Secure administrative routes remain accessible for authorized personnel.
+  if (IS_MAINTENANCE_MODE && !isAdminRoute) {
+    return (
+      <AuthProvider>
+        <AdminProvider>
+          <AuthPromptProvider>
+            <MaintenancePage />
+          </AuthPromptProvider>
+        </AdminProvider>
+      </AuthProvider>
+    );
+  }
 
   return (
     <AuthProvider>

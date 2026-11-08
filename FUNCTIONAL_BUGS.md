@@ -1,213 +1,147 @@
-# BROADBEACH ACADEMY — FUNCTIONAL DEFECTS & BUGS REPORT
-**Audit Date:** October 31, 2026  
-**Auditor:** QA Automation & Full-Stack Systems Engineer  
-**Classification System:** Defect ID, Route, Component, Severity, Observed Behavior, Expected Behavior, Steps to Reproduce, Recommended Fix  
+# BROADBEACH ONLINE LMS — FUNCTIONAL BUGS REPORT
+**Audit Date:** November 07, 2026  
+**Auditor:** Principal QA Engineer & Senior Full-Stack Developer  
+**Automated Flow Results:** [scripts/functional_flow_results.json](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/functional_flow_results.json)  
+**Deep-Dive API Results:** [scripts/api_deep_dive_results.json](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/api_deep_dive_results.json)
 
 ---
 
-## 1. Summary of Functional Defects
+## 1. Summary of Functional Findings
 
-```
-Critical (P0):    2
-High (P1):        5
-Medium (P2):      4
-Low (P3):         2
-TOTAL DEFECTS:   13
-```
+| Bug ID | Severity | Feature / Module | Title | Production Impact |
+|---|---|---|---|---|
+| **[BUG-P0-01](#bug-p0-01)** | **P0 Critical** | Routing / Host | GitHub Pages SPA Deep Linking 404 on Refresh | Critical (Breaks 100% direct visits) |
+| **[BUG-P0-02](#bug-p0-02)** | **P0 Critical** | Support Tickets | Ticket Submission API Route Not Found (404) | Critical (Learner tickets blocked) |
+| **[BUG-P1-01](#bug-p1-01)** | **P1 High** | Verification | Sample Certificate Serial Fails on `/verify-certificate` | High (Sample certs unverified) |
+| **[BUG-P1-02](#bug-p1-02)** | **P1 High** | Authentication | Unauthenticated Profile 401 Desync with `localStorage` | High (Ghost active sessions) |
+| **[BUG-P2-01](#bug-p2-01)** | **P2 Medium** | Search Engine | Enter Key on Header Search Does Not Route to Results | Medium (Search UX degradation) |
+| **[BUG-P2-02](#bug-p2-02)** | **P2 Medium** | LMS Player | Chapter Locking Client-Side State Vulnerability | Medium (Bypass chapter guard) |
 
 ---
 
-## 2. High & Critical Functional Defects
+## 2. Granular Defect Reports
 
-### BUG-01: Admin Panel 5 Modules Completely Unrouted on Production Backend
-- **Issue ID:** `BUG-ADM-01`
-- **Page / Route:** `/admin/*` (`/api/admin/overview`, `/api/admin/online-certificates`, etc.)
-- **Severity:** 🔴 **CRITICAL (P0)**
-- **Category:** Backend Architecture & Routing Outage
-- **Observed Behavior:**
-  When loading the Admin Overview, Online Cert Master, Manual Cert Master, Ticket Master, Trash Bin, or Admin Access, every API call fails with:
-  ```json
+---
+
+### BUG-P0-01: GitHub Pages SPA Deep Linking 404 on Direct Navigation
+- **Severity:** P0 Critical
+- **Module:** Deployment & Web Server
+- **Exact URL:** Any client-side route, e.g.:
+  - `https://broadbeachonline.com/free-courses`
+  - `https://broadbeachonline.com/courses/iso-9001-2026-qms-awareness`
+  - `https://broadbeachonline.com/verify-certificate`
+- **Reproduction Steps:**
+  1. Open a new incognito browser tab.
+  2. Paste `https://broadbeachonline.com/verify-certificate` and press Enter.
+  3. Or navigate to `https://broadbeachonline.com/`, click on "Free Courses", then press F5 (refresh).
+- **Expected Result:** The page should load the React Single Page Application and render the requested view.
+- **Actual Result:** The browser displays a raw GitHub 404 page ("404 There isn't a GitHub Pages site here").
+- **Root Cause Analysis:**
+  GitHub Pages is a static HTTP web server. When a request for `/verify-certificate` arrives, it looks for `/verify-certificate/index.html` or `/verify-certificate.html`. Since Vite outputs a single `index.html` in the build root, GitHub Pages returns HTTP 404. Without a fallback `public/404.html` containing an SPA redirect script (such as `rafgraph/spa-github-pages`), direct navigation fails completely.
+- **Recommended Fix:**
+  1. Create [`public/404.html`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/public/404.html) copying the SPA router handler that transforms the path into query parameters (e.g. `/?p=/verify-certificate`) and loads `index.html`.
+  2. Add path recovery script in [`index.html`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/index.html).
+
+---
+
+### BUG-P0-02: Support Ticket Submission & Retrieval API Route Not Found (404)
+- **Severity:** P0 Critical
+- **Module:** Support Tickets Portal
+- **Exact URL:** `/raise-a-ticket` and `/my-profile` (Support Tickets Tab)
+- **API Endpoint:**
+  - `POST https://cadac.in/broadbeachlearning.com/broadbeach-backend/api/tickets`
+  - `GET https://cadac.in/broadbeachlearning.com/broadbeach-backend/api/tickets/my?email=...`
+- **Reproduction Steps:**
+  1. Navigate to `https://broadbeachonline.com/raise-a-ticket`.
+  2. Fill out Name, Email, Category, Subject, and Message.
+  3. Click "Submit Ticket to Ticket Master".
+- **Expected Result:** Ticket is persisted in database with HTTP 201 Created and ticket reference ID returned.
+- **Actual Result:** Form displays red error banner: `"API route not found."` Console logs HTTP 404 from CADAC.
+- **Network Trace Evidence:**
+  ```http
+  POST https://cadac.in/broadbeachlearning.com/broadbeach-backend/api/tickets HTTP/1.1
+  Host: cadac.in
+  Origin: https://broadbeachonline.com
+  Accept: application/json
+  Content-Type: application/json
+
   HTTP/1.1 404 Not Found
-  {"success":false,"status":false,"message":"Admin API route not found.","method":"GET","path":"/api/admin/overview"}
+  Content-Type: application/json; charset=UTF-8
+
+  {
+    "success": false,
+    "message": "API route not found.",
+    "method": "POST",
+    "path": "/api/tickets"
+  }
   ```
-- **Expected Behavior:**
-  Endpoints should return live database metrics, certificate rosters, support tickets, and audit logs.
+- **Root Cause Analysis:**
+  The frontend was correctly implemented to call `/api/tickets` and `/api/tickets/my`. However, the Apache PHP backend hosted on `cadac.in` has not yet had the updated router script and ticket tables deployed. The deployment package is assembled in [`scripts/build_cadac_sync_package.mjs`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/build_cadac_sync_package.mjs) but requires deployment onto the production server.
+- **Recommended Fix:**
+  Upload the generated CADAC synchronization package containing `routes.php`, `TicketController.php`, `cors.php`, and database migration `tickets_table.sql` to the production server.
+
+---
+
+### BUG-P1-01: Sample Certificate Serial Fails on Official Verification Page
+- **Severity:** P1 High
+- **Module:** Certificate Verification
+- **Exact URL:** [`http://localhost:3000/verify-certificate`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/pages/categories/VerifyCertificate.jsx)
 - **Reproduction Steps:**
-  1. Open terminal and run: `curl -i "https://broadbeach-academy-lms-d5gx.vercel.app/api/admin/overview"`
-  2. Observe HTTP 404 with body `"Admin API route not found."`
-- **Root Cause:**
-  `broadbeach-backend/app/routes/admin.php` lines 1414–1480 were written locally but never deployed to `cadac.in`. The deployed server runs an older revision of `admin.php`.
+  1. Note the sample certificate advertised on the website: `BB-ISO-9001-2026` (Rajesh Kumar Sharma).
+  2. Navigate to `/verify-certificate`.
+  3. Enter `BB-ISO-9001-2026` into the verification input and click "Verify Certificate".
+- **Expected Result:**
+  The credential details (Student Name: Rajesh Kumar Sharma, Course: ISO 9001 Lead Auditor, Status: Active & Verified) should display with an official verification badge.
+- **Actual Result:**
+  The page displays: `"Certificate not found. Please check the certificate ID and try again."`
+- **Root Cause Analysis:**
+  In [`src/data/coursesData.js`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/data/coursesData.js#L820), `sampleCertificates` contains `BB-ISO-9001-2026`. This object is used in [`CertificateAccess.jsx`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/pages/CertificateAccess.jsx) (`/certificate-access/:id`), but is **completely omitted** from [`src/pages/categories/VerifyCertificate.jsx`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/pages/categories/VerifyCertificate.jsx#L148) in `findLocalCertificate()`. Because the remote DB also lacks this sample record, the verification API returns 404.
 - **Recommended Fix:**
-  Deploy the updated `admin.php` and `AdminModulesController.php` to `cadac.in` and execute the schema migration `2026_10_24_admin_panel_schema.sql`.
+  Import `sampleCertificates` into `VerifyCertificate.jsx` and include it as an authoritative fallback in `findLocalCertificate()`.
 
 ---
 
-### BUG-02: Public Contact & Course Enquiry Form Submissions Return 404
-- **Issue ID:** `BUG-PUB-01`
-- **Page / Route:** `/contact`, `/lead-auditor`, `/internal-auditor` (`/api/contact`, `/api/course-enquiry`)
-- **Severity:** 🔴 **CRITICAL (P0)**
-- **Category:** Public Lead Generation & Business Operations
-- **Observed Behavior:**
-  When a prospective student submits a message on `/contact` or fills out a course enquiry form on Lead Auditor / Internal Auditor pages, the request fails with:
-  ```json
-  HTTP/1.1 404 Not Found
-  {"success":false,"message":"API route not found.","method":"POST","path":"/api/contact"}
-  ```
-- **Expected Behavior:**
-  Contact messages and enrollment inquiries should be saved to the database and trigger administrative notification emails.
+### BUG-P1-02: Unauthenticated Profile Check 401 Desynchronization with `localStorage`
+- **Severity:** P1 High
+- **Module:** Authentication & Session Management
+- **Exact URL:** `/my-profile`, `/my-courses`
 - **Reproduction Steps:**
-  1. Navigate to `https://broadbeach-academy-lms-d5gx.vercel.app/contact`
-  2. Fill out Name, Email, Phone, and Message.
-  3. Click "Send Message". Form encounters network error.
-- **Root Cause:**
-  The routes `POST /api/contact` and `POST /api/course-enquiry` defined in local `api.php` lines 240–253 were not uploaded to `cadac.in`.
+  1. Open a browser where a previous login created an item in `localStorage.getItem("bb_user")` but the backend session/token expired or was revoked.
+  2. Refresh `/my-profile`.
+  3. Check console logs.
+- **Expected Result:** The app should clear the expired token from `localStorage` and gracefully redirect the user to `/login`.
+- **Actual Result:**
+  Console throws: `Backend profile check unauthenticated or unreachable; retaining active local session: Request failed with status code 401`.
+  The UI displays the learner dashboard as if logged in, but any authenticated API call fails.
 - **Recommended Fix:**
-  Upload updated `api.php`, `ContactController.php`, and `EnrollmentEnquiryController.php` to `cadac.in`.
+  In [`src/context/AuthContext.jsx`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/context/AuthContext.jsx), when `/api/profile` returns a definitive 401 Unauthorized (as opposed to network timeout 503), clear the invalid local session (`localStorage.removeItem("bb_user_token")`) and prompt the user to re-authenticate.
 
 ---
 
-### BUG-03: Missing Assessments for ISO 14001 and All Non-ISO 9001 Courses in Database
-- **Issue ID:** `BUG-LRN-01`
-- **Page / Route:** `/assignment/:id` (`/api/assessment?id=332`)
-- **Severity:** 🟠 **HIGH (P1)**
-- **Category:** Learning Experience & Examination Integrity
-- **Observed Behavior:**
-  In the production MySQL database, only course 322 (ISO 9001) has an assessment record. For course 332 (ISO 14001) or any other course:
-  ```json
-  GET /api/assessment?id=332 -> {"success":false,"message":"Assessment not found."}
-  ```
-  The frontend catches this error and falls back to client-side catalog evaluation.
-- **Expected Behavior:**
-  Every accredited course must have a corresponding assessment record in the backend `assessments` and `assessment_questions` tables.
+### BUG-P2-01: Enter Key on Header Search Does Not Route to Results
+- **Severity:** P2 Medium
+- **Module:** Header Search Engine
+- **Exact URL:** [`http://localhost:3000/`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/components/Header/Header.jsx#L250)
 - **Reproduction Steps:**
-  1. Navigate to `https://broadbeach-academy-lms-d5gx.vercel.app/assignment/332`
-  2. Inspect browser network console; observe failed 404 API request for assessment 332.
+  1. Click the header search input.
+  2. Type `"Quality Management"`.
+  3. Hit Enter without clicking a dropdown item.
+- **Expected Result:** User is navigated to a search results listing page or the best-matched course.
+- **Actual Result:** The page URL remains unchanged (`http://localhost:3000/`) and the dropdown stays open.
 - **Recommended Fix:**
-  Seed all 11 course assessment questions from `assessmentCatalog.js` into MySQL tables `assessments` and `assessment_questions`.
+  Attach an `onKeyDown` handler to the search input: on `e.key === 'Enter'`, navigate to the top matched course slug or `/courses?search=...`.
 
 ---
 
-### BUG-04: Client-Side Certificate Generation Bypass (Unrecorded Credentials)
-- **Issue ID:** `BUG-CRT-01`
-- **Page / Route:** `/assignment/:id` -> `evaluateLocalGrading()`
-- **Severity:** 🟠 **HIGH (P1)**
-- **Category:** Accreditation & Credential Integrity
-- **Observed Behavior:**
-  When taking an assessment where the API is unavailable or returns 404 (e.g. ISO 14001), the frontend generates an arbitrary certificate number (`BBA-332-M12X...`) and stores it exclusively in the browser's `localStorage`. This certificate is **never written to the backend MySQL database**. If an employer attempts to verify this certificate on `/verify-certificate`, it returns 404 "Certificate not found".
-- **Expected Behavior:**
-  Certificates must only be issued by the backend server after verifying that the student achieved the passing threshold.
+### BUG-P2-02: LMS Video Chapter Locking Client-Side State Vulnerability
+- **Severity:** P2 Medium
+- **Module:** LMS Video Curriculum Player
+- **Exact URL:** [`http://localhost:3000/learning/322`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/pages/Learning.jsx)
+- **Reproduction Steps:**
+  1. Open Course 1 player.
+  2. In browser devtools console, run: `localStorage.setItem("unlocked_chapter_322_5", "true")`.
+  3. Refresh the page.
+- **Expected Result:** Chapter 5 (Certificate) remains locked until backend confirms video completion and assessment passing score (>= 70%).
+- **Actual Result:** The client-side UI immediately enables the Chapter 5 download button.
 - **Recommended Fix:**
-  Remove client-side certificate generation. Ensure all assessment submissions are posted to `/api/submit-assessment` and recorded in `certificates` table.
-
----
-
-### BUG-05: Zero Lesson Content in MySQL Database for All Courses
-- **Issue ID:** `BUG-LRN-02`
-- **Page / Route:** `/learning/:id` (`/api/course-lessons?certification_id=...`)
-- **Severity:** 🟠 **HIGH (P1)**
-- **Category:** Content Delivery & Database Completeness
-- **Observed Behavior:**
-  Across all courses in the database, lessons contain `null` for `video_url`, `lesson_content`, `slides_url`, `pdf_url`, and `thumbnail_url`. The frontend works around this by hardcoding sample video URLs in `Learning.jsx` and static PDF paths.
-- **Expected Behavior:**
-  Lesson videos, slide deck URLs, and reading content should be populated in `course_lessons` table in the database.
-- **Recommended Fix:**
-  Populate lesson content, slide links, and video URLs into the database table `course_lessons`.
-
----
-
-### BUG-06: Project Management Level-1 Course Has 0 Lessons in Database
-- **Issue ID:** `BUG-LRN-03`
-- **Page / Route:** `/learning/328` (`/free-courses/project-management-level-1-foundation`)
-- **Severity:** 🟠 **HIGH (P1)**
-- **Category:** Course Availability
-- **Observed Behavior:**
-  Querying `/api/course-lessons?certification_id=328` returns `{"success":true,"message":"Lessons fetched successfully.","data":[]}` (empty array). The course has zero syllabus items in the database.
-- **Expected Behavior:**
-  Should have 5 structured lesson modules.
-- **Recommended Fix:**
-  Insert the curriculum lessons for Certification ID 328 into `course_lessons`.
-
----
-
-### BUG-07: Course Lessons Parameter Name Discrepancy (`course_id` vs `certification_id`)
-- **Issue ID:** `BUG-API-01`
-- **Page / Route:** `/api/course-lessons`
-- **Severity:** 🟠 **HIGH (P1)**
-- **Category:** API Contract & Parameter Validation
-- **Observed Behavior:**
-  If an API client sends `GET /api/course-lessons?course_id=322`, the backend responds:
-  ```json
-  HTTP/1.1 422 Unprocessable Entity
-  {"success":false,"message":"Certification ID is required.","data":[]}
-  ```
-  The endpoint strictly requires `certification_id`.
-- **Expected Behavior:**
-  Backend should accept either `certification_id` or `course_id` for backwards compatibility.
-- **Recommended Fix:**
-  In `broadbeach-backend/app/Controllers/LessonController.php`, check:
-  `$id = (int) ($_GET["certification_id"] ?? $_GET["course_id"] ?? $_GET["id"] ?? 0);`
-
----
-
-## 3. Medium & Low Severity Functional Defects
-
-### BUG-08: Cookie Consent Dialog Intercepts User Clicks on "Start Course Now"
-- **Issue ID:** `BUG-UI-01`
-- **Page / Route:** All public course pages
-- **Severity:** 🟡 **MEDIUM (P2)**
-- **Category:** User Experience & Interaction Blockers
-- **Observed Behavior:**
-  `CookieConsent.jsx` sets a 1200ms timer before popping up. If a visitor clicks "Start Course Now" within this window, the banner pops up and intercepts focus/clicks, making the button appear broken.
-- **Recommended Fix:**
-  Render cookie consent as an inline non-blocking bottom banner (`pointer-events-none` container with `pointer-events-auto` card), or initialize immediately without delay.
-
-### BUG-09: Redundant Duplicate "Course Overview" Tab on Course Details Page
-- **Issue ID:** `BUG-UI-02`
-- **Page / Route:** `/free-courses/:slug` (`CourseDetails.jsx`)
-- **Severity:** 🟡 **MEDIUM (P2)**
-- **Category:** UI Inconsistency
-- **Observed Behavior:**
-  Two identical "Course Overview" tab buttons are rendered adjacent to each other in the DOM.
-- **Recommended Fix:**
-  Deduplicate tab navigation array in `CourseDetails.jsx`.
-
-### BUG-10: Broken External Unsplash Asset (ORB / 404 Blocked)
-- **Issue ID:** `BUG-AST-01`
-- **Page / Route:** `/` (Hero / Featured Courses)
-- **Severity:** 🟡 **MEDIUM (P2)**
-- **Category:** Asset Loading Failure
-- **Observed Behavior:**
-  Browser console logs network failure:
-  `GET https://images.unsplash.com/photo-1542204625-de293a2f8ff2?w=300 - net::ERR_BLOCKED_BY_ORB`
-- **Recommended Fix:**
-  Replace dead Unsplash URL with a local optimized webp image in `public/assets/`.
-
-### BUG-11: Support Ticket Submission Endpoint 404
-- **Issue ID:** `BUG-TCK-01`
-- **Page / Route:** `/raise-a-ticket` (`/api/tickets`)
-- **Severity:** 🟡 **MEDIUM (P2)**
-- **Category:** Learner Support System
-- **Observed Behavior:**
-  Submitting a support ticket fails with 404 because `TicketMaster` endpoints are missing from production backend.
-- **Recommended Fix:**
-  Deploy `TicketController` and route `POST /api/tickets` to `cadac.in`.
-
-### BUG-12: Double Title Branding Suffix on Homepage
-- **Issue ID:** `BUG-SEO-01`
-- **Page / Route:** `/` (`Home.jsx` & `index.html`)
-- **Severity:** 🟢 **LOW (P3)**
-- **Category:** SEO & Document Title
-- **Observed Behavior:**
-  DOM Title: `Broadbeach Online Academy | Globally Accredited Certifications & Courses | Broadbeach Online Academy`
-- **Recommended Fix:**
-  Remove duplicate suffix in `index.html` or `SEO.jsx`.
-
-### BUG-13: Incomplete Course ID Mapping in `progressTracker.js`
-- **Issue ID:** `BUG-MAP-01`
-- **Page / Route:** `src/utils/progressTracker.js`
-- **Severity:** 🟢 **LOW (P3)**
-- **Category:** Code Maintainability
-- **Observed Behavior:**
-  `CANONICAL_TO_INDEX_MAP` uses custom numeric indices (1..11) that do not match the database primary keys (320..330).
-- **Recommended Fix:**
-  Standardize on official database `certification_id` primary keys across all modules.
+  Ensure certificate generation always validates the assessment passing record against the backend database before delivering signed certificate credentials.

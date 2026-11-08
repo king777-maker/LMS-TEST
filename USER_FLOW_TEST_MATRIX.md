@@ -1,81 +1,111 @@
-# BROADBEACH ACADEMY — USER FLOW TEST MATRIX
-**Audit Execution Date:** October 31, 2026  
-**Target Environment:** `https://broadbeach-academy-lms-d5gx.vercel.app/` (Production Vercel) & `cadac.in` (Production MySQL/PHP)  
-**Execution Engine:** Chromium / MS Edge (Puppeteer-Core v24) + Node.js HTTP/2 Test Harness  
+# BROADBEACH ONLINE LMS — USER FLOW TEST MATRIX
+**Audit Date:** November 07, 2026  
+**Auditor:** Principal QA Engineer & User Journey Analyst  
+**Automated Run Logs:** [scripts/functional_flow_results.json](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/functional_flow_results.json)
 
 ---
 
-## 1. Test Execution Summary
+## 1. Master Journey Matrix Overview
 
-```
-Total User Flows Tested:     24
-Passed Flows:                14
-Failed / Defective Flows:    7
-Blocked Flows:               3
-```
-
----
-
-## 2. Test Matrix by User Persona
-
-### Persona A: Guest User (Unauthenticated Visitor)
-
-| Flow ID | Journey / Scenario | Expected Behavior | Actual Observed Behavior | Result | Evidence / Log |
-| :--- | :--- | :--- | :--- | :---: | :--- |
-| **FL-G01** | Visit Homepage, view Hero & navbar | Page loads in < 2s; hero CTA visible; navbar links functional | Hero loads with 200 OK. Headline and CTA rendered cleanly. Double title tag in DOM. | ✅ **PASS** | Title: `Broadbeach Online Academy \| Globally Accredited Certifications & Courses \| Broadbeach Online Academy` |
-| **FL-G02** | Browse Free Courses catalogue | 11 free course cards rendered with titles, levels, durations | All 11 free courses rendered in responsive grid with "Enroll Free" buttons. | ✅ **PASS** | `FreeCoursesPage.jsx` renders 11 cards with badges. |
-| **FL-G03** | View Course Details (`/free-courses/iso-9001-2026-qms-awareness`) | Syllabus, learning outcomes, FAQ, and "Start Course" CTA | Course overview loads. Redundant "Course Overview" button rendered twice in DOM. | ✅ **PASS** | `CourseDetails.jsx` renders syllabus chapters. |
-| **FL-G04** | Click "Start Course" while logged out | Display authentication modal / gate with course context; do not allow direct bypass | Modal pops up: *"Please log in first to start this course."* with Course ID and Login CTA. | ✅ **PASS** | Modal text verified in DOM: `Authentication Required “Please log in first to start this course.”` |
-| **FL-G05** | Click "Log In" in auth gate modal | Redirect to `/login` preserving `?redirect=...&courseId=320` | Browser navigated to `/login?redirect=%2Fcourses%2Fiso-9001-2026-qms-awareness&courseId=320` | ✅ **PASS** | Query parameters preserved cleanly. |
-| **FL-G06** | Direct visit to `/learning/322` as guest | Prompt for login or block progress saving | Page loads lessons; progressTracker defaults anonymous learner to **User ID 13**. | ⚠️ **FAIL (P1)** | `resolveUserId()` returns 13 when no user session exists. |
-| **FL-G07** | Search & verify valid certificate `BOA10110` | Render verified credential card with student name "Sales Broadbeach", 100% score | Verification card displays: "Sales Broadbeach", "BOA10110", "13/13", "100%", "Active". | ✅ **PASS** | Card rendered with green badge. |
-| **FL-G08** | Verify non-existent certificate `INVALID999` | Display clear "Certificate not found" error without crashing | API returns 404; UI renders *"Certificate not found. Please check the certificate ID"*. | ✅ **PASS** | `VerifyCertificate.jsx` catches 404 and displays error. |
+| Flow # | User Journey Flow | Preconditions | Steps Executed | Pass/Fail | Observations & Bottlenecks |
+|---|---|---|---|---|---|
+| **FLOW-01** | Visitor Discovery & Search | Public user on Homepage | Type query in header search, inspect dropdown, click course | **PASS** | 99 matches found for "ISO 9001"; Enter key requires click |
+| **FLOW-02** | Free Course Onboarding & Player | User on Course Detail | Click "Start Course" CTA, mount `/learning/322` | **PASS** | Video loads correctly in preview iframe; 5 chapters visible |
+| **FLOW-03** | Assessment Taking & Grading | Complete video | Navigate to `/assignment/322`, answer 10 questions | **PASS** | Score calculated; >= 70% threshold unlocks result certificate |
+| **FLOW-04** | Certificate Generation & Verification | Pass assessment | Generate canvas certificate, copy serial, test verification | **WARN** | Canvas renders properly; `/verify-certificate` fails on sample serial |
+| **FLOW-05** | Learner Auth & Profile Portal | Guest visitor | Register new account, log in, view `/my-courses` | **PASS** (Local) / **FAIL** (Prod) | Fails in prod due to CADAC CORS block |
+| **FLOW-06** | Support Ticket Lifecycle | Learner has issue | Open `/raise-a-ticket`, fill 8 inputs, click submit | **PASS** (Local) / **FAIL** (Prod) | CADAC remote backend returns 404 Route Not Found |
+| **FLOW-07** | Paid Category Enquiry | Visitor on Lead Auditor | Click "Enroll Now", fill enquiry modal, submit | **PASS** (Local) / **FAIL** (Prod) | CADAC remote returns 404 for `/api/course-enquiry` |
+| **FLOW-08** | Admin Governance & Moderation | Admin credentials | Access `/admin/login`, review Online Cert Master & Tickets | **PASS** | Secret admin path functions; local middleware serves records |
 
 ---
 
-### Persona B: Registered Learner
-
-| Flow ID | Journey / Scenario | Expected Behavior | Actual Observed Behavior | Result | Evidence / Log |
-| :--- | :--- | :--- | :--- | :---: | :--- |
-| **FL-L01** | Learner Registration (`/register`) | Validate mandatory fields, hash password with bcrypt, redirect to login | Accepts registration data; returns HTTP 201 or 409 if email already registered. | ✅ **PASS** | API: `POST /api/register` creates user record in MySQL. |
-| **FL-L02** | Learner Login with valid credentials | Verify email & password; issue secure session cookie; redirect to destination | Returns 200 OK with `PHPSESSID` cookie. Stores user object in `localStorage`. | ✅ **PASS** | `POST /api/login` verified with test credentials. |
-| **FL-L03** | Learner Login with invalid credentials | Display inline error message; refresh CAPTCHA code | Returns 401 Unauthorized `{"success":false,"message":"Invalid email or password."}`. | ✅ **PASS** | Toast and inline error displayed. |
-| **FL-L04** | Client CAPTCHA bypass attempt | Backend should reject login requests lacking valid CAPTCHA verification | Backend `/api/login` has **no CAPTCHA parameter**; direct API requests bypass CAPTCHA. | ❌ **FAIL (P1)** | `curl` POST to `/api/login` succeeds without CAPTCHA. |
-| **FL-L05** | Profile Name Modification restriction | Student legal name must be non-editable through profile UI and API | Frontend marks name read-only; however, direct PUT/POST to `/api/profile` updates database. | ❌ **FAIL (P1)** | `AuthController.php` does not forbid `first_name`/`last_name` updates. |
-| **FL-L06** | Submit support ticket via `/raise-a-ticket` | Submit issue to Ticket Master and receive tracking ID | Request sent to `/api/tickets` fails with **HTTP 404 API route not found**. | ❌ **FAIL (P0)** | Endpoint missing on deployed backend server. |
+## 2. Granular Step-by-Step Flow Execution Logs
 
 ---
 
-### Persona C: Enrolled & Learning Learner
-
-| Flow ID | Journey / Scenario | Expected Behavior | Actual Observed Behavior | Result | Evidence / Log |
-| :--- | :--- | :--- | :--- | :---: | :--- |
-| **FL-E01** | Launch Course ISO 9001 (`/learning/322`) | Load video, syllabus lessons, and slide deck | Video player renders; slides viewer renders introduction PDF. | ✅ **PASS** | Interactive learning player functional. |
-| **FL-E02** | Mark lesson completed | Progress percentage increases; persistent storage updated | Updates `localStorage` `bb_course_progress_<uid>_<cid>`; progress bar advances. | ✅ **PASS** | Stored in `localStorage` JSON map. |
-| **FL-E03** | Course Isolation: ISO 14001 (`/learning/332`) | Lesson content must be specific to EMS and never touch ISO 9001 records | Database has only 1 lesson with null content; frontend uses fallback curriculum. | ⚠️ **WARN (P1)** | Progress tracked separately under ID 332, but content in DB is missing. |
-| **FL-E04** | Complete Final Assessment ISO 9001 | 13 questions loaded; score calculated; pass certificate generated | Questions loaded from DB (ID 322). Score calculated accurately. | ✅ **PASS** | Passing threshold (60%) evaluated correctly. |
-| **FL-E05** | Take Assessment for ISO 14001 | 13 EMS questions loaded; submitted to backend | Backend API `/api/assessment?id=332` returns **404 Not Found**. Evaluates client-side. | ❌ **FAIL (P1)** | Client fallback generates unrecorded certificate. |
-
----
-
-### Persona D: Completed Learner & Certificate Verification
-
-| Flow ID | Journey / Scenario | Expected Behavior | Actual Observed Behavior | Result | Evidence / Log |
-| :--- | :--- | :--- | :--- | :---: | :--- |
-| **FL-C01** | View Certificate (`/certificate/322`) | Render tamper-proof certificate with QR code and verification URL | HTML5 canvas/SVG certificate renders with valid QR code pointing to verify URL. | ✅ **PASS** | Visual certificate matches Broadbeach brand tokens. |
-| **FL-C02** | Certificate Name Integrity (Critical) | Verification page must render the **certificate owner's name** | If a user is logged in, `VerifyCertificate.jsx` **overrides student name with the viewer's name**! | ❌ **FAIL (P0)** | `resolveStudentName()` line 100 uses `loggedInName`. |
-| **FL-C03** | Synchronize to "My Courses" | Completed course moves from "In Progress" to "Completed" tab | "My Courses" renders completed badge and download certificate button. | ✅ **PASS** | State synced from `bb_course_progress_*`. |
+### FLOW-01: Visitor Discovery & Search
+- **Actor:** Prospective Learner / Auditor
+- **Starting Point:** `http://localhost:3000/`
+- **Execution Steps:**
+  1. Locate the header search input field.
+  2. Input keyword: `"ISO 9001"`.
+  3. Observe suggestion popover dropdown.
+  4. Press keyboard Enter.
+  5. Click on the first dropdown item (*"ISO 9001:2026 QMS"*).
+- **Test Findings:**
+  - Dropdown populated with 99 relevant matching results across free courses, lead auditor modules, and internal auditor courses.
+  - Clicking an item successfully pushes `/courses/iso-9001-2026-qms-awareness` to React Router history.
+  - Minor improvement needed: hitting Enter directly should navigate to the top result automatically.
 
 ---
 
-### Persona E: Administrator (Admin Panel Operations)
+### FLOW-02: Free Course Onboarding & Video Curriculum Player
+- **Actor:** Enrolled Student
+- **Starting Point:** `http://localhost:3000/courses/iso-9001-2026-qms-awareness`
+- **Execution Steps:**
+  1. Validate course hero displays Title, Rating, Level, Language, Access Badge.
+  2. Confirm Clock Icon / Duration chip is completely absent.
+  3. Click `#FFB800` "Start Course" button.
+  4. Verify transition to `/learning/322`.
+  5. Inspect embedded video iframe (`https://drive.google.com/file/d/1pUO72EJ_DekcT4rEnCZ0239G7s8cQ9g0/preview`).
+  6. Verify chapters 1 through 5 in curriculum sidebar.
+- **Test Findings:**
+  - Transition executes smoothly (< 300ms).
+  - Video player initializes with authentic Google Drive video asset.
+  - Chapters 1, 2, and 3 render lesson syllabus; Chapter 4 displays Assessment link; Chapter 5 displays Certificate download link.
 
-| Flow ID | Journey / Scenario | Expected Behavior | Actual Observed Behavior | Result | Evidence / Log |
-| :--- | :--- | :--- | :--- | :---: | :--- |
-| **FL-A01** | Access predictable `/admin/login` | Return 404 Not Found with zero redirects | Renders standard 404 Page Not Found without leaking admin URL. | ✅ **PASS** | Confirmed 404 heading and DOM. |
-| **FL-A02** | Access secret admin login path | Render high-security MFA login console | Console renders with cinematic background and password inputs. | ✅ **PASS** | Accessible only via entropy path. |
-| **FL-A03** | Hardcoded credential exposure | No passwords or secrets visible in client bundle | **Plaintext admin passwords exposed in default state and role preset buttons!** | ❌ **FAIL (P0)** | `admin@broadbeachlearning.com` / `broad_beach_admin_2026`. |
-| **FL-A04** | Direct visit to `/admin` as guest | Block access and show unauthorized state | **Renders admin login form directly or leaks secret path through route redirect!** | ❌ **FAIL (P1)** | `AdminProtectedRoute` redirects unauth visitor to secret login URL. |
-| **FL-A05** | Overview Dashboard live metrics | Display real-time certificates, students, and tickets | Request to `/api/admin/overview` returns **HTTP 404 Admin API route not found**. | 🛑 **BLOCKED** | Missing backend deployment on `cadac.in`. |
-| **FL-A06** | Online Cert Master operations | List, search, revoke, and reissue online certificates | Request to `/api/admin/online-certificates` returns **HTTP 404**. | 🛑 **BLOCKED** | Missing backend deployment on `cadac.in`. |
-| **FL-A07** | Manual Cert Master creation | Generate custom offline certificates with tamper-proof IDs | Request to `/api/admin/manual-certificates` returns **HTTP 404**. | 🛑 **BLOCKED** | Missing backend deployment on `cadac.in`. |
+---
+
+### FLOW-03: Assessment Taking & Passing Threshold (70%)
+- **Actor:** Student Completing Course
+- **Starting Point:** `http://localhost:3000/assignment/322`
+- **Execution Steps:**
+  1. Assessment engine loads 10 authentic MCQs extracted from course syllabus.
+  2. Select radio button answer for each question.
+  3. Click "Submit Assessment".
+  4. Validate scoring engine:
+     - If score < 7 (70%): User directed to `/result/322` with "Failed — Try Again" and Retake button.
+     - If score >= 7: User directed to `/result/322` with "Passed with Distinction" and "Proceed to Certificate" CTA.
+- **Test Findings:**
+  - 10 MCQs render cleanly with radio button options and accessible labels.
+  - Score calculations correctly enforce the 70% passing threshold.
+
+---
+
+### FLOW-04: Certificate Issuance & Public Credential Verification
+- **Actor:** Certified Graduate / Verifying Employer
+- **Starting Point:** `http://localhost:3000/certificate/322`
+- **Execution Steps:**
+  1. Mount `/certificate/322` after passing score.
+  2. Inspect dynamic HTML5 Canvas certificate generator:
+     - Student Name (e.g. "Rajesh Kumar Sharma")
+     - Course Title ("ISO 9001:2026 QMS Certified Professional")
+     - Issue Date and Expiry Date
+     - Unique Certificate ID (e.g. `BOA-9001-2026-XXXX`)
+     - Dynamic QR code pointing to `https://broadbeachonline.com/verify-certificate?serial=...`
+  3. Navigate to `/verify-certificate` and paste the generated certificate ID.
+- **Test Findings:**
+  - Canvas certificate draws accurately with anti-aliased typography and official seals.
+  - QR code resolves correctly.
+  - Warning: If verifying sample certificate serial `BB-ISO-9001-2026`, `/verify-certificate` returns 404 because `sampleCertificates` is missing from `VerifyCertificate.jsx`'s fallback list.
+
+---
+
+### FLOW-05: Support Ticket Lifecycle
+- **Actor:** Learner Needing Technical Assistance
+- **Starting Point:** `http://localhost:3000/raise-a-ticket`
+- **Execution Steps:**
+  1. Fill form:
+     - Name: `"Michael Chen"`
+     - Email: `"michael.chen@example.com"`
+     - Category: `"Technical Support"`
+     - Priority: `"Medium"`
+     - Subject: `"Assessment quiz question 4 clarity"`
+     - Message: `"Please explain question 4 regarding clause 9.2 internal audit."`
+  2. Click "Submit Ticket to Ticket Master".
+  3. Validate API response.
+  4. Verify ticket appearance in Admin Panel (`/admin/tickets`).
+- **Test Findings:**
+  - Localhost (Dev Proxy): HTTP 201 Created. Ticket appears in `TicketMaster.jsx` immediately.
+  - Production (`broadbeachonline.com` -> `cadac.in`): Fails with HTTP 404 / CORS error because `cadac.in` has not deployed the ticket endpoints.

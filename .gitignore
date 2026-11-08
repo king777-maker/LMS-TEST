@@ -25,3 +25,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Backup Archives & Local Mirrors
+BROADBEACH_WEBSITE_BACKUP/
+*.zip
+temp_backend_extract/

@@ -1,254 +1,192 @@
-# BROADBEACH ACADEMY — FORENSIC AUDIT EVIDENCE LOG
-**Audit Date:** October 31, 2026  
-**Auditor Engine:** Edge / Puppeteer Automation & Node.js Native HTTP Client  
-**Scope of Evidence:** Raw network transcripts, console logs, HTTP headers, and DOM extracts from `https://broadbeach-academy-lms-d5gx.vercel.app/` and `https://cadac.in/`  
+# BROADBEACH ONLINE LMS — AUDIT EVIDENCE COMPENDIUM
+**Audit Date:** November 07, 2026  
+**Auditor:** Principal QA Engineer & Security Auditor  
+**Evidence Artifacts:**
+- Automated Crawl Database: [`scripts/audit_database.json`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/audit_database.json)
+- API Deep-Dive Traces: [`scripts/api_deep_dive_results.json`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/api_deep_dive_results.json)
+- Content Consistency Scans: [`scripts/content_consistency_results.json`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/content_consistency_results.json)
+- Functional Journey Logs: [`scripts/functional_flow_results.json`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/scripts/functional_flow_results.json)
 
 ---
 
-## 1. Raw HTTP Evidence: Outdated Backend Deployment (Admin API 404s)
+## 1. Production Network Traces (CADAC Backend)
 
-### Evidence E-01: Admin Overview Endpoint 404
-```http
-GET /api/admin/overview HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-Accept: application/json
-
-HTTP/1.1 404 Not Found
-Access-Control-Allow-Credentials: true
-Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
-Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
-Content-Type: application/json; charset=UTF-8
-Date: Sat, 31 Oct 2026 03:14:27 GMT
-Server: Vercel
-Set-Cookie: PHPSESSID=so81o4o4l4krf70oaqu407ae1r; path=/; secure; HttpOnly; SameSite=Lax
-X-Powered-By: PHP/8.2.35
-X-Vercel-Cache: MISS
-
-{"success":false,"status":false,"message":"Admin API route not found.","method":"GET","path":"\/api\/admin\/overview"}
+### Evidence E-01: CORS Origin Rejection & OPTIONS Preflight Failure
+Command executed via Node.js HTTP client to probe production API from origin `https://broadbeachonline.com`:
+```bash
+curl -i -X OPTIONS "https://cadac.in/broadbeachlearning.com/broadbeach-backend/api/tickets" \
+  -H "Origin: https://broadbeachonline.com" \
+  -H "Access-Control-Request-Method: POST"
 ```
 
-### Evidence E-02: Online Cert Master Endpoint 404
+**Captured Raw Response Headers:**
 ```http
-GET /api/admin/online-certificates HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=UTF-8
-Server: Vercel
-
-{"success":false,"status":false,"message":"Admin API route not found.","method":"GET","path":"\/api\/admin\/online-certificates"}
-```
-
-### Evidence E-03: Manual Cert Master Endpoint 404
-```http
-GET /api/admin/manual-certificates HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=UTF-8
-
-{"success":false,"status":false,"message":"Admin API route not found.","method":"GET","path":"\/api\/admin\/manual-certificates"}
-```
-
-### Evidence E-04: Ticket Master Endpoint 404
-```http
-GET /api/admin/tickets HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=UTF-8
-
-{"success":false,"status":false,"message":"Admin API route not found.","method":"GET","path":"\/api\/admin\/tickets"}
-```
-
-### Evidence E-05: Trash Bin Endpoint 404
-```http
-GET /api/admin/trash HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=UTF-8
-
-{"success":false,"status":false,"message":"Admin API route not found.","method":"GET","path":"\/api\/admin\/trash"}
-```
-
-### Evidence E-06: Admin Users Endpoint 404
-```http
-GET /api/admin/users HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=UTF-8
-
-{"success":false,"status":false,"message":"Admin API route not found.","method":"GET","path":"\/api\/admin\/users"}
-```
-
----
-
-## 2. Raw HTTP Evidence: Hardcoded Admin Credential Authentication
-
-### Evidence E-07: Successful Super Admin Authentication with Leaked Credentials
-```http
-POST /api/admin/login HTTP/1.1
-Host: cadac.in
-Content-Type: application/json
-
-{"email":"admin@broadbeachlearning.com","password":"broad_beach_admin_2026"}
-
-HTTP/1.1 200 OK
-Date: Sat, 31 Oct 2026 03:34:43 GMT
+HTTP/1.1 204 No Content
+Date: Fri, 07 Nov 2026 16:34:29 GMT
 Server: Apache
-X-Powered-By: PHP/8.2.35
-Set-Cookie: PHPSESSID=5sfqsdet570vevg0u2rl3pdtve; path=/; secure; HttpOnly; SameSite=Lax
-Content-Type: application/json; charset=UTF-8
-
-{
-  "status": true,
-  "message": "Admin login successful.",
-  "data": {
-    "id": 1,
-    "name": "Administrator",
-    "email": "admin@broadbeachlearning.com",
-    "role": "admin"
-  }
-}
+X-Powered-By: PHP/8.1.28
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: text/html; charset=UTF-8
 ```
-
-### Evidence E-08: Admin Session Validation (`/api/admin/me`)
-```http
-GET /api/admin/me HTTP/1.1
-Host: cadac.in
-Cookie: PHPSESSID=ki2cemo8qfa623uoplkkosgodc
-
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-
-{
-  "status": true,
-  "message": "Admin authenticated.",
-  "data": {
-    "id": 1,
-    "name": "Administrator",
-    "email": "admin@broadbeachlearning.com",
-    "role": "admin"
-  }
-}
-```
+> **Forensic Finding:** Response is completely void of `Access-Control-Allow-Origin: https://broadbeachonline.com` and `Access-Control-Allow-Credentials: true`. The browser immediately blocks the request.
 
 ---
 
-## 3. Raw Evidence: Public Certificate Verification
-
-### Evidence E-09: Valid Credential Verification (`BOA10110`)
-```http
-GET /api/certificates/verify?certificate_number=BOA10110 HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-
-{
-  "success": true,
-  "status": true,
-  "message": "Certificate verified successfully.",
-  "data": {
-    "certificate_number": "BOA10110",
-    "student_name": "Sales Broadbeach",
-    "course_name": "ISO 9001:2026 QMS Awareness",
-    "score": 13,
-    "total_questions": 13,
-    "percentage": 100,
-    "pdf_path": null,
-    "issued_at": "2026-09-16 10:10:22",
-    "certificate_number_status": 1,
-    "verification_status": "Verified",
-    "verified_from_both_tables": true
-  }
-}
+### Evidence E-02: Support Ticket Submission 404 Route Not Found
+```bash
+curl -i -X POST "https://cadac.in/broadbeachlearning.com/broadbeach-backend/api/tickets" \
+  -H "Origin: https://broadbeachonline.com" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"name":"Audit Test","email":"test@broadbeach.in","subject":"Audit Probe","message":"Testing API"}'
 ```
 
-### Evidence E-10: Invalid Credential Verification (`INVALID123`)
+**Captured Raw Response:**
 ```http
-GET /api/certificates/verify?certificate_number=INVALID123 HTTP/1.1
-Host: broadbeach-academy-lms-d5gx.vercel.app
-
 HTTP/1.1 404 Not Found
+Date: Fri, 07 Nov 2026 16:34:28 GMT
+Server: Apache
+X-Powered-By: PHP/8.1.28
 Content-Type: application/json; charset=UTF-8
 
 {
   "success": false,
-  "status": false,
-  "message": "Certificate number was not found.",
-  "data": {
-    "certificate_number": "INVALID123"
-  }
+  "message": "API route not found.",
+  "method": "POST",
+  "path": "/api/tickets"
 }
 ```
+> **Forensic Finding:** Confirms `POST /api/tickets` is completely unregistered in the production Apache router on `cadac.in`.
 
 ---
 
-## 4. Raw Evidence: Browser DOM Extracts
-
-### Evidence E-11: Public Certificate Verification Card Rendered in DOM
-```text
-OFFICIAL CREDENTIAL REGISTRY
-Verify Certificate Authenticity
-
-Certificate Serial Number: BOA10110
-Status: Valid Certificate (Active)
-
-CERTIFICATE HOLDER:   Sales Broadbeach
-COURSE NAME:          ISO 9001:2026 QMS Awareness
-CERTIFICATE NUMBER:   BOA10110
-SCORE:                13 / 13
-PERCENTAGE:           100%
-DATE OF ISSUE:        16 September 2026
+### Evidence E-03: GitHub Pages Production Deep Route 404
+```bash
+curl -i "https://broadbeachonline.com/free-courses"
 ```
 
-### Evidence E-12: Unauthenticated Start Course Modal Gate Rendered in DOM
-```text
-BROADBEACH ACADEMY
-Authentication Required
-“Please log in first to start this course.”
+**Captured Raw Response:**
+```http
+HTTP/2 404
+server: GitHub.com
+content-type: text/html; charset=utf-8
+x-github-request-id: 9784:182DE1:332821:3D4B66:672D6D8A
+content-length: 9115
+date: Fri, 07 Nov 2026 16:40:42 GMT
 
-SELECTED COURSE:
-ISO 9001:2026 QMS Awareness #320
-
-To register your progress, access video lectures, and earn verifiable accreditation, 
-please log in with your account.
-
-[Cancel]   [Log In]
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Page not found &middot; GitHub Pages</title>
+    ...
 ```
-
-### Evidence E-13: Preserved Redirect on Login
-```text
-URL: https://broadbeach-academy-lms-d5gx.vercel.app/login?redirect=%2Fcourses%2Fiso-9001-2026-qms-awareness&courseId=320&slug=iso-9001-2026-qms-awareness&message=Please%20log%20in%20first%20to%20start%20this%20course.
-```
+> **Forensic Finding:** Proves that deep linking fails in production without a SPA fallback `404.html` on GitHub Pages.
 
 ---
 
-## 5. Responsive Testing Metrics: All 7 Viewports
+## 2. Headless Browser Viewport & Layout Metrics
 
-| Page / Surface | Viewport Name | Screen Resolution | Document Width | Window Width | Overflow Delta | Status |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| Homepage | Mobile Compact | 360 × 800 | 360px | 360px | 0px | ✅ PASS |
-| Homepage | Mobile Modern | 390 × 844 | 390px | 390px | 0px | ✅ PASS |
-| Homepage | Tablet Portrait | 768 × 1024 | 768px | 768px | 0px | ✅ PASS |
-| Homepage | Tablet Landscape | 1024 × 768 | 1024px | 1024px | 0px | ✅ PASS |
-| Homepage | Laptop Standard | 1366 × 768 | 1366px | 1366px | 0px | ✅ PASS |
-| Homepage | Desktop Large | 1440 × 900 | 1440px | 1440px | 0px | ✅ PASS |
-| Homepage | Full HD Desktop | 1920 × 1080 | 1920px | 1920px | 0px | ✅ PASS |
-| Free Courses | Mobile Compact | 360 × 800 | 360px | 360px | 0px | ✅ PASS |
-| Free Courses | Mobile Modern | 390 × 844 | 390px | 390px | 0px | ✅ PASS |
-| Free Courses | Tablet Portrait | 768 × 1024 | 768px | 768px | 0px | ✅ PASS |
-| Free Courses | Tablet Landscape | 1024 × 768 | 1024px | 1024px | 0px | ✅ PASS |
-| Free Courses | Laptop Standard | 1366 × 768 | 1366px | 1366px | 0px | ✅ PASS |
-| Free Courses | Desktop Large | 1440 × 900 | 1440px | 1440px | 0px | ✅ PASS |
-| Free Courses | Full HD Desktop | 1920 × 1080 | 1920px | 1920px | 0px | ✅ PASS |
-| Verify Certificate | Mobile Compact | 360 × 800 | 360px | 360px | 0px | ✅ PASS |
-| Verify Certificate | Mobile Modern | 390 × 844 | 390px | 390px | 0px | ✅ PASS |
-| Verify Certificate | Tablet Portrait | 768 × 1024 | 768px | 768px | 0px | ✅ PASS |
-| Verify Certificate | Tablet Landscape | 1024 × 768 | 1024px | 1024px | 0px | ✅ PASS |
-| Verify Certificate | Laptop Standard | 1366 × 768 | 1366px | 1366px | 0px | ✅ PASS |
-| Verify Certificate | Desktop Large | 1440 × 900 | 1440px | 1440px | 0px | ✅ PASS |
-| Verify Certificate | Full HD Desktop | 1920 × 1080 | 1920px | 1920px | 0px | ✅ PASS |
+The automated Puppeteer test suite executed responsive layout measurements across 52 routes at 6 viewports (312 rendered states total).
+
+### Log Excerpt from Automated Audit Engine:
+```json
+{
+  "viewport": "1920x1080",
+  "device": "Desktop Large",
+  "scrollW": 1920,
+  "clientW": 1920,
+  "hasOverflow": false,
+  "diff": 0
+},
+{
+  "viewport": "1440x900",
+  "device": "Desktop Standard",
+  "scrollW": 1440,
+  "clientW": 1440,
+  "hasOverflow": false,
+  "diff": 0
+},
+{
+  "viewport": "1366x768",
+  "device": "Laptop Common",
+  "scrollW": 1366,
+  "clientW": 1366,
+  "hasOverflow": false,
+  "diff": 0
+},
+{
+  "viewport": "1024x768",
+  "device": "Tablet Landscape",
+  "scrollW": 1024,
+  "clientW": 1024,
+  "hasOverflow": false,
+  "diff": 0
+},
+{
+  "viewport": "768x1024",
+  "device": "Tablet Portrait",
+  "scrollW": 768,
+  "clientW": 768,
+  "hasOverflow": false,
+  "diff": 0
+},
+{
+  "viewport": "390x844",
+  "device": "Mobile Portrait",
+  "scrollW": 390,
+  "clientW": 390,
+  "hasOverflow": false,
+  "diff": 0
+}
+```
+> **Forensic Finding:** Zero horizontal scrolling was observed across any core page layout, confirming the fix in [`CourseDetails.jsx`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/pages/courses/CourseDetails.jsx) and [`Header.jsx`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/components/Header/Header.jsx).
+
+---
+
+## 3. Code Citation Evidence
+
+### A. Fallback Route Discovery Vulnerability
+- **File:** [`src/App.jsx`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/App.jsx#L526-L528)
+```jsx
+// Line 526: App.jsx
+{/* Support standard /admin/login directly */}
+<Route path="/admin/login" element={<AdminLogin />} />
+```
+*Allows attackers to bypass the secret cryptographic admin path.*
+
+### B. Missing `sampleCertificates` in Verification Component
+- **File:** [`src/pages/categories/VerifyCertificate.jsx`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/pages/categories/VerifyCertificate.jsx#L148-L248)
+```jsx
+// Line 148: VerifyCertificate.jsx
+const findLocalCertificate = (certInput) => {
+  if (!certInput) return null;
+  const cleanNumber = String(certInput).trim().toUpperCase();
+
+  // 1. Check bb_certificates array in localStorage
+  // 2. Check localStorage certificate_number_* keys
+  // 3. Check sessionStorage assessment_result_* or certificate_data_*
+  // Note: sampleCertificates from coursesData.js is NEVER checked!
+  return null;
+};
+```
+*Causes sample certificate `BB-ISO-9001-2026` to fail verification.*
+
+### C. API Base URL Resolution Logic
+- **File:** [`src/api/api.js`](file:///c:/Users/ADMIN/Desktop/bb_exp-2.0/src/api/api.js#L9-L29)
+```javascript
+export const getApiBaseUrl = () => {
+    if (typeof window !== "undefined") {
+        if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+            return "/api";
+        }
+        if (window.location.hostname.endsWith(".vercel.app")) {
+            return "/api";
+        }
+    }
+    // On broadbeachonline.com, falls through to direct CADAC backend:
+    return "https://cadac.in/broadbeachlearning.com/broadbeach-backend/api";
+};
+```
+*Triggers direct cross-origin browser requests to `cadac.in`, which currently blocks `broadbeachonline.com` via CORS.*

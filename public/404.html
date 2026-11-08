@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under Scheduled Maintenance | Broadbeach Online Academy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#070F1E">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    body {
+      background-color: #070F1E;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+    .ambient-glow-1 {
+      position: absolute;
+      top: -15%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.12);
+      filter: blur(140px);
+      pointer-events: none;
+    }
+    .ambient-glow-2 {
+      position: absolute;
+      bottom: -15%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(255, 184, 0, 0.1);
+      filter: blur(160px);
+      pointer-events: none;
+    }
+    header {
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(11, 25, 44, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 16px 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    .brand-shield {
+      width: 32px;
+      height: 36px;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .brand-title {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .brand-online {
+      color: #FFC72C;
+    }
+    .brand-sub {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      color: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .badge-official {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      font-weight: 600;
+      color: #94A3B8;
+    }
+    .dot-live {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(0.9); }
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+    .visual-container {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(23, 75, 133, 0.4), rgba(11, 25, 44, 0.7));
+      border: 1px solid rgba(255, 184, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(23, 75, 133, 0.5);
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #FCD34D;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .radar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F59E0B;
+      box-shadow: 0 0 8px #F59E0B;
+    }
+    h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+    .subtitle {
+      font-size: clamp(16px, 3vw, 22px);
+      font-weight: 800;
+      color: #93C5FD;
+      margin-bottom: 18px;
+    }
+    .description {
+      font-size: clamp(14px, 2vw, 16px);
+      color: #CBD5E1;
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto 32px auto;
+    }
+    .notice-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: #94A3B8;
+      font-size: 13px;
+      margin-bottom: 36px;
+      max-width: 540px;
+    }
+    .actions-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      width: 100%;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-gold {
+      background: #FFB800;
+      color: #0B192C;
+      box-shadow: 0 4px 15px rgba(255, 184, 0, 0.25);
+    }
+    .btn-gold:hover {
+      background: #E5A700;
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-1px);
+    }
+    .btn-whatsapp {
+      background: rgba(37, 211, 102, 0.15);
+      color: #25D366;
+      border: 1px solid rgba(37, 211, 102, 0.35);
+    }
+    .btn-whatsapp:hover {
+      background: #25D366;
+      color: #0B192C;
+      transform: translateY(-1px);
+    }
+    footer {
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(11, 25, 44, 0.9);
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+      position: relative;
+      z-index: 10;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand-logo">
+        <svg class="brand-shield" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2L3 6.5V15.5C3 22.8 7.7 29.2 14 31C20.3 29.2 25 22.8 25 15.5V6.5L14 2Z" fill="#0D2E56" stroke="#FFC72C" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M14 5V27.5C18.5 25.8 22 20.8 22 15.5V8.5L14 5Z" fill="#FFC72C" fill-opacity="0.25"/>
+          <path d="M14 8L8 11V15.5C8 19.8 10.5 23.8 14 25.2V8Z" fill="#FFC72C" fill-opacity="0.8"/>
+        </svg>
+        <div class="brand-text">
+          <div class="brand-title">Broadbeach <span class="brand-online">• Online</span></div>
+          <div class="brand-sub">ACADEMY</div>
+        </div>
+      </div>
+      <div class="badge-official">
+        <div class="dot-live"></div>
+        <span>Official Portal</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Content -->
+  <main>
+    <div class="visual-container">
+      <svg width="44" height="48" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2L3 6.5V15.5C3 22.8 7.7 29.2 14 31C20.3 29.2 25 22.8 25 15.5V6.5L14 2Z" fill="#0B192C" stroke="#FFB800" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M14 8L8 11V15.5C8 19.8 10.5 23.8 14 25.2V8Z" fill="#FFB800" fill-opacity="0.9"/>
+      </svg>
+    </div>
+
+    <div class="status-pill">
+      <div class="radar-dot"></div>
+      <span>Website Under Maintenance</span>
+    </div>
+
+    <h1>WE'LL BE BACK SOON!</h1>
+    <div class="subtitle">We're Currently Improving Our Website</div>
+
+    <p class="description">
+      Broadbeach Online is undergoing scheduled maintenance as we work to improve your experience. 
+      We're making important improvements to deliver a better, faster and more reliable platform.
+    </p>
+
+    <div class="notice-box">
+      Our team is working on improvements. Thank you for your patience and understanding.
+    </div>
+
+    <div class="actions-group">
+      <a href="mailto:certification@broadbeach.in" class="btn btn-gold">
+        <span>Contact Us</span> &rarr;
+      </a>
+      <a href="mailto:certification@broadbeach.in" class="btn btn-outline">
+        <span>certification@broadbeach.in</span>
+      </a>
+      <a href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20have%20an%20enquiry%20regarding%20the%20scheduled%20maintenance." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+        <span>WhatsApp Support</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>Broadbeach Academy • Accredited ISO Certification Portal</div>
+      <div>&copy; 2026 Broadbeach Academy. All rights reserved. Thank you for visiting.</div>
+      <div>System Status: Upgrade in Progress</div>
+    </div>
+  </footer>
+</body>
+</html>
