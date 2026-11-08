@@ -443,7 +443,8 @@ const Certificate = () => {
     useEffect(() => {
         if (certificateNumber) {
             const nameParam = registeredName && registeredName !== "Student" ? `&name=${encodeURIComponent(registeredName)}` : "";
-            const verifyUrl = `${window.location.origin}/verify-certificate?certificate_number=${encodeURIComponent(certificateNumber)}${nameParam}`;
+            const baseOrigin = (import.meta.env.VITE_APP_URL || import.meta.env.VITE_SITE_URL || window.location.origin).replace(/\/$/, "");
+            const verifyUrl = `${baseOrigin}/verify-certificate?certificate_number=${encodeURIComponent(certificateNumber)}${nameParam}`;
             QRCode.toDataURL(verifyUrl, {
                 width: 320,
                 margin: 1,

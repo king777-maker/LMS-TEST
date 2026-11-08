@@ -7,10 +7,13 @@
  * Controlled by VITE_MAINTENANCE_MODE environment flag or direct toggle below.
  */
 
-// Production Maintenance Flag
+// Testing Clone Maintenance Flag:
+// Defaults to false so that the entire testing LMS (all courses, player, assessments,
+// student/admin dashboards) is fully functional and testable out of the box.
+// Can be toggled to true for testing maintenance behavior by setting VITE_MAINTENANCE_MODE=true.
 export const IS_MAINTENANCE_MODE = 
   import.meta.env.VITE_MAINTENANCE_MODE === "true" ||
   import.meta.env.VITE_MAINTENANCE_MODE === true ||
-  true; // Currently ACTIVE for scheduled maintenance
+  false;
 
 export default IS_MAINTENANCE_MODE;

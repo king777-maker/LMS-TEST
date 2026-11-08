@@ -1,7 +1,8 @@
 {
-  "name": "bb_exp-2.0",
+  "name": "lms-test",
   "private": true,
   "version": "2.0.0",
+  "description": "Broadbeach Online LMS — Independent Testing Clone (LMS-test)",
   "type": "module",
   "scripts": {
     "dev": "vite",

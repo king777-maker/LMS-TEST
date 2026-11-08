@@ -2,11 +2,15 @@ import axios from "axios";
 
 /**
  * Resolves the authoritative API Base URL:
- * - Trims whitespace & trailing slashes from VITE_API_URL
+ * - Trims whitespace & trailing slashes from VITE_API_URL if configured
+ * - In testing clone (LMS-test), defaults to local dev/test proxy ("/api") to prevent accidental production mutations
  * - If running in browser on a Vercel deployment (*.vercel.app), uses "/api" to route via Vercel Edge Proxy
- * - Otherwise falls back to localhost proxy in DEV or the direct production backend URL
  */
 export const getApiBaseUrl = () => {
+    // 1. Explicit environment variable takes highest precedence
+    const rawEnv = (import.meta.env.VITE_API_URL || "").trim().replace(/\/+$/, "");
+    if (rawEnv) return rawEnv;
+
     if (typeof window !== "undefined") {
         // Local development: use Vite dev server middleware (/api)
         if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
@@ -22,10 +26,8 @@ export const getApiBaseUrl = () => {
         return "/api";
     }
 
-    const rawEnv = (import.meta.env.VITE_API_URL || "").trim().replace(/\/+$/, "");
-    if (rawEnv) return rawEnv;
-
-    return "https://cadac.in/broadbeachlearning.com/broadbeach-backend/api";
+    // Testing clone safe fallback: route via proxy to prevent accidental production DB writes
+    return "/api";
 };
 
 export const API_BASE_URL = getApiBaseUrl();

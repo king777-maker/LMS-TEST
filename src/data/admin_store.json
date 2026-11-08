@@ -417,6 +417,79 @@
   ],
   "tickets": [
     {
+      "id": "ENQ-2026-MW6MM0FW-488",
+      "subject": "Offline Batch Enquiry: Professional Certification",
+      "category": "Offline Certification Enquiries",
+      "status": "open",
+      "priority": "medium",
+      "requester_name": "Probe Test",
+      "requester_email": "probe@test.com",
+      "requester_phone": "9999999999",
+      "company": "",
+      "designation": "",
+      "experience": "Not specified",
+      "training_location": "Bengaluru Center",
+      "preferred_timing": "Weekend Executive Batch",
+      "participants": "1 Candidate",
+      "timeframe": "Immediate",
+      "course_id": "offline-program",
+      "course_title": "Professional Certification",
+      "message": "Interested in offline training batch for Professional Certification",
+      "created_at": "2026-11-07T16:37:00.477Z",
+      "updated_at": "2026-11-07T16:37:00.477Z",
+      "replies": [
+        {
+          "id": "REP-1",
+          "sender_name": "Admissions Portal",
+          "sender_email": "system@broadbeachlearning.com",
+          "sender_role": "system",
+          "message": "Automated confirmation sent to candidate (probe@test.com). Enquiry ticket registered in Ticket Master.",
+          "timestamp": "2026-11-07T16:37:00.477Z"
+        }
+      ]
+    },
+    {
+      "id": "TICK-2026-4595",
+      "subject": "Automated QA Verification - LMS Sync",
+      "category": "Technical Issue",
+      "description": "Testing support ticket creation and resolution flow.",
+      "message": "Testing support ticket creation and resolution flow.",
+      "priority": "medium",
+      "status": "New",
+      "requester_name": "QA Verification Agent",
+      "requester_email": "qa.tester@broadbeach.in",
+      "course_name": null,
+      "certificate_id": null,
+      "assigned_to": "support.agent@broadbeach.in",
+      "created_at": "2026-11-07T03:16:47.319Z",
+      "updated_at": "2026-11-07T03:16:47.319Z",
+      "replies": [
+        {
+          "id": "MSG-mw5u0x93",
+          "sender_name": "QA Verification Agent",
+          "sender_email": "qa.tester@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Testing support ticket creation and resolution flow.",
+          "timestamp": "2026-11-07T03:16:47.319Z",
+          "created_at": "2026-11-07T03:16:47.319Z"
+        }
+      ],
+      "messages": [
+        {
+          "id": "MSG-mw5u0x93",
+          "sender_name": "QA Verification Agent",
+          "sender_email": "qa.tester@broadbeach.in",
+          "sender_type": "requester",
+          "sender_role": "learner",
+          "message": "Testing support ticket creation and resolution flow.",
+          "timestamp": "2026-11-07T03:16:47.319Z",
+          "created_at": "2026-11-07T03:16:47.319Z"
+        }
+      ],
+      "internal_notes": []
+    },
+    {
       "id": "TICK-2026-9818",
       "subject": "ISO 27001 Certificate Name Correction Request",
       "category": "Certificate Verification",
@@ -828,6 +901,42 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "LOG-MW6MM0FZ-616",
+      "timestamp": "2026-11-07T16:37:00.478Z",
+      "created_at": "2026-11-07T16:37:00.478Z",
+      "actor_name": "Probe Test",
+      "performed_by": "Probe Test",
+      "actor_email": "probe@test.com",
+      "performed_by_email": "probe@test.com",
+      "actor_role": "candidate",
+      "action_category": "TICKET",
+      "module": "Ticket Master",
+      "action": "OFFLINE_ENQUIRY_RECEIVED",
+      "target_type": "ticket",
+      "target_id": "ENQ-2026-MW6MM0FW-488",
+      "details": "Received offline course enquiry for 'Professional Certification' from Probe Test (probe@test.com, 9999999999). Visible in Ticket Master.",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
+      "id": "LOG-MW5U0X93-695",
+      "timestamp": "2026-11-07T03:16:47.319Z",
+      "created_at": "2026-11-07T03:16:47.319Z",
+      "actor_name": "QA Verification Agent",
+      "performed_by": "QA Verification Agent",
+      "actor_email": "qa.tester@broadbeach.in",
+      "performed_by_email": "qa.tester@broadbeach.in",
+      "actor_role": "learner",
+      "action_category": "TICKET",
+      "module": "Ticket Master",
+      "action": "TICKET_CREATED",
+      "target_type": "ticket",
+      "target_id": "TICK-2026-4595",
+      "details": "Learner support ticket TICK-2026-4595 [Technical Issue] submitted by QA Verification Agent (qa.tester@broadbeach.in): \"Automated QA Verification - LMS Sync\".",
+      "status": "success",
+      "outcome": "Success"
+    },
     {
       "id": "LOG-MW5T6N7K-363",
       "timestamp": "2026-11-07T02:53:14.624Z",

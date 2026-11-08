@@ -115,7 +115,9 @@ export async function renderCertificateCanvas({
 
   // 4. Dynamic Verification QR Code
   try {
-    const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
+    const origin = (typeof import.meta !== "undefined" && (import.meta.env?.VITE_APP_URL || import.meta.env?.VITE_SITE_URL))
+      ? (import.meta.env.VITE_APP_URL || import.meta.env.VITE_SITE_URL).replace(/\/+$/, "")
+      : (typeof window !== "undefined" ? window.location.origin : "http://localhost:3000");
     const nameParam = finalCandidateName && finalCandidateName !== "STUDENT" ? `&name=${encodeURIComponent(finalCandidateName)}` : "";
     const verifyUrl = `${origin}/verify-certificate?certificate_number=${encodeURIComponent(finalCertId)}${nameParam}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, {

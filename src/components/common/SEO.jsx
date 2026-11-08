@@ -1,7 +1,17 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const CANONICAL_ORIGIN = "https://cadac.in/broadbeachlearning.com";
+const getCanonicalOrigin = () => {
+    if (typeof import.meta !== "undefined" && (import.meta.env?.VITE_APP_URL || import.meta.env?.VITE_SITE_URL)) {
+        return (import.meta.env.VITE_APP_URL || import.meta.env.VITE_SITE_URL).replace(/\/+$/, "");
+    }
+    if (typeof window !== "undefined") {
+        return window.location.origin;
+    }
+    return "http://localhost:3000";
+};
+
+const CANONICAL_ORIGIN = getCanonicalOrigin();
 const DEFAULT_TITLE = "Broadbeach Online Academy | Globally Accredited Certifications & Courses";
 const DEFAULT_DESCRIPTION =
     "Master ISO, EHS, Quality, Information Security & Industrial Management standards with globally recognized self-paced online certifications, exams, and verified credentials.";
