@@ -23,9 +23,9 @@ const Footer = () => {
 
                         <Link to="/" className="inline-flex items-center select-none group mb-2" aria-label="Broadbeach Online Academy Home">
                             <img
-                                src="/assets/brand-logo.png"
+                                src="/assets/brand-logo.svg"
                                 alt="Broadbeach Online Academy"
-                                className="h-10 sm:h-12 w-auto object-contain shadow-sm select-none transition-transform group-hover:scale-105"
+                                className="h-10 sm:h-12 w-auto object-contain shadow-sm select-none transition-transform group-hover:scale-105 shrink-0"
                             />
                         </Link>
 
