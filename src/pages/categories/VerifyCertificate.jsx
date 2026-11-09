@@ -8,13 +8,15 @@ import {
   FaShieldAlt,
   FaTimesCircle,
   FaExclamationTriangle,
+  FaDownload,
 } from "react-icons/fa";
 
 import SEO from "../../components/common/SEO";
 import Breadcrumbs from "../../components/common/Breadcrumbs";
 import analytics from "../../utils/analytics";
 import { verifyCertificate } from "../../api/api";
-import { MANUAL_CERTIFICATES_REGISTRY } from "../../data/manualCertificatesData";
+import { MANUAL_CERTIFICATES_REGISTRY, findManualCertificate } from "../../data/manualCertificatesData";
+import { downloadCertificatePDF } from "../../utils/certificateGenerator";
 import { getAuthoritativeCourseName } from "../../data/freeCoursesData";
 import { normalizeCourseId } from "../../utils/progressTracker";
 import { useAuth } from "../../context/AuthContext";
@@ -245,11 +247,42 @@ const VerifyCertificate = () => {
       }
     } catch (e) {}
 
-    // 4. Check authoritative corporate manual certificates registry (5,400+ credentials)
+    // 4. Check overrides in localStorage (from Admin Panel edits/revocations)
     try {
-      const manualMatch = MANUAL_CERTIFICATES_REGISTRY.find(
-        (c) => String(c.certificate_number || "").trim().toUpperCase() === cleanNumber
-      );
+      const overrides = JSON.parse(localStorage.getItem("broadbeach_manual_cert_overrides") || "[]");
+      if (Array.isArray(overrides)) {
+        const cleanStripped = cleanNumber.replace(/[^A-Z0-9]/g, "");
+        const foundOverride = overrides.find((o) => {
+          if (!o || !o.certificate_number) return false;
+          const oNum = String(o.certificate_number).trim().toUpperCase();
+          return oNum === cleanNumber || oNum.replace(/[^A-Z0-9]/g, "") === cleanStripped;
+        });
+        if (foundOverride) {
+          if (foundOverride._override_action === "delete") return null;
+          const isRev = foundOverride.status === "revoked" || foundOverride.verification_status === "Revoked";
+          return {
+            certificate_number: foundOverride.certificate_number,
+            student_name: foundOverride.student_name,
+            course_name: foundOverride.course_name || "Professional Certification",
+            score: 100,
+            total_questions: 10,
+            percentage: 100,
+            issued_at: foundOverride.issue_date,
+            completion_date: foundOverride.completion_date || foundOverride.issue_date,
+            certificate_number_status: isRev ? 0 : 1,
+            verification_status: isRev ? "Revoked" : "Verified",
+            source: "corporate_manual_registry",
+            issuing_organization: foundOverride.issuing_organization || "Broadbeach Academy",
+            authorized_signatory: foundOverride.authorized_signatory || "Dr. K. R. Sharma, Academic Director",
+            pdf_path: null,
+          };
+        }
+      }
+    } catch (e) {}
+
+    // 5. Check authoritative corporate manual certificates registry (5,462 credentials)
+    try {
+      const manualMatch = findManualCertificate(cleanNumber);
       if (manualMatch) {
         const isRevoked = manualMatch.status === "revoked" || manualMatch.verification_status === "Revoked";
         return {
@@ -292,12 +325,32 @@ const VerifyCertificate = () => {
       return;
     }
 
+    setLoading(true);
+    setResult(null);
+
+    // FAST PATH: Authoritative manual registry / local verified records
     const localMatch = findLocalCertificate(certificate);
+    if (localMatch) {
+      if (localMatch.certificate_number_status === 0 || localMatch.verification_status === "Revoked") {
+        setResult({
+          status: "revoked",
+          success: false,
+          message: "Revoked Certificate — this credential has been revoked and is no longer valid.",
+          data: localMatch,
+        });
+      } else {
+        setResult({
+          status: "valid",
+          success: true,
+          message: "Valid Certificate — confirmed by authentic Broadbeach Academy records.",
+          data: localMatch,
+        });
+      }
+      setLoading(false);
+      return;
+    }
 
     try {
-      setLoading(true);
-      setResult(null);
-
       analytics.certificateVerifyAttempt(certificate.length);
 
       const response = await verifyCertificate(certificate);
@@ -333,27 +386,6 @@ const VerifyCertificate = () => {
         return;
       }
 
-      // If remote search did not return a match, check local & manual registry fallback
-      if (localMatch) {
-        if (localMatch.certificate_number_status === 0 || localMatch.verification_status === "Revoked") {
-          setResult({
-            status: "revoked",
-            success: false,
-            message: "Revoked Certificate — this credential has been revoked and is no longer valid.",
-            data: localMatch,
-          });
-          return;
-        }
-
-        setResult({
-          status: "valid",
-          success: true,
-          message: "Valid Certificate — confirmed by authentic Broadbeach Academy records.",
-          data: localMatch,
-        });
-        return;
-      }
-
       setResult({
         status: "invalid",
         success: false,
@@ -365,14 +397,15 @@ const VerifyCertificate = () => {
     } catch (error) {
       console.error("CERTIFICATE VERIFICATION ERROR:", error);
 
-      // Check if certificate exists in local / manual registry
-      if (localMatch) {
-        if (localMatch.certificate_number_status === 0 || localMatch.verification_status === "Revoked") {
+      // Re-check local fallback if remote failed
+      const fallbackMatch = findLocalCertificate(certificate);
+      if (fallbackMatch) {
+        if (fallbackMatch.certificate_number_status === 0 || fallbackMatch.verification_status === "Revoked") {
           setResult({
             status: "revoked",
             success: false,
             message: "Revoked Certificate — this credential has been revoked and is no longer valid.",
-            data: localMatch,
+            data: fallbackMatch,
           });
           return;
         }
@@ -381,7 +414,7 @@ const VerifyCertificate = () => {
           status: "valid",
           success: true,
           message: "Valid Certificate — confirmed by authentic Broadbeach Academy records.",
-          data: localMatch,
+          data: fallbackMatch,
         });
         return;
       }
@@ -873,19 +906,10 @@ const VerifyCertificate = () => {
 
 
                       {/* =================================================
-                          PDF
+                          PDF DOWNLOAD & VIEW
                       ================================================= */}
-
-                      {data.pdf_path && (
-
-                        <div className="
-                          mt-8
-                          border-t
-                          border-green-200
-                          pt-6
-                          text-center
-                        ">
-
+                      <div className="mt-8 border-t border-green-200 pt-6 flex flex-wrap items-center justify-center gap-3">
+                        {data.pdf_path ? (
                           <a
                             href={data.pdf_path}
                             target="_blank"
@@ -894,10 +918,30 @@ const VerifyCertificate = () => {
                           >
                             View Certificate PDF
                           </a>
-
-                        </div>
-
-                      )}
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={async () => {
+                              try {
+                                await downloadCertificatePDF({
+                                  candidateName: data.student_name || "Broadbeach Learner",
+                                  courseName: data.course_name || "Professional Certification",
+                                  certificateNumber: data.certificate_number,
+                                  issueDate: data.issued_at || data.completion_date,
+                                  authorizedSignatory: data.authorized_signatory || "Dr. K. R. Sharma, Academic Director",
+                                  issuingOrg: data.issuing_organization || "Broadbeach Academy",
+                                });
+                              } catch (err) {
+                                console.error("PDF generation failed:", err);
+                              }
+                            }}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#08182D] hover:bg-[#0A2242] px-7 py-3 text-xs sm:text-sm font-bold text-amber-300 transition shadow-sm cursor-pointer"
+                          >
+                            <FaDownload className="text-xs" />
+                            <span>Download Official Certificate PDF</span>
+                          </button>
+                        )}
+                      </div>
 
                     </div>
 

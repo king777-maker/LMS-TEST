@@ -530,6 +530,17 @@ export default defineConfig({
     courseEnquiryDevPlugin(),
     assessmentDevPlugin(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("manualCertificatesData")) {
+            return "certificates-registry";
+          }
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
     host: "localhost",
