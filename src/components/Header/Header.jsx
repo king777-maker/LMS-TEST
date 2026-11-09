@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <>
       <header className="sticky top-0 z-50 w-full shadow-md">
-        {/* Tier 1: Brand Accent Yellow Top Bar with Email, Socials, Blogs, Contact, Log In, Register */}
+        {/* Tier 1: Deep Navy Harmonized Top Bar with Email, Socials, Blogs, Contact, Log In, Register */}
         <TopBar
           onRequestCertificate={openRequestCertificate}
           onOpenLogin={openLogin}

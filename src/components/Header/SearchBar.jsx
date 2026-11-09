@@ -63,13 +63,13 @@ const SearchBar = ({ onSelectCourse }) => {
   return (
     <div ref={containerRef} className="relative z-40">
       <div
-        className={`flex items-center h-8 px-2.5 rounded-lg transition-all duration-200 w-32 sm:w-40 lg:w-44 max-w-[170px] border ${
+        className={`flex items-center h-10 px-3 rounded-xl transition-all duration-200 w-32 sm:w-40 lg:w-44 max-w-[170px] border ${
           isFocused
             ? "bg-white/20 border-white/40 shadow-sm ring-1 ring-white/30"
             : "bg-white/10 hover:bg-white/15 border-white/20"
         }`}
       >
-        <FaSearch className="text-white/80 text-[10px] flex-shrink-0 mr-1.5" />
+        <FaSearch className="text-white/80 text-xs flex-shrink-0 mr-2" />
         <input
           type="text"
           value={query}
@@ -77,7 +77,7 @@ const SearchBar = ({ onSelectCourse }) => {
           onFocus={() => setIsFocused(true)}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search..."
-          className="w-full min-w-0 bg-transparent text-white placeholder-white/75 text-[11px] sm:text-xs outline-none font-medium leading-none"
+          className="w-full min-w-0 bg-transparent text-white placeholder-white/75 text-xs outline-none font-medium leading-none"
         />
         {query && (
           <button

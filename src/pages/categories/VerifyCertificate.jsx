@@ -8,7 +8,6 @@ import {
   FaShieldAlt,
   FaTimesCircle,
   FaExclamationTriangle,
-  FaDownload,
 } from "react-icons/fa";
 
 import SEO from "../../components/common/SEO";
@@ -16,7 +15,6 @@ import Breadcrumbs from "../../components/common/Breadcrumbs";
 import analytics from "../../utils/analytics";
 import { verifyCertificate } from "../../api/api";
 import { MANUAL_CERTIFICATES_REGISTRY, findManualCertificate } from "../../data/manualCertificatesData";
-import { downloadCertificatePDF } from "../../utils/certificateGenerator";
 import { getAuthoritativeCourseName } from "../../data/freeCoursesData";
 import { normalizeCourseId } from "../../utils/progressTracker";
 import { useAuth } from "../../context/AuthContext";
@@ -887,45 +885,6 @@ const VerifyCertificate = () => {
                           }
                         />
 
-                      </div>
-
-
-                      {/* =================================================
-                          PDF DOWNLOAD & VIEW
-                      ================================================= */}
-                      <div className="mt-8 border-t border-green-200 pt-6 flex flex-wrap items-center justify-center gap-3">
-                        {data.pdf_path ? (
-                          <a
-                            href={data.pdf_path}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center rounded-xl bg-[#08182D] hover:bg-[#0A2242] px-7 py-3 text-xs sm:text-sm font-bold text-amber-300 transition shadow-sm"
-                          >
-                            View Certificate PDF
-                          </a>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={async () => {
-                              try {
-                                await downloadCertificatePDF({
-                                  candidateName: data.student_name || "Broadbeach Learner",
-                                  courseName: data.course_name || "Professional Certification",
-                                  certificateNumber: data.certificate_number,
-                                  issueDate: data.issued_at || data.completion_date,
-                                  authorizedSignatory: data.authorized_signatory || "Dr. K. R. Sharma, Academic Director",
-                                  issuingOrg: data.issuing_organization || "Broadbeach Academy",
-                                });
-                              } catch (err) {
-                                console.error("PDF generation failed:", err);
-                              }
-                            }}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#08182D] hover:bg-[#0A2242] px-7 py-3 text-xs sm:text-sm font-bold text-amber-300 transition shadow-sm cursor-pointer"
-                          >
-                            <FaDownload className="text-xs" />
-                            <span>Download Official Certificate PDF</span>
-                          </button>
-                        )}
                       </div>
 
                     </div>

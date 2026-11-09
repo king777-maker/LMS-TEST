@@ -21,27 +21,13 @@ const Footer = () => {
 
                     <div>
 
-                        <Link to="/" className="inline-flex items-center gap-3 select-none group mb-2" aria-label="Broadbeach Academy Home">
+                        <Link to="/" className="inline-flex items-center select-none group mb-2" aria-label="Broadbeach Online Academy Home">
                             <img
-                                src="/assets/cookie-preferences-icon.png"
+                                src="/assets/brand-logo.png"
                                 alt="Broadbeach Online Academy"
-                                width="56"
+                                className="h-12 sm:h-14 w-auto object-contain shadow-sm transition-transform group-hover:scale-105"
                                 height="56"
-                                className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl object-contain shadow-md transition-transform group-hover:scale-105 shrink-0"
                             />
-                            <div className="flex flex-col leading-tight">
-                                <div className="flex items-center gap-1.5">
-                                    <span className="text-xl sm:text-2xl font-black tracking-tight text-white">
-                                        Broadbeach
-                                    </span>
-                                    <span className="text-[#FFC72C] text-lg sm:text-xl font-black">
-                                        • Online
-                                    </span>
-                                </div>
-                                <span className="text-[10px] sm:text-[11px] font-extrabold tracking-[0.25em] text-white/80 uppercase mt-0.5">
-                                    ACADEMY
-                                </span>
-                            </div>
                         </Link>
 
                         <p
