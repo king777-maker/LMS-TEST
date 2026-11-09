@@ -337,7 +337,7 @@ export const CookieConsent = () => {
                                         onClick={handleClose}
                                         className="text-blue-600 hover:text-blue-800 hover:underline underline-offset-2 transition-colors cursor-pointer font-medium"
                                     >
-                                        Consent MGMT policy
+                                        Consent Mgmt policy
                                     </Link>
                                 </nav>
                             </div>
