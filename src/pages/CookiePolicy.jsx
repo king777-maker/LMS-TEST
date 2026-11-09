@@ -11,6 +11,7 @@ import {
   ExternalLink,
   ChevronRight
 } from "lucide-react";
+import CookieStorageDisclosure from "../components/common/CookieStorageDisclosure";
 
 const CookiePolicy = () => {
   const triggerCookieModal = () => {
@@ -122,6 +123,9 @@ const CookiePolicy = () => {
 
       {/* Main Content Area */}
       <main className="max-w-6xl mx-auto px-5 sm:px-8 py-12 space-y-10">
+        {/* Cookie Preference Storage Disclosure */}
+        <CookieStorageDisclosure />
+
         {/* Quick Consent Management Action Box */}
         <div className="bg-gradient-to-r from-blue-900 to-[#183B73] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl">

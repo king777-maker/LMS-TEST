@@ -76,6 +76,8 @@ import CancellationRefundPolicy from "./pages/CancellationRefundPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import DataCompliancePolicy from "./pages/DataCompliancePolicy";
+import DataProtectionPolicy from "./pages/DataProtectionPolicy";
+import ConsentManagementPolicy from "./pages/ConsentManagementPolicy";
 import AccessibilityStatement from "./pages/AccessibilityStatement";
 import CookiePolicy from "./pages/CookiePolicy";
 import RaiseATicket from "./pages/RaiseATicket";
@@ -510,6 +512,10 @@ function App() {
               element={<TermsAndConditions />}
             />
             <Route
+              path="/terms-and-conditions"
+              element={<TermsAndConditions />}
+            />
+            <Route
               path="/privacy-policy"
               element={<PrivacyPolicy />}
             />
@@ -528,6 +534,14 @@ function App() {
             <Route
               path="/data-compliance-policy"
               element={<DataCompliancePolicy />}
+            />
+            <Route
+              path="/data-protection-policy"
+              element={<DataProtectionPolicy />}
+            />
+            <Route
+              path="/consent-management-policy"
+              element={<ConsentManagementPolicy />}
             />
             <Route
               path="/raise-a-ticket"

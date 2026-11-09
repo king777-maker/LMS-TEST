@@ -832,33 +832,33 @@ const VerifyCertificate = () => {
                         />
 
 
-                        {/* STATUS */}
+                        {/* VERIFICATION STATUS */}
 
                         <CertificateDetail
-                          label="Status"
+                          label="Verification Status"
                           value={
                             isActive
-                              ? "Active"
+                              ? "Active / Valid"
                               : "Inactive"
                           }
                           green={isActive}
                         />
 
 
-                        {/* STUDENT NAME */}
+                        {/* CANDIDATE NAME */}
 
                         <CertificateDetail
-                          label="Student Name"
+                          label="Candidate Name"
                           value={
                             data.student_name
                           }
                         />
 
 
-                        {/* COURSE NAME */}
+                        {/* CERTIFICATION / COURSE NAME */}
 
                         <CertificateDetail
-                          label="Course Name"
+                          label="Certification / Course Name"
                           value={
                             data.course_name ||
                             "—"
@@ -866,39 +866,24 @@ const VerifyCertificate = () => {
                         />
 
 
-                        {/* SCORE */}
+                        {/* ISSUE DATE */}
 
                         <CertificateDetail
-                          label="Score"
-                          value={
-                            data.total_questions
-                              ? `${data.score} / ${data.total_questions}`
-                              : data.score
-                          }
-                        />
-
-
-                        {/* PERCENTAGE */}
-
-                        <CertificateDetail
-                          label="Percentage"
-                          value={
-                            data.percentage !== null &&
-                            data.percentage !== undefined
-                              ? `${data.percentage}%`
-                              : "—"
-                          }
-                        />
-
-
-                        {/* DATE OF ISSUE */}
-
-                        <CertificateDetail
-                          label="Date of Issue"
+                          label="Issue Date"
                           value={
                             formatDate(
-                              data.issued_at
+                              data.issued_at || data.completion_date
                             )
+                          }
+                        />
+
+
+                        {/* VALIDITY */}
+
+                        <CertificateDetail
+                          label="Validity"
+                          value={
+                            data.validity || "Lifetime"
                           }
                         />
 

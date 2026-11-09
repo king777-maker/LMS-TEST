@@ -13,6 +13,7 @@ import {
   Clock,
   Globe
 } from "lucide-react";
+import CookieStorageDisclosure from "../components/common/CookieStorageDisclosure";
 
 const PrivacyPolicy = () => {
   return (
@@ -57,6 +58,9 @@ const PrivacyPolicy = () => {
 
       {/* Main Content Area */}
       <main className="max-w-5xl mx-auto px-5 sm:px-8 py-12 space-y-10">
+        {/* Cookie and Privacy Preference Storage Disclosure */}
+        <CookieStorageDisclosure />
+
         {/* Executive Summary Card */}
         <div className="bg-white rounded-3xl border border-gray-150 p-6 sm:p-8 shadow-xs space-y-3">
           <h2 className="text-lg sm:text-xl font-bold text-[#0B315B] flex items-center gap-2">
