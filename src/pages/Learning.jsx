@@ -395,9 +395,9 @@ const Learning = () => {
                     <div className="flex items-center gap-2.5">
                         {/* Broadbeach Logo Icon */}
                         <img
-                            src="/logo.jpg"
+                            src="/assets/cookie-preferences-icon.png"
                             alt="Broadbeach Academy"
-                            className="w-6 h-6 rounded-md object-contain shrink-0"
+                            className="w-6 h-6 object-contain rounded-md shrink-0"
                             width={24}
                             height={24}
                         />

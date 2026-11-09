@@ -201,7 +201,7 @@ const AdminLayout = ({ children }) => {
         <div className="shrink-0 p-5 pb-3">
           <div className={`flex items-center gap-3 ${collapsed ? "justify-center" : "px-1"}`}>
             <img
-              src="/logo.jpg"
+              src="/assets/cookie-preferences-icon.png"
               alt="Broadbeach Logo"
               className="w-10 h-10 rounded-xl object-contain shadow-lg shrink-0"
               width={40}
@@ -332,7 +332,7 @@ const AdminLayout = ({ children }) => {
             <div className="shrink-0 flex items-center justify-between pb-4 border-b border-white/10 mb-2">
               <div className="flex items-center gap-3">
                 <img
-                  src="/logo.jpg"
+                  src="/assets/cookie-preferences-icon.png"
                   alt="Broadbeach Logo"
                   className="w-9 h-9 rounded-xl object-contain shadow-md shrink-0"
                   width={36}

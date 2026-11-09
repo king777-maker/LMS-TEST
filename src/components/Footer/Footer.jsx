@@ -23,7 +23,7 @@ const Footer = () => {
 
                         <Link to="/" className="inline-flex items-center gap-3 select-none group mb-2" aria-label="Broadbeach Academy Home">
                             <img
-                                src="/logo.jpg"
+                                src="/assets/cookie-preferences-icon.png"
                                 alt="Broadbeach Online Academy"
                                 width="56"
                                 height="56"

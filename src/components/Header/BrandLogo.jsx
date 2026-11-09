@@ -1,20 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import brandLogoImg from "../../assets/logo.jpg";
+import brandLogoImg from "../../assets/cookie-preferences-icon.png";
 
 const BrandLogo = ({ className = "" }) => {
   return (
     <Link
       to="/"
       aria-label="Broadbeach Academy Home"
-      className={`inline-flex items-center gap-2.5 transition-all duration-200 hover:opacity-95 select-none group ${className}`}
+      className={`inline-flex items-center gap-2.5 transition-all duration-200 hover:opacity-95 select-none ${className}`}
     >
-      {/* Brand Logo Emblem */}
+      {/* Brand Emblem */}
       <div className="relative flex items-center justify-center shrink-0">
         <img
-          src={brandLogoImg || "/logo.jpg"}
-          alt="Broadbeach Logo"
-          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-contain shadow-xs transition-transform duration-200 group-hover:scale-105 shrink-0"
+          src={brandLogoImg || "/assets/cookie-preferences-icon.png"}
+          alt="Broadbeach Academy Logo"
+          className="w-7 h-7 sm:w-8 sm:h-8 object-contain rounded-lg drop-shadow-sm transition-transform duration-200 hover:scale-105"
           width={32}
           height={32}
         />

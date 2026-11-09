@@ -161,7 +161,7 @@ const LoginPage = () => {
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_40px_rgba(11,49,91,0.06)] p-7 sm:p-9">
           <div className="text-center mb-8">
             <img
-              src="/logo.jpg"
+              src="/assets/cookie-preferences-icon.png"
               alt="Broadbeach Logo"
               className="w-14 h-14 rounded-2xl object-contain mx-auto mb-3.5 shadow-md"
               width={56}

@@ -13,10 +13,10 @@ export const CookieStorageDisclosure = () => {
         </div>
         <div className="space-y-1.5">
           <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-900">
-            Cookie and Privacy Preference Storage Disclosure
+            Cookie and Privacy Preference Storage
           </h3>
           <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
-            <strong>Cookie and Privacy Preference Storage:</strong> Broadbeach Online Academy does not transmit or store your cookie preference selections on its application servers. These preferences are retained locally within your browser or device storage and are used by your browser to remember your consent configuration. Clearing your browser's local storage or site data may reset these preferences.
+            Broadbeach Online Academy processes your cookie and privacy preference selections using the storage mechanisms implemented within your browser or device. Where preferences are retained locally, they remain within your browser's local storage or other applicable client-side storage. These selections are not transmitted to or retained on Broadbeach's application servers unless explicitly required by an identified backend consent-management function. Clearing your browser's stored site data may reset locally retained preferences, in which case you may be asked to provide your consent again.
           </p>
         </div>
       </div>
@@ -25,4 +25,3 @@ export const CookieStorageDisclosure = () => {
 };
 
 export default CookieStorageDisclosure;
-
