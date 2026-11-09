@@ -8,6 +8,7 @@ import {
   revokeManualCertificate,
   deleteManualCertificate,
 } from "../../api/adminApi";
+import { MANUAL_CERTIFICATES_REGISTRY } from "../../data/manualCertificatesData";
 import { downloadCertificatePDF } from "../../utils/certificateGenerator";
 import PinVerificationModal from "../../components/Admin/PinVerificationModal";
 import toast from "react-hot-toast";
@@ -62,8 +63,8 @@ const ManualCertMaster = () => {
   const { canManageCertificates } = useAdmin();
   const [searchParams] = useSearchParams();
 
-  const [certificates, setCertificates] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [certificates, setCertificates] = useState(MANUAL_CERTIFICATES_REGISTRY);
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [routeNotFound, setRouteNotFound] = useState(false);
@@ -117,6 +118,24 @@ const ManualCertMaster = () => {
   const [pinModalOpen, setPinModalOpen] = useState(false);
   const [pendingPinAction, setPendingPinAction] = useState(null);
 
+  // Self-healing: clear any legacy dummy storage with Alexander Wright
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const raw = localStorage.getItem("broadbeach_manual_certificates");
+        if (
+          raw &&
+          (raw.includes("Alexander Wright") ||
+            raw.includes("BBA-MC-2026-0001") ||
+            JSON.parse(raw).length < 100)
+        ) {
+          localStorage.removeItem("broadbeach_manual_certificates");
+          localStorage.removeItem("broadbeach_manual_cert_overrides");
+        }
+      } catch (e) {}
+    }
+  }, []);
+
   // Fetch manual certificates
   const fetchCertificates = async () => {
     try {
@@ -126,8 +145,12 @@ const ManualCertMaster = () => {
         search,
         status: statusFilter,
       });
-      if (res?.data) {
+      if (res?.data && res.data.length >= 100) {
         setCertificates(res.data);
+      } else if (res?.data && res.data.length > 0 && !res.data.some(c => c.student_name === "Alexander Wright")) {
+        setCertificates(res.data);
+      } else {
+        setCertificates(MANUAL_CERTIFICATES_REGISTRY);
       }
       if (res?.is_staged) {
         setRouteNotFound(true);
@@ -135,6 +158,7 @@ const ManualCertMaster = () => {
         setRouteNotFound(false);
       }
     } catch (err) {
+      setCertificates(MANUAL_CERTIFICATES_REGISTRY);
       if (err.isNotFound || err.status === 404 || String(err.message).includes("not found")) {
         setRouteNotFound(true);
         toast.dismiss("manual-cert-error");

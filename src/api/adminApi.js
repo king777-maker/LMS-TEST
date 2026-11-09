@@ -371,13 +371,26 @@ export const deleteOnlineCertificate = async (id) => {
 export const DEFAULT_STAGED_MANUAL_CERTS = MANUAL_CERTIFICATES_REGISTRY;
 
 export function getEffectiveManualCertificates() {
+  if (typeof window !== "undefined") {
+    try {
+      const raw = localStorage.getItem("broadbeach_manual_certificates");
+      if (
+        raw &&
+        (raw.includes("Alexander Wright") ||
+          raw.includes("BBA-MC-2026-0001") ||
+          JSON.parse(raw).length < 100)
+      ) {
+        localStorage.removeItem("broadbeach_manual_certificates");
+      }
+    } catch (e) {}
+  }
   const overrides = getStoredArray("broadbeach_manual_cert_overrides", []);
   const map = new Map();
   for (const c of MANUAL_CERTIFICATES_REGISTRY) {
     map.set(c.certificate_number, c);
   }
   const legacyLocal = getStoredArray("broadbeach_manual_certificates", null);
-  if (Array.isArray(legacyLocal) && legacyLocal.length > 2) {
+  if (Array.isArray(legacyLocal) && legacyLocal.length >= 100) {
     for (const c of legacyLocal) {
       if (c && c.certificate_number) {
         map.set(c.certificate_number, normalizeCertRecord(c));
