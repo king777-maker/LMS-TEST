@@ -393,11 +393,14 @@ const Learning = () => {
                     <div className="h-4 w-px bg-white/20" />
 
                     <div className="flex items-center gap-2.5">
-                        {/* Broadbeach Yellow Shield Logo Icon */}
-                        <svg width="22" height="24" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                            <path d="M12 1L2 4.5V12C2 18.5 6.3 24.5 12 26C17.7 24.5 22 18.5 22 12V4.5L12 1Z" fill="#F7C600" />
-                            <path d="M12 6L16.5 15.5L12 13.5L7.5 15.5L12 6Z" fill="#0B1B3D" />
-                        </svg>
+                        {/* Broadbeach Logo Icon */}
+                        <img
+                            src="/logo.jpg"
+                            alt="Broadbeach Academy"
+                            className="w-6 h-6 rounded-md object-contain shrink-0"
+                            width={24}
+                            height={24}
+                        />
                         <span className="font-extrabold text-sm sm:text-base text-[#F7C600] tracking-tight">
                             Broadbeach Academy
                         </span>

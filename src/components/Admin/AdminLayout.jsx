@@ -200,9 +200,13 @@ const AdminLayout = ({ children }) => {
         {/* --- Top Section: Stationary Brand Logo Header (Never scrolls) --- */}
         <div className="shrink-0 p-5 pb-3">
           <div className={`flex items-center gap-3 ${collapsed ? "justify-center" : "px-1"}`}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FFC72C] to-[#E0A708] flex items-center justify-center shadow-lg shadow-amber-500/10 shrink-0">
-              <FaShieldAlt className="text-[#0B1E36] text-xl" />
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="Broadbeach Logo"
+              className="w-10 h-10 rounded-xl object-contain shadow-lg shrink-0"
+              width={40}
+              height={40}
+            />
 
             {!collapsed && (
               <div className="flex flex-col leading-tight select-none">
@@ -327,9 +331,13 @@ const AdminLayout = ({ children }) => {
             {/* Header */}
             <div className="shrink-0 flex items-center justify-between pb-4 border-b border-white/10 mb-2">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#FFC72C] flex items-center justify-center text-[#0B1E36] font-bold shadow-md">
-                  <FaShieldAlt className="text-lg" />
-                </div>
+                <img
+                  src="/logo.jpg"
+                  alt="Broadbeach Logo"
+                  className="w-9 h-9 rounded-xl object-contain shadow-md shrink-0"
+                  width={36}
+                  height={36}
+                />
                 <div>
                   <span className="font-extrabold text-white text-base">Broadbeach</span>
                   <span className="text-[#FFC72C] font-bold text-xs ml-1.5 uppercase">Admin</span>

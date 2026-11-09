@@ -199,3 +199,4 @@ const DataProtectionPolicy = () => {
 };
 
 export default DataProtectionPolicy;
+

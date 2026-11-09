@@ -108,9 +108,13 @@ const RegisterPage = () => {
 
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_40px_rgba(11,49,91,0.06)] p-7 sm:p-9">
           <div className="text-center mb-8">
-            <div className="w-14 h-14 rounded-2xl bg-[#0B315B] text-[#FFDB58] flex items-center justify-center text-2xl mx-auto mb-3.5 shadow-md">
-              <FaShieldAlt />
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="Broadbeach Logo"
+              className="w-14 h-14 rounded-2xl object-contain mx-auto mb-3.5 shadow-md"
+              width={56}
+              height={56}
+            />
             <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0B315B] tracking-tight">
               Create Student Account
             </h1>
