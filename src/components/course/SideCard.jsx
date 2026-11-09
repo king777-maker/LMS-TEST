@@ -23,11 +23,11 @@ const SideCard = ({
             {title && (
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100">
                     {Icon && (
-                        <div className="w-9 h-9 shrink-0 rounded-xl bg-[#FFF7D6] flex items-center justify-center text-[#0B315B] shadow-xs">
+                        <div className="w-9 h-9 shrink-0 rounded-xl bg-[#FFF7D6] flex items-center justify-center text-[#131E4A] shadow-xs">
                             <Icon size={18} />
                         </div>
                     )}
-                    <h3 className="text-[#0B315B] font-bold text-sm sm:text-base tracking-tight">
+                    <h3 className="text-[#131E4A] font-bold text-sm sm:text-base tracking-tight">
                         {title}
                     </h3>
                 </div>

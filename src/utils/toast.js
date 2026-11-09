@@ -28,7 +28,7 @@ export const showToast = {
                 "aria-live": "polite",
             },
             style: {
-                background: "#0B315B",
+                background: "#131E4A",
                 color: "#FFFFFF",
                 border: "1px solid rgba(247, 198, 0, 0.4)",
                 fontSize: "14px",
@@ -39,7 +39,7 @@ export const showToast = {
             },
             iconTheme: {
                 primary: "#F7C600",
-                secondary: "#0B315B",
+                secondary: "#131E4A",
             },
             ...options,
         });

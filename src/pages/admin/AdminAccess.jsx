@@ -316,11 +316,11 @@ const AdminAccess = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#0B315B] text-gold flex items-center justify-center font-bold text-xl shadow-sm">
+            <div className="w-10 h-10 rounded-lg bg-[#131E4A] text-gold flex items-center justify-center font-bold text-xl shadow-sm">
               <FaUserShield />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-[#0B315B]">
+              <h1 className="text-2xl font-bold text-[#131E4A]">
                 Admin Access &amp; Security
               </h1>
               <p className="text-sm text-slate-500">
@@ -336,7 +336,7 @@ const AdminAccess = () => {
             onClick={() => setActiveTab("admins")}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
               activeTab === "admins"
-                ? "bg-[#0B315B] text-white shadow-sm"
+                ? "bg-[#131E4A] text-white shadow-sm"
                 : "text-slate-600 hover:text-slate-900"
             }`}
           >
@@ -347,7 +347,7 @@ const AdminAccess = () => {
             onClick={() => setActiveTab("matrix")}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
               activeTab === "matrix"
-                ? "bg-[#0B315B] text-white shadow-sm"
+                ? "bg-[#131E4A] text-white shadow-sm"
                 : "text-slate-600 hover:text-slate-900"
             }`}
           >
@@ -358,7 +358,7 @@ const AdminAccess = () => {
             onClick={() => setActiveTab("audit")}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
               activeTab === "audit"
-                ? "bg-[#0B315B] text-white shadow-sm"
+                ? "bg-[#131E4A] text-white shadow-sm"
                 : "text-slate-600 hover:text-slate-900"
             }`}
           >
@@ -383,7 +383,7 @@ const AdminAccess = () => {
                   placeholder="Search admin by name or email..."
                   value={searchUser}
                   onChange={(e) => setSearchUser(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 />
               </div>
 
@@ -392,7 +392,7 @@ const AdminAccess = () => {
                 <select
                   value={roleFilter}
                   onChange={(e) => setRoleFilter(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 >
                   <option value="all">All Roles</option>
                   <option value="super_admin">Super Admin</option>
@@ -407,7 +407,7 @@ const AdminAccess = () => {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 >
                   <option value="all">All Statuses</option>
                   <option value="active">Active</option>
@@ -420,7 +420,7 @@ const AdminAccess = () => {
             {isSuperAdmin && (
               <button
                 onClick={() => setCreateModalOpen(true)}
-                className="px-4 py-2 bg-[#0B315B] hover:bg-[#183B73] text-white rounded-lg text-sm font-semibold transition-all shadow-sm flex items-center justify-center gap-2 whitespace-nowrap"
+                className="px-4 py-2 bg-[#131E4A] hover:bg-[#183B73] text-white rounded-lg text-sm font-semibold transition-all shadow-sm flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 <FaPlus className="text-xs text-gold" />
                 Create Administrator
@@ -432,7 +432,7 @@ const AdminAccess = () => {
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
             {loadingAdmins ? (
               <div className="p-12 text-center text-slate-400">
-                <div className="w-8 h-8 border-4 border-[#0B315B] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                <div className="w-8 h-8 border-4 border-[#131E4A] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
                 Loading administrative personnel...
               </div>
             ) : filteredAdmins.length === 0 ? (
@@ -468,7 +468,7 @@ const AdminAccess = () => {
                         >
                           <td className="py-3 px-4">
                             <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 rounded-full bg-[#0B315B] text-gold font-bold flex items-center justify-center text-xs shadow-sm flex-shrink-0">
+                              <div className="w-9 h-9 rounded-full bg-[#131E4A] text-gold font-bold flex items-center justify-center text-xs shadow-sm flex-shrink-0">
                                 {admin.name
                                   ?.split(" ")
                                   .map((p) => p[0])
@@ -477,10 +477,10 @@ const AdminAccess = () => {
                                   .toUpperCase()}
                               </div>
                               <div>
-                                <div className="font-semibold text-[#0B315B] flex items-center gap-1.5">
+                                <div className="font-semibold text-[#131E4A] flex items-center gap-1.5">
                                   {admin.name}
                                   {isSelf && (
-                                    <span className="px-1.5 py-0.5 rounded text-[10px] bg-gold text-[#0B315B] font-bold">
+                                    <span className="px-1.5 py-0.5 rounded text-[10px] bg-gold text-[#131E4A] font-bold">
                                       YOU
                                     </span>
                                   )}
@@ -535,7 +535,7 @@ const AdminAccess = () => {
                                     setTargetAdmin({ ...admin });
                                     setEditModalOpen(true);
                                   }}
-                                  className="p-1.5 text-slate-500 hover:text-[#0B315B] hover:bg-slate-100 rounded-lg transition-all"
+                                  className="p-1.5 text-slate-500 hover:text-[#131E4A] hover:bg-slate-100 rounded-lg transition-all"
                                   title="Edit Role or Status"
                                 >
                                   <FaEdit className="text-sm" />
@@ -588,7 +588,7 @@ const AdminAccess = () => {
                 <FaShieldAlt />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-[#0B315B]">
+                <h2 className="text-lg font-bold text-[#131E4A]">
                   Role-Based Access Control (RBAC) Architecture
                 </h2>
                 <p className="text-sm text-slate-500 mt-0.5">
@@ -628,7 +628,7 @@ const AdminAccess = () => {
                 <tbody className="divide-y divide-slate-100">
                   {/* Module 1: Online Cert Master */}
                   <tr className="bg-slate-50/50">
-                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#0B315B] text-xs uppercase tracking-wider">
+                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#131E4A] text-xs uppercase tracking-wider">
                       Module 1: Online Cert Master
                     </td>
                   </tr>
@@ -663,7 +663,7 @@ const AdminAccess = () => {
 
                   {/* Module 2: Manual Cert Master */}
                   <tr className="bg-slate-50/50">
-                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#0B315B] text-xs uppercase tracking-wider">
+                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#131E4A] text-xs uppercase tracking-wider">
                       Module 2: Manual Cert Master
                     </td>
                   </tr>
@@ -698,7 +698,7 @@ const AdminAccess = () => {
 
                   {/* Module 3: Ticket Master */}
                   <tr className="bg-slate-50/50">
-                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#0B315B] text-xs uppercase tracking-wider">
+                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#131E4A] text-xs uppercase tracking-wider">
                       Module 3: Ticket Master
                     </td>
                   </tr>
@@ -726,7 +726,7 @@ const AdminAccess = () => {
 
                   {/* Module 4: Trash Bin */}
                   <tr className="bg-slate-50/50">
-                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#0B315B] text-xs uppercase tracking-wider">
+                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#131E4A] text-xs uppercase tracking-wider">
                       Module 4: Trash Bin
                     </td>
                   </tr>
@@ -756,7 +756,7 @@ const AdminAccess = () => {
 
                   {/* Module 5: Admin Access */}
                   <tr className="bg-slate-50/50">
-                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#0B315B] text-xs uppercase tracking-wider">
+                    <td colSpan="5" className="py-2.5 px-4 font-bold text-[#131E4A] text-xs uppercase tracking-wider">
                       Module 5: Admin Access
                     </td>
                   </tr>
@@ -812,13 +812,13 @@ const AdminAccess = () => {
                 <div className="pt-2 border-t border-slate-100 text-xs space-y-1">
                   <div className="text-slate-500 font-semibold">Scope summary:</div>
                   <div className="text-slate-600">
-                    <span className="font-medium text-[#0B315B]">Certs:</span> {r.permissions.online_certs}
+                    <span className="font-medium text-[#131E4A]">Certs:</span> {r.permissions.online_certs}
                   </div>
                   <div className="text-slate-600">
-                    <span className="font-medium text-[#0B315B]">Tickets:</span> {r.permissions.tickets}
+                    <span className="font-medium text-[#131E4A]">Tickets:</span> {r.permissions.tickets}
                   </div>
                   <div className="text-slate-600">
-                    <span className="font-medium text-[#0B315B]">Trash:</span> {r.permissions.trash}
+                    <span className="font-medium text-[#131E4A]">Trash:</span> {r.permissions.trash}
                   </div>
                 </div>
               </div>
@@ -843,7 +843,7 @@ const AdminAccess = () => {
                   value={logSearch}
                   onChange={(e) => setLogSearch(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && fetchLogs(logCategory, logSearch)}
-                  className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 />
               </div>
 
@@ -852,7 +852,7 @@ const AdminAccess = () => {
                 <select
                   value={logCategory}
                   onChange={(e) => setLogCategory(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 >
                   <option value="all">All Categories</option>
                   <option value="CERTIFICATE">Certificate Actions</option>
@@ -877,7 +877,7 @@ const AdminAccess = () => {
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
             {loadingLogs ? (
               <div className="p-12 text-center text-slate-400">
-                <div className="w-8 h-8 border-4 border-[#0B315B] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                <div className="w-8 h-8 border-4 border-[#131E4A] border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
                 Querying immutable audit logs...
               </div>
             ) : auditLogs.length === 0 ? (
@@ -948,7 +948,7 @@ const AdminAccess = () => {
                           </td>
                           <td className="py-3 px-4 text-slate-600 font-mono">
                             <span className="text-slate-400">{log.target_type}:</span>{" "}
-                            <span className="font-semibold text-[#0B315B]">{log.target_id || "N/A"}</span>
+                            <span className="font-semibold text-[#131E4A]">{log.target_id || "N/A"}</span>
                           </td>
                           <td className="py-3 px-4 text-slate-600 max-w-xs truncate" title={log.details}>
                             {log.details}
@@ -970,7 +970,7 @@ const AdminAccess = () => {
       {createModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full border border-slate-200 overflow-hidden">
-            <div className="px-6 py-4 bg-[#0B315B] text-white flex items-center justify-between">
+            <div className="px-6 py-4 bg-[#131E4A] text-white flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <FaUserShield className="text-gold" />
                 <h3 className="font-bold text-base">Provision New Administrator</h3>
@@ -1001,7 +1001,7 @@ const AdminAccess = () => {
                   placeholder="e.g. Rachel Adams"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 />
               </div>
 
@@ -1015,7 +1015,7 @@ const AdminAccess = () => {
                   placeholder="e.g. rachel@broadbeachlearning.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 />
               </div>
 
@@ -1026,7 +1026,7 @@ const AdminAccess = () => {
                 <select
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 >
                   <option value="support_agent">Support Agent (Tickets &amp; Learner Inquiries)</option>
                   <option value="cert_manager">Certificate Manager (Online &amp; Manual Cert Masters)</option>
@@ -1045,7 +1045,7 @@ const AdminAccess = () => {
                     value={formData.password}
                     placeholder="Defaults to: BBAdmin@2026!"
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    className="w-full px-3 py-2 border border-slate-200 rounded-lg font-mono focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg font-mono focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                   />
                   <FaKey className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs" />
                 </div>
@@ -1065,7 +1065,7 @@ const AdminAccess = () => {
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="px-5 py-2 bg-[#0B315B] hover:bg-[#183B73] text-white rounded-lg text-sm font-semibold transition-all shadow-sm flex items-center gap-2 disabled:opacity-50"
+                  className="px-5 py-2 bg-[#131E4A] hover:bg-[#183B73] text-white rounded-lg text-sm font-semibold transition-all shadow-sm flex items-center gap-2 disabled:opacity-50"
                 >
                   {actionLoading ? (
                     <>
@@ -1091,7 +1091,7 @@ const AdminAccess = () => {
       {editModalOpen && targetAdmin && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full border border-slate-200 overflow-hidden">
-            <div className="px-6 py-4 bg-[#0B315B] text-white flex items-center justify-between">
+            <div className="px-6 py-4 bg-[#131E4A] text-white flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <FaEdit className="text-gold" />
                 <h3 className="font-bold text-base">Modify Admin Account</h3>
@@ -1114,7 +1114,7 @@ const AdminAccess = () => {
                   required
                   value={targetAdmin.name}
                   onChange={(e) => setTargetAdmin({ ...targetAdmin, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 />
               </div>
 
@@ -1137,7 +1137,7 @@ const AdminAccess = () => {
                 <select
                   value={targetAdmin.role}
                   onChange={(e) => setTargetAdmin({ ...targetAdmin, role: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#0B315B]/20 focus:border-[#0B315B]"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#131E4A]/20 focus:border-[#131E4A]"
                 >
                   <option value="super_admin">Super Admin</option>
                   <option value="cert_manager">Certificate Manager</option>
@@ -1201,7 +1201,7 @@ const AdminAccess = () => {
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="px-5 py-2 bg-[#0B315B] hover:bg-[#183B73] text-white rounded-lg text-sm font-semibold transition-all shadow-sm flex items-center gap-2 disabled:opacity-50"
+                  className="px-5 py-2 bg-[#131E4A] hover:bg-[#183B73] text-white rounded-lg text-sm font-semibold transition-all shadow-sm flex items-center gap-2 disabled:opacity-50"
                 >
                   {actionLoading ? (
                     <>

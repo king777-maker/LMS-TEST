@@ -266,7 +266,7 @@ const Courses = () => {
               <div className="flex flex-wrap items-center justify-between gap-3 mb-6 text-xs sm:text-sm text-slate-500">
                 <div className="flex flex-wrap items-center gap-2">
                   <p>
-                    Showing <span className="font-bold text-[#0B315B]">{filteredCourses.length}</span> published certification{filteredCourses.length !== 1 ? "s" : ""}
+                    Showing <span className="font-bold text-[#131E4A]">{filteredCourses.length}</span> published certification{filteredCourses.length !== 1 ? "s" : ""}
                   </p>
 
                   {typeFilter !== "all" && (
@@ -295,7 +295,7 @@ const Courses = () => {
                   <button
                     type="button"
                     onClick={handleResetFilters}
-                    className="text-xs font-semibold text-[#0B315B] hover:text-[#F7C600] underline cursor-pointer"
+                    className="text-xs font-semibold text-[#131E4A] hover:text-[#F7C600] underline cursor-pointer"
                   >
                     Clear All Filters
                   </button>

@@ -1248,7 +1248,7 @@ const Certificate = () => {
                             gap-2
                             bg-[#F8D85A]
                             hover:bg-amber-300
-                            text-[#0B315B]
+                            text-[#131E4A]
                             font-bold
                             px-7
                             py-3

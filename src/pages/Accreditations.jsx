@@ -202,7 +202,7 @@ const Accreditations  = () => {
 
                     <h1
                         className="
-                            text-[#0B315B]
+                            text-[#131E4A]
 
                             text-[30px]
                             sm:text-[36px]
@@ -327,7 +327,7 @@ const Accreditations  = () => {
 
                                     bg-gradient-to-t
 
-                                    from-[#0B315B]/50
+                                    from-[#131E4A]/50
                                     to-transparent
                                 "
                             />
@@ -361,7 +361,7 @@ const Accreditations  = () => {
 
                                 <FaGlobeAmericas
                                     className="
-                                        text-[#0B315B]
+                                        text-[#131E4A]
                                         text-[30px]
                                     "
                                 />
@@ -371,7 +371,7 @@ const Accreditations  = () => {
 
                                     <h3
                                         className="
-                                            text-[#0B315B]
+                                            text-[#131E4A]
 
                                             text-[24px]
 
@@ -385,7 +385,7 @@ const Accreditations  = () => {
 
                                     <p
                                         className="
-                                            text-[#0B315B]/70
+                                            text-[#131E4A]/70
 
                                             text-[12px]
 
@@ -429,7 +429,7 @@ const Accreditations  = () => {
 
                         <h2
                             className="
-                                text-[#0B315B]
+                                text-[#131E4A]
 
                                 text-[28px]
                                 md:text-[36px]
@@ -538,7 +538,7 @@ const Accreditations  = () => {
 
             <section
                 className="
-                    bg-[#0B315B]
+                    bg-[#131E4A]
 
                     py-12
                     md:py-16
@@ -684,7 +684,7 @@ const Accreditations  = () => {
 
                         <h2
                             className="
-                                text-[#0B315B]
+                                text-[#131E4A]
 
                                 text-[28px]
                                 md:text-[36px]
@@ -848,7 +848,7 @@ const Accreditations  = () => {
 
                                 rounded-full
 
-                                bg-[#0B315B]
+                                bg-[#131E4A]
                                 text-white
 
                                 items-center
@@ -857,7 +857,7 @@ const Accreditations  = () => {
                                 shadow-lg
 
                                 hover:bg-[#FFDB58]
-                                hover:text-[#0B315B]
+                                hover:text-[#131E4A]
 
                                 transition-all
                                 duration-300
@@ -893,7 +893,7 @@ const Accreditations  = () => {
 
                                 rounded-full
 
-                                bg-[#0B315B]
+                                bg-[#131E4A]
                                 text-white
 
                                 items-center
@@ -902,7 +902,7 @@ const Accreditations  = () => {
                                 shadow-lg
 
                                 hover:bg-[#FFDB58]
-                                hover:text-[#0B315B]
+                                hover:text-[#131E4A]
 
                                 transition-all
                                 duration-300
@@ -981,7 +981,7 @@ const Accreditations  = () => {
 
                         <h2
                             className="
-                                text-[#0B315B]
+                                text-[#131E4A]
 
                                 text-[28px]
                                 md:text-[36px]
@@ -1062,7 +1062,7 @@ const Accreditations  = () => {
                                 items-center
                                 gap-3
 
-                                bg-[#0B315B]
+                                bg-[#131E4A]
                                 text-white
 
                                 px-6
@@ -1075,7 +1075,7 @@ const Accreditations  = () => {
                                 font-semibold
 
                                 hover:bg-[#FFDB58]
-                                hover:text-[#0B315B]
+                                hover:text-[#131E4A]
 
                                 transition-all
                                 duration-300
@@ -1127,7 +1127,7 @@ const Accreditations  = () => {
 
                                 bg-gradient-to-t
 
-                                from-[#0B315B]/50
+                                from-[#131E4A]/50
                                 to-transparent
                             "
                         />
@@ -1144,7 +1144,7 @@ const Accreditations  = () => {
                 CTA
             ================================================== */}
 
-            <section className="bg-[#0B315B]">
+            <section className="bg-[#131E4A]">
 
                 <div
                     className="
@@ -1224,7 +1224,7 @@ const Accreditations  = () => {
                             shrink-0
 
                             bg-[#FFDB58]
-                            text-[#0B315B]
+                            text-[#131E4A]
 
                             px-7
                             py-3.5
@@ -1344,7 +1344,7 @@ const CertificateCard = ({ certificate }) => {
 
                 <h3
                     className="
-                        text-[#0B315B]
+                        text-[#131E4A]
 
                         text-[16px]
 

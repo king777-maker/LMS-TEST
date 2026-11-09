@@ -134,7 +134,7 @@ export const CookieConsent = () => {
                     <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden text-slate-800 transition-all animate-fade-in flex flex-col">
                         
                         {/* ----------------- 1. NAVY HEADER (ATTACHED TO TOP, ROUNDED-T-2XL) ----------------- */}
-                        <div className="bg-[#0B315B] text-white px-5 py-3 rounded-t-2xl flex items-center justify-between gap-3 shrink-0">
+                        <div className="bg-[#131E4A] text-white px-5 py-3 rounded-t-2xl flex items-center justify-between gap-3 shrink-0">
                             <div className="flex items-center gap-3 min-w-0">
                                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white/10 p-0.5 flex items-center justify-center shrink-0">
                                     <img
@@ -182,7 +182,7 @@ export const CookieConsent = () => {
                             ) : (
                                 <div className="space-y-2.5">
                                     <div className="flex items-center justify-between pb-1 border-b border-slate-150">
-                                        <p className="text-xs sm:text-sm font-bold text-[#0B315B]">
+                                        <p className="text-xs sm:text-sm font-bold text-[#131E4A]">
                                             Broadbeach&copy; Online Academy — Preferences
                                         </p>
                                         <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
@@ -206,7 +206,7 @@ export const CookieConsent = () => {
                                                 role="switch"
                                                 aria-checked="true"
                                                 aria-disabled="true"
-                                                className="relative inline-flex h-5.5 w-10 shrink-0 items-center rounded-full bg-[#0B315B]/50 cursor-not-allowed opacity-75"
+                                                className="relative inline-flex h-5.5 w-10 shrink-0 items-center rounded-full bg-[#131E4A]/50 cursor-not-allowed opacity-75"
                                             >
                                                 <span className="inline-block h-4.5 w-4.5 transform rounded-full bg-white shadow-md translate-x-5 transition-transform" />
                                             </div>
@@ -238,8 +238,8 @@ export const CookieConsent = () => {
                                                         analytics: !prev.analytics,
                                                     }))
                                                 }
-                                                className={`relative inline-flex h-5.5 w-10 shrink-0 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#0B315B]/40 focus:ring-offset-1 cursor-pointer ${
-                                                    preferences.analytics ? "bg-[#0B315B]" : "bg-slate-300 hover:bg-slate-400"
+                                                className={`relative inline-flex h-5.5 w-10 shrink-0 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#131E4A]/40 focus:ring-offset-1 cursor-pointer ${
+                                                    preferences.analytics ? "bg-[#131E4A]" : "bg-slate-300 hover:bg-slate-400"
                                                 }`}
                                             >
                                                 <span
@@ -276,8 +276,8 @@ export const CookieConsent = () => {
                                                         functional: !prev.functional,
                                                     }))
                                                 }
-                                                className={`relative inline-flex h-5.5 w-10 shrink-0 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#0B315B]/40 focus:ring-offset-1 cursor-pointer ${
-                                                    preferences.functional ? "bg-[#0B315B]" : "bg-slate-300 hover:bg-slate-400"
+                                                className={`relative inline-flex h-5.5 w-10 shrink-0 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#131E4A]/40 focus:ring-offset-1 cursor-pointer ${
+                                                    preferences.functional ? "bg-[#131E4A]" : "bg-slate-300 hover:bg-slate-400"
                                                 }`}
                                             >
                                                 <span
@@ -350,7 +350,7 @@ export const CookieConsent = () => {
                                     <button
                                         type="button"
                                         onClick={() => setShowPreferences(true)}
-                                        className="inline-flex items-center gap-1.5 text-sm font-medium text-[#0B315B] hover:text-[#b89000] transition-colors order-2 sm:order-1 cursor-pointer py-1"
+                                        className="inline-flex items-center gap-1.5 text-sm font-medium text-[#131E4A] hover:text-[#b89000] transition-colors order-2 sm:order-1 cursor-pointer py-1"
                                     >
                                         <FaCog className="w-3.5 h-3.5 text-slate-500" />
                                         <span>Manage Preferences</span>
@@ -366,7 +366,7 @@ export const CookieConsent = () => {
                                         <button
                                             type="button"
                                             onClick={handleAcceptAll}
-                                            className="flex-1 sm:flex-none h-9 px-4 sm:px-5 text-sm font-bold text-[#0B315B] bg-[#F7C600] hover:bg-[#e5b700] rounded-lg shadow-2xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                                            className="flex-1 sm:flex-none h-9 px-4 sm:px-5 text-sm font-bold text-[#131E4A] bg-[#F7C600] hover:bg-[#e5b700] rounded-lg shadow-2xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                                         >
                                             <FaCheck className="w-3 h-3" />
                                             <span>Accept All</span>
@@ -378,9 +378,9 @@ export const CookieConsent = () => {
                                     <button
                                         type="button"
                                         onClick={() => setShowPreferences(false)}
-                                        className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-[#0B315B] transition-colors order-2 sm:order-1 cursor-pointer py-1 group"
+                                        className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-[#131E4A] transition-colors order-2 sm:order-1 cursor-pointer py-1 group"
                                     >
-                                        <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-0.5 text-slate-400 group-hover:text-[#0B315B]" />
+                                        <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-0.5 text-slate-400 group-hover:text-[#131E4A]" />
                                         <span>Back to Summary</span>
                                     </button>
                                     <div className="flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2">
@@ -394,7 +394,7 @@ export const CookieConsent = () => {
                                         <button
                                             type="button"
                                             onClick={handleSavePreferences}
-                                            className="flex-1 sm:flex-none h-9 px-4 sm:px-5 text-sm font-bold text-[#0B315B] bg-[#F7C600] hover:bg-[#e5b700] rounded-lg shadow-2xs transition-colors cursor-pointer flex items-center justify-center"
+                                            className="flex-1 sm:flex-none h-9 px-4 sm:px-5 text-sm font-bold text-[#131E4A] bg-[#F7C600] hover:bg-[#e5b700] rounded-lg shadow-2xs transition-colors cursor-pointer flex items-center justify-center"
                                         >
                                             Save My Preferences
                                         </button>

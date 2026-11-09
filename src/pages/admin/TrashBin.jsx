@@ -159,7 +159,7 @@ const TrashBin = () => {
             <FaTrashAlt />
             <span>Module 4 — Recovery & Retention Policy</span>
           </div>
-          <h1 className="text-2xl font-black text-[#0B315B] tracking-tight">
+          <h1 className="text-2xl font-black text-[#131E4A] tracking-tight">
             Trash Bin
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -199,7 +199,7 @@ const TrashBin = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search trash by ID, title, or admin..."
-            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#0B315B] focus:ring-1 focus:ring-[#0B315B] outline-hidden transition"
+            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#131E4A] focus:ring-1 focus:ring-[#131E4A] outline-hidden transition"
           />
         </div>
 
@@ -210,7 +210,7 @@ const TrashBin = () => {
               aria-label="Filter trash records by type"
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="bg-transparent font-bold text-[#0B315B] focus:outline-hidden cursor-pointer"
+              className="bg-transparent font-bold text-[#131E4A] focus:outline-hidden cursor-pointer"
             >
               {RECORD_TYPES.map((t) => (
                 <option key={t} value={t}>{t}</option>
@@ -247,7 +247,7 @@ const TrashBin = () => {
                   <tr key={item.id} className="hover:bg-slate-50/80 transition">
                     {/* Record ID */}
                     <td className="py-3.5 px-4 whitespace-nowrap">
-                      <span className="font-extrabold text-[#0B315B] font-mono">
+                      <span className="font-extrabold text-[#131E4A] font-mono">
                         {item.record_id}
                       </span>
                       <div className="text-[10px] text-slate-400">{item.id}</div>
@@ -293,7 +293,7 @@ const TrashBin = () => {
                         <button
                           type="button"
                           onClick={() => handleInspect(item)}
-                          className="p-1.5 text-slate-500 hover:text-[#0B315B] hover:bg-slate-100 rounded-lg transition cursor-pointer"
+                          className="p-1.5 text-slate-500 hover:text-[#131E4A] hover:bg-slate-100 rounded-lg transition cursor-pointer"
                           title="Inspect Record Snapshot"
                         >
                           <FaEye size={12} />
@@ -334,7 +334,7 @@ const TrashBin = () => {
                       <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3 text-lg font-bold">
                         <FaClock />
                       </div>
-                      <h3 className="font-extrabold text-sm text-[#0B315B] mb-1">
+                      <h3 className="font-extrabold text-sm text-[#131E4A] mb-1">
                         Trash Bin — Awaiting Server Deployment
                       </h3>
                       <p className="text-amber-800/90 leading-relaxed mb-4">
@@ -343,7 +343,7 @@ const TrashBin = () => {
                       <button
                         type="button"
                         onClick={fetchTrash}
-                        className="px-4 py-2 bg-[#0B315B] hover:bg-[#071F3B] text-white rounded-xl font-bold transition flex items-center gap-2 mx-auto cursor-pointer"
+                        className="px-4 py-2 bg-[#131E4A] hover:bg-[#071F3B] text-white rounded-xl font-bold transition flex items-center gap-2 mx-auto cursor-pointer"
                       >
                         <FaSyncAlt className={`text-xs ${loading ? "animate-spin" : ""}`} />
                         Retry Connection
@@ -378,11 +378,11 @@ const TrashBin = () => {
             </button>
 
             <div className="flex items-center gap-3 mb-4 pb-2 border-b border-slate-100">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 text-[#0B315B] flex items-center justify-center text-lg">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 text-[#131E4A] flex items-center justify-center text-lg">
                 <FaEye />
               </div>
               <div>
-                <h3 className="font-extrabold text-[#0B315B]">
+                <h3 className="font-extrabold text-[#131E4A]">
                   Trash Snapshot Inspection
                 </h3>
                 <span className="text-xs font-mono font-bold text-slate-500">

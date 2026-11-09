@@ -87,11 +87,11 @@ const CaptchaField = ({
                                 dark
                                     ? `
                                         bg-white
-                                        text-[#0B315B]
+                                        text-[#131E4A]
                                     `
                                     : `
                                         bg-[#F4F7FC]
-                                        text-[#0B315B]
+                                        text-[#131E4A]
                                         border
                                         border-gray-300
                                     `
@@ -134,11 +134,11 @@ const CaptchaField = ({
                                 dark
                                     ? `
                                         bg-white
-                                        text-[#0B315B]
+                                        text-[#131E4A]
                                     `
                                     : `
                                         bg-[#F4F7FC]
-                                        text-[#0B315B]
+                                        text-[#131E4A]
                                         border
                                         border-gray-300
                                     `

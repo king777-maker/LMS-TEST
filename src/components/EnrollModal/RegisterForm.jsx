@@ -757,7 +757,7 @@ const RegisterForm = () => {
                                     href="/terms-conditions"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[#2168D8] font-semibold underline hover:text-[#0B315B]"
+                                    className="text-[#2168D8] font-semibold underline hover:text-[#131E4A]"
                                 >
                                     Terms & Conditions
                                 </a>{" "}
@@ -766,7 +766,7 @@ const RegisterForm = () => {
                                     href="/privacy-policy"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[#2168D8] font-semibold underline hover:text-[#0B315B]"
+                                    className="text-[#2168D8] font-semibold underline hover:text-[#131E4A]"
                                 >
                                     Privacy Policy
                                 </a>
@@ -818,7 +818,7 @@ const RegisterForm = () => {
                             sm:text-[15px]
 
                             hover:bg-[#FFDB58]
-                            hover:text-[#0B315B]
+                            hover:text-[#131E4A]
 
                             disabled:opacity-60
                             disabled:cursor-not-allowed

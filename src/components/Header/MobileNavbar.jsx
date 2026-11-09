@@ -92,10 +92,10 @@ const MobileNavbar = ({
       />
 
       {/* Drawer Container */}
-      <div className="fixed inset-y-0 left-0 w-[88vw] max-w-[340px] bg-[#07162c] text-white shadow-2xl flex flex-col z-50 overflow-hidden animate-fadeInSlideDown border-r border-white/10">
+      <div className="fixed inset-y-0 left-0 w-[88vw] max-w-[340px] bg-[#131E4A] text-white shadow-2xl flex flex-col z-50 overflow-hidden animate-fadeInSlideDown border-r border-white/10">
         
         {/* Drawer Header */}
-        <div className="p-3.5 bg-[#050f1f] border-b border-white/10 flex items-center justify-between">
+        <div className="p-3.5 bg-[#0E1638] border-b border-white/10 flex items-center justify-between">
           <BrandLogo />
           <button
             type="button"

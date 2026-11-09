@@ -136,11 +136,11 @@ const LoginPage = () => {
         {gateMessage && (
           <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 sm:p-5 shadow-xs text-amber-950 animate-in fade-in duration-300">
             <div className="flex items-start gap-3">
-              <span className="w-9 h-9 rounded-xl bg-amber-400 text-[#0B315B] flex items-center justify-center text-lg shrink-0 shadow-xs">
+              <span className="w-9 h-9 rounded-xl bg-amber-400 text-[#131E4A] flex items-center justify-center text-lg shrink-0 shadow-xs">
                 <FaLock />
               </span>
               <div className="flex-1 min-w-0">
-                <h2 className="text-sm sm:text-base font-bold text-[#0B315B]">
+                <h2 className="text-sm sm:text-base font-bold text-[#131E4A]">
                   {gateMessage}
                 </h2>
                 <p className="text-xs text-slate-700 mt-1 leading-relaxed">
@@ -167,7 +167,7 @@ const LoginPage = () => {
               width={56}
               height={56}
             />
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0B315B] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#131E4A] tracking-tight">
               Student Sign In
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 mt-1.5">
@@ -197,7 +197,7 @@ const LoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@broadbeach.in"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-slate-800 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 transition-all bg-slate-50/50 focus:bg-white"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-slate-800 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all bg-slate-50/50 focus:bg-white"
                 />
               </div>
             </div>
@@ -215,7 +215,7 @@ const LoginPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full pl-10 pr-11 py-3 rounded-xl border border-slate-200 text-slate-800 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 transition-all bg-slate-50/50 focus:bg-white"
+                  className="w-full pl-10 pr-11 py-3 rounded-xl border border-slate-200 text-slate-800 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all bg-slate-50/50 focus:bg-white"
                 />
                 <button
                   type="button"
@@ -253,7 +253,7 @@ const LoginPage = () => {
                   value={userCaptcha}
                   onChange={(e) => setUserCaptcha(e.target.value)}
                   placeholder="Enter code"
-                  className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 uppercase font-mono tracking-wider bg-slate-50/50 focus:bg-white"
+                  className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 uppercase font-mono tracking-wider bg-slate-50/50 focus:bg-white"
                 />
               </div>
             </div>
@@ -297,7 +297,7 @@ const LoginPage = () => {
         {/* QA TESTING ACCOUNT HELPER CARD */}
         <div className="bg-blue-50/80 border border-blue-200/90 rounded-2xl p-4 sm:p-5 shadow-xs text-xs text-slate-700">
           <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
-            <div className="flex items-center gap-2 font-bold text-[#0B315B]">
+            <div className="flex items-center gap-2 font-bold text-[#131E4A]">
               <FaUserCheck className="text-sm text-blue-600" />
               <span>Dedicated Website Testing Account</span>
             </div>

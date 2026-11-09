@@ -21,11 +21,11 @@ export const EmptyState = ({
     return (
         <div className="py-14 sm:py-20 px-6 text-center max-w-md mx-auto flex flex-col items-center justify-center">
             {/* Visual Icon Container */}
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-slate-100 flex items-center justify-center text-[#0B315B] mb-5 border border-slate-200 shadow-inner">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-slate-100 flex items-center justify-center text-[#131E4A] mb-5 border border-slate-200 shadow-inner">
                 {icon ? (
                     icon
                 ) : (
-                    <FaSearch className="w-8 h-8 text-[#0B315B]/60" />
+                    <FaSearch className="w-8 h-8 text-[#131E4A]/60" />
                 )}
             </div>
 
@@ -41,7 +41,7 @@ export const EmptyState = ({
             {actionLink ? (
                 <Link
                     to={actionLink}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#0B315B] hover:bg-[#183B73] text-white text-sm font-semibold rounded-xl shadow-md transition-all hover:shadow-lg"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#131E4A] hover:bg-[#183B73] text-white text-sm font-semibold rounded-xl shadow-md transition-all hover:shadow-lg"
                 >
                     {actionText || "Browse All Courses"}
                 </Link>
@@ -49,7 +49,7 @@ export const EmptyState = ({
                 <button
                     type="button"
                     onClick={onAction}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#F7C600] hover:bg-[#e5b700] text-[#0B315B] text-sm font-bold rounded-xl shadow-sm transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#F7C600] hover:bg-[#e5b700] text-[#131E4A] text-sm font-bold rounded-xl shadow-sm transition-all"
                 >
                     <FaRedo className="w-3.5 h-3.5" />
                     {actionText || "Reset Filters"}

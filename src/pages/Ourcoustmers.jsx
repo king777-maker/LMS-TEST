@@ -200,7 +200,7 @@ const Ourcoustmers = () => {
                                     inline-block
 
                                     bg-[#FFDB58]
-                                    text-[#0B315B]
+                                    text-[#131E4A]
 
                                     px-4
                                     py-1.5
@@ -302,7 +302,7 @@ const Ourcoustmers = () => {
                             className="
                                 mt-3
 
-                                text-[#0B315B]
+                                text-[#131E4A]
 
                                 text-[28px]
                                 md:text-[36px]
@@ -460,7 +460,7 @@ const Ourcoustmers = () => {
 
                     <div
                         className="
-                            bg-[#0B315B]
+                            bg-[#131E4A]
 
                             rounded-xl
 
@@ -617,7 +617,7 @@ const Ourcoustmers = () => {
 
                             <p
                                 className="
-                                    text-[#0B315B]
+                                    text-[#131E4A]
 
                                     text-[24px]
 
@@ -629,7 +629,7 @@ const Ourcoustmers = () => {
 
                             <p
                                 className="
-                                    text-[#0B315B]/70
+                                    text-[#131E4A]/70
 
                                     text-[13px]
 
@@ -670,7 +670,7 @@ const Ourcoustmers = () => {
                             className="
                                 mt-3
 
-                                text-[#0B315B]
+                                text-[#131E4A]
 
                                 text-[28px]
                                 md:text-[36px]
@@ -740,7 +740,7 @@ const Ourcoustmers = () => {
                 CTA
             ================================================== */}
 
-            <section className="bg-[#0B315B]">
+            <section className="bg-[#131E4A]">
 
                 <div
                     className="
@@ -820,7 +820,7 @@ const Ourcoustmers = () => {
                             shrink-0
 
                             bg-[#FFDB58]
-                            text-[#0B315B]
+                            text-[#131E4A]
 
                             px-7
                             py-3.5
@@ -912,7 +912,7 @@ const TeamCard = ({ member }) => {
                         h-10
 
                         bg-[#FFDB58]
-                        text-[#0B315B]
+                        text-[#131E4A]
 
                         rounded-full
 
@@ -940,7 +940,7 @@ const TeamCard = ({ member }) => {
 
                 <h3
                     className="
-                        text-[#0B315B]
+                        text-[#131E4A]
 
                         text-[18px]
 
@@ -999,7 +999,7 @@ const CultureItem = ({
 
                     bg-[#FFF5C4]
 
-                    text-[#0B315B]
+                    text-[#131E4A]
 
                     flex
                     items-center
@@ -1018,7 +1018,7 @@ const CultureItem = ({
 
                 <h3
                     className="
-                        text-[#0B315B]
+                        text-[#131E4A]
 
                         text-[16px]
 
@@ -1068,7 +1068,7 @@ const SectionTitle = ({
 
             <h2
                 className="
-                    text-[#0B315B]
+                    text-[#131E4A]
 
                     text-[27px]
                     md:text-[34px]

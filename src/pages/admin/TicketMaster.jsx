@@ -344,7 +344,7 @@ const TicketMaster = () => {
             <FaTicketAlt />
             <span>Module 3 — Centralized Helpdesk & Inquiries</span>
           </div>
-          <h1 className="text-2xl font-black text-[#0B315B] tracking-tight">
+          <h1 className="text-2xl font-black text-[#131E4A] tracking-tight">
             Ticket Master
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -357,7 +357,7 @@ const TicketMaster = () => {
             <button
               type="button"
               onClick={() => setCreateModalOpen(true)}
-              className="px-4 py-2.5 bg-[#0B315B] hover:bg-[#183B73] text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2 cursor-pointer"
+              className="px-4 py-2.5 bg-[#131E4A] hover:bg-[#183B73] text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2 cursor-pointer"
             >
               <FaPlus size={11} />
               <span>New Ticket</span>
@@ -384,7 +384,7 @@ const TicketMaster = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by ticket ID, requester, course, or subject..."
-              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#0B315B] focus:ring-1 focus:ring-[#0B315B] outline-hidden transition"
+              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#131E4A] focus:ring-1 focus:ring-[#131E4A] outline-hidden transition"
             />
           </div>
 
@@ -396,7 +396,7 @@ const TicketMaster = () => {
                 aria-label="Filter tickets by status"
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="bg-transparent font-bold text-[#0B315B] focus:outline-hidden cursor-pointer"
+                className="bg-transparent font-bold text-[#131E4A] focus:outline-hidden cursor-pointer"
               >
                 <option value="all">All Statuses</option>
                 {STATUSES.map((s) => (
@@ -412,7 +412,7 @@ const TicketMaster = () => {
                 aria-label="Filter tickets by priority"
                 value={priorityFilter}
                 onChange={(e) => setPriorityFilter(e.target.value)}
-                className="bg-transparent font-bold text-[#0B315B] focus:outline-hidden cursor-pointer"
+                className="bg-transparent font-bold text-[#131E4A] focus:outline-hidden cursor-pointer"
               >
                 <option value="all">All Priorities</option>
                 {PRIORITIES.map((p) => (
@@ -428,7 +428,7 @@ const TicketMaster = () => {
                 aria-label="Filter tickets by category"
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="bg-transparent font-bold text-[#0B315B] truncate focus:outline-hidden cursor-pointer"
+                className="bg-transparent font-bold text-[#131E4A] truncate focus:outline-hidden cursor-pointer"
               >
                 <option value="all">All Categories</option>
                 {CATEGORIES.map((c) => (
@@ -473,7 +473,7 @@ const TicketMaster = () => {
                   >
                     {/* ID */}
                     <td className="py-3.5 px-4 whitespace-nowrap">
-                      <span className="font-extrabold text-[#0B315B] font-mono group-hover:text-amber-600 transition">
+                      <span className="font-extrabold text-[#131E4A] font-mono group-hover:text-amber-600 transition">
                         {ticket.id}
                       </span>
                       <div className="text-[10px] text-slate-400">
@@ -543,7 +543,7 @@ const TicketMaster = () => {
                         <button
                           type="button"
                           onClick={() => handleOpenTicket(ticket)}
-                          className="px-2.5 py-1 bg-blue-50 text-[#0B315B] hover:bg-blue-100 font-bold rounded-lg text-xs transition cursor-pointer"
+                          className="px-2.5 py-1 bg-blue-50 text-[#131E4A] hover:bg-blue-100 font-bold rounded-lg text-xs transition cursor-pointer"
                         >
                           View / Reply
                         </button>
@@ -569,7 +569,7 @@ const TicketMaster = () => {
                       <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3 text-lg font-bold">
                         <FaClock />
                       </div>
-                      <h3 className="font-extrabold text-sm text-[#0B315B] mb-1">
+                      <h3 className="font-extrabold text-sm text-[#131E4A] mb-1">
                         Support Ticket Master — Awaiting Server Deployment
                       </h3>
                       <p className="text-amber-800/90 leading-relaxed mb-4">
@@ -578,7 +578,7 @@ const TicketMaster = () => {
                       <button
                         type="button"
                         onClick={fetchTickets}
-                        className="px-4 py-2 bg-[#0B315B] hover:bg-[#071F3B] text-white rounded-xl font-bold transition flex items-center gap-2 mx-auto cursor-pointer"
+                        className="px-4 py-2 bg-[#131E4A] hover:bg-[#071F3B] text-white rounded-xl font-bold transition flex items-center gap-2 mx-auto cursor-pointer"
                       >
                         <FaSyncAlt className={`text-xs ${loading ? "animate-spin" : ""}`} />
                         Retry Connection
@@ -608,7 +608,7 @@ const TicketMaster = () => {
             <div className="flex items-start justify-between pb-4 border-b border-slate-100 gap-3">
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span className="font-mono font-black text-base text-[#0B315B]">
+                  <span className="font-mono font-black text-base text-[#131E4A]">
                     {activeTicket.id}
                   </span>
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${getStatusBadge(activeTicket.status)}`}>
@@ -647,7 +647,7 @@ const TicketMaster = () => {
 
                 <div>
                   <div className="text-[10px] font-bold text-slate-400 uppercase">Related Course</div>
-                  <div className="font-bold text-[#0B315B] mt-0.5 truncate" title={activeTicket.related_course}>
+                  <div className="font-bold text-[#131E4A] mt-0.5 truncate" title={activeTicket.related_course}>
                     {activeTicket.related_course || "General Platform Inquiry"}
                   </div>
                   {activeTicket.enquiry_ref && (
@@ -672,7 +672,7 @@ const TicketMaster = () => {
               {canManageTickets && (
                 <div className="p-3 bg-blue-50/50 rounded-2xl border border-blue-100 flex flex-wrap items-center justify-between gap-3">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-bold text-[#0B315B]">Quick Status:</span>
+                    <span className="font-bold text-[#131E4A]">Quick Status:</span>
                     {STATUSES.map((st) => (
                       <button
                         key={st}
@@ -680,7 +680,7 @@ const TicketMaster = () => {
                         onClick={() => handleUpdateField("status", st)}
                         className={`px-2 py-0.8 rounded-lg text-[10px] font-bold border transition cursor-pointer ${
                           activeTicket.status === st
-                            ? "bg-[#0B315B] text-white border-[#0B315B]"
+                            ? "bg-[#131E4A] text-white border-[#131E4A]"
                             : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
                         }`}
                       >
@@ -690,7 +690,7 @@ const TicketMaster = () => {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#0B315B]">Assign:</span>
+                    <span className="font-bold text-[#131E4A]">Assign:</span>
                     <select
                       aria-label="Assign ticket to admin"
                       value={activeTicket.assigned_admin}
@@ -707,7 +707,7 @@ const TicketMaster = () => {
 
               {/* Conversation History */}
               <div>
-                <h4 className="font-extrabold text-[#0B315B] text-sm uppercase tracking-wider mb-3">
+                <h4 className="font-extrabold text-[#131E4A] text-sm uppercase tracking-wider mb-3">
                   Conversation History
                 </h4>
                 <div className="space-y-3">
@@ -724,7 +724,7 @@ const TicketMaster = () => {
                           }`}
                         >
                           <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-slate-200/50">
-                            <span className={`font-extrabold ${isAdmin ? "text-[#0B315B]" : "text-slate-800"}`}>
+                            <span className={`font-extrabold ${isAdmin ? "text-[#131E4A]" : "text-slate-800"}`}>
                               {msg.sender}
                             </span>
                             <span className="text-[10px] text-slate-400">
@@ -748,7 +748,7 @@ const TicketMaster = () => {
               {/* Reply Form */}
               {canManageTickets && (
                 <form onSubmit={handleSendReply} className="pt-2">
-                  <label className="block font-extrabold text-[#0B315B] uppercase tracking-wider mb-1">
+                  <label className="block font-extrabold text-[#131E4A] uppercase tracking-wider mb-1">
                     Send Reply to Requester
                   </label>
                   <textarea
@@ -756,13 +756,13 @@ const TicketMaster = () => {
                     value={replyText}
                     onChange={(e) => setReplyText(e.target.value)}
                     placeholder="Type your official response to the learner here..."
-                    className="w-full p-3 bg-slate-50 border border-slate-200 rounded-2xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden transition"
+                    className="w-full p-3 bg-slate-50 border border-slate-200 rounded-2xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden transition"
                   />
                   <div className="mt-2 flex justify-end">
                     <button
                       type="submit"
                       disabled={submittingReply || !replyText.trim()}
-                      className="px-5 py-2 bg-[#0B315B] hover:bg-[#183B73] disabled:bg-slate-300 text-white font-bold rounded-xl shadow-xs transition flex items-center gap-2 cursor-pointer"
+                      className="px-5 py-2 bg-[#131E4A] hover:bg-[#183B73] disabled:bg-slate-300 text-white font-bold rounded-xl shadow-xs transition flex items-center gap-2 cursor-pointer"
                     >
                       <FaPaperPlane size={11} />
                       <span>{submittingReply ? "Dispatching..." : "Send Reply to Learner"}</span>
@@ -860,7 +860,7 @@ const TicketMaster = () => {
                 <FaPlus />
               </div>
               <div>
-                <h3 className="text-lg font-black text-[#0B315B]">
+                <h3 className="text-lg font-black text-[#131E4A]">
                   Create Support Ticket
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -880,7 +880,7 @@ const TicketMaster = () => {
                   value={createForm.subject}
                   onChange={(e) => setCreateForm({ ...createForm, subject: e.target.value })}
                   placeholder="e.g. Assessment score review request"
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden"
                 />
               </div>
 
@@ -921,7 +921,7 @@ const TicketMaster = () => {
                   <select
                     value={createForm.category}
                     onChange={(e) => setCreateForm({ ...createForm, category: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#0B315B] focus:bg-white outline-hidden cursor-pointer"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#131E4A] focus:bg-white outline-hidden cursor-pointer"
                   >
                     {CATEGORIES.map((c) => (
                       <option key={c} value={c}>{c}</option>
@@ -935,7 +935,7 @@ const TicketMaster = () => {
                   <select
                     value={createForm.priority}
                     onChange={(e) => setCreateForm({ ...createForm, priority: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#0B315B] focus:bg-white outline-hidden cursor-pointer"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#131E4A] focus:bg-white outline-hidden cursor-pointer"
                   >
                     {PRIORITIES.map((p) => (
                       <option key={p} value={p}>{p}</option>
@@ -967,7 +967,7 @@ const TicketMaster = () => {
                   value={createForm.message}
                   onChange={(e) => setCreateForm({ ...createForm, message: e.target.value })}
                   placeholder="Detailed description of support request..."
-                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden"
+                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden"
                 />
               </div>
 
@@ -981,7 +981,7 @@ const TicketMaster = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-[#0B315B] hover:bg-[#183B73] text-white font-bold rounded-xl shadow-xs transition cursor-pointer"
+                  className="px-5 py-2 bg-[#131E4A] hover:bg-[#183B73] text-white font-bold rounded-xl shadow-xs transition cursor-pointer"
                 >
                   Create Ticket
                 </button>

@@ -183,7 +183,7 @@ const CookieConsentModal = () => {
               <button
                 type="button"
                 onClick={handleAcceptAll}
-                className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#FFDB58] hover:bg-amber-300 text-[#0B315B] transition shadow-md cursor-pointer flex-1 md:flex-initial text-center min-w-0"
+                className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#FFDB58] hover:bg-amber-300 text-[#131E4A] transition shadow-md cursor-pointer flex-1 md:flex-initial text-center min-w-0"
               >
                 Accept All
               </button>
@@ -219,7 +219,7 @@ const CookieConsentModal = () => {
                 <div>
                   <h3
                     id="cookie-modal-title"
-                    className="text-base sm:text-lg font-bold text-[#0B315B]"
+                    className="text-base sm:text-lg font-bold text-[#131E4A]"
                   >
                     Manage Consent & Storage Preferences
                   </h3>
@@ -378,7 +378,7 @@ const CookieConsentModal = () => {
               <button
                 type="button"
                 onClick={handleAcceptAll}
-                className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#FFDB58] hover:bg-amber-300 text-[#0B315B] transition shadow-md cursor-pointer"
+                className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#FFDB58] hover:bg-amber-300 text-[#131E4A] transition shadow-md cursor-pointer"
               >
                 Accept All
               </button>

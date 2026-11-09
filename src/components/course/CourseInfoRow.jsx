@@ -37,7 +37,7 @@ const CourseInfoRow = ({
                     size={18}
                     className="
                         shrink-0
-                        text-[#0B315B]
+                        text-[#131E4A]
                     "
                 />
 
@@ -48,7 +48,7 @@ const CourseInfoRow = ({
 
             <span
                 className="
-                    text-[#0B315B]
+                    text-[#131E4A]
 
                     text-sm
                     font-semibold

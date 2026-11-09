@@ -63,7 +63,7 @@ const TopBar = ({
   }, [currentUser]);
 
   return (
-    <div className="w-full bg-[#07162c] text-slate-200 border-b border-white/10 text-xs select-none relative z-50">
+    <div className="w-full bg-[#131E4A] text-slate-200 border-b border-white/10 text-xs select-none relative z-50">
       <div className="max-w-[1720px] mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between h-[30px] gap-1 sm:gap-3 min-w-0">
         
         {/* =========================================================

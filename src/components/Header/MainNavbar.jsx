@@ -102,7 +102,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
   return (
     <div
       ref={navContainerRef}
-      className="w-full bg-gradient-to-r from-[#174b85] via-[#1a5597] to-[#174b85] text-white relative shadow-md select-none z-40 border-t border-white/10"
+      className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
       <div className="max-w-[1720px] mx-auto px-2.5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[36px] sm:h-[37px] gap-2 sm:gap-3 min-w-0">

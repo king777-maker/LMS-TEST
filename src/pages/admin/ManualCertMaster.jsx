@@ -422,7 +422,7 @@ const ManualCertMaster = () => {
             <FaFileSignature />
             <span>Module 2 — Offline & Manual Certificate Authority</span>
           </div>
-          <h1 className="text-2xl font-black text-[#0B315B] tracking-tight">
+          <h1 className="text-2xl font-black text-[#131E4A] tracking-tight">
             Manual Cert Master
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -435,7 +435,7 @@ const ManualCertMaster = () => {
             <button
               type="button"
               onClick={() => setCreateModalOpen(true)}
-              className="px-4 py-2.5 bg-[#F7C600] hover:bg-amber-300 text-[#0B315B] text-xs font-black rounded-xl shadow-xs transition flex items-center gap-2 cursor-pointer"
+              className="px-4 py-2.5 bg-[#F7C600] hover:bg-amber-300 text-[#131E4A] text-xs font-black rounded-xl shadow-xs transition flex items-center gap-2 cursor-pointer"
             >
               <FaPlus />
               <span>Create Manual Certificate</span>
@@ -461,7 +461,7 @@ const ManualCertMaster = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search candidate, course, or certificate ID..."
-            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#0B315B] focus:ring-1 focus:ring-[#0B315B] outline-hidden transition"
+            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#131E4A] focus:ring-1 focus:ring-[#131E4A] outline-hidden transition"
           />
         </div>
 
@@ -472,7 +472,7 @@ const ManualCertMaster = () => {
               aria-label="Filter manual certificates by status"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-transparent font-bold text-[#0B315B] focus:outline-hidden cursor-pointer"
+              className="bg-transparent font-bold text-[#131E4A] focus:outline-hidden cursor-pointer"
             >
               <option value="all">All Manual Credentials</option>
               <option value="active">Active / Verified</option>
@@ -517,7 +517,7 @@ const ManualCertMaster = () => {
                       {/* ID */}
                       <td className="py-3 px-4 whitespace-nowrap">
                         <div className="flex items-center gap-1.5">
-                          <span className="font-extrabold text-[#0B315B] font-mono">
+                          <span className="font-extrabold text-[#131E4A] font-mono">
                             {cert.certificate_number}
                           </span>
                           <button
@@ -636,7 +636,7 @@ const ManualCertMaster = () => {
                               <button
                                 type="button"
                                 onClick={() => handleOpenHistory(cert)}
-                                className="p-1.5 text-slate-600 hover:text-[#0B315B] hover:bg-slate-100 rounded-lg transition cursor-pointer"
+                                className="p-1.5 text-slate-600 hover:text-[#131E4A] hover:bg-slate-100 rounded-lg transition cursor-pointer"
                                 title="View Correction & Issuance History"
                               >
                                 <FaHistory size={12} />
@@ -687,15 +687,15 @@ const ManualCertMaster = () => {
             <div className="flex flex-wrap items-center gap-3">
               <span>
                 Showing{" "}
-                <span className="font-extrabold text-[#0B315B]">
+                <span className="font-extrabold text-[#131E4A]">
                   {(currentPage - 1) * pageSize + 1}
                 </span>{" "}
                 to{" "}
-                <span className="font-extrabold text-[#0B315B]">
+                <span className="font-extrabold text-[#131E4A]">
                   {Math.min(currentPage * pageSize, filteredCerts.length)}
                 </span>{" "}
                 of{" "}
-                <span className="font-extrabold text-[#0B315B]">
+                <span className="font-extrabold text-[#131E4A]">
                   {filteredCerts.length.toLocaleString()}
                 </span>{" "}
                 certificates
@@ -710,7 +710,7 @@ const ManualCertMaster = () => {
                     setPageSize(Number(e.target.value));
                     setCurrentPage(1);
                   }}
-                  className="bg-white border border-slate-200 rounded-lg px-2 py-1 font-bold text-[#0B315B] focus:outline-hidden text-xs cursor-pointer"
+                  className="bg-white border border-slate-200 rounded-lg px-2 py-1 font-bold text-[#131E4A] focus:outline-hidden text-xs cursor-pointer"
                 >
                   <option value={25}>25</option>
                   <option value={50}>50</option>
@@ -739,7 +739,7 @@ const ManualCertMaster = () => {
                 <FaChevronLeft size={10} />
               </button>
 
-              <span className="px-3 py-1 font-bold text-[#0B315B] text-xs">
+              <span className="px-3 py-1 font-bold text-[#131E4A] text-xs">
                 Page {currentPage} of {totalPages}
               </span>
 
@@ -784,7 +784,7 @@ const ManualCertMaster = () => {
                 <FaFileSignature />
               </div>
               <div>
-                <h3 className="text-xl font-black text-[#0B315B]">
+                <h3 className="text-xl font-black text-[#131E4A]">
                   Issue Manual Certificate
                 </h3>
                 <p className="text-xs text-slate-500">
@@ -806,7 +806,7 @@ const ManualCertMaster = () => {
                     value={createForm.student_name}
                     onChange={(e) => setCreateForm({ ...createForm, student_name: e.target.value })}
                     placeholder="e.g. Vikramaditya Sharma"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden transition"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden transition"
                   />
                 </div>
 
@@ -819,7 +819,7 @@ const ManualCertMaster = () => {
                     value={createForm.candidate_email}
                     onChange={(e) => setCreateForm({ ...createForm, candidate_email: e.target.value })}
                     placeholder="learner@company.com (optional)"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden transition"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden transition"
                   />
                 </div>
               </div>
@@ -832,7 +832,7 @@ const ManualCertMaster = () => {
                 <select
                   value={createForm.course_name}
                   onChange={(e) => setCreateForm({ ...createForm, course_name: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-[#0B315B] focus:bg-white focus:border-[#0B315B] outline-hidden transition cursor-pointer"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-[#131E4A] focus:bg-white focus:border-[#131E4A] outline-hidden transition cursor-pointer"
                 >
                   {POPULAR_COURSES.map((c) => (
                     <option key={c} value={c}>{c}</option>
@@ -847,7 +847,7 @@ const ManualCertMaster = () => {
                     value={createForm.custom_course_name}
                     onChange={(e) => setCreateForm({ ...createForm, custom_course_name: e.target.value })}
                     placeholder="Enter custom approved qualification title..."
-                    className="w-full mt-2 px-3 py-2 bg-amber-50/50 border border-amber-300 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden transition"
+                    className="w-full mt-2 px-3 py-2 bg-amber-50/50 border border-amber-300 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden transition"
                   />
                 )}
               </div>
@@ -866,7 +866,7 @@ const ManualCertMaster = () => {
                         onChange={() => setAutoIdMode(true)}
                         name="idMode"
                       />
-                      <span className="font-semibold text-[#0B315B]">Auto-Generate</span>
+                      <span className="font-semibold text-[#131E4A]">Auto-Generate</span>
                     </label>
                     <label className="flex items-center gap-1.5 cursor-pointer text-xs">
                       <input
@@ -875,7 +875,7 @@ const ManualCertMaster = () => {
                         onChange={() => setAutoIdMode(false)}
                         name="idMode"
                       />
-                      <span className="font-semibold text-[#0B315B]">Controlled Manual ID</span>
+                      <span className="font-semibold text-[#131E4A]">Controlled Manual ID</span>
                     </label>
                   </div>
                 </div>
@@ -887,7 +887,7 @@ const ManualCertMaster = () => {
                     value={createForm.certificate_number}
                     onChange={(e) => setCreateForm({ ...createForm, certificate_number: e.target.value.toUpperCase() })}
                     placeholder="e.g. BBA-M-2026-0045"
-                    className="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl font-mono font-bold text-[#0B315B] outline-hidden uppercase"
+                    className="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl font-mono font-bold text-[#131E4A] outline-hidden uppercase"
                   />
                 ) : (
                   <p className="text-[11px] text-slate-500">
@@ -907,7 +907,7 @@ const ManualCertMaster = () => {
                     required
                     value={createForm.issue_date}
                     onChange={(e) => setCreateForm({ ...createForm, issue_date: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden transition"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden transition"
                   />
                 </div>
 
@@ -920,7 +920,7 @@ const ManualCertMaster = () => {
                     required
                     value={createForm.completion_date}
                     onChange={(e) => setCreateForm({ ...createForm, completion_date: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden transition"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden transition"
                   />
                 </div>
               </div>
@@ -946,7 +946,7 @@ const ManualCertMaster = () => {
                   <select
                     value={createForm.authorized_signatory}
                     onChange={(e) => setCreateForm({ ...createForm, authorized_signatory: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#0B315B] focus:bg-white focus:border-[#0B315B] outline-hidden transition cursor-pointer"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#131E4A] focus:bg-white focus:border-[#131E4A] outline-hidden transition cursor-pointer"
                   >
                     {SIGNATORIES.map((s) => (
                       <option key={s} value={s}>{s}</option>
@@ -964,7 +964,7 @@ const ManualCertMaster = () => {
                   <select
                     value={createForm.training_type}
                     onChange={(e) => setCreateForm({ ...createForm, training_type: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#0B315B] focus:bg-white focus:border-[#0B315B] outline-hidden transition cursor-pointer"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-[#131E4A] focus:bg-white focus:border-[#131E4A] outline-hidden transition cursor-pointer"
                   >
                     {TRAINING_TYPES.map((t) => (
                       <option key={t} value={t}>{t}</option>
@@ -981,7 +981,7 @@ const ManualCertMaster = () => {
                     value={createForm.notes}
                     onChange={(e) => setCreateForm({ ...createForm, notes: e.target.value })}
                     placeholder="e.g. Batch #BBA-BLR-44, WTC Hall"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden transition"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden transition"
                   />
                 </div>
               </div>
@@ -998,7 +998,7 @@ const ManualCertMaster = () => {
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="px-6 py-2.5 bg-[#0B315B] hover:bg-[#183B73] disabled:bg-slate-300 text-white font-extrabold rounded-xl shadow-md transition flex items-center gap-2 cursor-pointer"
+                  className="px-6 py-2.5 bg-[#131E4A] hover:bg-[#183B73] disabled:bg-slate-300 text-white font-extrabold rounded-xl shadow-md transition flex items-center gap-2 cursor-pointer"
                 >
                   {actionLoading ? "Issuing..." : "Issue & Register Certificate"}
                 </button>
@@ -1027,7 +1027,7 @@ const ManualCertMaster = () => {
                 <FaEdit />
               </div>
               <div>
-                <h3 className="text-lg font-black text-[#0B315B]">
+                <h3 className="text-lg font-black text-[#131E4A]">
                   Audited Certificate Correction
                 </h3>
                 <span className="text-xs font-mono font-bold text-amber-600">
@@ -1050,7 +1050,7 @@ const ManualCertMaster = () => {
                   required
                   value={editForm.student_name}
                   onChange={(e) => setEditForm({ ...editForm, student_name: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden"
                 />
               </div>
 
@@ -1063,7 +1063,7 @@ const ManualCertMaster = () => {
                   required
                   value={editForm.course_name}
                   onChange={(e) => setEditForm({ ...editForm, course_name: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden"
                 />
               </div>
 
@@ -1104,7 +1104,7 @@ const ManualCertMaster = () => {
                   value={editForm.correction_reason}
                   onChange={(e) => setEditForm({ ...editForm, correction_reason: e.target.value })}
                   placeholder="e.g. Typographical error in candidate surname, updated to match official ID."
-                  className="w-full p-2.5 bg-amber-50/40 border border-amber-300 rounded-xl font-medium focus:bg-white focus:border-[#0B315B] outline-hidden"
+                  className="w-full p-2.5 bg-amber-50/40 border border-amber-300 rounded-xl font-medium focus:bg-white focus:border-[#131E4A] outline-hidden"
                 />
               </div>
 
@@ -1119,7 +1119,7 @@ const ManualCertMaster = () => {
                 <button
                   type="submit"
                   disabled={actionLoading || !editForm.correction_reason.trim()}
-                  className="px-5 py-2 bg-[#0B315B] hover:bg-[#183B73] disabled:bg-slate-300 text-white font-extrabold rounded-xl shadow-xs transition cursor-pointer"
+                  className="px-5 py-2 bg-[#131E4A] hover:bg-[#183B73] disabled:bg-slate-300 text-white font-extrabold rounded-xl shadow-xs transition cursor-pointer"
                 >
                   {actionLoading ? "Saving..." : "Save Correction Audit"}
                 </button>
@@ -1144,11 +1144,11 @@ const ManualCertMaster = () => {
             </button>
 
             <div className="flex items-center gap-3 mb-4 pb-2 border-b border-slate-100">
-              <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#0B315B] flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#131E4A] flex items-center justify-center">
                 <FaHistory />
               </div>
               <div>
-                <h3 className="font-extrabold text-[#0B315B]">Certificate Audit Trail</h3>
+                <h3 className="font-extrabold text-[#131E4A]">Certificate Audit Trail</h3>
                 <span className="text-xs font-mono font-bold text-amber-600">
                   {selectedCert.certificate_number}
                 </span>
@@ -1166,7 +1166,7 @@ const ManualCertMaster = () => {
                       </span>
                     </div>
                     <div className="text-slate-500 mt-1">{h.details || h.reason}</div>
-                    <div className="text-[10px] text-[#0B315B] font-semibold mt-1">
+                    <div className="text-[10px] text-[#131E4A] font-semibold mt-1">
                       By: {h.by}
                     </div>
                   </div>

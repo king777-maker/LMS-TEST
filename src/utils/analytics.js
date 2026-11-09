@@ -81,7 +81,7 @@ export const trackEvent = (eventName, eventParams = {}) => {
     if (import.meta.env.DEV || import.meta.env.MODE === "development") {
         console.groupCollapsed(
             `%c[Analytics Event]%c ${eventName} %c${consentGranted ? "(Consent Granted)" : "(Consent Pending/Blocked)"}`,
-            "background: #0B315B; color: #F7C600; font-weight: bold; padding: 2px 6px; border-radius: 4px;",
+            "background: #131E4A; color: #F7C600; font-weight: bold; padding: 2px 6px; border-radius: 4px;",
             "font-weight: bold;",
             consentGranted ? "color: green;" : "color: orange;"
         );

@@ -407,7 +407,7 @@ const LoginForm = ({ onClose }) => {
                                 h-[52px]
                                 px-5
                                 bg-white
-                                text-[#0B315B]
+                                text-[#131E4A]
                                 rounded-lg
                                 flex
                                 items-center

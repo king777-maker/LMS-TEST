@@ -28,7 +28,7 @@ export const Breadcrumbs = ({ items = [] }) => {
                     <Link
                         to="/"
                         itemProp="item"
-                        className="flex items-center gap-1 text-slate-600 hover:text-[#0B315B] font-medium transition-colors"
+                        className="flex items-center gap-1 text-slate-600 hover:text-[#131E4A] font-medium transition-colors"
                     >
                         <FaHome className="w-3.5 h-3.5 text-[#F7C600]" aria-hidden="true" />
                         <span itemProp="name">Home</span>
@@ -55,7 +55,7 @@ export const Breadcrumbs = ({ items = [] }) => {
                                     <Link
                                         to={item.url}
                                         itemProp="item"
-                                        className="text-slate-600 hover:text-[#0B315B] font-medium transition-colors max-w-[150px] sm:max-w-xs truncate"
+                                        className="text-slate-600 hover:text-[#131E4A] font-medium transition-colors max-w-[150px] sm:max-w-xs truncate"
                                     >
                                         <span itemProp="name">{item.name}</span>
                                     </Link>
@@ -66,7 +66,7 @@ export const Breadcrumbs = ({ items = [] }) => {
                                 <span
                                     itemProp="name"
                                     aria-current="page"
-                                    className="font-semibold text-[#0B315B] max-w-[200px] sm:max-w-md truncate"
+                                    className="font-semibold text-[#131E4A] max-w-[200px] sm:max-w-md truncate"
                                 >
                                     {item.name}
                                     <meta itemProp="position" content={String(position)} />

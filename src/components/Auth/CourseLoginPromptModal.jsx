@@ -58,7 +58,7 @@ const CourseLoginPromptModal = ({ isOpen, onClose, courseData }) => {
       <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transform transition-all animate-scaleUp">
         
         {/* Top Decorative Header */}
-        <div className="bg-gradient-to-r from-[#0B315B] to-[#15467e] p-5 text-white flex items-center justify-between">
+        <div className="bg-gradient-to-r from-[#131E4A] to-[#15467e] p-5 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-300/40 flex items-center justify-center text-amber-300">
               <FaLock className="text-base" />
@@ -88,7 +88,7 @@ const CourseLoginPromptModal = ({ isOpen, onClose, courseData }) => {
           
           {/* Main Required Message */}
           <div className="bg-blue-50/80 border border-blue-200/80 rounded-xl p-4 text-center">
-            <p className="text-base sm:text-[17px] font-extrabold text-[#0B315B]">
+            <p className="text-base sm:text-[17px] font-extrabold text-[#131E4A]">
               “Please log in first to start this course.”
             </p>
           </div>
@@ -126,7 +126,7 @@ const CourseLoginPromptModal = ({ isOpen, onClose, courseData }) => {
             <button
               type="button"
               onClick={handleProceedLogin}
-              className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#0B315B] hover:bg-[#15467e] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition cursor-pointer active:scale-98 flex items-center justify-center gap-2 text-center"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#131E4A] hover:bg-[#15467e] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition cursor-pointer active:scale-98 flex items-center justify-center gap-2 text-center"
             >
               <FaSignInAlt className="text-xs" />
               <span>Log In</span>

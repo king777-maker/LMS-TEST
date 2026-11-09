@@ -533,7 +533,7 @@ const UserDropdown = ({
                                     className="
                                         !text-[13px]
                                         font-semibold
-                                        text-[#0B315B]
+                                        text-[#131E4A]
                                         truncate
                                     "
                                     title={email}

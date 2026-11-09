@@ -16,7 +16,7 @@ const SeeMoreButton = () => {
                 text-[14px]
                 font-semibold
 
-                hover:bg-[#0B315B]
+                hover:bg-[#131E4A]
 
                 transition-colors
                 duration-300

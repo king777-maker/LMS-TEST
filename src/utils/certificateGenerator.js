@@ -124,7 +124,7 @@ export async function renderCertificateCanvas({
       width: 280,
       margin: 1,
       color: {
-        dark: "#0b315b",
+        dark: "#131E4A",
         light: "#ffffff",
       },
     });

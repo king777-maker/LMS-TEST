@@ -802,7 +802,7 @@ const VerifyCertificate = () => {
                         {/* =================================================
                             COURSE NAME
                         ================================================= */}
-                        <p className="mt-2 text-sm sm:text-base font-bold leading-relaxed text-[#0B315B]">
+                        <p className="mt-2 text-sm sm:text-base font-bold leading-relaxed text-[#131E4A]">
                           {data.course_name || "—"}
                         </p>
 

@@ -144,7 +144,7 @@ const CookiePolicy = () => {
           <button
             type="button"
             onClick={triggerCookieModal}
-            className="px-6 py-3 rounded-xl font-bold text-xs sm:text-sm bg-[#FFDB58] hover:bg-amber-300 text-[#0B315B] transition shadow-md cursor-pointer shrink-0 flex items-center gap-2"
+            className="px-6 py-3 rounded-xl font-bold text-xs sm:text-sm bg-[#FFDB58] hover:bg-amber-300 text-[#131E4A] transition shadow-md cursor-pointer shrink-0 flex items-center gap-2"
           >
             <Sliders size={16} />
             <span>Customize Cookie Settings</span>

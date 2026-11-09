@@ -2,7 +2,7 @@ export const CourseDetailsSkeleton = () => {
     return (
         <div className="min-h-screen bg-[#F5F8FD] animate-pulse" aria-busy="true" aria-label="Loading course details">
             {/* Hero Banner Skeleton */}
-            <section className="bg-[#0B315B] py-14 sm:py-20 px-4 sm:px-6">
+            <section className="bg-[#131E4A] py-14 sm:py-20 px-4 sm:px-6">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2 space-y-4">
                         <div className="h-6 w-36 bg-white/20 rounded-full" />

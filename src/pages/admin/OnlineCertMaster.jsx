@@ -267,11 +267,11 @@ const OnlineCertMaster = () => {
       {/* Header */}
       <div className="bg-white rounded-2xl border border-slate-200/80 p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4 min-w-0">
         <div className="min-w-0">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#0B315B] uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#131E4A] uppercase tracking-wider mb-1">
             <FaCertificate className="text-amber-500 shrink-0" />
             <span className="truncate">Module 1 — Online Learning Credentials</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-black text-[#0B315B] tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-black text-[#131E4A] tracking-tight">
             Online Cert Master
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -303,7 +303,7 @@ const OnlineCertMaster = () => {
               setCurrentPage(1);
             }}
             placeholder="Search by ID, candidate, email, or course..."
-            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#0B315B] focus:ring-1 focus:ring-[#0B315B] outline-hidden transition"
+            className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:bg-white focus:border-[#131E4A] focus:ring-1 focus:ring-[#131E4A] outline-hidden transition"
           />
         </form>
 
@@ -318,7 +318,7 @@ const OnlineCertMaster = () => {
                 setStatusFilter(e.target.value);
                 setCurrentPage(1);
               }}
-              className="bg-transparent font-bold text-[#0B315B] focus:outline-hidden cursor-pointer"
+              className="bg-transparent font-bold text-[#131E4A] focus:outline-hidden cursor-pointer"
             >
               <option value="all">All Statuses</option>
               <option value="active">Active / Verified</option>
@@ -337,7 +337,7 @@ const OnlineCertMaster = () => {
                   setCourseFilter(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="bg-transparent font-bold text-[#0B315B] truncate focus:outline-hidden cursor-pointer w-full"
+                className="bg-transparent font-bold text-[#131E4A] truncate focus:outline-hidden cursor-pointer w-full"
               >
                 <option value="all">All Courses</option>
                 {distinctCourses.map((c) => (
@@ -389,7 +389,7 @@ const OnlineCertMaster = () => {
               {loading ? (
                 <tr>
                   <td colSpan={7} className="py-12 text-center text-slate-400">
-                    <div className="w-6 h-6 border-2 border-[#0B315B] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+                    <div className="w-6 h-6 border-2 border-[#131E4A] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
                     <span>Loading authentic certificate records...</span>
                   </td>
                 </tr>
@@ -404,7 +404,7 @@ const OnlineCertMaster = () => {
                       {/* ID */}
                       <td className="py-3 px-4 whitespace-nowrap">
                         <div className="flex items-center gap-1.5">
-                          <span className="font-extrabold text-[#0B315B] font-mono">
+                          <span className="font-extrabold text-[#131E4A] font-mono">
                             {cert.certificate_number}
                           </span>
                           <button
@@ -458,7 +458,7 @@ const OnlineCertMaster = () => {
 
                       {/* Score */}
                       <td className="py-3 px-4 whitespace-nowrap">
-                        <span className="font-bold text-[#0B315B]">
+                        <span className="font-bold text-[#131E4A]">
                           {cert.percentage ?? 100}%
                         </span>
                         <span className="text-[10px] text-slate-400 ml-1">
@@ -488,7 +488,7 @@ const OnlineCertMaster = () => {
                           <button
                             type="button"
                             onClick={() => handleInspect(cert)}
-                            className="p-1.5 text-slate-600 hover:text-[#0B315B] hover:bg-slate-100 rounded-lg transition cursor-pointer"
+                            className="p-1.5 text-slate-600 hover:text-[#131E4A] hover:bg-slate-100 rounded-lg transition cursor-pointer"
                             title="Inspect Completion & Issuance Record"
                           >
                             <FaBookOpen size={13} />
@@ -569,7 +569,7 @@ const OnlineCertMaster = () => {
         <div className="md:hidden divide-y divide-slate-100">
           {loading ? (
             <div className="py-12 text-center text-slate-400">
-              <div className="w-6 h-6 border-2 border-[#0B315B] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+              <div className="w-6 h-6 border-2 border-[#131E4A] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
               <span>Loading authentic certificate records...</span>
             </div>
           ) : paginatedCerts.length > 0 ? (
@@ -580,7 +580,7 @@ const OnlineCertMaster = () => {
                   {/* Top: ID & Status */}
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-1.5 min-w-0">
-                      <span className="font-extrabold text-[#0B315B] font-mono text-xs truncate">
+                      <span className="font-extrabold text-[#131E4A] font-mono text-xs truncate">
                         {cert.certificate_number}
                       </span>
                       <button
@@ -633,7 +633,7 @@ const OnlineCertMaster = () => {
                     <button
                       type="button"
                       onClick={() => handleInspect(cert)}
-                      className="px-2.5 py-1.5 text-xs text-slate-600 hover:text-[#0B315B] hover:bg-slate-100 rounded-lg transition flex items-center gap-1"
+                      className="px-2.5 py-1.5 text-xs text-slate-600 hover:text-[#131E4A] hover:bg-slate-100 rounded-lg transition flex items-center gap-1"
                     >
                       <FaBookOpen size={11} />
                       <span>Audit</span>
@@ -723,7 +723,7 @@ const OnlineCertMaster = () => {
             >
               Previous
             </button>
-            <span className="px-2 font-bold text-[#0B315B]">
+            <span className="px-2 font-bold text-[#131E4A]">
               Page {currentPage} of {totalPages}
             </span>
             <button
@@ -753,11 +753,11 @@ const OnlineCertMaster = () => {
             </button>
 
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0B315B] flex items-center justify-center text-lg shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#131E4A] flex items-center justify-center text-lg shrink-0">
                 <FaBookOpen />
               </div>
               <div className="min-w-0">
-                <h3 className="text-lg font-black text-[#0B315B] truncate">
+                <h3 className="text-lg font-black text-[#131E4A] truncate">
                   Certificate Issuance & Completion Audit
                 </h3>
                 <span className="text-xs font-mono font-bold text-amber-600">
@@ -774,11 +774,11 @@ const OnlineCertMaster = () => {
                 </div>
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-slate-600 font-medium">1. Learner Identity:</span>
-                  <span className="font-bold text-[#0B315B] truncate">{selectedCert.student_name}</span>
+                  <span className="font-bold text-[#131E4A] truncate">{selectedCert.student_name}</span>
                 </div>
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-slate-600 font-medium">2. Course Verification:</span>
-                  <span className="font-bold text-[#0B315B] truncate max-w-[220px]" title={selectedCert.course_name}>
+                  <span className="font-bold text-[#131E4A] truncate max-w-[220px]" title={selectedCert.course_name}>
                     {selectedCert.course_name}
                   </span>
                 </div>

@@ -75,7 +75,7 @@ const PinVerificationModal = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in">
       <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl border border-slate-200 overflow-hidden text-slate-800">
         {/* Top Header */}
-        <div className="bg-gradient-to-r from-[#0B315B] to-[#164C82] p-5 sm:p-6 text-white relative">
+        <div className="bg-gradient-to-r from-[#131E4A] to-[#164C82] p-5 sm:p-6 text-white relative">
           <button
             type="button"
             onClick={onClose}
@@ -142,8 +142,8 @@ const PinVerificationModal = ({
                     disabled={loading}
                     className={`w-14 h-14 text-center text-2xl font-black rounded-2xl border-2 transition-all outline-hidden ${
                       digit
-                        ? "border-[#0B315B] bg-blue-50/40 text-[#0B315B]"
-                        : "border-slate-200 bg-slate-50 text-slate-800 focus:border-[#0B315B] focus:bg-white"
+                        ? "border-[#131E4A] bg-blue-50/40 text-[#131E4A]"
+                        : "border-slate-200 bg-slate-50 text-slate-800 focus:border-[#131E4A] focus:bg-white"
                     } shadow-xs`}
                   />
                 ))}
@@ -159,7 +159,7 @@ const PinVerificationModal = ({
                   setPinDigits(["2", "0", "2", "6"]);
                   setError("");
                 }}
-                className="font-mono font-extrabold text-[#0B315B] bg-white px-2 py-0.5 rounded-lg border border-amber-300 hover:bg-amber-100 transition cursor-pointer"
+                className="font-mono font-extrabold text-[#131E4A] bg-white px-2 py-0.5 rounded-lg border border-amber-300 hover:bg-amber-100 transition cursor-pointer"
               >
                 Auto-Fill 2026
               </button>
@@ -179,7 +179,7 @@ const PinVerificationModal = ({
               <button
                 type="submit"
                 disabled={loading || pinDigits.some((d) => !d)}
-                className="px-6 py-2.5 rounded-xl bg-[#0B315B] hover:bg-[#164C82] text-white text-xs font-bold shadow-md transition flex items-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 py-2.5 rounded-xl bg-[#131E4A] hover:bg-[#164C82] text-white text-xs font-bold shadow-md transition flex items-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>

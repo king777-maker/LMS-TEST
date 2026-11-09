@@ -23,14 +23,14 @@ const ProtectedRoute = ({
         icon: "🔒",
         style: {
           borderRadius: "12px",
-          background: "#0B315B",
+          background: "#131E4A",
           color: "#ffffff",
           fontSize: "14px",
           fontWeight: "500",
         },
         iconTheme: {
           primary: "#FFDB58",
-          secondary: "#0B315B",
+          secondary: "#131E4A",
         },
       });
     }

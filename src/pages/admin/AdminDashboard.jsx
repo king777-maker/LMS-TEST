@@ -253,10 +253,10 @@ const AdminDashboard = () => {
               type="button"
               onClick={() => fetchOverviewData(true)}
               disabled={refreshing || loading}
-              className="inline-flex items-center gap-1 text-slate-500 hover:text-[#0B315B] transition cursor-pointer font-semibold"
+              className="inline-flex items-center gap-1 text-slate-500 hover:text-[#131E4A] transition cursor-pointer font-semibold"
               title="Refresh dashboard metrics"
             >
-              <FaSyncAlt className={`text-[10px] ${refreshing ? "animate-spin text-[#0B315B]" : ""}`} />
+              <FaSyncAlt className={`text-[10px] ${refreshing ? "animate-spin text-[#131E4A]" : ""}`} />
               Refresh
             </button>
           </div>

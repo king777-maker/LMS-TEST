@@ -8,7 +8,6 @@ import {
     Mail,
     Phone,
     MapPin,
-    Award,
     Check,
     Copy,
     ExternalLink,
@@ -245,7 +244,7 @@ const Contact = () => {
                                     </p>
                                 </div>
 
-                                <div className="space-y-6">
+                                <div className="space-y-7">
 
                                     {/* 1. PRIMARY EMAIL */}
                                     <div className="flex gap-3.5 sm:gap-4 items-start group">
@@ -333,50 +332,7 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* 3. TRAINING & CERTIFICATION DESK */}
-                                    <div className="flex gap-3.5 sm:gap-4 items-start group">
-                                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 shrink-0 group-hover:bg-slate-200/80 transition-colors">
-                                            <Award className="w-4 h-4 text-slate-600" />
-                                        </div>
-                                        <div className="min-w-0 flex-1">
-                                            <p className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
-                                                Training &amp; Certification Desk
-                                            </p>
-                                            <div className="mt-0.5 flex items-center justify-between gap-2 flex-wrap">
-                                                <a
-                                                    href={PRIMARY_CONTACT.certificationEmailHref}
-                                                    aria-label={`Send email to ${PRIMARY_CONTACT.certificationEmail}`}
-                                                    className="text-slate-900 text-sm sm:text-base font-medium hover:text-blue-600 transition-colors break-all"
-                                                >
-                                                    {PRIMARY_CONTACT.certificationEmail}
-                                                </a>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => handleCopy(PRIMARY_CONTACT.certificationEmail, "Certification Email", "cert-email")}
-                                                    aria-label="Copy certification email"
-                                                    title="Copy certification email"
-                                                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
-                                                >
-                                                    {copiedKey === "cert-email" ? (
-                                                        <>
-                                                            <Check className="w-3 h-3 text-emerald-600" />
-                                                            <span className="text-emerald-600 font-semibold text-[11px]">Copied</span>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <Copy className="w-3 h-3" />
-                                                            <span className="text-[11px]">Copy email</span>
-                                                        </>
-                                                    )}
-                                                </button>
-                                            </div>
-                                            <span className="block text-xs text-slate-400 mt-0.5 leading-normal">
-                                                Exam eligibility, credential audits &amp; certificate verification
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {/* 4. OFFICE ADDRESS */}
+                                    {/* 3. OFFICE ADDRESS */}
                                     <div className="flex gap-3.5 sm:gap-4 items-start group">
                                         <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 shrink-0 group-hover:bg-slate-200/80 transition-colors">
                                             <MapPin className="w-4 h-4 text-slate-600" />
@@ -478,7 +434,7 @@ const Contact = () => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             placeholder="e.g. John Doe"
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 transition-all outline-hidden"
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
                                         />
                                     </div>
 
@@ -494,7 +450,7 @@ const Contact = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             placeholder="name@company.com"
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 transition-all outline-hidden"
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
                                         />
                                     </div>
                                 </div>
@@ -512,7 +468,7 @@ const Contact = () => {
                                                 required
                                                 value={formData.country}
                                                 onChange={handleCountryChange}
-                                                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 transition-all outline-hidden appearance-none cursor-pointer"
+                                                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
                                             >
                                                 <option value="" disabled>Select Country</option>
                                                 {COUNTRIES.map((c) => (
@@ -544,7 +500,7 @@ const Contact = () => {
                                                 value={formData.phone}
                                                 onChange={handleChange}
                                                 placeholder="98765 43210"
-                                                className="w-full pl-16 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 transition-all outline-hidden"
+                                                className="w-full pl-16 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
                                             />
                                         </div>
                                     </div>
@@ -563,7 +519,7 @@ const Contact = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         placeholder="Please provide details about your course interest, corporate batch size, or certification questions..."
-                                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 transition-all outline-hidden resize-y"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden resize-y"
                                     ></textarea>
                                 </div>
 
@@ -571,7 +527,7 @@ const Contact = () => {
                                 <div className="pt-2">
                                     <button
                                         type="submit"
-                                        className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2 px-8 rounded-xl bg-[#0B315B] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#0B315B] focus:ring-offset-2 select-none"
+                                        className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2 px-8 rounded-xl bg-[#131E4A] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] focus:ring-offset-2 select-none"
                                     >
                                         <Send className="w-4 h-4" />
                                         <span>Send Inquiry Message</span>
@@ -584,7 +540,7 @@ const Contact = () => {
                                         href="/privacy-policy"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-blue-600 underline hover:text-[#0B315B] font-medium"
+                                        className="text-blue-600 underline hover:text-[#131E4A] font-medium"
                                     >
                                         Privacy Policy
                                     </a>.
@@ -604,11 +560,7 @@ const Contact = () => {
                 <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-10">
 
                     <div className="text-center max-w-[850px] mx-auto mb-12 sm:mb-16">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B315B]/10 text-[#0B315B] text-xs font-bold uppercase tracking-wider mb-3">
-                            <Globe className="w-3.5 h-3.5 text-[#0B315B]" />
-                            <span>International Academic Network</span>
-                        </div>
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0B315B] tracking-tight">
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#131E4A] tracking-tight">
                             Global Representatives &amp; Regional Contact Directory
                         </h2>
                         <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -638,7 +590,7 @@ const Contact = () => {
                                         )}
                                     </div>
 
-                                    <h3 className="text-base font-bold text-[#0B315B] group-hover:text-blue-600 transition-colors">
+                                    <h3 className="text-base font-bold text-[#131E4A] group-hover:text-blue-600 transition-colors">
                                         {item.region}
                                     </h3>
                                     <p className="text-xs font-semibold text-slate-500 mb-3">
@@ -655,7 +607,7 @@ const Contact = () => {
                                         <a
                                             href={item.href}
                                             aria-label={`Contact ${item.region}: ${item.display}`}
-                                            className="text-xs sm:text-sm font-bold text-[#0B315B] hover:text-blue-600 transition-colors break-all focus:outline-hidden focus:underline"
+                                            className="text-xs sm:text-sm font-bold text-[#131E4A] hover:text-blue-600 transition-colors break-all focus:outline-hidden focus:underline"
                                         >
                                             {item.display}
                                         </a>
@@ -665,7 +617,7 @@ const Contact = () => {
                                             onClick={() => handleCopy(item.value, item.region, item.id)}
                                             aria-label={`Copy contact detail for ${item.region}`}
                                             title={`Copy ${item.display}`}
-                                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium cursor-pointer transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#0B315B] shrink-0"
+                                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium cursor-pointer transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] shrink-0"
                                         >
                                             {copiedKey === item.id ? (
                                                 <>
@@ -686,7 +638,7 @@ const Contact = () => {
                     </div>
 
                     <div className="mt-10 p-4 rounded-xl bg-blue-50/70 border border-blue-100 text-xs text-slate-600 max-w-3xl mx-auto text-center leading-relaxed">
-                        <span className="font-bold text-[#0B315B]">Note for Learners &amp; Corporate Clients:</span> Regional liaison desks coordinate remote admissions, virtual examinations, and regional corporate schedules. Official institutional contracts and certificate verifications are issued directly through our verified headquarters at Bengaluru, India.
+                        <span className="font-bold text-[#131E4A]">Note for Learners &amp; Corporate Clients:</span> Regional liaison desks coordinate remote admissions, virtual examinations, and regional corporate schedules. Official institutional contracts and certificate verifications are issued directly through our verified headquarters at Bengaluru, India.
                     </div>
 
                 </div>
@@ -697,7 +649,7 @@ const Contact = () => {
             ===================================================== */}
             <section className="bg-[#FFDB58] py-14 lg:py-16">
                 <div className="max-w-[1100px] mx-auto px-6 text-center">
-                    <h2 className="text-[#0B315B] text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+                    <h2 className="text-[#131E4A] text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
                         Ready to Advance Your Professional Career?
                     </h2>
                     <p className="mt-3 text-[#334B69] text-sm sm:text-base lg:text-lg max-w-[700px] mx-auto">
@@ -706,13 +658,13 @@ const Contact = () => {
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
                         <a
                             href="/lead-auditor"
-                            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#0B315B] hover:bg-[#15467e] text-white font-bold text-sm transition-all shadow-md"
+                            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#131E4A] hover:bg-[#15467e] text-white font-bold text-sm transition-all shadow-md"
                         >
                             Explore Lead Auditor Courses
                         </a>
                         <a
                             href={PRIMARY_CONTACT.phoneHref}
-                            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-[#0B315B] font-bold text-sm transition-all shadow-md"
+                            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-[#131E4A] font-bold text-sm transition-all shadow-md"
                         >
                             Call Support: {PRIMARY_CONTACT.phoneDisplay}
                         </a>

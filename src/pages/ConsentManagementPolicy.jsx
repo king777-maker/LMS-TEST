@@ -162,7 +162,7 @@ const ConsentManagementPolicy = () => {
             <button
               type="button"
               onClick={triggerCookieModal}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0B315B] hover:bg-[#183B73] text-amber-300 font-bold text-xs sm:text-sm shadow-sm transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#131E4A] hover:bg-[#183B73] text-amber-300 font-bold text-xs sm:text-sm shadow-sm transition-all cursor-pointer"
             >
               <Sliders size={16} />
               <span>Open Cookie & Privacy Preferences</span>

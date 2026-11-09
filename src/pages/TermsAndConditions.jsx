@@ -60,7 +60,7 @@ const TermsAndConditions = () => {
 
         {/* Core Agreement Card */}
         <div className="bg-white rounded-3xl border border-gray-150 p-6 sm:p-8 shadow-xs space-y-3">
-          <h2 className="text-lg sm:text-xl font-bold text-[#0B315B] flex items-center gap-2">
+          <h2 className="text-lg sm:text-xl font-bold text-[#131E4A] flex items-center gap-2">
             <Scale size={22} className="text-[#183B73]" />
             <span>Binding Agreement</span>
           </h2>

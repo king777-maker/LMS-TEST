@@ -80,7 +80,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-[100dvh] relative overflow-x-hidden flex flex-col justify-center items-center py-3 px-3 sm:py-5 sm:px-4 text-white selection:bg-amber-400 selection:text-[#0B315B]">
+    <div className="min-h-[100dvh] relative overflow-x-hidden flex flex-col justify-center items-center py-3 px-3 sm:py-5 sm:px-4 text-white selection:bg-amber-400 selection:text-[#131E4A]">
       {/* Cinematic 4K Moon Walk Video Background with 2K Poster Fallback */}
       <MoonWalkBackground />
 
@@ -102,11 +102,11 @@ const AdminLogin = () => {
       {/* Main Login Card with Responsive Compact Sizing */}
       <div className="w-full max-w-[420px] bg-[#071328]/88 backdrop-blur-2xl rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(11,30,56,0.6)] p-4 sm:p-6 text-slate-100 border border-blue-400/25 relative overflow-hidden z-10">
         {/* Decorative Top Accent: Broadbeach Navy to Gold Gradient */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#0B315B] via-[#F7C600] to-[#0B315B]" />
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#131E4A] via-[#F7C600] to-[#131E4A]" />
 
         {/* Brand Header */}
         <div className="text-center mb-3 sm:mb-4 pt-1">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#0B315B] via-[#0F274B] to-[#07192F] text-amber-400 flex items-center justify-center mx-auto mb-2 shadow-md border border-amber-400/40">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#131E4A] via-[#0F274B] to-[#07192F] text-amber-400 flex items-center justify-center mx-auto mb-2 shadow-md border border-amber-400/40">
             <FaShieldAlt className="text-lg sm:text-xl drop-shadow-md" />
           </div>
           <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">
@@ -186,7 +186,7 @@ const AdminLogin = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-1 h-[46px] bg-[#0B315B] hover:bg-[#143D6D] disabled:bg-slate-700 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm rounded-[10px] border border-amber-400/40 shadow-md shadow-blue-950/60 transition flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-amber-400/40 active:scale-[0.98] select-none"
+              className="w-full mt-1 h-[46px] bg-[#131E4A] hover:bg-[#143D6D] disabled:bg-slate-700 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm rounded-[10px] border border-amber-400/40 shadow-md shadow-blue-950/60 transition flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-amber-400/40 active:scale-[0.98] select-none"
             >
               {loading ? (
                 <>
@@ -238,7 +238,7 @@ const AdminLogin = () => {
               <button
                 type="button"
                 onClick={() => setTotpCode("123456")}
-                className="font-mono font-extrabold text-amber-300 bg-[#07192F] px-2 py-0.5 rounded-lg border border-amber-400/40 hover:bg-[#0B315B] transition cursor-pointer text-[10px] sm:text-[11px]"
+                className="font-mono font-extrabold text-amber-300 bg-[#07192F] px-2 py-0.5 rounded-lg border border-amber-400/40 hover:bg-[#131E4A] transition cursor-pointer text-[10px] sm:text-[11px]"
               >
                 Use Demo Code: 123456
               </button>
@@ -248,7 +248,7 @@ const AdminLogin = () => {
               <button
                 type="submit"
                 disabled={loading || !totpCode.trim()}
-                className="w-full py-2.5 bg-[#0B315B] hover:bg-[#143D6D] disabled:bg-slate-700 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm rounded-xl border border-amber-400/40 shadow-md shadow-blue-950/60 transition flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-amber-400/40"
+                className="w-full py-2.5 bg-[#131E4A] hover:bg-[#143D6D] disabled:bg-slate-700 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm rounded-xl border border-amber-400/40 shadow-md shadow-blue-950/60 transition flex items-center justify-center gap-2 cursor-pointer focus:ring-2 focus:ring-amber-400/40"
               >
                 {loading ? (
                   <>

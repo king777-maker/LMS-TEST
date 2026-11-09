@@ -30,7 +30,7 @@ const CheckItem = ({
                 className="
                     shrink-0
                     mt-0.5
-                    text-[#0B315B]
+                    text-[#131E4A]
                 "
             />
 

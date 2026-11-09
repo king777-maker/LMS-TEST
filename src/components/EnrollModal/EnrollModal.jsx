@@ -125,7 +125,7 @@ const EnrollModal = ({
 
                         bg-white
 
-                        text-[#0B315B]
+                        text-[#131E4A]
 
                         rounded-full
 

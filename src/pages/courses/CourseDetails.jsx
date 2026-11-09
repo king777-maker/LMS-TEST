@@ -289,10 +289,10 @@ const CourseDetails = () => {
     return (
       <section className="min-h-[70vh] flex items-center justify-center bg-[#F8FAFD] px-4 py-16">
         <div className="max-w-xl w-full bg-white rounded-2xl shadow-xs border border-slate-200/80 p-8 sm:p-10 text-center">
-          <div className="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center bg-[#FFF7D6] text-[#0B315B]">
+          <div className="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center bg-[#FFF7D6] text-[#131E4A]">
             <BookOpen size={30} />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#0B315B] mb-3">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#131E4A] mb-3">
             Course Not Available
           </h1>
           <p className="text-slate-500 leading-relaxed mb-6 text-sm">
@@ -347,7 +347,7 @@ const CourseDetails = () => {
           HERO BANNER SECTION (Full Width Responsive Header with Integrated Start Course,
           Aligned Section Navigation, and Preview Play Button Overlay)
       ========================================================================= */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#08203E] via-[#0B315B] to-[#124275] text-white py-8 sm:py-10 lg:py-12 border-b border-white/10">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#08203E] via-[#131E4A] to-[#124275] text-white py-8 sm:py-10 lg:py-12 border-b border-white/10">
         {/* Subtle decorative background blur */}
         <div className="absolute inset-0 pointer-events-none opacity-15 overflow-hidden">
           <img
@@ -356,7 +356,7 @@ const CourseDetails = () => {
             className="w-full h-full object-cover blur-md scale-105"
           />
         </div>
-        <div className="absolute inset-0 bg-[#0B315B]/85 pointer-events-none" />
+        <div className="absolute inset-0 bg-[#131E4A]/85 pointer-events-none" />
 
         <div className="relative z-10 course-page__container">
           {/* Breadcrumbs */}
@@ -522,7 +522,7 @@ const CourseDetails = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                   
                   {/* Category Pill */}
-                  <span className="absolute top-3 left-3 bg-[#0B315B]/90 backdrop-blur-xs text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20 shadow-xs">
+                  <span className="absolute top-3 left-3 bg-[#131E4A]/90 backdrop-blur-xs text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20 shadow-xs">
                     {course.category || "Free Course"}
                   </span>
 
@@ -691,12 +691,12 @@ const CourseDetails = () => {
                 {/* Rebuilt, Aligned Curriculum Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-150">
                   <div className="flex items-center gap-3 sm:gap-3.5">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 rounded-xl bg-[#FFF7D6] flex items-center justify-center text-[#0B315B] shadow-xs">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 rounded-xl bg-[#FFF7D6] flex items-center justify-center text-[#131E4A] shadow-xs">
                       <BookOpen size={20} />
                     </div>
                     <div>
                       <div className="flex items-center gap-2.5 flex-wrap">
-                        <h2 className="text-[#0B315B] text-lg sm:text-xl lg:text-2xl font-bold tracking-tight">
+                        <h2 className="text-[#131E4A] text-lg sm:text-xl lg:text-2xl font-bold tracking-tight">
                           Curriculum & Syllabus
                         </h2>
                         <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1E5FA8] border border-blue-200">
@@ -839,7 +839,7 @@ const CourseDetails = () => {
                   </div>
 
                   {/* Certificate Mockup Preview */}
-                  <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-[#0B315B] text-white border-4 border-[#F8D85A]/40 shadow-xl space-y-3.5 text-center">
+                  <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-[#131E4A] text-white border-4 border-[#F8D85A]/40 shadow-xl space-y-3.5 text-center">
                     <BadgeCheck size={38} className="text-[#F8D85A] mx-auto" />
                     <div>
                       <span className="text-[10px] uppercase tracking-widest text-[#F8D85A] font-bold block">
@@ -934,7 +934,7 @@ const CourseDetails = () => {
                         Certification Fee
                       </span>
                       <div className="flex items-baseline gap-2 mt-0.5">
-                        <span className="text-2xl sm:text-3xl font-black text-[#0B315B]">
+                        <span className="text-2xl sm:text-3xl font-black text-[#131E4A]">
                           FREE
                         </span>
                         <span className="text-[11px] sm:text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
@@ -948,7 +948,7 @@ const CourseDetails = () => {
                         Batch Enrolment
                       </span>
                       <div className="flex items-baseline gap-2 mt-0.5">
-                        <span className="text-xl sm:text-2xl font-black text-[#0B315B]">
+                        <span className="text-xl sm:text-2xl font-black text-[#131E4A]">
                           Offline Batches
                         </span>
                         <span className="text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">
@@ -1131,7 +1131,7 @@ const CourseDetails = () => {
         <div className="course-page__container">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 sm:mb-8">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0B315B]">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#131E4A]">
                 Explore Related Certifications
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 mt-1">

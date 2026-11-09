@@ -268,7 +268,7 @@ const EnrollmentEnquiryForm = ({ course, availableCourses = [], onCourseChange }
     <section id="offline-enquiry-section" className="scroll-mt-24">
       <div className="bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden">
         {/* Card Header with Deep Navy & Amber Accents */}
-        <div className="bg-gradient-to-r from-[#07162c] via-[#0B315B] to-[#124275] p-6 sm:p-8 text-white relative">
+        <div className="bg-gradient-to-r from-[#07162c] via-[#131E4A] to-[#124275] p-6 sm:p-8 text-white relative">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-400 text-[#07162c] shadow-xs">
               <FaClock className="text-xs" />
@@ -351,7 +351,7 @@ const EnrollmentEnquiryForm = ({ course, availableCourses = [], onCourseChange }
 
                 <Link
                   to="/courses"
-                  className="px-5 py-2.5 rounded-xl bg-[#0B315B] text-white text-xs sm:text-sm font-bold hover:bg-[#124275] transition-colors shadow-xs"
+                  className="px-5 py-2.5 rounded-xl bg-[#131E4A] text-white text-xs sm:text-sm font-bold hover:bg-[#124275] transition-colors shadow-xs"
                 >
                   Explore Other Courses
                 </Link>
@@ -427,7 +427,7 @@ const EnrollmentEnquiryForm = ({ course, availableCourses = [], onCourseChange }
 
               {/* SECTION 2: CANDIDATE CONTACT DETAILS */}
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0B315B] flex items-center gap-2 border-b border-slate-150 pb-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#131E4A] flex items-center gap-2 border-b border-slate-150 pb-2">
                   <FaUser className="text-amber-500" />
                   <span>1. Contact Details</span>
                 </h4>
@@ -512,7 +512,7 @@ const EnrollmentEnquiryForm = ({ course, availableCourses = [], onCourseChange }
 
               {/* SECTION 3: PROFESSIONAL PROFILE (ALL REQUIRED) */}
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0B315B] flex items-center gap-2 border-b border-slate-150 pb-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#131E4A] flex items-center gap-2 border-b border-slate-150 pb-2">
                   <FaBriefcase className="text-amber-500" />
                   <span>2. Professional Background (Required)</span>
                 </h4>
@@ -606,7 +606,7 @@ const EnrollmentEnquiryForm = ({ course, availableCourses = [], onCourseChange }
 
               {/* SECTION 4: OFFLINE BATCH PREFERENCES (ALL REQUIRED) */}
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0B315B] flex items-center gap-2 border-b border-slate-150 pb-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#131E4A] flex items-center gap-2 border-b border-slate-150 pb-2">
                   <FaMapMarkerAlt className="text-amber-500" />
                   <span>3. Offline Batch Preferences & Logistics (Required)</span>
                 </h4>
@@ -684,7 +684,7 @@ const EnrollmentEnquiryForm = ({ course, availableCourses = [], onCourseChange }
 
               {/* SECTION 5: SPECIFIC TRAINING OBJECTIVES & CONSENT */}
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0B315B] flex items-center gap-2 border-b border-slate-150 pb-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#131E4A] flex items-center gap-2 border-b border-slate-150 pb-2">
                   <FaCommentDots className="text-amber-500" />
                   <span>4. Training Objectives & Consent (Required)</span>
                 </h4>
@@ -750,7 +750,7 @@ const EnrollmentEnquiryForm = ({ course, availableCourses = [], onCourseChange }
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-[#0B315B] to-[#1E5FA8] hover:from-[#08203E] hover:to-[#164C82] active:scale-98 text-white rounded-xl font-extrabold text-sm shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-[#131E4A] to-[#1E5FA8] hover:from-[#08203E] hover:to-[#164C82] active:scale-98 text-white rounded-xl font-extrabold text-sm shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <FaPaperPlane className="text-xs" />
                   <span>{submitting ? "Submitting Enquiry..." : "Submit Enquiry & Pre-Enrollment"}</span>

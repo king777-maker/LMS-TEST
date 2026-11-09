@@ -614,7 +614,7 @@ const Global = () => {
 
                         <h2
                             className="
-                    text-[#0B315B]
+                    text-[#131E4A]
                     text-[28px]
                     md:text-[36px]
                     font-bold

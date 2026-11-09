@@ -115,7 +115,7 @@ const RegisterPage = () => {
               width={56}
               height={56}
             />
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0B315B] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#131E4A] tracking-tight">
               Create Student Account
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 mt-1.5">
@@ -145,7 +145,7 @@ const RegisterPage = () => {
                     value={formData.first_name}
                     onChange={handleChange}
                     placeholder="John"
-                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 bg-slate-50/50 focus:bg-white"
+                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 bg-slate-50/50 focus:bg-white"
                   />
                 </div>
               </div>
@@ -161,7 +161,7 @@ const RegisterPage = () => {
                   value={formData.last_name}
                   onChange={handleChange}
                   placeholder="Doe"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 bg-slate-50/50 focus:bg-white"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 bg-slate-50/50 focus:bg-white"
                 />
               </div>
             </div>
@@ -179,7 +179,7 @@ const RegisterPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="john.doe@company.com"
-                  className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 bg-slate-50/50 focus:bg-white"
+                  className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 bg-slate-50/50 focus:bg-white"
                 />
               </div>
             </div>
@@ -196,7 +196,7 @@ const RegisterPage = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="9876543210"
-                  className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 bg-slate-50/50 focus:bg-white"
+                  className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 bg-slate-50/50 focus:bg-white"
                 />
               </div>
             </div>
@@ -215,7 +215,7 @@ const RegisterPage = () => {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Min 6 characters"
-                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 bg-slate-50/50 focus:bg-white"
+                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 bg-slate-50/50 focus:bg-white"
                   />
                 </div>
               </div>
@@ -231,7 +231,7 @@ const RegisterPage = () => {
                   value={formData.confirm_password}
                   onChange={handleChange}
                   placeholder="Repeat password"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/15 bg-slate-50/50 focus:bg-white"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-hidden focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 bg-slate-50/50 focus:bg-white"
                 />
               </div>
             </div>

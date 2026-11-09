@@ -200,7 +200,7 @@ const Enroll = () => {
                     <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300 mb-3">
                         {LAUNCH_STATUS_CONFIG.label}
                     </span>
-                    <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0B315B] mb-3">
+                    <h1 className="text-2xl sm:text-3xl font-extrabold text-[#131E4A] mb-3">
                         {course.name || course.title}
                     </h1>
                     <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs sm:text-sm text-amber-900 mb-6 leading-relaxed">
@@ -210,7 +210,7 @@ const Enroll = () => {
                         <button
                             type="button"
                             onClick={() => navigate(`/courses/${course.id || id}#offline-enquiry-section`)}
-                            className="py-3 px-6 rounded-xl font-bold text-sm bg-[#0B315B] text-white hover:bg-[#164C82] transition shadow cursor-pointer"
+                            className="py-3 px-6 rounded-xl font-bold text-sm bg-[#131E4A] text-white hover:bg-[#164C82] transition shadow cursor-pointer"
                         >
                             {LAUNCH_STATUS_CONFIG.cta}
                         </button>
@@ -424,7 +424,7 @@ const Enroll = () => {
                                         e.currentTarget.src = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800";
                                     }}
                                 />
-                                <div className="absolute top-3 right-3 bg-[#0B315B]/90 backdrop-blur-xs text-[#FFDB58] text-[10px] font-bold px-2.5 py-1 rounded-md border border-[#FFDB58]/30">
+                                <div className="absolute top-3 right-3 bg-[#131E4A]/90 backdrop-blur-xs text-[#FFDB58] text-[10px] font-bold px-2.5 py-1 rounded-md border border-[#FFDB58]/30">
                                     Complimentary
                                 </div>
                             </div>

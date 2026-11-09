@@ -6,8 +6,8 @@
 export const PRIMARY_CONTACT = {
   name: "Broadbeach Academy",
   legalEntity: "Broadbeach Innovations Private Limited",
-  email: "info@broadbeach.in",
-  emailHref: "mailto:info@broadbeach.in",
+  email: "certification@broadbeach.in",
+  emailHref: "mailto:certification@broadbeach.in",
   headerEmail: "certification@broadbeach.in",
   headerEmailHref: "mailto:certification@broadbeach.in",
   certificationEmail: "certification@broadbeach.in",

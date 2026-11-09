@@ -13,18 +13,18 @@ export const NotFound = () => {
 
             <div className="max-w-2xl w-full bg-white rounded-3xl shadow-xl border border-slate-200/80 p-8 sm:p-12 text-center relative overflow-hidden">
                 {/* Background Accent Graphics */}
-                <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#0B315B]/5" />
+                <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#131E4A]/5" />
                 <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-[#F7C600]/10" />
 
                 {/* 404 Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B315B]/10 text-[#0B315B] font-bold text-sm mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#131E4A]/10 text-[#131E4A] font-bold text-sm mb-4">
                     <span>Error 404</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#F7C600]" />
                     <span>Page Not Found</span>
                 </div>
 
                 {/* Heading */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0B315B] tracking-tight mb-4">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#131E4A] tracking-tight mb-4">
                     Lost in the Curriculum?
                 </h1>
 
@@ -36,14 +36,14 @@ export const NotFound = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
                     <Link
                         to="/"
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#0B315B] hover:bg-[#183B73] text-white font-bold rounded-xl shadow-lg transition-transform hover:-translate-y-0.5"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#131E4A] hover:bg-[#183B73] text-white font-bold rounded-xl shadow-lg transition-transform hover:-translate-y-0.5"
                     >
                         <FaHome className="w-4 h-4 text-[#F7C600]" />
                         Back to Homepage
                     </Link>
                     <Link
                         to="/course"
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#F7C600] hover:bg-[#e5b700] text-[#0B315B] font-extrabold rounded-xl shadow-md transition-transform hover:-translate-y-0.5"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#F7C600] hover:bg-[#e5b700] text-[#131E4A] font-extrabold rounded-xl shadow-md transition-transform hover:-translate-y-0.5"
                     >
                         <FaGraduationCap className="w-4 h-4" />
                         Explore All Courses

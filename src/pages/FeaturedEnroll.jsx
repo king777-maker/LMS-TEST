@@ -217,7 +217,7 @@ const FeaturedEnroll = () => {
                     <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300 mb-3">
                         {LAUNCH_STATUS_CONFIG.label}
                     </span>
-                    <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0B315B] mb-3">
+                    <h1 className="text-2xl sm:text-3xl font-extrabold text-[#131E4A] mb-3">
                         {course.name || course.title}
                     </h1>
                     <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs sm:text-sm text-amber-900 mb-6 leading-relaxed">
@@ -227,7 +227,7 @@ const FeaturedEnroll = () => {
                         <button
                             type="button"
                             onClick={() => navigate(`/courses/${course.id || id}#offline-enquiry-section`)}
-                            className="py-3 px-6 rounded-xl font-bold text-sm bg-[#0B315B] text-white hover:bg-[#164C82] transition shadow cursor-pointer"
+                            className="py-3 px-6 rounded-xl font-bold text-sm bg-[#131E4A] text-white hover:bg-[#164C82] transition shadow cursor-pointer"
                         >
                             {LAUNCH_STATUS_CONFIG.cta}
                         </button>
@@ -260,7 +260,7 @@ const FeaturedEnroll = () => {
 
                 <div
                     className="
-                        text-[#0B315B]
+                        text-[#131E4A]
                         text-xl
                         font-semibold
                     "
@@ -310,7 +310,7 @@ const FeaturedEnroll = () => {
                         className="
                             text-2xl
                             font-bold
-                            text-[#0B315B]
+                            text-[#131E4A]
                             mb-4
                         "
                     >
@@ -334,14 +334,14 @@ const FeaturedEnroll = () => {
                         type="button"
                         onClick={() => navigate(-1)}
                         className="
-                            bg-[#0B315B]
+                            bg-[#131E4A]
                             text-[#FFDB58]
                             px-6
                             py-3
                             rounded-md
                             font-bold
                             hover:bg-[#F7C600]
-                            hover:text-[#0B315B]
+                            hover:text-[#131E4A]
                             transition-all
                         "
                     >
@@ -492,7 +492,7 @@ const FeaturedEnroll = () => {
                                     text-[32px]
                                     lg:text-[38px]
                                     font-bold
-                                    text-[#0B315B]
+                                    text-[#131E4A]
                                     leading-[1.25]
                                 "
                             >
@@ -594,10 +594,10 @@ const FeaturedEnroll = () => {
                                     ${
                                         termsAccepted && !enrolling
                                             ? `
-                                                bg-[#0B315B]
+                                                bg-[#131E4A]
                                                 text-[#FFDB58]
                                                 hover:bg-[#F7C600]
-                                                hover:text-[#0B315B]
+                                                hover:text-[#131E4A]
                                                 cursor-pointer
                                             `
                                             : `

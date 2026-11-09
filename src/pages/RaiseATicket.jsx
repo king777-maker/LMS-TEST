@@ -101,7 +101,7 @@ const RaiseATicket = () => {
       />
       <Breadcrumbs items={[{ name: "Raise a Ticket", url: "/raise-ticket" }]} />
 
-      <section className="relative overflow-hidden bg-[#0B315B] text-white py-16 sm:py-20 lg:py-24 text-center">
+      <section className="relative overflow-hidden bg-[#131E4A] text-white py-16 sm:py-20 lg:py-24 text-center">
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10" />
         <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-[#FFDB58]/10" />
 
@@ -122,11 +122,11 @@ const RaiseATicket = () => {
 
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-5 py-4 flex gap-2 text-sm text-gray-500">
-          <Link to="/" className="hover:text-[#0B315B]">
+          <Link to="/" className="hover:text-[#131E4A]">
             Home
           </Link>
           <span>/</span>
-          <span className="text-[#0B315B] font-semibold">Raise a Ticket</span>
+          <span className="text-[#131E4A] font-semibold">Raise a Ticket</span>
         </div>
       </div>
 
@@ -135,7 +135,7 @@ const RaiseATicket = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
             <div className="text-3xl mb-4">📧</div>
-            <h2 className="!text-[18px] font-bold text-[#0B315B] mb-2">Email Support</h2>
+            <h2 className="!text-[18px] font-bold text-[#131E4A] mb-2">Email Support</h2>
             <p className="text-gray-600 text-sm leading-relaxed">
               info@broadbeach.in<br />certification@broadbeach.in
             </p>
@@ -143,7 +143,7 @@ const RaiseATicket = () => {
 
           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
             <div className="text-3xl mb-4">📱</div>
-            <h2 className="!text-[18px] font-bold text-[#0B315B] mb-2">Phone &amp; WhatsApp</h2>
+            <h2 className="!text-[18px] font-bold text-[#131E4A] mb-2">Phone &amp; WhatsApp</h2>
             <p className="text-gray-600 text-sm leading-relaxed">
               +91 7338 649 737<br />Mon–Fri: 9:00 AM – 6:00 PM IST
             </p>
@@ -151,7 +151,7 @@ const RaiseATicket = () => {
 
           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
             <div className="text-3xl mb-4">⚡</div>
-            <h2 className="!text-[18px] font-bold text-[#0B315B] mb-2">SLA Response Time</h2>
+            <h2 className="!text-[18px] font-bold text-[#131E4A] mb-2">SLA Response Time</h2>
             <p className="text-gray-600 text-sm leading-relaxed">
               Within 2–4 hours for critical credential &amp; exam issues.
             </p>
@@ -166,14 +166,14 @@ const RaiseATicket = () => {
                 <FaCheckCircle />
               </div>
 
-              <h2 className="text-2xl font-bold text-[#0B315B]">
+              <h2 className="text-2xl font-bold text-[#131E4A]">
                 Support Ticket Logged!
               </h2>
 
               <div className="my-6 p-4 bg-slate-50 border border-slate-200 rounded-xl text-left space-y-2 text-sm">
                 <div className="flex justify-between items-center pb-2 border-b border-slate-200">
                   <span className="text-slate-500">Ticket Reference ID:</span>
-                  <span className="font-mono font-bold text-[#0B315B] text-base">
+                  <span className="font-mono font-bold text-[#131E4A] text-base">
                     {submittedTicket.id}
                   </span>
                 </div>
@@ -198,7 +198,7 @@ const RaiseATicket = () => {
               <button
                 type="button"
                 onClick={resetForm}
-                className="mt-6 px-6 py-3 rounded-xl bg-[#0B315B] hover:bg-[#183B73] text-white font-bold transition-all shadow-sm"
+                className="mt-6 px-6 py-3 rounded-xl bg-[#131E4A] hover:bg-[#183B73] text-white font-bold transition-all shadow-sm"
               >
                 Submit Another Request
               </button>
@@ -207,7 +207,7 @@ const RaiseATicket = () => {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                  <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                     Full Name <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -217,12 +217,12 @@ const RaiseATicket = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="e.g. Michael Chen"
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm"
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                  <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                     Email Address <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -232,21 +232,21 @@ const RaiseATicket = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="e.g. michael.chen@example.com"
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm"
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                  <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                     Issue Category <span className="text-rose-500">*</span>
                   </label>
                   <select
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm bg-white"
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm bg-white"
                   >
                     {TICKET_CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>
@@ -257,14 +257,14 @@ const RaiseATicket = () => {
                 </div>
 
                 <div>
-                  <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                  <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                     Priority Level
                   </label>
                   <select
                     name="priority"
                     value={formData.priority}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm bg-white"
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm bg-white"
                   >
                     <option value="Normal">Normal</option>
                     <option value="High">High (Impacting deadlines)</option>
@@ -275,7 +275,7 @@ const RaiseATicket = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                  <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                     Course Name (Optional)
                   </label>
                   <input
@@ -284,12 +284,12 @@ const RaiseATicket = () => {
                     value={formData.course_name}
                     onChange={handleChange}
                     placeholder="e.g. ISO 9001:2015 Quality Management Systems"
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm"
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                  <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                     Certificate ID (Optional)
                   </label>
                   <input
@@ -298,13 +298,13 @@ const RaiseATicket = () => {
                     value={formData.certificate_id}
                     onChange={handleChange}
                     placeholder="e.g. BOA10110"
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm font-mono"
+                    className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                   Subject Summary <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -314,12 +314,12 @@ const RaiseATicket = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="e.g. Unable to generate certificate after 100% chapter completion"
-                  className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm"
+                  className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm"
                 />
               </div>
 
               <div>
-                <label className="block mb-2 font-semibold text-xs text-[#0B315B] uppercase tracking-wider">
+                <label className="block mb-2 font-semibold text-xs text-[#131E4A] uppercase tracking-wider">
                   Detailed Description <span className="text-rose-500">*</span>
                 </label>
                 <textarea
@@ -329,7 +329,7 @@ const RaiseATicket = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Describe your enquiry, exact steps taken, or specific questions in detail..."
-                  className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#0B315B] focus:ring-2 focus:ring-[#0B315B]/20 text-sm"
+                  className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/20 text-sm"
                 />
               </div>
 

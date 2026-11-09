@@ -348,7 +348,7 @@ const MyCourses = () => {
 
                         <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                             <EmptyState
-                                icon={<FaBookOpen className="text-2xl text-[#0B315B]" />}
+                                icon={<FaBookOpen className="text-2xl text-[#131E4A]" />}
                                 title="No Enrolled Courses Yet"
                                 description="You have not enrolled in any professional certification courses. Explore our accredited catalog to get certified."
                                 actionText="Explore Certification Catalog"
@@ -414,7 +414,7 @@ const MyCourses = () => {
                                             h-[190px]
                                             overflow-hidden
                                             bg-gradient-to-br
-                                            from-[#0B315B]
+                                            from-[#131E4A]
                                             to-[#2563EB]
                                             flex
                                             items-center
