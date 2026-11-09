@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import { FaChevronDown, FaBars, FaTimes, FaAward } from "react-icons/fa";
 import { navigationCategories } from "../../data/coursesData";
 import BrandLogo from "./BrandLogo";
 import SearchBar from "./SearchBar";
@@ -183,10 +183,19 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
           </div>
 
           {/* =======================================================
-              RIGHT SIDE: SEARCH BAR
+              RIGHT SIDE: SEARCH BAR & VERIFY CERTIFICATE
           ======================================================= */}
-          <div className="flex items-center gap-2 pr-0 sm:pr-4 min-w-0 shrink">
+          <div className="flex items-center gap-2 sm:gap-3 pr-0 sm:pr-2 min-w-0 shrink-0">
             <SearchBar />
+            <Link
+              to="/verify-certificate"
+              className="group flex items-center gap-1.5 px-2.5 sm:px-3.5 h-[26px] sm:h-[28px] bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 text-[#131E4A] font-bold text-[11px] sm:text-xs rounded-full shadow-xs transition-all duration-200 hover:shadow-md cursor-pointer whitespace-nowrap leading-none shrink-0"
+              aria-label="Verify Certificate"
+            >
+              <FaAward className="text-[11px] sm:text-xs text-[#131E4A] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
+              <span className="hidden min-[480px]:inline">Verify Certificate</span>
+              <span className="min-[480px]:hidden">Verify</span>
+            </Link>
           </div>
 
         </div>

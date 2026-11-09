@@ -77,29 +77,11 @@ const TopBar = ({
             <a
               href="mailto:certification@broadbeach.in"
               aria-label="Send email to certification@broadbeach.in"
-              className="text-slate-100 hover:text-amber-300 text-[10.5px] sm:text-[11.5px] font-medium transition-colors tracking-tight truncate max-w-[100px] min-[400px]:max-w-[130px] sm:max-w-none"
+              className="text-slate-100 hover:text-amber-300 text-[10.5px] sm:text-[11.5px] font-medium transition-colors tracking-tight truncate max-w-[130px] min-[400px]:max-w-[160px] sm:max-w-none"
             >
-              <span className="hidden min-[360px]:inline">certification@broadbeach.in</span>
+              <span>certification@broadbeach.in</span>
             </a>
           </div>
-
-          <div className="h-3 w-px bg-white/15" />
-
-          {/* WhatsApp Direct Chat - on Left Side of Header Only */}
-          <a
-            href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Contact Broadbeach Academy on WhatsApp (+91 7338649737)"
-            className="flex items-center gap-1.5 text-slate-100 hover:text-emerald-400 text-[10.5px] sm:text-[11.5px] font-medium transition-colors group cursor-pointer"
-          >
-            <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white flex items-center justify-center shadow-xs shrink-0 transition-all">
-              <FaWhatsapp className="text-[9px] sm:text-[10px]" />
-            </span>
-            <span className="hidden sm:inline font-medium text-slate-200 group-hover:text-emerald-300 transition-colors">
-              WhatsApp
-            </span>
-          </a>
         </div>
 
         {/* =========================================================
@@ -109,6 +91,15 @@ const TopBar = ({
           
           {/* Social Icons (Desktop & Tablet) */}
           <div className="hidden md:flex items-center gap-1 text-slate-300">
+            <a
+              href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all duration-200"
+            >
+              <FaWhatsapp className="text-[9.5px] sm:text-[10px]" />
+            </a>
             <a
               href="https://www.facebook.com/broadbeach.innovations.71/"
               target="_blank"
@@ -157,16 +148,6 @@ const TopBar = ({
               Contact Us
             </Link>
           </div>
-
-          {/* Verify Certificate CTA */}
-          <Link
-            to="/verify-certificate"
-            className="group flex items-center gap-1 px-2.5 sm:px-3 h-[22px] sm:h-[23px] bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 text-[#07162c] font-bold text-[10.5px] sm:text-[11px] rounded-full shadow-xs transition-all duration-200 hover:shadow-md cursor-pointer whitespace-nowrap leading-none"
-          >
-            <FaAward className="text-[9px] sm:text-[10px] text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
-            <span className="hidden min-[360px]:inline">Verify Certificate</span>
-            <span className="min-[360px]:hidden">Verify</span>
-          </Link>
 
           {/* User Logged In State or Auth Buttons */}
           {currentUser ? (
