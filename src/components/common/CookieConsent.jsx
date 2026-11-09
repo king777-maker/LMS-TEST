@@ -150,7 +150,7 @@ export const CookieConsent = () => {
                                         Preferences - Cookies, Data Privacy &amp; Protection
                                     </h2>
                                     <p className="text-[11px] text-slate-300 font-normal leading-tight mt-0.5 truncate">
-                                        Compliant with Indian DPDP Act &amp; Global Data Privacy &amp; Standards
+                                        Compliant with Indian DPDP Act &amp; Global Standards
                                     </p>
                                 </div>
                             </div>
@@ -337,7 +337,7 @@ export const CookieConsent = () => {
                                         onClick={handleClose}
                                         className="text-blue-600 hover:text-blue-800 hover:underline underline-offset-2 transition-colors cursor-pointer font-medium"
                                     >
-                                        Consent Management Policy
+                                        Consent MGMT policy
                                     </Link>
                                 </nav>
                             </div>
