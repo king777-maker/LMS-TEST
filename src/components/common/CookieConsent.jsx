@@ -169,23 +169,18 @@ export const CookieConsent = () => {
                         <div className="px-5 py-3.5 text-slate-700 leading-relaxed">
                             {!showPreferences ? (
                                 <div className="space-y-2">
-                                    {/* Brand identity line */}
-                                    <p className="text-xs sm:text-sm font-bold text-[#0B315B] leading-tight">
-                                        Broadbeach&copy; Online Academy
-                                    </p>
-
-                                    {/* Privacy description paragraph 1 */}
-                                    <p className="text-xs text-slate-600 leading-relaxed">
-                                        We respect your privacy. Broadbeach&copy; Online Academy uses essential cookies and browser storage technologies to support secure user authentication, course progress tracking, and certificate generation.
+                                    {/* Privacy description paragraph 1 with bold Broadbeach© Online Academy */}
+                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                        We respect your privacy. <strong className="font-bold text-[#0B315B]">Broadbeach&copy; Online Academy</strong> uses essential cookies and browser storage technologies to support secure user authentication, course progress tracking, and certificate generation.
                                     </p>
 
                                     {/* Privacy description paragraph 2 */}
-                                    <p className="text-xs text-slate-600 leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                                         With your consent, we may also use privacy-conscious analytics to understand website usage and improve curriculum performance.
                                     </p>
 
                                     {/* Privacy description paragraph 3 with visual representation */}
-                                    <p className="text-[11px] text-slate-500 leading-relaxed flex flex-wrap items-center gap-1 pt-0.5">
+                                    <p className="text-[11.5px] sm:text-xs text-slate-500 leading-relaxed flex flex-wrap items-center gap-1 pt-0.5">
                                         <span>You can customize your privacy preferences or withdraw your consent at any time by clicking the Manage Preferences icon</span>
                                         <img
                                             src={cookieIcon || "/assets/cookie-preferences-icon.png"}
@@ -312,16 +307,16 @@ export const CookieConsent = () => {
                                 </div>
                             )}
 
-                            {/* ----------------- 3. COMPACT SENTENCE-CASE LEGAL LINKS ----------------- */}
+                            {/* ----------------- 3. COMPACT SENTENCE-CASE LEGAL LINKS (BLUE HYPERLINKS) ----------------- */}
                             <div className="mt-3 mb-1 pt-2.5 border-t border-slate-150 text-center">
                                 <nav
                                     aria-label="Privacy policies navigation"
-                                    className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] text-slate-500 leading-normal"
+                                    className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] leading-normal"
                                 >
                                     <Link
                                         to="/privacy-policy"
                                         onClick={handleClose}
-                                        className="text-slate-600 hover:text-[#0B315B] hover:underline underline-offset-2 transition-colors cursor-pointer"
+                                        className="text-blue-600 hover:text-blue-800 hover:underline underline-offset-2 transition-colors cursor-pointer font-medium"
                                     >
                                         Privacy Policy
                                     </Link>
@@ -329,7 +324,7 @@ export const CookieConsent = () => {
                                     <Link
                                         to="/cookie-policy"
                                         onClick={handleClose}
-                                        className="text-slate-600 hover:text-[#0B315B] hover:underline underline-offset-2 transition-colors cursor-pointer"
+                                        className="text-blue-600 hover:text-blue-800 hover:underline underline-offset-2 transition-colors cursor-pointer font-medium"
                                     >
                                         Cookie Policy
                                     </Link>
@@ -337,7 +332,7 @@ export const CookieConsent = () => {
                                     <Link
                                         to="/terms-and-conditions"
                                         onClick={handleClose}
-                                        className="text-slate-600 hover:text-[#0B315B] hover:underline underline-offset-2 transition-colors cursor-pointer"
+                                        className="text-blue-600 hover:text-blue-800 hover:underline underline-offset-2 transition-colors cursor-pointer font-medium"
                                     >
                                         Terms &amp; Conditions
                                     </Link>
@@ -345,7 +340,7 @@ export const CookieConsent = () => {
                                     <Link
                                         to="/data-protection-policy"
                                         onClick={handleClose}
-                                        className="text-slate-600 hover:text-[#0B315B] hover:underline underline-offset-2 transition-colors cursor-pointer"
+                                        className="text-blue-600 hover:text-blue-800 hover:underline underline-offset-2 transition-colors cursor-pointer font-medium"
                                     >
                                         Data Protection Policy
                                     </Link>
@@ -353,7 +348,7 @@ export const CookieConsent = () => {
                                     <Link
                                         to="/consent-management-policy"
                                         onClick={handleClose}
-                                        className="text-slate-600 hover:text-[#0B315B] hover:underline underline-offset-2 transition-colors cursor-pointer"
+                                        className="text-blue-600 hover:text-blue-800 hover:underline underline-offset-2 transition-colors cursor-pointer font-medium"
                                     >
                                         Consent Management Policy
                                     </Link>
