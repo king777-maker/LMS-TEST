@@ -61,15 +61,13 @@ const SearchBar = ({ onSelectCourse }) => {
   };
 
   return (
-    <div ref={containerRef} className="relative z-40 shrink-0 flex-shrink-0">
+    <div ref={containerRef} className="relative z-40 shrink-0">
       <div
-        className={`relative flex items-center h-8 px-2.5 rounded-lg transition-all duration-200 w-36 sm:w-40 border shrink-0 flex-shrink-0 ${
-          isFocused
-            ? "bg-white/20 border-white/40 shadow-sm ring-1 ring-white/30"
-            : "bg-white/10 hover:bg-white/15 border-white/20"
+        className={`relative flex items-center w-28 lg:w-36 xl:w-44 h-8 xl:h-9 text-xs px-3 bg-white/10 border border-white/15 rounded-lg text-white transition-all duration-200 shrink-0 ${
+          isFocused ? "border-white/40 ring-1 ring-white/30 bg-white/20" : "hover:bg-white/15"
         }`}
       >
-        <FaSearch className="text-white/80 text-[11px] shrink-0 flex-shrink-0 mr-1.5" />
+        <FaSearch className="text-slate-400 text-xs shrink-0 mr-1.5" />
         <input
           type="text"
           value={query}
@@ -77,14 +75,14 @@ const SearchBar = ({ onSelectCourse }) => {
           onFocus={() => setIsFocused(true)}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search..."
-          className="w-full min-w-0 bg-transparent text-white placeholder-white/70 text-xs outline-none font-medium leading-none"
+          className="w-full min-w-0 bg-transparent text-white placeholder-slate-400 text-xs outline-none focus:outline-none font-medium leading-none"
         />
         {query && (
           <button
             type="button"
             aria-label="Clear search input"
             onClick={handleClear}
-            className="text-white/80 hover:text-white p-0.5 ml-1 shrink-0 flex-shrink-0 cursor-pointer"
+            className="text-slate-400 hover:text-white p-0.5 ml-1 shrink-0 cursor-pointer"
           >
             <FaTimes className="text-[9.5px]" />
           </button>
