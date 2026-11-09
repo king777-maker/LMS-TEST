@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <>
       <header className="sticky top-0 z-50 w-full shadow-md">
-        {/* Tier 1: Dark Navy Top Bar with Email, Socials, Request Certificate, Log In, Register */}
+        {/* Tier 1: Brand Accent Yellow Top Bar with Email, Socials, Blogs, Contact, Log In, Register */}
         <TopBar
           onRequestCertificate={openRequestCertificate}
           onOpenLogin={openLogin}
@@ -57,7 +57,7 @@ const Header = () => {
           onLogout={handleLogout}
         />
 
-        {/* Tier 2: Solid Royal Blue Navbar with Brand Logo in Left Corner, Categories & Live Search */}
+        {/* Tier 2: Solid Brand Navy Navbar with Brand Logo in Left Corner, Categories, Search & Verify Certificate */}
         <MainNavbar
           onToggleMobile={() => setIsMobileOpen((prev) => !prev)}
           isMobileOpen={isMobileOpen}

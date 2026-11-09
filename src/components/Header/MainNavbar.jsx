@@ -104,19 +104,19 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       ref={navContainerRef}
       className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
-      <div className="max-w-[1720px] mx-auto px-2.5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[36px] sm:h-[37px] gap-2 sm:gap-3 min-w-0">
+      <div className="max-w-[1720px] mx-auto px-2.5 sm:px-6 lg:px-8 pr-4 lg:pr-8">
+        <div className="flex items-center justify-between h-[38px] sm:h-[40px] gap-2 sm:gap-3 min-w-0">
           
           {/* =======================================================
               LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
           ======================================================= */}
-          <div className="flex items-center gap-2 sm:gap-5 shrink-0 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-4 shrink min-w-0">
             {/* Anchored Brand Logo on Far Left Corner */}
             <BrandLogo />
 
             {/* Desktop Navigation Links */}
             <nav
-              className="hidden xl:flex items-center gap-1 2xl:gap-1.5"
+              className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5 shrink min-w-0"
               aria-label="Main Navigation Categories"
             >
               {navigationCategories.map((category) => {
@@ -138,7 +138,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                       onMouseLeave={handleMouseLeave}
                       onClick={() => handleTriggerClick(category)}
                       onKeyDown={(e) => handleKeyDown(e, category)}
-                      className={`flex items-center gap-1.5 px-2.5 sm:px-3 h-[27px] sm:h-[28px] rounded-md text-[12.5px] 2xl:text-[13px] font-medium transition-all duration-150 cursor-pointer whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                      className={`flex items-center gap-1 2xl:gap-1.5 px-2 xl:px-2.5 2xl:px-3 h-[27px] sm:h-[28px] rounded-md text-[12px] 2xl:text-[13px] font-medium transition-all duration-150 cursor-pointer whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                         isOpen
                           ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                           : "text-white/90 hover:bg-white/10 hover:text-white"
@@ -185,16 +185,15 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
           {/* =======================================================
               RIGHT SIDE: SEARCH BAR & VERIFY CERTIFICATE
           ======================================================= */}
-          <div className="flex items-center gap-2 sm:gap-3 pr-0 sm:pr-2 min-w-0 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <SearchBar />
             <Link
               to="/verify-certificate"
-              className="group flex items-center gap-1.5 px-2.5 sm:px-3.5 h-[26px] sm:h-[28px] bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 text-[#131E4A] font-bold text-[11px] sm:text-xs rounded-full shadow-xs transition-all duration-200 hover:shadow-md cursor-pointer whitespace-nowrap leading-none shrink-0"
+              className="group flex items-center gap-1.5 px-3 py-1.5 h-8 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 text-[#131E4A] font-bold text-xs rounded-full shadow-xs transition-all duration-200 hover:shadow-md cursor-pointer whitespace-nowrap shrink-0 leading-none"
               aria-label="Verify Certificate"
             >
-              <FaAward className="text-[11px] sm:text-xs text-[#131E4A] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
-              <span className="hidden min-[480px]:inline">Verify Certificate</span>
-              <span className="min-[480px]:hidden">Verify</span>
+              <FaAward className="text-xs text-[#131E4A] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
+              <span>Verify Certificate</span>
             </Link>
           </div>
 

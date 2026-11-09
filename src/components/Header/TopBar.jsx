@@ -63,7 +63,7 @@ const TopBar = ({
   }, [currentUser]);
 
   return (
-    <div className="w-full bg-[#131E4A] text-slate-200 border-b border-white/10 text-xs select-none relative z-50">
+    <div className="w-full bg-[#FFDB58] text-[#131E4A] border-b border-amber-500/20 text-xs select-none relative z-50">
       <div className="max-w-[1720px] mx-auto px-2 sm:px-6 lg:px-8 flex items-center justify-between h-[30px] gap-1 sm:gap-3 min-w-0">
         
         {/* =========================================================
@@ -71,13 +71,13 @@ const TopBar = ({
         ========================================================= */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 shrink min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 flex items-center justify-center shadow-xs shrink-0">
+            <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#131E4A]/10 border border-[#131E4A]/20 text-[#131E4A] flex items-center justify-center shadow-xs shrink-0">
               <FaEnvelope className="text-[8px] sm:text-[9px]" />
             </span>
             <a
               href="mailto:certification@broadbeach.in"
               aria-label="Send email to certification@broadbeach.in"
-              className="text-slate-100 hover:text-amber-300 text-[10.5px] sm:text-[11.5px] font-medium transition-colors tracking-tight truncate max-w-[130px] min-[400px]:max-w-[160px] sm:max-w-none"
+              className="text-[#131E4A] hover:text-[#131E4A]/80 font-bold text-[10.5px] sm:text-[11.5px] transition-colors tracking-tight truncate max-w-[130px] min-[400px]:max-w-[160px] sm:max-w-none"
             >
               <span>certification@broadbeach.in</span>
             </a>
@@ -90,13 +90,13 @@ const TopBar = ({
         <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
           
           {/* Social Icons (Desktop & Tablet) */}
-          <div className="hidden md:flex items-center gap-1 text-slate-300">
+          <div className="hidden md:flex items-center gap-1">
             <a
               href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-[#131E4A]/10 text-[#131E4A] hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all duration-200"
             >
               <FaWhatsapp className="text-[9.5px] sm:text-[10px]" />
             </a>
@@ -105,7 +105,7 @@ const TopBar = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#1877F2] hover:text-white flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-[#131E4A]/10 text-[#131E4A] hover:bg-[#1877F2] hover:text-white flex items-center justify-center transition-all duration-200"
             >
               <FaFacebookF className="text-[9.5px] sm:text-[10px]" />
             </a>
@@ -114,7 +114,7 @@ const TopBar = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#0A66C2] hover:text-white flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-[#131E4A]/10 text-[#131E4A] hover:bg-[#0A66C2] hover:text-white flex items-center justify-center transition-all duration-200"
             >
               <FaLinkedinIn className="text-[9.5px] sm:text-[10px]" />
             </a>
@@ -123,13 +123,13 @@ const TopBar = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-white/5 hover:bg-[#E4405F] hover:text-white flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-[#131E4A]/10 text-[#131E4A] hover:bg-[#E4405F] hover:text-white flex items-center justify-center transition-all duration-200"
             >
               <FaInstagram className="text-[9.5px] sm:text-[10px]" />
             </a>
           </div>
 
-          <div className="hidden md:block h-3 w-px bg-white/15" />
+          <div className="hidden md:block h-3 w-px bg-[#131E4A]/20" />
 
           {/* Informational Links */}
           <div className="hidden lg:flex items-center gap-2.5 sm:gap-3 text-[11px] sm:text-[11.5px]">
@@ -137,13 +137,13 @@ const TopBar = ({
               href="https://medium.com/@broadbeach.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-300 hover:text-white font-medium transition-colors"
+              className="text-[#131E4A] hover:text-[#131E4A]/80 font-bold transition-colors"
             >
               Blogs
             </a>
             <Link
               to="/contact"
-              className="text-slate-300 hover:text-white font-medium transition-colors"
+              className="text-[#131E4A] hover:text-[#131E4A]/80 font-bold transition-colors"
             >
               Contact Us
             </Link>
@@ -167,14 +167,14 @@ const TopBar = ({
                 aria-haspopup="true"
                 aria-controls="profile-dropdown-menu"
                 aria-label="User profile, courses and certificates menu"
-                className="flex items-center gap-1.5 px-2 sm:px-2.5 h-[22px] sm:h-[23px] bg-white/10 hover:bg-white/20 active:scale-95 rounded-full text-slate-100 text-[10.5px] sm:text-[11px] font-semibold border border-white/20 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400 leading-none"
+                className="flex items-center gap-1.5 px-2 sm:px-2.5 h-[22px] sm:h-[23px] bg-[#131E4A]/10 hover:bg-[#131E4A]/15 active:scale-95 rounded-full text-[#131E4A] text-[10.5px] sm:text-[11px] font-bold border border-[#131E4A]/20 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#131E4A] leading-none"
               >
                 {/* Initials Avatar */}
-                <div className="w-4 h-4 sm:w-[18px] sm:h-[18px] rounded-full bg-gradient-to-tr from-amber-400 to-amber-500 text-[#07162c] font-extrabold text-[8.5px] sm:text-[9px] flex items-center justify-center shrink-0 shadow-xs border border-white/20">
+                <div className="w-4 h-4 sm:w-[18px] sm:h-[18px] rounded-full bg-[#131E4A] text-[#FFDB58] font-black text-[8.5px] sm:text-[9px] flex items-center justify-center shrink-0 shadow-xs">
                   {userInitials}
                 </div>
                 <span className="max-w-[70px] sm:max-w-[100px] truncate">{currentUser.name}</span>
-                <FaChevronDown className={`text-[8px] text-slate-400 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
+                <FaChevronDown className={`text-[8px] text-[#131E4A]/70 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {/* Accessible Dropdown Panel */}
@@ -275,15 +275,17 @@ const TopBar = ({
               <button
                 type="button"
                 onClick={onOpenLogin}
-                className="text-slate-300 hover:text-white font-semibold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none"
+                className="text-[#131E4A] hover:text-[#131E4A]/80 font-bold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none"
               >
                 Log In
               </button>
 
+              <div className="h-3 w-px bg-[#131E4A]/20" />
+
               <button
                 type="button"
                 onClick={onOpenRegister}
-                className="text-slate-300 hover:text-white font-semibold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none"
+                className="text-[#131E4A] hover:text-[#131E4A]/80 font-bold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none"
               >
                 Register
               </button>
