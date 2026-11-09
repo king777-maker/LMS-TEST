@@ -12,7 +12,7 @@ const BrandLogo = ({ className = "" }) => {
       <img
         src={brandLogoSvg || "/brand-logo.svg"}
         alt="Broadbeach Online Academy"
-        className="h-10 sm:h-11 w-auto object-contain shrink-0"
+        className="h-9 sm:h-10 w-auto object-contain drop-shadow-sm select-none transition-transform duration-200 hover:scale-[1.02] shrink-0"
       />
     </Link>
   );

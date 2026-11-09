@@ -104,98 +104,100 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       ref={navContainerRef}
       className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
-      <div className="max-w-[1720px] mx-auto flex items-center justify-between gap-4 px-4 lg:px-8 h-18 min-h-[72px]">
-        
-        {/* =======================================================
-            LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
-        ======================================================= */}
-        <div className="flex items-center gap-4 lg:gap-6 min-w-0 shrink">
-          {/* Anchored Brand Logo on Far Left Corner */}
-          <BrandLogo />
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 py-2.5 gap-3 lg:gap-4 min-w-0">
+          
+          {/* =======================================================
+              LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
+          ======================================================= */}
+          <div className="flex items-center gap-4 lg:gap-6 min-w-0 shrink">
+            {/* Anchored Brand Logo on Far Left Corner */}
+            <BrandLogo className="shrink-0 flex-shrink-0" />
 
-          {/* Desktop Navigation Links */}
-          <nav
-            className="hidden xl:flex items-center gap-3.5 xl:gap-5 min-w-0"
-            aria-label="Main Navigation Categories"
-          >
-            {navigationCategories.map((category) => {
-              const isOpen = openDropdownId === category.id;
+            {/* Desktop Navigation Links */}
+            <nav
+              className="hidden xl:flex items-center gap-3.5 2xl:gap-5 min-w-0 shrink"
+              aria-label="Main Navigation Categories"
+            >
+              {navigationCategories.map((category) => {
+                const isOpen = openDropdownId === category.id;
 
-              return (
-                <div
-                  key={category.id}
-                  onMouseEnter={() => handleMouseEnter(category.id)}
-                  onMouseLeave={handleMouseLeave}
-                  className="flex items-center shrink-0"
-                >
-                  <button
-                    type="button"
-                    aria-haspopup="true"
-                    aria-expanded={isOpen}
-                    aria-controls={`dropdown-menu-${category.id}`}
+                return (
+                  <div
+                    key={category.id}
                     onMouseEnter={() => handleMouseEnter(category.id)}
                     onMouseLeave={handleMouseLeave}
-                    onClick={() => handleTriggerClick(category)}
-                    onKeyDown={(e) => handleKeyDown(e, category)}
-                    className={`flex items-center px-2.5 py-1.5 rounded-md text-[13px] sm:text-sm font-bold text-white tracking-wide transition-all duration-150 cursor-pointer whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
-                      isOpen
-                        ? "bg-white/20 shadow-xs ring-1 ring-white/30"
-                        : "hover:bg-white/10 hover:text-white"
-                    }`}
+                    className="flex items-center shrink-0"
                   >
-                    <span>{category.title}</span>
-                    <FaChevronDown
-                      className={`text-[9px] ml-1 text-white/80 transition-transform duration-200 shrink-0 ${
-                        isOpen ? "rotate-180 text-amber-300" : ""
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={isOpen}
+                      aria-controls={`dropdown-menu-${category.id}`}
+                      onMouseEnter={() => handleMouseEnter(category.id)}
+                      onMouseLeave={handleMouseLeave}
+                      onClick={() => handleTriggerClick(category)}
+                      onKeyDown={(e) => handleKeyDown(e, category)}
+                      className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-[13px] 2xl:text-sm font-medium transition-all duration-150 cursor-pointer whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                        isOpen
+                          ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
+                          : "text-white/90 hover:bg-white/10 hover:text-white"
                       }`}
-                    />
-                  </button>
-                </div>
-              );
-            })}
-          </nav>
-        </div>
+                    >
+                      <span>{category.title}</span>
+                      <FaChevronDown
+                        className={`text-[8px] ml-1 transition-transform duration-200 shrink-0 ${
+                          isOpen ? "rotate-180 text-amber-300" : "text-white/70"
+                        }`}
+                      />
+                    </button>
+                  </div>
+                );
+              })}
+            </nav>
+          </div>
 
-        {/* =======================================================
-            TABLET / MOBILE HAMBURGER BUTTON
-        ======================================================= */}
-        <div className="flex xl:hidden items-center gap-1.5 shrink-0">
-          <button
-            type="button"
-            aria-label={
-              isMobileOpen
-                ? "Close navigation menu"
-                : "Open navigation menu"
-            }
-            aria-expanded={isMobileOpen}
-            aria-controls="mobile-navigation-drawer"
-            onClick={onToggleMobile}
-            className="flex items-center gap-1.5 px-3 h-9 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer border border-white/20 transition-all leading-none"
-          >
-            {isMobileOpen ? (
-              <FaTimes className="text-xs" />
-            ) : (
-              <FaBars className="text-xs" />
-            )}
-            <span className="hidden sm:inline">Browse Categories</span>
-          </button>
-        </div>
+          {/* =======================================================
+              TABLET / MOBILE HAMBURGER BUTTON
+          ======================================================= */}
+          <div className="flex xl:hidden items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              aria-label={
+                isMobileOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
+              }
+              aria-expanded={isMobileOpen}
+              aria-controls="mobile-navigation-drawer"
+              onClick={onToggleMobile}
+              className="flex items-center gap-1.5 px-3 h-8 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer border border-white/20 transition-all leading-none"
+            >
+              {isMobileOpen ? (
+                <FaTimes className="text-xs" />
+              ) : (
+                <FaBars className="text-xs" />
+              )}
+              <span className="hidden sm:inline">Browse Categories</span>
+            </button>
+          </div>
 
-        {/* =======================================================
-            RIGHT SIDE: SEARCH BAR & VERIFY CERTIFICATE
-        ======================================================= */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          <SearchBar />
-          <Link
-            to="/verify-certificate"
-            className="shrink-0 whitespace-nowrap h-9 px-3.5 text-xs font-bold rounded-full bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-sm flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
-            aria-label="Verify Certificate"
-          >
-            <FaAward className="text-xs text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
-            <span>Verify Certificate</span>
-          </Link>
-        </div>
+          {/* =======================================================
+              RIGHT SIDE: SEARCH BAR & VERIFY CERTIFICATE
+          ======================================================= */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 flex-shrink-0">
+            <SearchBar />
+            <Link
+              to="/verify-certificate"
+              className="group flex items-center gap-1.5 px-3 py-1.5 h-8 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 text-[#131E4A] font-bold text-xs rounded-full shadow-xs transition-all duration-200 hover:shadow-md cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0 leading-none"
+              aria-label="Verify Certificate"
+            >
+              <FaAward className="text-xs text-[#131E4A] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
+              <span>Verify Certificate</span>
+            </Link>
+          </div>
 
+        </div>
       </div>
 
       {/* =========================================================
