@@ -147,7 +147,7 @@ export const CookieConsent = () => {
                                 </div>
                                 <div className="flex flex-col justify-center min-w-0">
                                     <h2 id="cookie-consent-title" className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug">
-                                        Cookie &amp; Privacy Preferences
+                                        Preferences - Cookies, Data privacy &amp; Protection
                                     </h2>
                                     <p className="text-[11px] text-slate-300 font-normal leading-tight mt-0.5 truncate">
                                         Compliant with India DPDP Act &amp; Global Privacy Standards
@@ -179,17 +179,9 @@ export const CookieConsent = () => {
                                         With your consent, we may also use privacy-conscious analytics to understand website usage and improve curriculum performance.
                                     </p>
 
-                                    {/* Privacy description paragraph 3 with visual representation */}
-                                    <p className="text-[11.5px] sm:text-xs text-slate-500 leading-relaxed flex flex-wrap items-center gap-1 pt-0.5">
-                                        <span>You can customize your privacy preferences or withdraw your consent at any time by clicking the Manage Preferences icon</span>
-                                        <img
-                                            src={cookieIcon || "/assets/cookie-preferences-icon.png"}
-                                            alt="Manage Preferences icon"
-                                            className="w-3.5 h-3.5 rounded-xs object-contain shadow-2xs inline-block align-middle shrink-0"
-                                            width={14}
-                                            height={14}
-                                        />
-                                        <span>in the bottom-right corner of your screen.</span>
+                                    {/* Privacy description paragraph 3 (clean text without icon) */}
+                                    <p className="text-[11.5px] sm:text-xs text-slate-500 leading-relaxed pt-0.5">
+                                        You can customize your privacy preferences or withdraw your consent at any time by clicking the Manage Preferences icon in the bottom-right corner of your screen.
                                     </p>
                                 </div>
                             ) : (
