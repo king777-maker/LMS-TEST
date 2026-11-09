@@ -650,24 +650,34 @@ const Contact = () => {
             <section className="bg-[#FFDB58] py-14 lg:py-16">
                 <div className="max-w-[1100px] mx-auto px-6 text-center">
                     <h2 className="text-[#131E4A] text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
-                        Ready to Advance Your Professional Career?
+                        Lets Get in Touch!
                     </h2>
-                    <p className="mt-3 text-[#334B69] text-sm sm:text-base lg:text-lg max-w-[700px] mx-auto">
-                        Explore our world-class ISO Lead Auditor courses, Foundation certifications, and Continuous Improvement programs.
+                    <p className="mt-3 text-[#131E4A]/85 text-sm sm:text-base lg:text-lg max-w-[700px] mx-auto leading-relaxed">
+                        Reach out to us at Broadbeach . We’re here to help. Connect with our team today and let’s explore new opportunities together.
                     </p>
-                    <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                        <a
-                            href="/lead-auditor"
-                            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#131E4A] hover:bg-[#15467e] text-white font-bold text-sm transition-all shadow-md"
-                        >
-                            Explore Lead Auditor Courses
-                        </a>
-                        <a
-                            href={PRIMARY_CONTACT.phoneHref}
-                            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-[#131E4A] font-bold text-sm transition-all shadow-md"
-                        >
-                            Call Support: {PRIMARY_CONTACT.phoneDisplay}
-                        </a>
+                    <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+                        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+                            <span className="text-xs uppercase font-bold tracking-wider text-[#131E4A]/80">
+                                Call us
+                            </span>
+                            <a
+                                href="tel:+917338649737"
+                                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#131E4A] hover:bg-[#1c2c6b] text-white font-bold text-sm transition-all shadow-md"
+                            >
+                                +91 7338649737
+                            </a>
+                        </div>
+                        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+                            <span className="text-xs uppercase font-bold tracking-wider text-[#131E4A]/80">
+                                Email us
+                            </span>
+                            <a
+                                href="mailto:certification@broadbeach.in"
+                                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white hover:bg-slate-50 text-[#131E4A] font-bold text-sm transition-all shadow-md"
+                            >
+                                certification@broadbeach.in
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
