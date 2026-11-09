@@ -1,20 +1,21 @@
 import { useState } from "react";
 import {
-    FaEnvelope,
-    FaPhoneAlt,
-    FaMapMarkerAlt,
-    FaClock,
-    FaPaperPlane,
     FaFacebookF,
     FaInstagram,
     FaLinkedinIn,
-    FaCopy,
-    FaCheck,
-    FaExternalLinkAlt,
-    FaGlobe,
-    FaCertificate,
-    FaBuilding
 } from "react-icons/fa";
+import {
+    Mail,
+    Phone,
+    MapPin,
+    Building2,
+    Award,
+    Check,
+    Copy,
+    ExternalLink,
+    Send,
+    Globe
+} from "lucide-react";
 import toast from "react-hot-toast";
 import { PRIMARY_CONTACT, REGIONAL_CONTACTS, copyToClipboard } from "../constants/contactInfo";
 import { createTicket } from "../api/adminApi";
@@ -43,14 +44,14 @@ const Contact = () => {
                 duration: 2500,
                 style: {
                     borderRadius: "12px",
-                    background: "#0B315B",
+                    background: "#0F172A",
                     color: "#ffffff",
                     fontSize: "14px",
                     fontWeight: "500",
                 },
                 iconTheme: {
-                    primary: "#FFDB58",
-                    secondary: "#0B315B",
+                    primary: "#10B981",
+                    secondary: "#ffffff",
                 },
             });
             setTimeout(() => {
@@ -112,246 +113,206 @@ const Contact = () => {
     };
 
     return (
-        <main className="bg-[#F5F8FD] min-h-screen text-slate-800">
-
-            {/* =====================================================
-                HERO SECTION
-            ===================================================== */}
-            <section className="bg-[#0B315B] relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-[4px] bg-[#FFDB58]"></div>
-
-                <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 lg:py-24 text-center">
-                    <div className="flex items-center justify-center gap-4 sm:gap-5 mb-5">
-                        <div className="w-12 sm:w-20 lg:w-24 h-[3px] bg-[#FFDB58] rounded-full"></div>
-                        <span className="text-[#FFDB58] uppercase tracking-[3px] sm:tracking-[4px] text-xs font-bold">
-                            Get In Touch
-                        </span>
-                        <div className="w-12 sm:w-20 lg:w-24 h-[3px] bg-[#FFDB58] rounded-full"></div>
-                    </div>
-
-                    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                        Contact Us
-                    </h1>
-
-                    <p className="mt-4 sm:mt-5 max-w-[800px] mx-auto text-[#D8E4F2] text-sm sm:text-base lg:text-lg leading-relaxed">
-                        Have a question about our ISO lead auditor courses, certifications, corporate training or credential verification? Our academic advisory team is here to assist you.
-                    </p>
-                </div>
-            </section>
+        <main className="bg-[#F8FAFC] min-h-screen text-slate-800">
 
             {/* =====================================================
                 PRIMARY CONTACT DETAILS + FORM SECTION
+                (Begins cleanly below navbar with balanced pt-10 to pt-14)
             ===================================================== */}
-            <section className="py-12 lg:py-20">
-                <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-[440px_1fr] gap-8 lg:gap-12 items-start">
+            <section className="pt-10 sm:pt-12 lg:pt-14 pb-16 lg:pb-24">
+                <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-[440px_1fr] gap-8 lg:gap-10 items-start">
 
                         {/* =================================================
-                            LEFT COLUMN: PRIMARY VERIFIED CONTACT DETAILS
+                            LEFT COLUMN: APPLE-INSPIRED MINIMALIST SIDEBAR
                         ================================================= */}
-                        <div className="bg-[#0B315B] rounded-[24px] p-6 sm:p-8 lg:p-9 text-white shadow-[0_20px_50px_rgba(11,49,91,0.22)] border border-white/10">
-                            <div className="border-b border-white/15 pb-6 mb-7">
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFDB58]/15 border border-[#FFDB58]/30 text-[#FFDB58] text-xs font-semibold uppercase tracking-wider mb-3">
-                                    <FaBuilding className="text-[11px]" />
-                                    <span>Headquarters & Admissions</span>
-                                </span>
-                                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                                    Let's Connect
-                                </h2>
-                                <p className="text-[#D8E4F2] text-sm leading-relaxed mt-2">
-                                    Reach out directly for admissions, enterprise training, exam registration, or global student verification.
-                                </p>
+                        <div className="bg-white rounded-3xl p-7 sm:p-8 lg:p-9 border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col justify-between">
+                            <div>
+                                {/* Header */}
+                                <div className="border-b border-slate-100 pb-5 mb-6">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-semibold uppercase tracking-wider mb-2.5">
+                                        <Building2 className="w-3.5 h-3.5 text-slate-500" />
+                                        <span>Headquarters &amp; Admissions</span>
+                                    </span>
+                                    <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
+                                        Let's Connect
+                                    </h2>
+                                    <p className="text-slate-500 text-sm leading-relaxed mt-1.5">
+                                        Reach out directly for admissions, enterprise training, exam registration, or global credential verification.
+                                    </p>
+                                </div>
+
+                                <div className="space-y-6">
+
+                                    {/* 1. PRIMARY EMAIL */}
+                                    <div className="flex gap-3.5 sm:gap-4 items-start group">
+                                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 shrink-0 group-hover:bg-slate-200/80 transition-colors">
+                                            <Mail className="w-4 h-4 text-slate-600" />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                                                Primary Email
+                                            </p>
+                                            <div className="mt-0.5 flex items-center justify-between gap-2 flex-wrap">
+                                                <a
+                                                    href={PRIMARY_CONTACT.emailHref}
+                                                    aria-label={`Send email to ${PRIMARY_CONTACT.email}`}
+                                                    className="text-slate-900 text-sm sm:text-base font-medium hover:text-blue-600 transition-colors break-all"
+                                                >
+                                                    {PRIMARY_CONTACT.email}
+                                                </a>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleCopy(PRIMARY_CONTACT.email, "Primary Email", "prim-email")}
+                                                    aria-label="Copy primary email address"
+                                                    title="Copy primary email address"
+                                                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
+                                                >
+                                                    {copiedKey === "prim-email" ? (
+                                                        <>
+                                                            <Check className="w-3 h-3 text-emerald-600" />
+                                                            <span className="text-emerald-600 font-semibold text-[11px]">Copied</span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <Copy className="w-3 h-3" />
+                                                            <span className="text-[11px]">Copy email</span>
+                                                        </>
+                                                    )}
+                                                </button>
+                                            </div>
+                                            <span className="block text-xs text-slate-400 mt-0.5 leading-normal">
+                                                General inquiries, course syllabus &amp; corporate quotes
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* 2. INDIA PHONE */}
+                                    <div className="flex gap-3.5 sm:gap-4 items-start group">
+                                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 shrink-0 group-hover:bg-slate-200/80 transition-colors">
+                                            <Phone className="w-4 h-4 text-slate-600" />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                                                India Phone / Helpline
+                                            </p>
+                                            <div className="mt-0.5 flex items-center justify-between gap-2 flex-wrap">
+                                                <a
+                                                    href={PRIMARY_CONTACT.phoneHref}
+                                                    aria-label={`Call Broadbeach Academy at ${PRIMARY_CONTACT.phoneDisplay}`}
+                                                    className="text-slate-900 text-sm sm:text-base font-medium hover:text-blue-600 transition-colors"
+                                                >
+                                                    {PRIMARY_CONTACT.phoneDisplay}
+                                                </a>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleCopy(PRIMARY_CONTACT.phone, "Phone Number", "prim-phone")}
+                                                    aria-label="Copy phone number"
+                                                    title="Copy phone number"
+                                                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
+                                                >
+                                                    {copiedKey === "prim-phone" ? (
+                                                        <>
+                                                            <Check className="w-3 h-3 text-emerald-600" />
+                                                            <span className="text-emerald-600 font-semibold text-[11px]">Copied</span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <Copy className="w-3 h-3" />
+                                                            <span className="text-[11px]">Copy number</span>
+                                                        </>
+                                                    )}
+                                                </button>
+                                            </div>
+                                            <span className="block text-xs text-slate-400 mt-0.5 leading-normal">
+                                                Admissions helpline &amp; WhatsApp assistance
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* 3. TRAINING & CERTIFICATION DESK */}
+                                    <div className="flex gap-3.5 sm:gap-4 items-start group">
+                                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 shrink-0 group-hover:bg-slate-200/80 transition-colors">
+                                            <Award className="w-4 h-4 text-slate-600" />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                                                Training &amp; Certification Desk
+                                            </p>
+                                            <div className="mt-0.5 flex items-center justify-between gap-2 flex-wrap">
+                                                <a
+                                                    href={PRIMARY_CONTACT.certificationEmailHref}
+                                                    aria-label={`Send email to ${PRIMARY_CONTACT.certificationEmail}`}
+                                                    className="text-slate-900 text-sm sm:text-base font-medium hover:text-blue-600 transition-colors break-all"
+                                                >
+                                                    {PRIMARY_CONTACT.certificationEmail}
+                                                </a>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleCopy(PRIMARY_CONTACT.certificationEmail, "Certification Email", "cert-email")}
+                                                    aria-label="Copy certification email"
+                                                    title="Copy certification email"
+                                                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
+                                                >
+                                                    {copiedKey === "cert-email" ? (
+                                                        <>
+                                                            <Check className="w-3 h-3 text-emerald-600" />
+                                                            <span className="text-emerald-600 font-semibold text-[11px]">Copied</span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <Copy className="w-3 h-3" />
+                                                            <span className="text-[11px]">Copy email</span>
+                                                        </>
+                                                    )}
+                                                </button>
+                                            </div>
+                                            <span className="block text-xs text-slate-400 mt-0.5 leading-normal">
+                                                Exam eligibility, credential audits &amp; certificate verification
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* 4. OFFICE ADDRESS */}
+                                    <div className="flex gap-3.5 sm:gap-4 items-start group">
+                                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 shrink-0 group-hover:bg-slate-200/80 transition-colors">
+                                            <MapPin className="w-4 h-4 text-slate-600" />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                                                Office Address
+                                            </p>
+                                            <p className="mt-1 text-slate-800 text-xs sm:text-sm leading-relaxed">
+                                                {PRIMARY_CONTACT.officeAddress}
+                                            </p>
+                                            <a
+                                                href={PRIMARY_CONTACT.mapsUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="View Broadbeach Academy location on Google Maps (opens in new tab)"
+                                                className="inline-flex items-center gap-1.5 mt-2 text-xs font-medium text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                                            >
+                                                <span>Open in Google Maps</span>
+                                                <ExternalLink className="w-3 h-3" />
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
-                            <div className="space-y-6">
-
-                                {/* PRIMARY EMAIL */}
-                                <div className="flex gap-3.5 sm:gap-4 items-start group">
-                                    <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-2xl bg-[#FFDB58] flex items-center justify-center shadow-md">
-                                        <FaEnvelope className="text-[#0B315B] text-base sm:text-lg" />
-                                    </div>
-                                    <div className="min-w-0 flex-1">
-                                        <p className="text-[#FFDB58] text-xs font-bold uppercase tracking-[1px]">
-                                            Primary Email
-                                        </p>
-                                        <div className="mt-1 flex items-center justify-between gap-2 flex-wrap">
-                                            <a
-                                                href={PRIMARY_CONTACT.emailHref}
-                                                aria-label={`Send email to ${PRIMARY_CONTACT.email}`}
-                                                className="text-white text-sm sm:text-base font-semibold hover:text-[#FFDB58] transition-colors break-all focus:outline-hidden focus:underline"
-                                            >
-                                                {PRIMARY_CONTACT.email}
-                                            </a>
-                                            <button
-                                                type="button"
-                                                onClick={() => handleCopy(PRIMARY_CONTACT.email, "Primary Email", "prim-email")}
-                                                aria-label="Copy primary email address"
-                                                title="Copy primary email address"
-                                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 text-xs font-medium text-white transition-all cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-[#FFDB58] shrink-0"
-                                            >
-                                                {copiedKey === "prim-email" ? (
-                                                    <>
-                                                        <FaCheck className="text-emerald-400 text-xs" />
-                                                        <span className="text-emerald-300 font-semibold">Copied</span>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FaCopy className="text-xs" />
-                                                        <span>Copy email</span>
-                                                    </>
-                                                )}
-                                            </button>
-                                        </div>
-                                        <span className="block text-[#A9C3E2] text-xs mt-0.5">
-                                            General inquiries, course syllabus & corporate quotes
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* INDIA PHONE */}
-                                <div className="flex gap-3.5 sm:gap-4 items-start group">
-                                    <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-2xl bg-[#FFDB58] flex items-center justify-center shadow-md">
-                                        <FaPhoneAlt className="text-[#0B315B] text-base sm:text-lg" />
-                                    </div>
-                                    <div className="min-w-0 flex-1">
-                                        <p className="text-[#FFDB58] text-xs font-bold uppercase tracking-[1px]">
-                                            India Phone / Helpline
-                                        </p>
-                                        <div className="mt-1 flex items-center justify-between gap-2 flex-wrap">
-                                            <a
-                                                href={PRIMARY_CONTACT.phoneHref}
-                                                aria-label={`Call Broadbeach Academy at ${PRIMARY_CONTACT.phoneDisplay}`}
-                                                className="text-white text-sm sm:text-base font-semibold hover:text-[#FFDB58] transition-colors focus:outline-hidden focus:underline"
-                                            >
-                                                {PRIMARY_CONTACT.phoneDisplay}
-                                            </a>
-                                            <button
-                                                type="button"
-                                                onClick={() => handleCopy(PRIMARY_CONTACT.phone, "Phone Number", "prim-phone")}
-                                                aria-label="Copy phone number"
-                                                title="Copy phone number"
-                                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 text-xs font-medium text-white transition-all cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-[#FFDB58] shrink-0"
-                                            >
-                                                {copiedKey === "prim-phone" ? (
-                                                    <>
-                                                        <FaCheck className="text-emerald-400 text-xs" />
-                                                        <span className="text-emerald-300 font-semibold">Copied</span>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FaCopy className="text-xs" />
-                                                        <span>Copy number</span>
-                                                    </>
-                                                )}
-                                            </button>
-                                        </div>
-                                        <span className="block text-[#A9C3E2] text-xs mt-0.5">
-                                            Admissions helpline & WhatsApp assistance
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* TRAINING & CERTIFICATION EMAIL */}
-                                <div className="flex gap-3.5 sm:gap-4 items-start group">
-                                    <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-2xl bg-[#FFDB58] flex items-center justify-center shadow-md">
-                                        <FaCertificate className="text-[#0B315B] text-base sm:text-lg" />
-                                    </div>
-                                    <div className="min-w-0 flex-1">
-                                        <p className="text-[#FFDB58] text-xs font-bold uppercase tracking-[1px]">
-                                            Training & Certification Desk
-                                        </p>
-                                        <div className="mt-1 flex items-center justify-between gap-2 flex-wrap">
-                                            <a
-                                                href={PRIMARY_CONTACT.certificationEmailHref}
-                                                aria-label={`Send email to ${PRIMARY_CONTACT.certificationEmail}`}
-                                                className="text-white text-sm sm:text-base font-semibold hover:text-[#FFDB58] transition-colors break-all focus:outline-hidden focus:underline"
-                                            >
-                                                {PRIMARY_CONTACT.certificationEmail}
-                                            </a>
-                                            <button
-                                                type="button"
-                                                onClick={() => handleCopy(PRIMARY_CONTACT.certificationEmail, "Certification Email", "cert-email")}
-                                                aria-label="Copy certification email"
-                                                title="Copy certification email"
-                                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 text-xs font-medium text-white transition-all cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-[#FFDB58] shrink-0"
-                                            >
-                                                {copiedKey === "cert-email" ? (
-                                                    <>
-                                                        <FaCheck className="text-emerald-400 text-xs" />
-                                                        <span className="text-emerald-300 font-semibold">Copied</span>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FaCopy className="text-xs" />
-                                                        <span>Copy email</span>
-                                                    </>
-                                                )}
-                                            </button>
-                                        </div>
-                                        <span className="block text-[#A9C3E2] text-xs mt-0.5">
-                                            Exam eligibility, credential audits & certificate verification
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* REGISTERED OFFICE ADDRESS & GOOGLE MAPS */}
-                                <div className="flex gap-3.5 sm:gap-4 items-start group">
-                                    <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-2xl bg-[#FFDB58] flex items-center justify-center shadow-md">
-                                        <FaMapMarkerAlt className="text-[#0B315B] text-base sm:text-lg" />
-                                    </div>
-                                    <div className="min-w-0 flex-1">
-                                        <p className="text-[#FFDB58] text-xs font-bold uppercase tracking-[1px]">
-                                            Office Address
-                                        </p>
-                                        <p className="mt-1 text-white text-xs sm:text-sm leading-relaxed">
-                                            {PRIMARY_CONTACT.officeAddress}
-                                        </p>
-                                        <a
-                                            href={PRIMARY_CONTACT.mapsUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label="View Broadbeach Academy location on Google Maps (opens in new tab)"
-                                            className="inline-flex items-center gap-1.5 mt-2.5 px-3 py-1.5 rounded-lg bg-[#FFDB58] text-[#0B315B] text-xs font-bold hover:bg-[#FFE37A] transition-all focus:outline-hidden focus:ring-2 focus:ring-white shadow-xs"
-                                        >
-                                            <FaMapMarkerAlt className="text-[11px]" />
-                                            <span>Open in Google Maps</span>
-                                            <FaExternalLinkAlt className="text-[10px]" />
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {/* WORKING HOURS */}
-                                <div className="flex gap-3.5 sm:gap-4 items-start">
-                                    <div className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-2xl bg-[#FFDB58] flex items-center justify-center shadow-md">
-                                        <FaClock className="text-[#0B315B] text-base sm:text-lg" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[#FFDB58] text-xs font-bold uppercase tracking-[1px]">
-                                            Working Hours
-                                        </p>
-                                        <p className="mt-1 text-white text-xs sm:text-sm leading-relaxed">
-                                            {PRIMARY_CONTACT.workingHours}
-                                        </p>
-                                        <span className="block text-[#A9C3E2] text-xs mt-0.5">
-                                            Indian Standard Time (IST / UTC +5:30)
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            {/* SOCIAL MEDIA LINKS */}
-                            <div className="mt-8 pt-6 border-t border-white/15 flex items-center justify-between flex-wrap gap-4">
-                                <span className="text-[#FFDB58] text-xs uppercase tracking-[1px] font-bold">
-                                    Official Channels:
+                            {/* SOCIAL MEDIA / OFFICIAL CHANNELS */}
+                            <div className="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between flex-wrap gap-4">
+                                <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                                    Official Channels
                                 </span>
-                                <div className="flex gap-2.5">
+                                <div className="flex items-center gap-2">
                                     <a
                                         href="https://www.facebook.com/broadbeach.innovations.71/"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label="Follow Broadbeach Academy on Facebook"
-                                        className="w-9 h-9 rounded-xl bg-white/15 text-white flex items-center justify-center hover:bg-[#FFDB58] hover:text-[#0B315B] transition-all focus:outline-hidden focus:ring-2 focus:ring-[#FFDB58]"
+                                        className="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 transition-all focus:outline-hidden focus:ring-2 focus:ring-slate-300"
                                     >
                                         <FaFacebookF className="text-xs" />
                                     </a>
@@ -360,7 +321,7 @@ const Contact = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label="Follow Broadbeach Academy on Instagram"
-                                        className="w-9 h-9 rounded-xl bg-white/15 text-white flex items-center justify-center hover:bg-[#FFDB58] hover:text-[#0B315B] transition-all focus:outline-hidden focus:ring-2 focus:ring-[#FFDB58]"
+                                        className="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 transition-all focus:outline-hidden focus:ring-2 focus:ring-slate-300"
                                     >
                                         <FaInstagram className="text-xs" />
                                     </a>
@@ -369,7 +330,7 @@ const Contact = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label="Connect with Broadbeach Academy on LinkedIn"
-                                        className="w-9 h-9 rounded-xl bg-white/15 text-white flex items-center justify-center hover:bg-[#FFDB58] hover:text-[#0B315B] transition-all focus:outline-hidden focus:ring-2 focus:ring-[#FFDB58]"
+                                        className="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 transition-all focus:outline-hidden focus:ring-2 focus:ring-slate-300"
                                     >
                                         <FaLinkedinIn className="text-xs" />
                                     </a>
@@ -380,15 +341,16 @@ const Contact = () => {
                         {/* =================================================
                             RIGHT COLUMN: CONTACT & INQUIRY FORM
                         ================================================= */}
-                        <div className="bg-white rounded-[24px] p-6 sm:p-9 lg:p-11 shadow-[0_15px_45px_rgba(15,23,42,0.06)] border border-slate-100">
-                            <div className="mb-8">
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-[#0B315B] text-xs font-bold uppercase tracking-wider mb-2">
-                                    Direct Inquiries
+                        <div className="bg-white rounded-3xl p-7 sm:p-8 lg:p-9 border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                            <div className="border-b border-slate-100 pb-5 mb-6">
+                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-semibold uppercase tracking-wider mb-2.5">
+                                    <Send className="w-3.5 h-3.5 text-slate-500" />
+                                    <span>Direct Inquiries</span>
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl font-bold text-[#0B315B] tracking-tight">
+                                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
                                     Send Us a Message
                                 </h2>
-                                <p className="mt-2 text-slate-500 text-sm leading-relaxed">
+                                <p className="mt-1.5 text-slate-500 text-sm leading-relaxed">
                                     Fill out your details below and our academic counseling team will respond within 24 business hours.
                                 </p>
                             </div>
@@ -396,7 +358,7 @@ const Contact = () => {
                             {/* SUCCESS MESSAGE */}
                             {submitted && (
                                 <div className="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl px-5 py-4 text-sm font-medium flex items-center gap-3">
-                                    <FaCheck className="text-emerald-600 text-base shrink-0" />
+                                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                                     <span>Thank you! Your message has been submitted. Our team will contact you shortly.</span>
                                 </div>
                             )}
@@ -405,7 +367,7 @@ const Contact = () => {
                                 {/* NAME + EMAIL */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div>
-                                        <label htmlFor="contact-name" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        <label htmlFor="contact-name" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
                                             Your Full Name <span className="text-rose-500">*</span>
                                         </label>
                                         <input
@@ -421,7 +383,7 @@ const Contact = () => {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        <label htmlFor="contact-email" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
                                             Email Address <span className="text-rose-500">*</span>
                                         </label>
                                         <input
@@ -440,7 +402,7 @@ const Contact = () => {
                                 {/* PHONE + SUBJECT */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div>
-                                        <label htmlFor="contact-phone" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        <label htmlFor="contact-phone" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
                                             Phone / WhatsApp
                                         </label>
                                         <input
@@ -455,7 +417,7 @@ const Contact = () => {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="contact-subject" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                        <label htmlFor="contact-subject" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
                                             Inquiry Purpose <span className="text-rose-500">*</span>
                                         </label>
                                         <input
@@ -473,7 +435,7 @@ const Contact = () => {
 
                                 {/* MESSAGE */}
                                 <div>
-                                    <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                                    <label htmlFor="contact-message" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
                                         Your Message / Requirements <span className="text-rose-500">*</span>
                                     </label>
                                     <textarea
@@ -492,9 +454,9 @@ const Contact = () => {
                                 <div className="pt-2">
                                     <button
                                         type="submit"
-                                        className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2.5 px-8 rounded-[12px] bg-[#0052CC] hover:bg-[#0747A6] active:scale-[0.98] text-white font-bold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-xs focus:outline-hidden focus:ring-2 focus:ring-[#0052CC] focus:ring-offset-2 select-none"
+                                        className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2 px-8 rounded-xl bg-[#0B315B] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#0B315B] focus:ring-offset-2 select-none"
                                     >
-                                        <FaPaperPlane className="text-xs" />
+                                        <Send className="w-4 h-4" />
                                         <span>Send Inquiry Message</span>
                                     </button>
                                 </div>
@@ -526,11 +488,11 @@ const Contact = () => {
 
                     <div className="text-center max-w-[850px] mx-auto mb-12 sm:mb-16">
                         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B315B]/10 text-[#0B315B] text-xs font-bold uppercase tracking-wider mb-3">
-                            <FaGlobe className="text-xs text-[#0B315B]" />
+                            <Globe className="w-3.5 h-3.5 text-[#0B315B]" />
                             <span>International Academic Network</span>
                         </div>
                         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0B315B] tracking-tight">
-                            Global Representatives & Regional Contact Directory
+                            Global Representatives &amp; Regional Contact Directory
                         </h2>
                         <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
                             Broadbeach Academy coordinates executive certifications, lead auditor training programs, and ISO assessments globally through certified regional desks and authorized partners.
@@ -590,12 +552,12 @@ const Contact = () => {
                                         >
                                             {copiedKey === item.id ? (
                                                 <>
-                                                    <FaCheck className="text-emerald-500 text-[10px]" />
+                                                    <Check className="w-3 h-3 text-emerald-500" />
                                                     <span className="text-emerald-600 text-[11px] font-bold">Copied</span>
                                                 </>
                                             ) : (
                                                 <>
-                                                    <FaCopy className="text-[10px]" />
+                                                    <Copy className="w-3 h-3" />
                                                     <span className="text-[11px]">Copy</span>
                                                 </>
                                             )}
@@ -607,7 +569,7 @@ const Contact = () => {
                     </div>
 
                     <div className="mt-10 p-4 rounded-xl bg-blue-50/70 border border-blue-100 text-xs text-slate-600 max-w-3xl mx-auto text-center leading-relaxed">
-                        <span className="font-bold text-[#0B315B]">Note for Learners & Corporate Clients:</span> Regional liaison desks coordinate remote admissions, virtual examinations, and regional corporate schedules. Official institutional contracts and certificate verifications are issued directly through our verified headquarters at Bengaluru, India.
+                        <span className="font-bold text-[#0B315B]">Note for Learners &amp; Corporate Clients:</span> Regional liaison desks coordinate remote admissions, virtual examinations, and regional corporate schedules. Official institutional contracts and certificate verifications are issued directly through our verified headquarters at Bengaluru, India.
                     </div>
 
                 </div>
