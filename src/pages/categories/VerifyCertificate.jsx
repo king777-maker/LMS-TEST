@@ -14,6 +14,7 @@ import SEO from "../../components/common/SEO";
 import Breadcrumbs from "../../components/common/Breadcrumbs";
 import analytics from "../../utils/analytics";
 import { verifyCertificate } from "../../api/api";
+import { MANUAL_CERTIFICATES_REGISTRY } from "../../data/manualCertificatesData";
 import { getAuthoritativeCourseName } from "../../data/freeCoursesData";
 import { normalizeCourseId } from "../../utils/progressTracker";
 import { useAuth } from "../../context/AuthContext";
@@ -244,6 +245,32 @@ const VerifyCertificate = () => {
       }
     } catch (e) {}
 
+    // 4. Check authoritative corporate manual certificates registry (5,400+ credentials)
+    try {
+      const manualMatch = MANUAL_CERTIFICATES_REGISTRY.find(
+        (c) => String(c.certificate_number || "").trim().toUpperCase() === cleanNumber
+      );
+      if (manualMatch) {
+        const isRevoked = manualMatch.status === "revoked" || manualMatch.verification_status === "Revoked";
+        return {
+          certificate_number: manualMatch.certificate_number,
+          student_name: manualMatch.student_name,
+          course_name: manualMatch.course_name || "Professional Certification",
+          score: 100,
+          total_questions: 10,
+          percentage: 100,
+          issued_at: manualMatch.issue_date,
+          completion_date: manualMatch.completion_date || manualMatch.issue_date,
+          certificate_number_status: isRevoked ? 0 : 1,
+          verification_status: isRevoked ? "Revoked" : "Verified",
+          source: "corporate_manual_registry",
+          issuing_organization: manualMatch.issuing_organization || "Broadbeach Academy",
+          authorized_signatory: manualMatch.authorized_signatory || "Dr. K. R. Sharma, Academic Director",
+          pdf_path: null,
+        };
+      }
+    } catch (e) {}
+
     return null;
   };
 
@@ -306,6 +333,27 @@ const VerifyCertificate = () => {
         return;
       }
 
+      // If remote search did not return a match, check local & manual registry fallback
+      if (localMatch) {
+        if (localMatch.certificate_number_status === 0 || localMatch.verification_status === "Revoked") {
+          setResult({
+            status: "revoked",
+            success: false,
+            message: "Revoked Certificate — this credential has been revoked and is no longer valid.",
+            data: localMatch,
+          });
+          return;
+        }
+
+        setResult({
+          status: "valid",
+          success: true,
+          message: "Valid Certificate — confirmed by authentic Broadbeach Academy records.",
+          data: localMatch,
+        });
+        return;
+      }
+
       setResult({
         status: "invalid",
         success: false,
@@ -316,6 +364,27 @@ const VerifyCertificate = () => {
       });
     } catch (error) {
       console.error("CERTIFICATE VERIFICATION ERROR:", error);
+
+      // Check if certificate exists in local / manual registry
+      if (localMatch) {
+        if (localMatch.certificate_number_status === 0 || localMatch.verification_status === "Revoked") {
+          setResult({
+            status: "revoked",
+            success: false,
+            message: "Revoked Certificate — this credential has been revoked and is no longer valid.",
+            data: localMatch,
+          });
+          return;
+        }
+
+        setResult({
+          status: "valid",
+          success: true,
+          message: "Valid Certificate — confirmed by authentic Broadbeach Academy records.",
+          data: localMatch,
+        });
+        return;
+      }
 
       const statusCode = error?.response?.status;
       const respData = error?.response?.data;

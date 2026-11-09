@@ -31,6 +31,8 @@ import {
   FaBuilding,
   FaPenNib,
   FaStamp,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 
 const SIGNATORIES = [
@@ -65,6 +67,8 @@ const ManualCertMaster = () => {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [routeNotFound, setRouteNotFound] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(25);
 
   // Create Modal
   const [createModalOpen, setCreateModalOpen] = useState(
@@ -146,6 +150,11 @@ const ManualCertMaster = () => {
     fetchCertificates();
   }, [statusFilter]);
 
+  // Reset page when search or status filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, statusFilter, pageSize]);
+
   // Client-side filtering
   const filteredCerts = useMemo(() => {
     return certificates.filter((c) => {
@@ -159,11 +168,18 @@ const ManualCertMaster = () => {
 
       const matchStatus =
         statusFilter === "all" ||
+        (statusFilter === "active" && (c.status === "valid" || c.status === "active" || c.verification_status === "Valid")) ||
+        (statusFilter === "revoked" && (c.status === "revoked" || c.verification_status === "Revoked")) ||
         String(c.status).toLowerCase() === statusFilter.toLowerCase();
 
       return matchQuery && matchStatus;
     });
   }, [certificates, search, statusFilter]);
+
+  const totalPages = Math.ceil(filteredCerts.length / pageSize) || 1;
+  const paginatedCerts = useMemo(() => {
+    return filteredCerts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  }, [filteredCerts, currentPage, pageSize]);
 
   // Copy ID
   const handleCopyId = (certNumber) => {
@@ -489,8 +505,8 @@ const ManualCertMaster = () => {
                     <span>Loading manual certificate records...</span>
                   </td>
                 </tr>
-              ) : filteredCerts.length > 0 ? (
-                filteredCerts.map((cert) => {
+              ) : paginatedCerts.length > 0 ? (
+                paginatedCerts.map((cert) => {
                   const isRevoked = cert.status === "revoked" || cert.verification_status === "Revoked";
                   return (
                     <tr
@@ -663,6 +679,89 @@ const ManualCertMaster = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Bar */}
+        {filteredCerts.length > 0 && (
+          <div className="px-6 py-4 bg-slate-50/80 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-600">
+            <div className="flex flex-wrap items-center gap-3">
+              <span>
+                Showing{" "}
+                <span className="font-extrabold text-[#0B315B]">
+                  {(currentPage - 1) * pageSize + 1}
+                </span>{" "}
+                to{" "}
+                <span className="font-extrabold text-[#0B315B]">
+                  {Math.min(currentPage * pageSize, filteredCerts.length)}
+                </span>{" "}
+                of{" "}
+                <span className="font-extrabold text-[#0B315B]">
+                  {filteredCerts.length.toLocaleString()}
+                </span>{" "}
+                certificates
+              </span>
+              <span className="text-slate-300">|</span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-slate-400 text-[11px]">Per page:</span>
+                <select
+                  aria-label="Records per page"
+                  value={pageSize}
+                  onChange={(e) => {
+                    setPageSize(Number(e.target.value));
+                    setCurrentPage(1);
+                  }}
+                  className="bg-white border border-slate-200 rounded-lg px-2 py-1 font-bold text-[#0B315B] focus:outline-hidden text-xs cursor-pointer"
+                >
+                  <option value={25}>25</option>
+                  <option value={50}>50</option>
+                  <option value={100}>100</option>
+                  <option value={200}>200</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCurrentPage(1)}
+                disabled={currentPage <= 1}
+                className="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition text-[11px] font-bold cursor-pointer"
+              >
+                First
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage <= 1}
+                className="p-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+                title="Previous Page"
+              >
+                <FaChevronLeft size={10} />
+              </button>
+
+              <span className="px-3 py-1 font-bold text-[#0B315B] text-xs">
+                Page {currentPage} of {totalPages}
+              </span>
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage >= totalPages}
+                className="p-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+                title="Next Page"
+              >
+                <FaChevronRight size={10} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrentPage(totalPages)}
+                disabled={currentPage >= totalPages}
+                className="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition text-[11px] font-bold cursor-pointer"
+              >
+                Last
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* =========================================================================
