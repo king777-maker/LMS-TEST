@@ -147,10 +147,10 @@ export const CookieConsent = () => {
                                 </div>
                                 <div className="flex flex-col justify-center min-w-0">
                                     <h2 id="cookie-consent-title" className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug">
-                                        Preferences - Cookies, Data privacy &amp; Protection
+                                        Preferences - Cookies, Data Privacy &amp; Protection
                                     </h2>
                                     <p className="text-[11px] text-slate-300 font-normal leading-tight mt-0.5 truncate">
-                                        Compliant with India DPDP Act &amp; Global Privacy Standards
+                                        Compliant with Indian DPDP Act &amp; Global Data Privacy &amp; Standards
                                     </p>
                                 </div>
                             </div>
@@ -168,20 +168,15 @@ export const CookieConsent = () => {
                         {/* ----------------- 2. CONTENT AREA (NATURAL AUTO HEIGHT, NO SCROLLBAR) ----------------- */}
                         <div className="px-5 py-3.5 text-slate-700 leading-relaxed">
                             {!showPreferences ? (
-                                <div className="space-y-2">
-                                    {/* Privacy description paragraph 1 with bold Broadbeach© Online Academy */}
-                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                        We respect your privacy. <strong className="font-bold text-[#0B315B]">Broadbeach&copy; Online Academy</strong> uses essential cookies and browser storage technologies to support secure user authentication, course progress tracking, and certificate generation.
+                                <div className="space-y-2.5">
+                                    {/* Privacy description paragraph 1 in light gray with bold brand */}
+                                    <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                        We respect your privacy. <strong className="font-bold text-slate-700">Broadbeach&copy; Online Academy</strong> uses essential cookies and browser storage technologies to support secure user authentication, course progress tracking, and certificate generation.
                                     </p>
 
-                                    {/* Privacy description paragraph 2 */}
-                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                        With your consent, we may also use privacy-conscious analytics to understand website usage and improve curriculum performance.
-                                    </p>
-
-                                    {/* Privacy description paragraph 3 (clean text without icon) */}
-                                    <p className="text-[11.5px] sm:text-xs text-slate-500 leading-relaxed pt-0.5">
-                                        You can customize your privacy preferences or withdraw your consent at any time by clicking the Manage Preferences icon in the bottom-right corner of your screen.
+                                    {/* Merged paragraph 2 in matching light gray */}
+                                    <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                        With your consent, we may also use privacy-conscious analytics to understand website usage and improve curriculum performance. You can customize your privacy preferences or withdraw your consent at any time by clicking the Manage Preferences icon in the bottom-right corner of your screen.
                                     </p>
                                 </div>
                             ) : (
@@ -299,11 +294,11 @@ export const CookieConsent = () => {
                                 </div>
                             )}
 
-                            {/* ----------------- 3. COMPACT SENTENCE-CASE LEGAL LINKS (BLUE HYPERLINKS) ----------------- */}
-                            <div className="mt-3 mb-1 pt-2.5 border-t border-slate-150 text-center">
+                            {/* ----------------- 3. COMPACT SENTENCE-CASE LEGAL LINKS (LEFT-ALIGNED BLUE HYPERLINKS) ----------------- */}
+                            <div className="mt-3 mb-1 pt-2.5 border-t border-slate-150 text-left">
                                 <nav
                                     aria-label="Privacy policies navigation"
-                                    className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] leading-normal"
+                                    className="flex flex-wrap items-center justify-start gap-x-2 gap-y-1 text-[11px] sm:text-xs leading-normal"
                                 >
                                     <Link
                                         to="/privacy-policy"
