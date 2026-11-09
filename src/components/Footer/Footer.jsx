@@ -25,8 +25,7 @@ const Footer = () => {
                             <img
                                 src="/assets/brand-logo.png"
                                 alt="Broadbeach Online Academy"
-                                className="h-12 sm:h-14 w-auto object-contain shadow-sm transition-transform group-hover:scale-105"
-                                height="56"
+                                className="h-10 sm:h-12 w-auto object-contain shadow-sm select-none transition-transform group-hover:scale-105"
                             />
                         </Link>
 

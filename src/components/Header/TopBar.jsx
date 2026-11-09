@@ -90,7 +90,7 @@ const TopBar = ({
         <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
           
           {/* Social Icons (Desktop & Tablet) */}
-          <div className="hidden md:flex items-center gap-1 text-slate-300">
+          <div className="hidden md:flex items-center gap-1 text-slate-300 shrink-0">
             <a
               href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
               target="_blank"
@@ -129,10 +129,11 @@ const TopBar = ({
             </a>
           </div>
 
-          <div className="hidden md:block h-3 w-px bg-white/15" />
+          {/* Subtle Vertical Divider between Socials and Text Links */}
+          <div className="hidden md:block h-3 w-px bg-white/20 mx-2 shrink-0" />
 
           {/* Informational Links */}
-          <div className="hidden lg:flex items-center gap-2.5 sm:gap-3 text-[11px] sm:text-[11.5px]">
+          <div className="hidden lg:flex items-center gap-2.5 sm:gap-3 text-[11px] sm:text-[11.5px] shrink-0">
             <a
               href="https://medium.com/@broadbeach.in"
               target="_blank"

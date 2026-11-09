@@ -697,7 +697,7 @@ export const navigationCategories = [
   {
     id: "health-safety-hse",
     slug: "health-safety-hse",
-    title: "Health&Safety(HSE)",
+    title: "Health & Safety (HSE)",
     hasDropdown: true,
     badge: "HSE Professional Track",
     description: "Accredited occupational health, safety engineering, hazard mitigation, environmental management, and emergency response qualifications.",

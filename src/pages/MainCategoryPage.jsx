@@ -125,7 +125,7 @@ const MainCategoryPage = () => {
   const formatCategoryHeading = (title) => {
     if (!title) return "Professional Certification Programs";
     let clean = title.trim();
-    if (clean === "Health&Safety(HSE)" || clean === "Health&Safety") {
+    if (clean === "Health & Safety (HSE)" || clean === "Health&Safety(HSE)" || clean === "Health&Safety") {
       clean = "Health & Safety (HSE)";
     }
     if (/programs?$/i.test(clean)) return clean;
