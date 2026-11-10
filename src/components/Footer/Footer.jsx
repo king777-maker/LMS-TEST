@@ -41,12 +41,7 @@ const Footer = () => {
                                 text-white/80
                             "
                         >
-                            Empowering professionals through globally recognized
-                            training and certification programs.
-
-                            We are ISO 9001, ISO 17012 and ISO 21001
-                            certified organization helping learners
-                            worldwide build successful careers.
+                            Globally recognized professional certifications from an ISO 9001, 17012, and 21001 certified academy.
                         </p>
 
 
@@ -542,51 +537,41 @@ const Footer = () => {
 
                             <div className="pt-4">
 
-                                <p className="mb-4 flex items-center gap-2 flex-wrap">
-                                    <span className="font-bold text-white">
+                                <div className="mb-4">
+                                    <span className="block font-bold text-white mb-1">
                                         Phone:
                                     </span>
+                                    <div className="flex items-center gap-2">
+                                        <a
+                                            href="tel:+917338649737"
+                                            className="hover:text-[#F7C600] transition-colors duration-300 font-medium"
+                                        >
+                                            +91 7338 649 737
+                                        </a>
+                                        <a
+                                            href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label="Chat on WhatsApp (+91 7338 649 737)"
+                                            title="Chat on WhatsApp (+91 7338 649 737)"
+                                            className="inline-flex items-center justify-center text-[#25D366] hover:text-emerald-300 transition-all duration-200 hover:scale-110 shrink-0 p-0.5"
+                                        >
+                                            <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
+                                        </a>
+                                    </div>
+                                </div>
 
-                                    <a
-                                        href="tel:+917338649737"
-                                        className="hover:text-[#F7C600] transition-colors duration-300 font-medium"
-                                    >
-                                        +91 7338 649 737
-                                    </a>
-
-                                    <a
-                                        href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="Chat on WhatsApp (+91 7338 649 737)"
-                                        title="Chat on WhatsApp (+91 7338 649 737)"
-                                        className="inline-flex items-center justify-center text-[#25D366] hover:text-emerald-300 transition-all duration-200 hover:scale-110 shrink-0 p-0.5"
-                                    >
-                                        <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
-                                    </a>
-                                </p>
-
-
-                                <p>
-
-                                    <span className="font-bold text-white">
+                                <div>
+                                    <span className="block font-bold text-white mb-1">
                                         Email:
                                     </span>
-
-                                    {" "}
-
                                     <a
                                         href="mailto:certification@broadbeach.in"
-                                        className="
-                                            hover:text-[#F7C600]
-                                            transition-colors
-                                            duration-300
-                                        "
+                                        className="hover:text-[#F7C600] transition-colors duration-300 break-all"
                                     >
                                         certification@broadbeach.in
                                     </a>
-
-                                </p>
+                                </div>
 
                             </div>
 
