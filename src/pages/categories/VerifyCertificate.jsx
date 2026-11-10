@@ -565,19 +565,19 @@ const VerifyCertificate = () => {
         <div className="mx-auto max-w-[860px] w-full">
 
           {/* MAIN CARD */}
-          <div className="rounded-[22px] border border-slate-200/90 bg-white p-5 sm:p-7 md:p-8 shadow-[0_12px_40px_rgba(19,30,74,0.07)]">
+          <div className="rounded-[22px] border border-white/10 bg-[#131E4A] text-white p-5 sm:p-7 md:p-8 shadow-[0_16px_50px_rgba(19,30,74,0.22)]">
 
             {/* HEADER */}
             <div className="text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-400/15 border border-amber-400/30">
-                <FaShieldAlt className="text-xl text-amber-500" />
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 border border-white/15 text-amber-400">
+                <FaShieldAlt className="text-xl text-amber-400" />
               </div>
 
-              <h1 className="mt-2.5 text-xl sm:text-2xl font-extrabold text-[#08182D] tracking-tight">
+              <h1 className="mt-2.5 text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                 Certificate Authentication
               </h1>
 
-              <p className="mt-1 text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+              <p className="mt-1 text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
                 Enter the certificate serial number to instantly check registered accreditation status.
               </p>
             </div>
@@ -595,14 +595,14 @@ const VerifyCertificate = () => {
                     placeholder="Enter Certificate Number"
                     autoComplete="off"
                     disabled={loading}
-                    className="w-full rounded-xl border border-slate-200 py-2.5 sm:py-3 pl-10 pr-4 text-xs sm:text-sm outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-100 disabled:bg-slate-50 font-medium text-slate-800"
+                    className="w-full rounded-xl border border-white/20 bg-white py-2.5 sm:py-3 pl-10 pr-4 text-xs sm:text-sm outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-300 font-semibold text-slate-900 placeholder:text-slate-400 shadow-xs"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FFC72C] to-[#E0A708] hover:from-amber-300 hover:to-amber-400 active:scale-98 px-6 py-2.5 sm:py-3 font-bold text-xs sm:text-sm text-[#08182D] transition shadow-xs hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer shrink-0"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FFC72C] to-[#E0A708] hover:from-amber-300 hover:to-amber-400 active:scale-98 px-6 py-2.5 sm:py-3 font-bold text-xs sm:text-sm text-[#08182D] transition shadow-md hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer shrink-0"
                 >
                   {loading ? (
                     "Verifying Records..."
@@ -624,9 +624,9 @@ const VerifyCertificate = () => {
 
                 {/* 1. VALID CERTIFICATE */}
                 {result.success && data ? (
-                  <div className="overflow-hidden rounded-2xl border border-emerald-200/90 bg-emerald-50/40">
+                  <div className="overflow-hidden rounded-2xl border border-emerald-400/30 bg-white text-slate-900 shadow-lg">
                     {/* Header Banner */}
-                    <div className="flex items-center justify-between gap-3 border-b border-emerald-200/80 bg-emerald-100/70 px-4 py-2.5 sm:px-5 sm:py-3">
+                    <div className="flex items-center justify-between gap-3 border-b border-emerald-200 bg-emerald-50 px-4 py-2.5 sm:px-5 sm:py-3">
                       <div className="flex items-center gap-2.5">
                         <FaCheckCircle className="text-lg text-emerald-600 shrink-0" />
                         <div>
@@ -644,7 +644,7 @@ const VerifyCertificate = () => {
                     </div>
 
                     {/* Certificate Holder & Course Banner */}
-                    <div className="px-4 py-3 sm:px-5 sm:py-3.5 bg-white/70 border-b border-emerald-150 text-center">
+                    <div className="px-4 py-3 sm:px-5 sm:py-3.5 bg-slate-50 border-b border-slate-100 text-center">
                       <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
                         Certificate Holder
                       </p>
@@ -657,7 +657,7 @@ const VerifyCertificate = () => {
                     </div>
 
                     {/* Details Grid (3 columns on sm+, 2 on mobile) */}
-                    <div className="p-3.5 sm:p-4 bg-slate-50/50">
+                    <div className="p-3.5 sm:p-4 bg-slate-100/60">
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
                         <CertificateDetail
                           label="Certificate Number"
@@ -690,8 +690,8 @@ const VerifyCertificate = () => {
 
                 ) : result.status === "revoked" ? (
                   /* 2. REVOKED CERTIFICATE */
-                  <div className="overflow-hidden rounded-2xl border-2 border-rose-300 bg-rose-50/50 text-left">
-                    <div className="flex items-center gap-3 border-b border-rose-200 bg-rose-100/80 px-4 py-3">
+                  <div className="overflow-hidden rounded-2xl border-2 border-rose-300 bg-white text-slate-900 shadow-lg text-left">
+                    <div className="flex items-center gap-3 border-b border-rose-200 bg-rose-50 px-4 py-3">
                       <FaTimesCircle className="text-xl text-rose-600 shrink-0" />
                       <div>
                         <p className="text-sm font-bold uppercase tracking-wide text-rose-900 leading-none">
@@ -703,8 +703,8 @@ const VerifyCertificate = () => {
                       </div>
                     </div>
 
-                    <div className="p-4 space-y-3">
-                      <div className="text-center pb-2 border-b border-rose-150">
+                    <div className="p-4 space-y-3 bg-white">
+                      <div className="text-center pb-2 border-b border-rose-100">
                         {data?.student_name && (
                           <h3 className="text-lg font-bold text-slate-900">
                             {data.student_name}
@@ -718,24 +718,24 @@ const VerifyCertificate = () => {
                       </div>
 
                       <div className="grid grid-cols-2 gap-2 text-xs">
-                        <div className="p-2 bg-white rounded-lg border border-rose-100">
+                        <div className="p-2 bg-slate-50 rounded-lg border border-rose-100">
                           <span className="text-slate-400 font-bold uppercase text-[9px] block">Certificate ID</span>
                           <span className="font-mono font-bold text-slate-900">{data?.certificate_number || certificateNumber}</span>
                         </div>
-                        <div className="p-2 bg-white rounded-lg border border-rose-100">
+                        <div className="p-2 bg-slate-50 rounded-lg border border-rose-100">
                           <span className="text-slate-400 font-bold uppercase text-[9px] block">Status</span>
                           <span className="font-bold text-rose-600">Revoked</span>
                         </div>
                       </div>
 
                       {data?.revocation_reason && (
-                        <div className="p-2 bg-white rounded-lg border border-rose-100 text-xs">
+                        <div className="p-2 bg-slate-50 rounded-lg border border-rose-100 text-xs">
                           <span className="text-slate-400 font-bold uppercase text-[9px] block">Revocation Reason</span>
                           <span className="font-semibold text-rose-800">{data.revocation_reason}</span>
                         </div>
                       )}
 
-                      <div className="p-2 bg-rose-100/70 border border-rose-200 rounded-lg text-xs text-rose-900 text-center font-medium">
+                      <div className="p-2 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-900 text-center font-medium">
                         {result.message}
                       </div>
                     </div>
@@ -743,8 +743,8 @@ const VerifyCertificate = () => {
 
                 ) : result.status === "unavailable" ? (
                   /* 3. VERIFICATION UNAVAILABLE */
-                  <div className="flex gap-3 rounded-xl border border-slate-300 bg-slate-50 p-4 text-left shadow-2xs">
-                    <FaExclamationTriangle className="mt-0.5 flex-shrink-0 text-lg text-slate-600" />
+                  <div className="flex gap-3 rounded-xl border border-slate-300 bg-white text-slate-900 p-4 text-left shadow-md">
+                    <FaExclamationTriangle className="mt-0.5 flex-shrink-0 text-lg text-amber-500" />
                     <div>
                       <p className="font-bold text-slate-900 text-xs sm:text-sm">
                         Verification Unavailable
@@ -757,7 +757,7 @@ const VerifyCertificate = () => {
 
                 ) : (
                   /* 4. INVALID / UNKNOWN */
-                  <div className="flex gap-3 rounded-xl border border-rose-200 bg-rose-50/80 p-4 text-left shadow-2xs">
+                  <div className="flex gap-3 rounded-xl border border-rose-200 bg-white text-slate-900 p-4 text-left shadow-md">
                     <FaTimesCircle className="mt-0.5 flex-shrink-0 text-lg text-rose-500" />
                     <div>
                       <p className="font-bold text-rose-900 text-xs sm:text-sm">
@@ -773,17 +773,17 @@ const VerifyCertificate = () => {
             )}
 
             {/* TRUST INDICATORS */}
-            <div className="mt-5 pt-3.5 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 text-[11px] sm:text-xs text-slate-500 font-medium select-none">
+            <div className="mt-5 pt-3.5 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 text-[11px] sm:text-xs text-slate-300 font-medium select-none">
               <span className="inline-flex items-center gap-1.5">
-                <FaShieldAlt className="text-amber-500 text-xs shrink-0" />
+                <FaShieldAlt className="text-amber-400 text-xs shrink-0" />
                 <span>Secure Official System</span>
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <FaCertificate className="text-blue-600 text-xs shrink-0" />
+                <FaCertificate className="text-amber-400 text-xs shrink-0" />
                 <span>Authentic Registry Records</span>
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <FaCheckCircle className="text-emerald-600 text-xs shrink-0" />
+                <FaCheckCircle className="text-emerald-400 text-xs shrink-0" />
                 <span>Instant Verification</span>
               </span>
             </div>

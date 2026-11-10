@@ -3,6 +3,7 @@ import {
     FaInstagram,
     FaLinkedinIn,
     FaMedium,
+    FaWhatsapp,
     FaXTwitter,
 } from "react-icons/fa6";
 
@@ -541,24 +542,27 @@ const Footer = () => {
 
                             <div className="pt-4">
 
-                                <p className="mb-4">
+                                <p className="mb-4 flex items-center gap-2 flex-wrap">
                                     <span className="font-bold text-white">
-                                        phone:
+                                        Phone:
                                     </span>
 
-                                    {" "}
-
                                     <a
-                                        href="https://wa.me/917338649737"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="
-            hover:text-[#F7C600]
-            transition-colors
-            duration-300
-        "
+                                        href="tel:+917338649737"
+                                        className="hover:text-[#F7C600] transition-colors duration-300 font-medium"
                                     >
                                         +91 7338 649 737
+                                    </a>
+
+                                    <a
+                                        href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="Chat on WhatsApp"
+                                        title="Chat on WhatsApp"
+                                        className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all duration-200 hover:scale-110 shadow-xs shrink-0"
+                                    >
+                                        <FaWhatsapp className="w-3.5 h-3.5 text-white" />
                                     </a>
                                 </p>
 

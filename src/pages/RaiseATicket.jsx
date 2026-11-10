@@ -4,6 +4,7 @@ import SEO from "../components/common/SEO";
 import Breadcrumbs from "../components/common/Breadcrumbs";
 import { createTicket } from "../api/adminApi";
 import toast from "react-hot-toast";
+import { FaWhatsapp } from "react-icons/fa6";
 import {
   FaTicketAlt,
   FaEnvelope,
@@ -144,9 +145,27 @@ const RaiseATicket = () => {
           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
             <div className="text-3xl mb-4">📱</div>
             <h2 className="!text-[18px] font-bold text-[#131E4A] mb-2">Phone &amp; WhatsApp</h2>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              +91 7338 649 737<br />Mon–Fri: 9:00 AM – 6:00 PM IST
-            </p>
+            <div className="text-gray-600 text-sm leading-relaxed">
+              <div className="flex items-center gap-2 mb-1">
+                <a
+                  href="tel:+917338649737"
+                  className="font-semibold text-slate-800 hover:text-amber-500 transition-colors"
+                >
+                  +91 7338 649 737
+                </a>
+                <a
+                  href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20need%20help%20with%20a%20support%20ticket."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Chat on WhatsApp"
+                  title="Chat on WhatsApp"
+                  className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all duration-200 hover:scale-110 shadow-xs shrink-0"
+                >
+                  <FaWhatsapp className="w-3.5 h-3.5 text-white" />
+                </a>
+              </div>
+              <p className="text-xs text-gray-500">Mon–Fri: 9:00 AM – 6:00 PM IST</p>
+            </div>
           </div>
 
           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">

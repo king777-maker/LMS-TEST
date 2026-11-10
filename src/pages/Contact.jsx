@@ -4,6 +4,7 @@ import {
     FaInstagram,
     FaLinkedinIn,
 } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa6";
 import {
     Mail,
     Phone,
@@ -255,7 +256,7 @@ const Contact = () => {
                                             <p className="text-xs font-semibold tracking-wider text-amber-300/90 uppercase">
                                                 Primary Email
                                             </p>
-                                            <div className="mt-0.5 flex items-center justify-between gap-2 flex-wrap">
+                                            <div className="mt-1">
                                                 <a
                                                     href={PRIMARY_CONTACT.emailHref}
                                                     aria-label={`Send email to ${PRIMARY_CONTACT.email}`}
@@ -263,29 +264,7 @@ const Contact = () => {
                                                 >
                                                     {PRIMARY_CONTACT.email}
                                                 </a>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => handleCopy(PRIMARY_CONTACT.email, "Primary Email", "prim-email")}
-                                                    aria-label="Copy primary email address"
-                                                    title="Copy primary email address"
-                                                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 border border-white/15 transition-colors cursor-pointer shrink-0"
-                                                >
-                                                    {copiedKey === "prim-email" ? (
-                                                        <>
-                                                            <Check className="w-3 h-3 text-emerald-400" />
-                                                            <span className="text-emerald-400 font-semibold text-[11px]">Copied</span>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <Copy className="w-3 h-3" />
-                                                            <span className="text-[11px]">Copy email</span>
-                                                        </>
-                                                    )}
-                                                </button>
                                             </div>
-                                            <span className="block text-xs text-slate-300/80 mt-0.5 leading-normal">
-                                                General inquiries, course syllabus &amp; corporate quotes
-                                            </span>
                                         </div>
                                     </div>
 
@@ -296,9 +275,9 @@ const Contact = () => {
                                         </div>
                                         <div className="min-w-0 flex-1">
                                             <p className="text-xs font-semibold tracking-wider text-amber-300/90 uppercase">
-                                                India Phone / Helpline
+                                                Phone
                                             </p>
-                                            <div className="mt-0.5 flex items-center justify-between gap-2 flex-wrap">
+                                            <div className="mt-1 flex items-center gap-2.5 flex-wrap">
                                                 <a
                                                     href={PRIMARY_CONTACT.phoneHref}
                                                     aria-label={`Call Broadbeach Academy at ${PRIMARY_CONTACT.phoneDisplay}`}
@@ -306,27 +285,18 @@ const Contact = () => {
                                                 >
                                                     {PRIMARY_CONTACT.phoneDisplay}
                                                 </a>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => handleCopy(PRIMARY_CONTACT.phone, "Phone Number", "prim-phone")}
-                                                    aria-label="Copy phone number"
-                                                    title="Copy phone number"
-                                                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 border border-white/15 transition-colors cursor-pointer shrink-0"
+                                                <a
+                                                    href={PRIMARY_CONTACT.whatsappHref}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label="Chat on WhatsApp"
+                                                    title="Chat on WhatsApp"
+                                                    className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all duration-200 hover:scale-110 shadow-xs cursor-pointer shrink-0"
                                                 >
-                                                    {copiedKey === "prim-phone" ? (
-                                                        <>
-                                                            <Check className="w-3 h-3 text-emerald-400" />
-                                                            <span className="text-emerald-400 font-semibold text-[11px]">Copied</span>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <Copy className="w-3 h-3" />
-                                                            <span className="text-[11px]">Copy number</span>
-                                                        </>
-                                                    )}
-                                                </button>
+                                                    <FaWhatsapp className="w-4 h-4 text-white" />
+                                                </a>
                                             </div>
-                                            <span className="block text-xs text-slate-300/80 mt-0.5 leading-normal">
+                                            <span className="block text-xs text-slate-300/80 mt-1 leading-normal">
                                                 Admissions helpline &amp; WhatsApp assistance
                                             </span>
                                         </div>
@@ -341,8 +311,10 @@ const Contact = () => {
                                             <p className="text-xs font-semibold tracking-wider text-amber-300/90 uppercase">
                                                 Office Address
                                             </p>
-                                            <p className="mt-1 text-slate-200 text-xs sm:text-sm leading-relaxed">
-                                                {PRIMARY_CONTACT.officeAddress}
+                                            <p className="mt-1 text-slate-200 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+                                                #2201A, 22nd Floor,{"\n"}
+                                                World Trade Center,{"\n"}
+                                                Bengaluru- 56055 ,India
                                             </p>
                                             <a
                                                 href={PRIMARY_CONTACT.mapsUrl}
@@ -660,12 +632,24 @@ const Contact = () => {
                             <span className="text-xs uppercase font-bold tracking-wider text-[#131E4A]/80">
                                 Call us
                             </span>
-                            <a
-                                href="tel:+917338649737"
-                                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#131E4A] hover:bg-[#1c2c6b] text-white font-bold text-sm transition-all shadow-md"
-                            >
-                                +91 7338649737
-                            </a>
+                            <div className="inline-flex items-center gap-2">
+                                <a
+                                    href="tel:+917338649737"
+                                    className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#131E4A] hover:bg-[#1c2c6b] text-white font-bold text-sm transition-all shadow-md"
+                                >
+                                    +91 7338649737
+                                </a>
+                                <a
+                                    href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Chat on WhatsApp"
+                                    title="Chat on WhatsApp"
+                                    className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-md shrink-0 cursor-pointer"
+                                >
+                                    <FaWhatsapp className="w-5 h-5 text-white" />
+                                </a>
+                            </div>
                         </div>
                         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
                             <span className="text-xs uppercase font-bold tracking-wider text-[#131E4A]/80">
