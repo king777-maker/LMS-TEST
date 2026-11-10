@@ -188,7 +188,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
           <SearchBar />
           <Link
             to="/verify-certificate"
-            className="shrink-0 whitespace-nowrap h-7.5 xl:h-8 px-2.5 xl:px-3 text-[11px] xl:text-xs font-bold rounded-full bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
+            className="shrink-0 whitespace-nowrap h-7.5 xl:h-8 px-2.5 xl:px-3 text-[11px] xl:text-xs font-bold rounded-lg bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
             aria-label="Verify Certificate"
           >
             <FaAward className="text-[11px] text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
