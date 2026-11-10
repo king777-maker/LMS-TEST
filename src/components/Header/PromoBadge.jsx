@@ -22,7 +22,7 @@ const PromoBadge = ({ badge, className = "" }) => {
 
   // Shared base dimensions
   const baseClass =
-    "shrink-0 ml-2.5 inline-flex items-center justify-center h-[19px] px-2 text-[11px] font-bold uppercase tracking-wider leading-none select-none shadow-xs";
+    "shrink-0 ml-2 inline-flex items-center justify-center h-[18px] px-1.5 text-[10px] font-bold uppercase tracking-wider leading-none select-none shadow-xs";
 
   // 1. NEW — Red background, white text, compact pill shape
   if (normalized === "NEW") {
