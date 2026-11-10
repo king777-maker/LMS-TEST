@@ -2,6 +2,7 @@ import {
     FaFacebookF,
     FaInstagram,
     FaLinkedinIn,
+    FaMedium,
     FaXTwitter,
 } from "react-icons/fa6";
 
@@ -121,6 +122,30 @@ const Footer = () => {
                                 "
                             >
                                 <FaLinkedinIn size={18} />
+                            </a>
+
+                            <a
+                                href="https://medium.com/@broadbeach.in"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Blogs on Medium"
+                                title="Blogs"
+                                className="
+                                    w-12 h-12
+                                    rounded-full
+                                    bg-white
+                                    text-[#0D0D20]
+                                    flex
+                                    items-center
+                                    justify-center
+                                    hover:bg-[#F7C600]
+                                    hover:text-[#0D0D20]
+                                    hover:-translate-y-1
+                                    transition-all
+                                    duration-300
+                                "
+                            >
+                                <FaMedium size={18} />
                             </a>
 
                         </div>
