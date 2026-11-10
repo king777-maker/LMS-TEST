@@ -104,18 +104,18 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       ref={navContainerRef}
       className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
-      <div className="max-w-[1720px] mx-auto px-4 lg:px-8 flex items-center justify-between gap-2 xl:gap-4 w-full h-16 xl:h-18">
+      <div className="max-w-[1720px] mx-auto px-3 sm:px-4 lg:px-6 2xl:px-8 flex items-center justify-between gap-2 xl:gap-3 w-full h-[52px] sm:h-[54px]">
         
         {/* =======================================================
             LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
         ======================================================= */}
-        <div className="flex items-center gap-3 lg:gap-4 xl:gap-6 shrink min-w-0">
+        <div className="flex items-center gap-2 lg:gap-3 2xl:gap-5 min-w-0 shrink">
           {/* Anchored Brand Logo on Far Left Corner */}
           <BrandLogo className="shrink-0" />
 
           {/* Desktop Navigation Links */}
           <nav
-            className="hidden xl:flex items-center gap-3 lg:gap-4 xl:gap-6 shrink min-w-0"
+            className="hidden xl:flex items-center gap-1 xl:gap-1.5 2xl:gap-3 min-w-0 shrink"
             aria-label="Main Navigation Categories"
           >
             {navigationCategories.map((category) => {
@@ -137,15 +137,15 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     onMouseLeave={handleMouseLeave}
                     onClick={() => handleTriggerClick(category)}
                     onKeyDown={(e) => handleKeyDown(e, category)}
-                    className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs lg:text-[13px] xl:text-sm font-bold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                    className={`flex items-center gap-1 px-2 py-1 xl:px-2.5 2xl:px-3 rounded-md text-[11.5px] xl:text-xs 2xl:text-[13px] font-bold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                       isOpen
                         ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
-                        : "text-white hover:bg-white/10"
+                        : "text-white/95 hover:bg-white/10 hover:text-white"
                     }`}
                   >
                     <span>{category.title}</span>
                     <FaChevronDown
-                      className={`text-[8px] ml-1 transition-transform duration-200 shrink-0 ${
+                      className={`text-[7.5px] 2xl:text-[8px] ml-0.5 transition-transform duration-200 shrink-0 ${
                         isOpen ? "rotate-180 text-amber-300" : "text-white/70"
                       }`}
                     />
@@ -170,7 +170,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
             aria-expanded={isMobileOpen}
             aria-controls="mobile-navigation-drawer"
             onClick={onToggleMobile}
-            className="flex items-center gap-1.5 px-3 h-8 xl:h-9 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer border border-white/20 transition-all leading-none"
+            className="flex items-center gap-1.5 px-2.5 h-7.5 sm:h-8 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer border border-white/20 transition-all leading-none"
           >
             {isMobileOpen ? (
               <FaTimes className="text-xs" />
@@ -184,14 +184,14 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
         {/* =======================================================
             RIGHT CONTROLS CONTAINER: SEARCH BAR & VERIFY CERTIFICATE
         ======================================================= */}
-        <div className="flex items-center gap-2 xl:gap-3 shrink-0">
+        <div className="flex items-center gap-1.5 xl:gap-2.5 shrink-0">
           <SearchBar />
           <Link
             to="/verify-certificate"
-            className="shrink-0 whitespace-nowrap h-8 xl:h-9 px-3 xl:px-4 text-xs font-bold rounded-full bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
+            className="shrink-0 whitespace-nowrap h-7.5 xl:h-8 px-2.5 xl:px-3 text-[11px] xl:text-xs font-bold rounded-full bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
             aria-label="Verify Certificate"
           >
-            <FaAward className="text-xs text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
+            <FaAward className="text-[11px] text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
             <span>Verify Certificate</span>
           </Link>
         </div>

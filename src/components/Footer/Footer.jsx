@@ -141,7 +141,7 @@ const Footer = () => {
             lg:!text-[22px]
             font-bold
             mb-2
-            text-white
+            text-[#F7C600]
         "
                         >
                             Useful Links
@@ -350,7 +350,7 @@ const Footer = () => {
             lg:!text-[22px]
             font-bold
             mb-2
-            text-white
+            text-[#F7C600]
         "
                         >
                             Course Category
@@ -543,7 +543,7 @@ const Footer = () => {
                                 lg:!text-[22px]
                                 font-bold
                                 mb-2
-                                text-white
+                                text-[#F7C600]
                             "
                         >
                             Contact Us
