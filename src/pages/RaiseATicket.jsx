@@ -157,11 +157,11 @@ const RaiseATicket = () => {
                   href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20need%20help%20with%20a%20support%20ticket."
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Chat on WhatsApp"
-                  title="Chat on WhatsApp"
-                  className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all duration-200 hover:scale-110 shadow-xs shrink-0"
+                  aria-label="Chat on WhatsApp (+91 7338 649 737)"
+                  title="Chat on WhatsApp (+91 7338 649 737)"
+                  className="inline-flex items-center justify-center text-[#25D366] hover:text-[#20ba5a] transition-all duration-200 hover:scale-110 shrink-0 p-0.5"
                 >
-                  <FaWhatsapp className="w-3.5 h-3.5 text-white" />
+                  <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
                 </a>
               </div>
               <p className="text-xs text-gray-500">Mon–Fri: 9:00 AM – 6:00 PM IST</p>

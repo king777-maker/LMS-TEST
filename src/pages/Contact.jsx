@@ -289,11 +289,11 @@ const Contact = () => {
                                                     href={PRIMARY_CONTACT.whatsappHref}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    aria-label="Chat on WhatsApp"
-                                                    title="Chat on WhatsApp"
-                                                    className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white transition-all duration-200 hover:scale-110 shadow-xs cursor-pointer shrink-0"
+                                                    aria-label="Chat on WhatsApp (+91 7338 649 737)"
+                                                    title="Chat on WhatsApp (+91 7338 649 737)"
+                                                    className="inline-flex items-center justify-center text-[#25D366] hover:text-emerald-300 transition-all duration-200 hover:scale-110 cursor-pointer shrink-0 p-0.5"
                                                 >
-                                                    <FaWhatsapp className="w-4 h-4 text-white" />
+                                                    <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
                                                 </a>
                                             </div>
                                             <span className="block text-xs text-slate-300/80 mt-1 leading-normal">
@@ -575,14 +575,26 @@ const Contact = () => {
                                 </div>
 
                                 <div className="pt-4 border-t border-slate-100">
-                                    <div className="flex items-center justify-between gap-2 flex-wrap">
-                                        <a
-                                            href={item.href}
-                                            aria-label={`Contact ${item.region}: ${item.display}`}
-                                            className="text-xs sm:text-sm font-bold text-[#131E4A] hover:text-blue-600 transition-colors break-all focus:outline-hidden focus:underline"
-                                        >
-                                            {item.display}
-                                        </a>
+                                    <div className="flex items-center justify-between gap-2">
+                                        <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                                            <a
+                                                href={item.href}
+                                                aria-label={`Contact ${item.region}: ${item.display}`}
+                                                className="text-xs sm:text-sm font-bold text-[#131E4A] hover:text-blue-600 transition-colors break-all focus:outline-hidden focus:underline"
+                                            >
+                                                {item.display}
+                                            </a>
+                                            <a
+                                                href={PRIMARY_CONTACT.whatsappHref}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`Chat on WhatsApp for ${item.region} (+91 7338 649 737)`}
+                                                title="Chat on WhatsApp (+91 7338 649 737)"
+                                                className="text-[#25D366] hover:text-[#20ba5a] transition-all duration-200 hover:scale-110 inline-flex items-center justify-center p-0.5 shrink-0"
+                                            >
+                                                <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
+                                            </a>
+                                        </div>
 
                                         <button
                                             type="button"
@@ -640,14 +652,14 @@ const Contact = () => {
                                     +91 7338649737
                                 </a>
                                 <a
-                                    href="https://wa.me/917338649737?text=Hello%20Broadbeach%20Academy%2C%20I%20would%20like%20to%20inquire%20about%20courses%20and%20certifications."
+                                    href={PRIMARY_CONTACT.whatsappHref}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="Chat on WhatsApp"
-                                    title="Chat on WhatsApp"
-                                    className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-md shrink-0 cursor-pointer"
+                                    aria-label="Chat on WhatsApp (+91 7338 649 737)"
+                                    title="Chat on WhatsApp (+91 7338 649 737)"
+                                    className="inline-flex items-center justify-center text-[#25D366] hover:text-emerald-700 transition-all duration-200 hover:scale-110 shrink-0 p-1 cursor-pointer"
                                 >
-                                    <FaWhatsapp className="w-5 h-5 text-white" />
+                                    <FaWhatsapp className="w-6 h-6 text-[#25D366]" />
                                 </a>
                             </div>
                         </div>

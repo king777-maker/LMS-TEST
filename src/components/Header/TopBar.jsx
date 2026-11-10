@@ -96,7 +96,7 @@ const TopBar = ({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 hover:bg-[#25D366] hover:text-white hover:border-[#25D366] flex items-center justify-center transition-all duration-200"
+              className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 hover:bg-white/10 hover:text-[#25D366] hover:border-[#25D366]/40 flex items-center justify-center transition-all duration-200"
             >
               <FaWhatsapp className="text-[9.5px] sm:text-[10px]" />
             </a>
