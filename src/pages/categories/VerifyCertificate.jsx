@@ -547,496 +547,250 @@ const VerifyCertificate = () => {
 
 
   return (
-
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-[calc(100vh-140px)] bg-slate-50 flex flex-col justify-between">
       <SEO
         title="Verify Certificate Authenticity"
         description="Public verification portal for Broadbeach Online Academy. Enter your certificate serial number to validate accreditation and official graduation records."
         breadcrumbs={[{ name: "Verify Certificate", url: "/certificate-access" }]}
       />
-      <Breadcrumbs items={[{ name: "Verify Certificate", url: "/certificate-access" }]} />
+
+      <div className="max-w-[860px] w-full mx-auto px-4 pt-3 sm:pt-4">
+        <Breadcrumbs items={[{ name: "Verify Certificate", url: "/certificate-access" }]} />
+      </div>
 
       {/* =====================================================
-          HERO
+          SINGLE-FRAME CERTIFICATE AUTHENTICATION SECTION
       ===================================================== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#06182E] via-[#092244] to-[#0D2E57] text-white">
-        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-amber-400/10 blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-3xl" />
+      <section className="flex-1 flex flex-col justify-center py-4 sm:py-6 px-4 sm:px-6">
+        <div className="mx-auto max-w-[860px] w-full">
 
-        <div className="relative mx-auto max-w-[1200px] px-6 py-16 text-center lg:py-24">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-wider text-[#FFC72C] backdrop-blur-md">
-            <FaCertificate className="text-amber-400" />
-            <span>Official Credential Registry</span>
-          </div>
+          {/* MAIN CARD */}
+          <div className="rounded-[22px] border border-slate-200/90 bg-white p-5 sm:p-7 md:p-8 shadow-[0_12px_40px_rgba(19,30,74,0.07)]">
 
-          <h1 className="mt-6 text-3xl font-extrabold text-white md:text-5xl lg:text-5xl tracking-tight leading-tight">
-            Verify Certificate Authenticity
-          </h1>
-
-          <p className="mx-auto mt-4 max-w-[650px] text-base leading-relaxed text-slate-300">
-            Enter your official certificate number below to instantly validate accreditation, issue date, and authentic Broadbeach Academy graduation records.
-          </p>
-        </div>
-      </section>
-
-
-      {/* =====================================================
-          VERIFICATION SECTION
-      ===================================================== */}
-
-      <section className="
-        relative
-        -mt-10
-        pb-24
-      ">
-
-        <div className="
-          mx-auto
-          max-w-[1000px]
-          px-6
-        ">
-
-
-          {/* =================================================
-              MAIN CARD
-          ================================================= */}
-
-          <div className="
-            rounded-[28px]
-            border
-            border-gray-100
-            bg-white
-            p-7
-            shadow-[0_25px_80px_rgba(0,0,0,0.10)]
-            md:p-12
-          ">
-
-
-            {/* =================================================
-                HEADER
-            ================================================= */}
-
+            {/* HEADER */}
             <div className="text-center">
-
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-400/15 border border-amber-400/30">
-                <FaShieldAlt className="text-2xl text-amber-500" />
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-400/15 border border-amber-400/30">
+                <FaShieldAlt className="text-xl text-amber-500" />
               </div>
 
-              <h2 className="mt-5 text-2xl sm:text-3xl font-extrabold text-[#08182D]">
+              <h1 className="mt-2.5 text-xl sm:text-2xl font-extrabold text-[#08182D] tracking-tight">
                 Certificate Authentication
-              </h2>
+              </h1>
 
-              <p className="mt-2 text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
-                Enter the certificate serial number exactly as shown on the credential to check registered accreditation status.
+              <p className="mt-1 text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+                Enter the certificate serial number to instantly check registered accreditation status.
               </p>
             </div>
 
-            {/* =================================================
-                FORM
-            ================================================= */}
-            <form onSubmit={handleVerify} className="mt-8">
-              <label
-                htmlFor="certificateNumber"
-                className="mb-2 block text-xs sm:text-sm font-bold text-[#08182D]"
-              >
-                Certificate Serial Number
-              </label>
+            {/* COMPACT INLINE FORM */}
+            <form onSubmit={handleVerify} className="mt-5">
+              <div className="flex flex-col sm:flex-row items-stretch gap-2.5">
+                <div className="relative flex-1">
+                  <FaCertificate className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
+                  <input
+                    id="certificateNumber"
+                    type="text"
+                    value={certificateNumber}
+                    onChange={(e) => setCertificateNumber(e.target.value)}
+                    placeholder="e.g. BB-2026-QA-9001"
+                    autoComplete="off"
+                    disabled={loading}
+                    className="w-full rounded-xl border border-slate-200 py-2.5 sm:py-3 pl-10 pr-4 text-xs sm:text-sm outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-100 disabled:bg-slate-50 font-medium text-slate-800"
+                  />
+                </div>
 
-              <div className="relative">
-                <FaCertificate className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
-                <input
-                  id="certificateNumber"
-                  type="text"
-                  value={certificateNumber}
-                  onChange={(e) => setCertificateNumber(e.target.value)}
-                  placeholder="e.g. BB-2026-QA-9001"
-                  autoComplete="off"
+                <button
+                  type="submit"
                   disabled={loading}
-                  className="w-full rounded-xl border border-slate-200 py-3.5 pl-11 pr-4 text-sm outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-100 disabled:bg-slate-50 font-medium text-slate-800"
-                />
+                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FFC72C] to-[#E0A708] hover:from-amber-300 hover:to-amber-400 active:scale-98 px-6 py-2.5 sm:py-3 font-bold text-xs sm:text-sm text-[#08182D] transition shadow-xs hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer shrink-0"
+                >
+                  {loading ? (
+                    "Verifying Records..."
+                  ) : (
+                    <>
+                      <FaSearch className="text-xs" />
+                      <span>Verify Certificate</span>
+                    </>
+                  )}
+                </button>
               </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FFC72C] to-[#E0A708] hover:from-amber-300 hover:to-amber-400 active:scale-98 py-3.5 font-black text-xs sm:text-sm text-[#08182D] transition shadow-md hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
-              >
-                {loading ? (
-                  "Verifying Certificate Records..."
-                ) : (
-                  <>
-                    <FaSearch className="text-xs" />
-                    <span>Verify Certificate</span>
-                  </>
-                )}
-              </button>
             </form>
 
-
             {/* =================================================
-                RESULT
+                VERIFICATION RESULT
             ================================================= */}
-
             {result && (
+              <div className="mt-5">
 
-              <div className="mt-10">
-
-
-                {/* =================================================
-                    SUCCESS
-                ================================================= */}
-
+                {/* 1. VALID CERTIFICATE */}
                 {result.success && data ? (
-
-                  <div className="
-                    overflow-hidden
-                    rounded-3xl
-                    border
-                    border-green-200
-                    bg-green-50
-                  ">
-
-
-                    {/* =================================================
-                        SUCCESS HEADER
-                    ================================================= */}
-
-                    <div className="
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-green-200
-                      bg-green-100
-                      px-6
-                      py-6
-                    ">
-
-                      <div className="
-                        flex
-                        h-12
-                        w-12
-                        flex-shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-white
-                      ">
-
-                        <FaCheckCircle className="
-                          text-2xl
-                          text-green-600
-                        " />
-
+                  <div className="overflow-hidden rounded-2xl border border-emerald-200/90 bg-emerald-50/40">
+                    {/* Header Banner */}
+                    <div className="flex items-center justify-between gap-3 border-b border-emerald-200/80 bg-emerald-100/70 px-4 py-2.5 sm:px-5 sm:py-3">
+                      <div className="flex items-center gap-2.5">
+                        <FaCheckCircle className="text-lg text-emerald-600 shrink-0" />
+                        <div>
+                          <p className="text-xs sm:text-sm font-bold text-emerald-900 leading-none">
+                            Valid Certificate
+                          </p>
+                          <p className="text-[11px] text-emerald-700 leading-none mt-0.5">
+                            Official registered credential in Broadbeach Academy registry
+                          </p>
+                        </div>
                       </div>
-
-
-                      <div>
-
-                        <p className="
-                          text-lg
-                          font-bold
-                          text-green-800
-                        ">
-
-                          Valid Certificate
-
-                        </p>
-
-
-                        <p className="
-                          mt-1
-                          text-sm
-                          text-green-700
-                        ">
-
-                          This certificate is registered
-                          and valid.
-
-                        </p>
-
-                      </div>
-
+                      <span className="shrink-0 px-2.5 py-0.5 rounded-full text-[10.5px] font-bold uppercase tracking-wider bg-emerald-600 text-white">
+                        Active / Valid
+                      </span>
                     </div>
 
+                    {/* Certificate Holder & Course Banner */}
+                    <div className="px-4 py-3 sm:px-5 sm:py-3.5 bg-white/70 border-b border-emerald-150 text-center">
+                      <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
+                        Certificate Holder
+                      </p>
+                      <h3 className="text-lg sm:text-xl font-extrabold text-[#08182D] mt-0.5">
+                        {data.student_name || "—"}
+                      </h3>
+                      <p className="text-xs sm:text-[13px] font-semibold text-[#131E4A] mt-0.5">
+                        {data.course_name || "—"}
+                      </p>
+                    </div>
 
-                    {/* =================================================
-                        CERTIFICATE CONTENT
-                    ================================================= */}
-
-                    <div className="
-                      p-6
-                      md:p-8
-                    ">
-
-
-                      {/* =================================================
-                          CERTIFICATE HOLDER
-                      ================================================= */}
-
-                      <div className="
-                        border-b
-                        border-green-200
-                        pb-7
-                        text-center
-                      ">
-
-                        <p className="
-                          text-xs
-                          uppercase
-                          tracking-[3px]
-                          text-gray-400
-                        ">
-
-                          Certificate Holder
-
-                        </p>
-
-
-                        <h3 className="mt-3 text-2xl sm:text-3xl font-extrabold text-[#08182D]">
-                          {data.student_name || "—"}
-                        </h3>
-
-                        {/* =================================================
-                            COURSE NAME
-                        ================================================= */}
-                        <p className="mt-2 text-sm sm:text-base font-bold leading-relaxed text-[#131E4A]">
-                          {data.course_name || "—"}
-                        </p>
-
-                      </div>
-
-
-                      {/* =================================================
-                          DETAILS GRID
-                      ================================================= */}
-
-                      <div className="
-                        mt-8
-                        grid
-                        gap-x-8
-                        gap-y-7
-                        sm:grid-cols-2
-                      ">
-
-
-                        {/* CERTIFICATE NUMBER */}
-
+                    {/* Details Grid (3 columns on sm+, 2 on mobile) */}
+                    <div className="p-3.5 sm:p-4 bg-slate-50/50">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
                         <CertificateDetail
                           label="Certificate Number"
-                          value={
-                            data.certificate_number
-                          }
+                          value={data.certificate_number}
                         />
-
-
-                        {/* VERIFICATION STATUS */}
-
                         <CertificateDetail
                           label="Verification Status"
-                          value={
-                            isActive
-                              ? "Active / Valid"
-                              : "Inactive"
-                          }
+                          value={isActive ? "Active / Valid" : "Inactive"}
                           green={isActive}
                         />
-
-
-                        {/* CANDIDATE NAME */}
-
                         <CertificateDetail
                           label="Candidate Name"
-                          value={
-                            data.student_name
-                          }
+                          value={data.student_name}
                         />
-
-
-                        {/* CERTIFICATION / COURSE NAME */}
-
                         <CertificateDetail
-                          label="Certification / Course Name"
-                          value={
-                            data.course_name ||
-                            "—"
-                          }
+                          label="Certification / Course"
+                          value={data.course_name || "—"}
                         />
-
-
-                        {/* ISSUE DATE */}
-
                         <CertificateDetail
                           label="Issue Date"
-                          value={
-                            formatDate(
-                              data.issued_at || data.completion_date
-                            )
-                          }
+                          value={formatDate(data.issued_at || data.completion_date)}
                         />
-
-
-                        {/* VALIDITY */}
-
                         <CertificateDetail
                           label="Validity"
-                          value={
-                            data.validity || "Lifetime"
-                          }
+                          value={data.validity || "Lifetime"}
                         />
-
                       </div>
-
                     </div>
-
                   </div>
 
                 ) : result.status === "revoked" ? (
-                  /* =================================================
-                     REVOKED CERTIFICATE (CLEAR REVOKED STATUS)
-                  ================================================= */
-                  <div className="overflow-hidden rounded-3xl border-2 border-rose-300 bg-rose-50/50 shadow-md text-left">
-                    <div className="flex items-center gap-4 border-b border-rose-200 bg-rose-100/80 px-6 py-5">
-                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-white shadow-xs">
-                        <FaTimesCircle className="text-2xl text-rose-600" />
-                      </div>
+                  /* 2. REVOKED CERTIFICATE */
+                  <div className="overflow-hidden rounded-2xl border-2 border-rose-300 bg-rose-50/50 text-left">
+                    <div className="flex items-center gap-3 border-b border-rose-200 bg-rose-100/80 px-4 py-3">
+                      <FaTimesCircle className="text-xl text-rose-600 shrink-0" />
                       <div>
-                        <p className="text-lg font-black uppercase tracking-wide text-rose-900">
+                        <p className="text-sm font-bold uppercase tracking-wide text-rose-900 leading-none">
                           Revoked Certificate
                         </p>
-                        <p className="mt-0.5 text-xs font-semibold text-rose-700">
+                        <p className="text-[11px] font-medium text-rose-700 leading-none mt-0.5">
                           This credential is officially revoked and cannot be verified as valid.
                         </p>
                       </div>
                     </div>
 
-                    <div className="p-6 md:p-8 space-y-6">
-                      <div className="border-b border-rose-200/80 pb-6 text-center">
-                        <span className="inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-rose-200 text-rose-900 mb-2">
-                          Status: REVOKED / INVALIDATED
-                        </span>
+                    <div className="p-4 space-y-3">
+                      <div className="text-center pb-2 border-b border-rose-150">
                         {data?.student_name && (
-                          <h3 className="text-2xl font-black text-slate-900">
+                          <h3 className="text-lg font-bold text-slate-900">
                             {data.student_name}
                           </h3>
                         )}
                         {data?.course_name && (
-                          <p className="mt-1 text-sm font-bold text-slate-700">
+                          <p className="text-xs font-semibold text-slate-700 mt-0.5">
                             {data.course_name}
                           </p>
                         )}
                       </div>
 
-                      <div className="grid gap-4 sm:grid-cols-2 text-xs">
-                        <div className="p-3.5 bg-white rounded-xl border border-rose-100">
-                          <span className="text-slate-400 font-bold uppercase block text-[10px]">
-                            Certificate ID
-                          </span>
-                          <span className="font-mono font-extrabold text-slate-900 text-sm">
-                            {data?.certificate_number || certificateNumber}
-                          </span>
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        <div className="p-2 bg-white rounded-lg border border-rose-100">
+                          <span className="text-slate-400 font-bold uppercase text-[9px] block">Certificate ID</span>
+                          <span className="font-mono font-bold text-slate-900">{data?.certificate_number || certificateNumber}</span>
                         </div>
-
-                        <div className="p-3.5 bg-white rounded-xl border border-rose-100">
-                          <span className="text-slate-400 font-bold uppercase block text-[10px]">
-                            Verification Status
-                          </span>
-                          <span className="font-extrabold text-rose-600 text-sm">
-                            Revoked (Not Valid)
-                          </span>
+                        <div className="p-2 bg-white rounded-lg border border-rose-100">
+                          <span className="text-slate-400 font-bold uppercase text-[9px] block">Status</span>
+                          <span className="font-bold text-rose-600">Revoked</span>
                         </div>
-
-                        {data?.revocation_reason && (
-                          <div className="p-3.5 bg-white rounded-xl border border-rose-100 sm:col-span-2">
-                            <span className="text-slate-400 font-bold uppercase block text-[10px]">
-                              Revocation Reason
-                            </span>
-                            <span className="font-semibold text-rose-800">
-                              {data.revocation_reason}
-                            </span>
-                          </div>
-                        )}
                       </div>
 
-                      <div className="p-3 bg-rose-100/70 border border-rose-200 rounded-xl text-xs text-rose-900 leading-relaxed text-center font-medium">
+                      {data?.revocation_reason && (
+                        <div className="p-2 bg-white rounded-lg border border-rose-100 text-xs">
+                          <span className="text-slate-400 font-bold uppercase text-[9px] block">Revocation Reason</span>
+                          <span className="font-semibold text-rose-800">{data.revocation_reason}</span>
+                        </div>
+                      )}
+
+                      <div className="p-2 bg-rose-100/70 border border-rose-200 rounded-lg text-xs text-rose-900 text-center font-medium">
                         {result.message}
                       </div>
                     </div>
                   </div>
+
                 ) : result.status === "unavailable" ? (
-                  /* =================================================
-                     VERIFICATION UNAVAILABLE (500 ERROR)
-                  ================================================= */
-                  <div className="flex gap-4 rounded-2xl border border-slate-300 bg-slate-50 p-6 text-left shadow-xs">
-                    <FaExclamationTriangle className="mt-1 flex-shrink-0 text-xl text-slate-600" />
+                  /* 3. VERIFICATION UNAVAILABLE */
+                  <div className="flex gap-3 rounded-xl border border-slate-300 bg-slate-50 p-4 text-left shadow-2xs">
+                    <FaExclamationTriangle className="mt-0.5 flex-shrink-0 text-lg text-slate-600" />
                     <div>
-                      <p className="font-bold text-slate-900 text-base">
+                      <p className="font-bold text-slate-900 text-xs sm:text-sm">
                         Verification Unavailable
                       </p>
-                      <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+                      <p className="mt-0.5 text-xs text-slate-600 leading-relaxed">
                         {result.message}
                       </p>
                     </div>
                   </div>
+
                 ) : (
-                  /* =================================================
-                     INVALID / UNKNOWN CERTIFICATE
-                  ================================================= */
-                  <div className="flex gap-4 rounded-2xl border border-rose-200 bg-rose-50/80 p-6 text-left shadow-xs">
-                    <FaTimesCircle className="mt-1 flex-shrink-0 text-xl text-rose-500" />
+                  /* 4. INVALID / UNKNOWN */
+                  <div className="flex gap-3 rounded-xl border border-rose-200 bg-rose-50/80 p-4 text-left shadow-2xs">
+                    <FaTimesCircle className="mt-0.5 flex-shrink-0 text-lg text-rose-500" />
                     <div>
-                      <p className="font-bold text-rose-900 text-base">
+                      <p className="font-bold text-rose-900 text-xs sm:text-sm">
                         Certificate Not Found
                       </p>
-                      <p className="mt-1 text-xs text-rose-700 leading-relaxed">
+                      <p className="mt-0.5 text-xs text-rose-700 leading-relaxed">
                         {result.message}
                       </p>
                     </div>
                   </div>
                 )}
-
               </div>
-
             )}
 
-          </div>
-
-
-          {/* =================================================
-              TRUST CARDS
-          ================================================= */}
-
-          <div className="
-            mt-8
-            grid
-            gap-5
-            md:grid-cols-3
-          ">
-
-            <TrustCard
-              icon={<FaShieldAlt />}
-              title="Secure Verification"
-              text="Verify certificate records through our official system."
-            />
-
-
-            <TrustCard
-              icon={<FaCertificate />}
-              title="Authentic Records"
-              text="Check certificate details against registered records."
-            />
-
-
-            <TrustCard
-              icon={<FaCheckCircle />}
-              title="Instant Result"
-              text="Get certificate verification results quickly."
-            />
+            {/* TRUST INDICATORS */}
+            <div className="mt-5 pt-3.5 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 text-[11px] sm:text-xs text-slate-500 font-medium select-none">
+              <span className="inline-flex items-center gap-1.5">
+                <FaShieldAlt className="text-amber-500 text-xs shrink-0" />
+                <span>Secure Official System</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <FaCertificate className="text-blue-600 text-xs shrink-0" />
+                <span>Authentic Registry Records</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <FaCheckCircle className="text-emerald-600 text-xs shrink-0" />
+                <span>Instant Verification</span>
+              </span>
+            </div>
 
           </div>
 
         </div>
-
       </section>
 
     </div>
@@ -1053,92 +807,18 @@ const CertificateDetail = ({
   value,
   green = false,
 }) => {
-
   return (
-
-    <div>
-
-      <p className="
-        text-xs
-        uppercase
-        tracking-wider
-        text-gray-400
-      ">
-
+    <div className="bg-white p-2.5 sm:p-3 rounded-xl border border-slate-200/70 shadow-2xs">
+      <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">
         {label}
-
       </p>
-
-
-      <p className={`
-        mt-1
-        break-words
-        font-semibold
-        ${
-          green
-            ? "text-green-600"
-            : "text-gray-800"
-        }
-      `}>
-
-        {
-          value !== null &&
-          value !== undefined &&
-          value !== ""
-            ? value
-            : "—"
-        }
-
+      <p className={`mt-0.5 break-words font-semibold text-xs sm:text-[13px] ${
+        green ? "text-emerald-600 font-bold" : "text-slate-800"
+      }`}>
+        {value !== null && value !== undefined && value !== "" ? value : "—"}
       </p>
-
     </div>
   );
 };
-
-
-/* =============================================================
-   TRUST CARD
-============================================================= */
-
-const TrustCard = ({
-  icon,
-  title,
-  text,
-}) => {
-
-  return (
-
-    <div className="
-      rounded-2xl
-      border
-      border-gray-100
-      bg-white
-      p-6
-      text-center
-    ">
-
-      <div className="flex justify-center text-2xl text-amber-500">
-        {icon}
-      </div>
-
-      <h3 className="mt-4 font-bold text-[#08182D]">
-        {title}
-      </h3>
-
-
-      <p className="
-        mt-2
-        text-sm
-        text-gray-500
-      ">
-
-        {text}
-
-      </p>
-
-    </div>
-  );
-};
-
 
 export default VerifyCertificate;
