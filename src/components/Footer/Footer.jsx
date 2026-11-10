@@ -196,56 +196,6 @@ const Footer = () => {
                                 </Link>
                             </li>
 
-
-                            {/* Blogs */}
-                            <li>
-                                <a
-                                    href="https://medium.com/@broadbeach.in"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="
-                    text-white/80
-                    hover:text-[#F7C600]
-                    transition-colors
-                    duration-300
-                "
-                                >
-                                    Blogs
-                                </a>
-                            </li>
-
-                            {/* Register */}
-                            <li>
-                                <Link
-                                    to="/register"
-                                    className="
-                    text-white/80
-                    hover:text-[#F7C600]
-                    transition-colors
-                    duration-300
-                "
-                                >
-                                    Register
-                                </Link>
-                            </li>
-
-
-                            {/* Accreditations */}
-                            <li>
-                                <Link
-                                    to="/accreditations-approvals"
-                                    className="
-                    text-white/80
-                    hover:text-[#F7C600]
-                    transition-colors
-                    duration-300
-                "
-                                >
-                                    Accreditations & Approvals
-                                </Link>
-                            </li>
-
-
                             {/* Terms & Conditions */}
                             <li>
                                 <Link
@@ -260,7 +210,6 @@ const Footer = () => {
                                     Terms & Conditions
                                 </Link>
                             </li>
-
 
                             {/* Privacy Policy */}
                             <li>
@@ -277,8 +226,7 @@ const Footer = () => {
                                 </Link>
                             </li>
 
-
-                            {/* Cancellation & Refund */}
+                            {/* Cancellation & Refund Policy */}
                             <li>
                                 <Link
                                     to="/cancellation-refund-policy"
@@ -293,55 +241,6 @@ const Footer = () => {
                                 </Link>
                             </li>
 
-
-                            {/* Terms of Use */}
-                            <li>
-                                <Link
-                                    to="/terms-of-use"
-                                    className="
-                    text-white/80
-                    hover:text-[#F7C600]
-                    transition-colors
-                    duration-300
-                "
-                                >
-                                    Terms of Use
-                                </Link>
-                            </li>
-
-
-                            {/* Return Policy */}
-                            <li>
-                                <Link
-                                    to="/return-policy"
-                                    className="
-                    text-white/80
-                    hover:text-[#F7C600]
-                    transition-colors
-                    duration-300
-                "
-                                >
-                                    Return Policy
-                                </Link>
-                            </li>
-
-
-                            {/* Data & Compliance */}
-                            <li>
-                                <Link
-                                    to="/data-compliance-policy"
-                                    className="
-                    text-white/80
-                    hover:text-[#F7C600]
-                    transition-colors
-                    duration-300
-                "
-                                >
-                                    Data & Compliance Policy
-                                </Link>
-                            </li>
-
-
                             {/* Raise a Ticket */}
                             <li>
                                 <Link
@@ -354,6 +253,51 @@ const Footer = () => {
                 "
                                 >
                                     Raise a Ticket
+                                </Link>
+                            </li>
+
+                            {/* Cookie Policy */}
+                            <li>
+                                <Link
+                                    to="/cookie-policy"
+                                    className="
+                    text-white/80
+                    hover:text-[#F7C600]
+                    transition-colors
+                    duration-300
+                "
+                                >
+                                    Cookie Policy
+                                </Link>
+                            </li>
+
+                            {/* Data Protection Policy */}
+                            <li>
+                                <Link
+                                    to="/data-protection-policy"
+                                    className="
+                    text-white/80
+                    hover:text-[#F7C600]
+                    transition-colors
+                    duration-300
+                "
+                                >
+                                    Data Protection Policy
+                                </Link>
+                            </li>
+
+                            {/* Consent Mgmt policy */}
+                            <li>
+                                <Link
+                                    to="/consent-management-policy"
+                                    className="
+                    text-white/80
+                    hover:text-[#F7C600]
+                    transition-colors
+                    duration-300
+                "
+                                >
+                                    Consent Mgmt policy
                                 </Link>
                             </li>
 
