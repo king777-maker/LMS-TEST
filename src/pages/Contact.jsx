@@ -16,6 +16,7 @@ import {
     Globe,
     Clock,
     Award,
+    GraduationCap,
     ShieldCheck
 } from "lucide-react";
 import toast from "react-hot-toast";
@@ -615,19 +616,57 @@ const Contact = () => {
                                         </span>
                                     </div>
 
-                                    {/* Micro Trust Assurances moved to bottom of card */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3 mt-3 border-t border-slate-100">
-                                        <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium justify-center sm:justify-start">
-                                            <Clock className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                                            <span>Within 24 business hrs</span>
+                                    {/* Cool Premium Assurance Cards */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 mt-3 border-t border-slate-100">
+                                        {/* Card 1: 24h Response */}
+                                        <div className="group relative overflow-hidden rounded-2xl p-3 bg-gradient-to-br from-blue-50/80 via-sky-50/40 to-white border border-blue-100/80 hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-9 h-9 rounded-xl bg-blue-600/10 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-200 shadow-xs">
+                                                    <Clock className="w-4 h-4" />
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <p className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
+                                                        Within 24 Hours
+                                                    </p>
+                                                    <p className="text-[11px] text-slate-500 truncate mt-0.5 font-medium">
+                                                        Prompt response
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium justify-center sm:justify-start">
-                                            <Award className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                                            <span>Academic Advisors</span>
+
+                                        {/* Card 2: Academic Advisors */}
+                                        <div className="group relative overflow-hidden rounded-2xl p-3 bg-gradient-to-br from-amber-50/80 via-orange-50/40 to-white border border-amber-100/80 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-200 shadow-xs">
+                                                    <GraduationCap className="w-4 h-4" />
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <p className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
+                                                        Academic Advisors
+                                                    </p>
+                                                    <p className="text-[11px] text-slate-500 truncate mt-0.5 font-medium">
+                                                        Certified counselors
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium justify-center sm:justify-start">
-                                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                                            <span>100% Confidential</span>
+
+                                        {/* Card 3: 100% Confidential */}
+                                        <div className="group relative overflow-hidden rounded-2xl p-3 bg-gradient-to-br from-emerald-50/80 via-teal-50/40 to-white border border-emerald-100/80 hover:border-emerald-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-200 shadow-xs">
+                                                    <ShieldCheck className="w-4 h-4" />
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <p className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
+                                                        100% Confidential
+                                                    </p>
+                                                    <p className="text-[11px] text-slate-500 truncate mt-0.5 font-medium">
+                                                        ISO 27001 secure
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
