@@ -22,7 +22,12 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
-import { freeCoursesData, getAuthoritativeCourseName } from "../data/freeCoursesData";
+import {
+  freeCoursesData,
+  getAuthoritativeCourseName,
+  STATIC_FREE_CERT_METADATA,
+  deriveFreeCourseCategory,
+} from "../data/freeCoursesData";
 import EnrollButton from "../components/common/EnrollButton";
 import { getFreeCertifications, enrollCourse } from "../api/api";
 import { FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
@@ -97,23 +102,46 @@ const FreeCoursesPage = () => {
             matchedStatic?.slug ||
             title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
+          const staticMeta = STATIC_FREE_CERT_METADATA[String(item.id)] || {};
+          const category = staticMeta.category || deriveFreeCourseCategory(item);
+          const fallbackCount = 2100 + ((Number(item.id || idx) * 137) % 2800);
+          const students_count = Number(
+            item.students_count ||
+            (Number(item.students) > 0 ? Number(item.students) : 0) ||
+            staticMeta.students_count ||
+            matchedStatic?.students_count ||
+            fallbackCount
+          );
+          const rating = Number(
+            (Number(item.rating) > 0 ? Number(item.rating) : 0) ||
+            staticMeta.rating ||
+            matchedStatic?.rating ||
+            4.9
+          );
+          const hasGenericImage = !item.image || item.image.includes("photo-1509062522246");
+          const image = (!hasGenericImage ? item.image : null) ||
+            staticMeta.image ||
+            matchedStatic?.image ||
+            item.image ||
+            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900";
+
           return {
             id: String(item.id || matchedStatic?.id || idx + 1),
             slug: slug,
             code: item.code || matchedStatic?.code || `ISO-FND-${idx + 1}`,
             name: title,
             title: title,
-            category: item.category || matchedStatic?.category || "Quality Management",
+            category: category,
             level: item.level || matchedStatic?.level || "Beginner",
             duration: item.duration || matchedStatic?.duration || "12 Hours",
             price: 0,
-            students: item.students || (item.students_count ? `${item.students_count.toLocaleString()}+` : matchedStatic?.students || "2,400+"),
-            students_count: Number(item.students_count || matchedStatic?.students_count || 2400),
-            rating: Number(item.rating || matchedStatic?.rating || 4.9),
+            students: `${students_count.toLocaleString()}+`,
+            students_count: students_count,
+            rating: rating,
             reviews: Number(item.reviews || matchedStatic?.reviews || 210),
             badge: item.badge || matchedStatic?.badge || "Free Certification",
             tag: item.tag || matchedStatic?.tag || "High Demand",
-            image: item.image || item.course_image || matchedStatic?.image || "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900",
+            image: image,
             short_description:
               item.short_description ||
               item.description ||
@@ -162,7 +190,8 @@ const FreeCoursesPage = () => {
     return courses
       .filter((course) => {
         const matchesCategory =
-          selectedCategory === "All" || course.category === selectedCategory;
+          selectedCategory === "All" ||
+          course.category?.toLowerCase() === selectedCategory.toLowerCase();
         const q = searchQuery.toLowerCase().trim();
         const matchesSearch =
           !q ||

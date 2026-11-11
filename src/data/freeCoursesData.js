@@ -979,4 +979,224 @@ export const freeCoursesData = [
   }
 ];
 
+export const STATIC_FREE_CERT_METADATA = {
+  322: {
+    category: "Quality Management",
+    students_count: 2850,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900",
+  },
+  323: {
+    category: "Health & Safety",
+    students_count: 3240,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900",
+  },
+  324: {
+    category: "Food Safety",
+    students_count: 1720,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1577401239170-897942555fb3?w=900",
+  },
+  325: {
+    category: "Auditing & Governance",
+    students_count: 2150,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=900",
+  },
+  326: {
+    category: "Quality Management",
+    students_count: 1890,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900",
+  },
+  327: {
+    category: "Quality Management",
+    students_count: 2340,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900",
+  },
+  328: {
+    category: "Auditing & Governance",
+    students_count: 1650,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900",
+  },
+  329: {
+    category: "Quality Management",
+    students_count: 3890,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900",
+  },
+  330: {
+    category: "Quality Management",
+    students_count: 2050,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900",
+  },
+  332: {
+    category: "Environmental Management",
+    students_count: 1960,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=900",
+  },
+  333: {
+    category: "Information Security",
+    students_count: 4110,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900",
+  },
+  335: {
+    category: "Environmental Management",
+    students_count: 3120,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=900",
+  },
+  336: {
+    category: "Health & Safety",
+    students_count: 3450,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900",
+  },
+  337: {
+    category: "Food Safety",
+    students_count: 2280,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1577401239170-897942555fb3?w=900",
+  },
+  338: {
+    category: "Quality Management",
+    students_count: 2670,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900",
+  },
+  339: {
+    category: "Quality Management",
+    students_count: 2190,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1517976487504-59a1a349c214?w=900",
+  },
+  340: {
+    category: "Environmental Management",
+    students_count: 1840,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=900",
+  },
+  341: {
+    category: "Information Security",
+    students_count: 4520,
+    rating: 5.0,
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900",
+  },
+  342: {
+    category: "Information Security",
+    students_count: 3760,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900",
+  },
+  343: {
+    category: "Information Security",
+    students_count: 1950,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900",
+  },
+  344: {
+    category: "Auditing & Governance",
+    students_count: 2040,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900",
+  },
+  345: {
+    category: "Quality Management",
+    students_count: 4890,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900",
+  },
+  346: {
+    category: "Auditing & Governance",
+    students_count: 2980,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900",
+  },
+  347: {
+    category: "Auditing & Governance",
+    students_count: 1540,
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=900",
+  },
+  348: {
+    category: "Quality Management",
+    students_count: 2350,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900",
+  },
+  349: {
+    category: "Auditing & Governance",
+    students_count: 1780,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=900",
+  },
+  350: {
+    category: "Auditing & Governance",
+    students_count: 1620,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900",
+  },
+  351: {
+    category: "Information Security",
+    students_count: 2890,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900",
+  },
+  352: {
+    category: "Food Safety",
+    students_count: 2450,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=900",
+  },
+  353: {
+    category: "Food Safety",
+    students_count: 1670,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900",
+  },
+  354: {
+    category: "Food Safety",
+    students_count: 1590,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=900",
+  },
+  355: {
+    category: "Quality Management",
+    students_count: 2110,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900",
+  },
+};
+
+export const deriveFreeCourseCategory = (cert) => {
+  if (!cert) return "Quality Management";
+  const idStr = String(cert.id || "");
+  if (STATIC_FREE_CERT_METADATA[idStr]?.category) {
+    return STATIC_FREE_CERT_METADATA[idStr].category;
+  }
+  const text = `${cert.name || ""} ${cert.title || ""} ${cert.description || ""}`.toLowerCase();
+  if (text.includes("45001") || text.includes("ohsms") || text.includes("health & safety") || text.includes("occupational health")) {
+    return "Health & Safety";
+  }
+  if (text.includes("14001") || text.includes("ems") || text.includes("50001") || text.includes("energy") || text.includes("environment")) {
+    return "Environmental Management";
+  }
+  if (text.includes("27001") || text.includes("27701") || text.includes("42001") || text.includes("20000") || text.includes("isms") || text.includes("security") || text.includes("privacy") || text.includes("artificial intelligence") || text.includes("cyber")) {
+    return "Information Security";
+  }
+  if (text.includes("22000") || text.includes("fsms") || text.includes("haccp") || text.includes("vaccp") || text.includes("taccp") || text.includes("food")) {
+    return "Food Safety";
+  }
+  if (text.includes("19011") || text.includes("22301") || text.includes("31000") || text.includes("37001") || text.includes("41001") || text.includes("55001") || text.includes("project management") || text.includes("risk") || text.includes("governance") || text.includes("audit")) {
+    return "Auditing & Governance";
+  }
+  return "Quality Management";
+};
+
 export default freeCoursesData;
