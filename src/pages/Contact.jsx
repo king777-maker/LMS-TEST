@@ -8,15 +8,15 @@ import { FaWhatsapp } from "react-icons/fa6";
 import {
     Mail,
     Phone,
+    PhoneCall,
     MapPin,
     Check,
-    Copy,
     ExternalLink,
     Send,
     Globe
 } from "lucide-react";
 import toast from "react-hot-toast";
-import { PRIMARY_CONTACT, REGIONAL_CONTACTS, copyToClipboard } from "../constants/contactInfo";
+import { PRIMARY_CONTACT } from "../constants/contactInfo";
 import { createTicket } from "../api/adminApi";
 
 const COUNTRIES = [
@@ -67,6 +67,39 @@ const COUNTRIES = [
     { name: "Austria", code: "AT", dial: "+43" }
 ];
 
+const GLOBAL_REPRESENTATIVES = [
+    {
+        name: "SAUDI ARABIA, QC Trainer",
+        whatsappUrl: "https://wa.me/966599807084",
+        phone: "(+966)599807084"
+    },
+    {
+        name: "PHILIPPINES, MANILA",
+        whatsappUrl: "https://wa.me/639061718210",
+        phone: "(+63)9061718210"
+    },
+    {
+        name: "NIGERIA, JUEDCONSULT",
+        whatsappUrl: "https://wa.me/2348032648339",
+        phone: "(+234)8032648339"
+    },
+    {
+        name: "MENA, AFRICA, ASIA",
+        whatsappUrl: "https://wa.me/917338649737",
+        phone: "(+91)7338649737"
+    },
+    {
+        name: "Canada Office",
+        whatsappUrl: "https://wa.me/917338649737",
+        phone: "(+91)7338649737"
+    },
+    {
+        name: "London Office",
+        whatsappUrl: "https://wa.me/917338649737",
+        phone: "(+91)7338649737"
+    }
+];
+
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: "",
@@ -78,7 +111,6 @@ const Contact = () => {
     });
 
     const [submitted, setSubmitted] = useState(false);
-    const [copiedKey, setCopiedKey] = useState(null);
 
     // =====================================================
     // AUTO-FETCH COUNTRY CODE ON MOUNT
@@ -125,39 +157,6 @@ const Contact = () => {
                 // Keep default India (+91) if offline
             });
     }, []);
-
-    // =====================================================
-    // HANDLE COPY TO CLIPBOARD
-    // =====================================================
-    const handleCopy = async (text, label, key) => {
-        const result = await copyToClipboard(text, label);
-        if (result.success) {
-            setCopiedKey(key);
-            toast.success(`Copied ${label} to clipboard: ${text}`, {
-                id: `copy-${key}`,
-                duration: 2500,
-                style: {
-                    borderRadius: "12px",
-                    background: "#0F172A",
-                    color: "#ffffff",
-                    fontSize: "14px",
-                    fontWeight: "500",
-                },
-                iconTheme: {
-                    primary: "#10B981",
-                    secondary: "#ffffff",
-                },
-            });
-            setTimeout(() => {
-                setCopiedKey((curr) => (curr === key ? null : curr));
-            }, 2000);
-        } else {
-            toast.error(`Failed to copy ${label}. Please copy manually.`, {
-                id: `copy-err-${key}`,
-                duration: 3500,
-            });
-        }
-    };
 
     // =====================================================
     // HANDLE INPUT
@@ -235,7 +234,7 @@ const Contact = () => {
                         ================================================= */}
                         <div className="bg-[#131E4A] text-white rounded-3xl p-7 sm:p-8 lg:p-9 border border-white/10 shadow-[0_12px_40px_rgba(19,30,74,0.18)] flex flex-col justify-between h-full">
                             <div>
-                                {/* Header (Headquarters & Admissions block removed) */}
+                                {/* Header */}
                                 <div className="border-b border-white/15 pb-5 mb-6">
                                     <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
                                         Let's Connect
@@ -245,7 +244,7 @@ const Contact = () => {
                                     </p>
                                 </div>
 
-                                <div className="space-y-7">
+                                <div className="space-y-6">
 
                                     {/* 1. PRIMARY EMAIL */}
                                     <div className="flex gap-3.5 sm:gap-4 items-start group">
@@ -329,6 +328,40 @@ const Contact = () => {
                                         </div>
                                     </div>
 
+                                    {/* 4. GLOBAL REPRESENTATIVES */}
+                                    <div className="flex gap-3.5 sm:gap-4 items-start group pt-4 border-t border-white/15">
+                                        <div className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-amber-400 shrink-0 group-hover:bg-white/15 transition-colors">
+                                            <Globe className="w-4 h-4 text-amber-400" />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-xs font-semibold tracking-wider text-amber-300/90 uppercase mb-3">
+                                                Global Representatives
+                                            </p>
+                                            <div className="space-y-2">
+                                                {GLOBAL_REPRESENTATIVES.map((rep) => (
+                                                    <div
+                                                        key={rep.name}
+                                                        className="flex items-center justify-between gap-3 py-1 border-b border-white/10 last:border-b-0"
+                                                    >
+                                                        <span className="text-xs sm:text-[13px] text-slate-200 font-medium leading-snug">
+                                                            {rep.name}
+                                                        </span>
+                                                        <a
+                                                            href={rep.whatsappUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            aria-label={`Chat on WhatsApp with ${rep.name}`}
+                                                            title={`Chat on WhatsApp with ${rep.name} (${rep.phone})`}
+                                                            className="inline-flex items-center justify-center text-[#25D366] hover:text-emerald-300 transition-all duration-200 hover:scale-125 cursor-pointer shrink-0 p-1"
+                                                        >
+                                                            <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
+                                                        </a>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -373,7 +406,6 @@ const Contact = () => {
                             RIGHT COLUMN: CONTACT & INQUIRY FORM
                         ================================================= */}
                         <div className="bg-white rounded-3xl p-7 sm:p-8 lg:p-9 border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col justify-between h-full">
-                            {/* Header (Direct Inquiries block removed) */}
                             <div className="border-b border-slate-100 pb-5 mb-6">
                                 <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
                                     Send Us a Message
@@ -427,7 +459,7 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                {/* ROW 2: SWAPPED: COUNTRY (MANDATORY WITH DIRECT COUNTRY CODE FETCH) + PHONE / WHATSAPP */}
+                                {/* ROW 2: COUNTRY + PHONE / WHATSAPP */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div>
                                         <label htmlFor="contact-country" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
@@ -526,153 +558,86 @@ const Contact = () => {
             </section>
 
             {/* =====================================================
-                REGIONAL CONTACT DIRECTORY & GLOBAL REPRESENTATIVES
+                REAL-TIME GOOGLE MAP SECTION
             ===================================================== */}
-            <section className="py-14 lg:py-20 bg-slate-100 border-t border-slate-200/80">
-                <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-10">
-
-                    <div className="text-center max-w-[850px] mx-auto mb-12 sm:mb-16">
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#131E4A] tracking-tight">
-                            Global Representatives &amp; Regional Contact Directory
-                        </h2>
-                        <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
-                            Broadbeach Academy coordinates executive certifications, lead auditor training programs, and ISO assessments globally through certified regional desks and authorized partners.
-                        </p>
-                    </div>
-
-                    {/* DIRECTORY CARDS GRID */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-                        {REGIONAL_CONTACTS.map((item) => (
-                            <div
-                                key={item.id}
-                                className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(11,49,91,0.08)] transition-all flex flex-col justify-between group"
-                            >
-                                <div>
-                                    <div className="flex items-center justify-between gap-2 mb-3">
-                                        <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700">
-                                            {item.badge}
-                                        </span>
-                                        {item.flagged && (
-                                            <span
-                                                title="Phone number shared across regions; under administrative verification"
-                                                className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200"
-                                            >
-                                                Liaison Desk
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    <h3 className="text-base font-bold text-[#131E4A] group-hover:text-blue-600 transition-colors">
-                                        {item.region}
-                                    </h3>
-                                    <p className="text-xs font-semibold text-slate-500 mb-3">
-                                        {item.role}
-                                    </p>
-
-                                    <p className="text-xs text-slate-500 leading-relaxed mb-4">
-                                        {item.description}
-                                    </p>
-                                </div>
-
-                                <div className="pt-4 border-t border-slate-100">
-                                    <div className="flex items-center justify-between gap-2">
-                                        <div className="flex items-center gap-1.5 min-w-0 flex-1">
-                                            <a
-                                                href={item.href}
-                                                aria-label={`Contact ${item.region}: ${item.display}`}
-                                                className="text-xs sm:text-sm font-bold text-[#131E4A] hover:text-blue-600 transition-colors break-all focus:outline-hidden focus:underline"
-                                            >
-                                                {item.display}
-                                            </a>
-                                            <a
-                                                href={PRIMARY_CONTACT.whatsappHref}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                aria-label={`Chat on WhatsApp for ${item.region} (+91 7338 649 737)`}
-                                                title="Chat on WhatsApp (+91 7338 649 737)"
-                                                className="text-[#25D366] hover:text-[#20ba5a] transition-all duration-200 hover:scale-110 inline-flex items-center justify-center p-0.5 shrink-0"
-                                            >
-                                                <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
-                                            </a>
-                                        </div>
-
-                                        <button
-                                            type="button"
-                                            onClick={() => handleCopy(item.value, item.region, item.id)}
-                                            aria-label={`Copy contact detail for ${item.region}`}
-                                            title={`Copy ${item.display}`}
-                                            className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium cursor-pointer transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] shrink-0"
-                                        >
-                                            {copiedKey === item.id ? (
-                                                <>
-                                                    <Check className="w-3 h-3 text-emerald-500" />
-                                                    <span className="text-emerald-600 text-[11px] font-bold">Copied</span>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Copy className="w-3 h-3" />
-                                                    <span className="text-[11px]">Copy</span>
-                                                </>
-                                            )}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="mt-10 p-4 rounded-xl bg-blue-50/70 border border-blue-100 text-xs text-slate-600 max-w-3xl mx-auto text-center leading-relaxed">
-                        <span className="font-bold text-[#131E4A]">Note for Learners &amp; Corporate Clients:</span> Regional liaison desks coordinate remote admissions, virtual examinations, and regional corporate schedules. Official institutional contracts and certificate verifications are issued directly through our verified headquarters at Bengaluru, India.
-                    </div>
-
+            <section className="w-full bg-slate-100 border-t border-slate-200/80">
+                <div className="w-full h-[400px] sm:h-[460px] lg:h-[500px]">
+                    <iframe
+                        title="Broadbeach Academy Location - Salarpuria Magnificia Commercial"
+                        src="https://maps.google.com/maps?q=Salarpuria+Magnificia+Commercial,+78+KC+Reddy+outer+ring+road,+Benniganahalli,+Pai+Layout,+Mahadevapura,+Bengaluru,+Karnataka+560016&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        className="w-full h-full border-0 block"
+                        loading="lazy"
+                        allowFullScreen=""
+                        referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
                 </div>
             </section>
 
             {/* =====================================================
-                BOTTOM CTA SECTION
+                BOTTOM CTA SECTION: LETS GET IN TOUCH (NAVY BANNER)
             ===================================================== */}
-            <section className="bg-[#FFDB58] py-14 lg:py-16">
-                <div className="max-w-[1100px] mx-auto px-6 text-center">
-                    <h2 className="text-[#131E4A] text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
-                        Lets Get in Touch!
-                    </h2>
-                    <p className="mt-3 text-[#131E4A]/85 text-sm sm:text-base lg:text-lg max-w-[700px] mx-auto leading-relaxed">
-                        Reach out to us at Broadbeach . We’re here to help. Connect with our team today and let’s explore new opportunities together.
-                    </p>
-                    <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
-                        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
-                            <span className="text-xs uppercase font-bold tracking-wider text-[#131E4A]/80">
-                                Call us
-                            </span>
-                            <div className="inline-flex items-center gap-2">
-                                <a
-                                    href="tel:+917338649737"
-                                    className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#131E4A] hover:bg-[#1c2c6b] text-white font-bold text-sm transition-all shadow-md"
-                                >
-                                    +91 7338649737
-                                </a>
-                                <a
-                                    href={PRIMARY_CONTACT.whatsappHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Chat on WhatsApp (+91 7338 649 737)"
-                                    title="Chat on WhatsApp (+91 7338 649 737)"
-                                    className="inline-flex items-center justify-center text-[#25D366] hover:text-emerald-700 transition-all duration-200 hover:scale-110 shrink-0 p-1 cursor-pointer"
-                                >
-                                    <FaWhatsapp className="w-6 h-6 text-[#25D366]" />
-                                </a>
-                            </div>
+            <section className="bg-[#111A3A] py-14 lg:py-16 text-white border-t border-white/10">
+                <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-12">
+                        {/* Left Column */}
+                        <div className="max-w-xl">
+                            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-tight">
+                                Lets Get in Touch!
+                            </h2>
+                            <p className="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                                Reach out to us at Broadbeach . We're here to help. Connect with our team today and let's explore new opportunities together.
+                            </p>
                         </div>
-                        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
-                            <span className="text-xs uppercase font-bold tracking-wider text-[#131E4A]/80">
-                                Email us
-                            </span>
-                            <a
-                                href="mailto:certification@broadbeach.in"
-                                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white hover:bg-slate-50 text-[#131E4A] font-bold text-sm transition-all shadow-md"
-                            >
-                                certification@broadbeach.in
-                            </a>
+
+                        {/* Right Column: Contact Cards */}
+                        <div className="flex flex-wrap items-center gap-8 sm:gap-12 lg:gap-16">
+                            {/* Call Us */}
+                            <div className="flex items-center gap-4">
+                                <div className="text-[#FF7700] shrink-0">
+                                    <PhoneCall className="w-8 h-8 sm:w-9 sm:h-9 text-[#FF7700]" strokeWidth={1.75} />
+                                </div>
+                                <div>
+                                    <p className="text-white font-bold text-base sm:text-lg">
+                                        Call us
+                                    </p>
+                                    <div className="flex items-center gap-2 mt-0.5">
+                                        <a
+                                            href="tel:+917338649737"
+                                            className="text-slate-300 hover:text-white transition-colors text-sm sm:text-base"
+                                        >
+                                            +91 7338649737
+                                        </a>
+                                        <a
+                                            href="https://wa.me/917338649737"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label="Chat on WhatsApp (+91 7338 649 737)"
+                                            title="Chat on WhatsApp (+91 7338 649 737)"
+                                            className="inline-flex items-center justify-center text-[#25D366] hover:text-emerald-300 transition-all duration-200 hover:scale-110 cursor-pointer p-0.5"
+                                        >
+                                            <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Email Us */}
+                            <div className="flex items-center gap-4">
+                                <div className="text-[#FF7700] shrink-0">
+                                    <Mail className="w-8 h-8 sm:w-9 sm:h-9 text-[#FF7700]" strokeWidth={1.75} />
+                                </div>
+                                <div>
+                                    <p className="text-white font-bold text-base sm:text-lg">
+                                        Email us
+                                    </p>
+                                    <a
+                                        href="mailto:info@broadbeach.in"
+                                        className="block text-slate-300 hover:text-white transition-colors text-sm sm:text-base mt-0.5 break-all"
+                                    >
+                                        info@broadbeach.in
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
