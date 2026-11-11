@@ -295,76 +295,63 @@ const FreeCertifications = () => {
                     </div>
                 </div>
 
-                {/* Filters & Search Control Bar (Stacked, Clean & Responsive) */}
-                <div className="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3.5 sm:p-4 mb-6 shadow-xs space-y-3.5">
-                    {/* Top Tier: Search & Sort Controls */}
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                        {/* Search Input */}
-                        <div className="relative flex-1 max-w-md">
+                {/* Filters & Search Control Bar */}
+                <div className="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3 sm:p-4 mb-6 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 shadow-xs">
+                    {/* Category Tabs */}
+                    <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-1 sm:pb-0 scrollbar-none min-w-0">
+                        {categories.map((cat) => {
+                            const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
+                            return (
+                                <button
+                                    key={cat}
+                                    type="button"
+                                    onClick={() => setSelectedCategory(cat)}
+                                    className={`h-10 px-4 rounded-xl text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer inline-flex items-center justify-center shrink-0 border select-none active:scale-[0.98] ${
+                                        isSelected
+                                            ? "bg-[#0a1e38] text-white border-[#0a1e38] shadow-xs"
+                                            : "bg-white hover:bg-slate-100 text-slate-700 border-slate-200"
+                                    }`}
+                                >
+                                    <span>{cat}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    {/* Search & Sort */}
+                    <div className="flex items-center gap-2.5 sm:gap-3 w-full lg:w-auto shrink-0">
+                        <div className="relative flex-1 sm:w-64 md:w-72">
                             <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none" />
                             <input
                                 type="text"
                                 placeholder="Search free courses..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-9 pr-8 py-2 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 shadow-xs"
+                                className="w-full h-10 pl-9 pr-8 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-600 shadow-xs"
                             />
                             {searchQuery && (
                                 <button
+                                    type="button"
                                     onClick={() => setSearchQuery("")}
                                     aria-label="Clear search"
-                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer p-1"
+                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer p-0.5"
                                 >
                                     <FiX className="text-sm" />
                                 </button>
                             )}
                         </div>
 
-                        {/* Results Count & Sort Dropdown */}
-                        <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-                            <span className="text-xs text-slate-500 font-medium hidden md:inline">
-                                Showing <strong className="text-slate-800 font-bold">{filteredCertificates.length}</strong> of {certificates.length} courses
-                            </span>
-
-                            <div className="flex items-center gap-2">
-                                <label htmlFor="sort-free-certs" className="text-xs text-slate-500 font-medium shrink-0">
-                                    Sort by:
-                                </label>
-                                <select
-                                    id="sort-free-certs"
-                                    value={sortBy}
-                                    onChange={(e) => setSortBy(e.target.value)}
-                                    aria-label="Sort certifications"
-                                    className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-700 font-medium focus:outline-none focus:border-blue-600 cursor-pointer shadow-xs"
-                                >
-                                    <option value="popular">Most Enrolled</option>
-                                    <option value="rating">Top Rated</option>
-                                    <option value="name">Alphabetical</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Bottom Tier: Category Tabs (No overlapping badges, generous padding, zero truncation) */}
-                    <div className="pt-2.5 border-t border-slate-200/70">
-                        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-                            {categories.map((cat) => {
-                                const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
-                                return (
-                                    <button
-                                        key={cat}
-                                        type="button"
-                                        onClick={() => setSelectedCategory(cat)}
-                                        className={`shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                                            isSelected
-                                                ? "bg-[#0a1e38] text-white shadow-xs"
-                                                : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
-                                        }`}
-                                    >
-                                        {cat}
-                                    </button>
-                                );
-                            })}
+                        <div className="relative shrink-0">
+                            <select
+                                value={sortBy}
+                                onChange={(e) => setSortBy(e.target.value)}
+                                aria-label="Sort certifications"
+                                className="h-10 bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-700 font-semibold focus:outline-none focus:border-blue-600 cursor-pointer shadow-xs"
+                            >
+                                <option value="popular">Most Enrolled</option>
+                                <option value="rating">Top Rated</option>
+                                <option value="name">Alphabetical</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -374,7 +361,7 @@ const FreeCertifications = () => {
                     <div className="mb-6 flex flex-wrap items-center justify-between gap-3 px-1 text-xs text-slate-600">
                         <div className="flex items-center gap-2">
                             <span>
-                                Filtered results: <strong className="text-[#0a1e38] font-bold">{filteredCertificates.length}</strong> {filteredCertificates.length === 1 ? "course" : "courses"}
+                                Showing <strong className="text-[#0a1e38] font-bold">{filteredCertificates.length}</strong> of {certificates.length} courses
                             </span>
                             {selectedCategory !== "All" && (
                                 <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 px-2 py-0.5 rounded-md font-semibold border border-blue-200/60">
