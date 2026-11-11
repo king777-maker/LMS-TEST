@@ -423,7 +423,7 @@ const Contact = () => {
                                     Send Us a Message
                                 </h2>
                                 <p className="mt-1 text-slate-500 text-sm leading-relaxed">
-                                    Fill out your details below and our academic counseling team will respond within 24 business hours.
+                                    Fill out your details below and our academic counseling team will respond within 4 working days.
                                 </p>
                             </div>
 
@@ -618,7 +618,7 @@ const Contact = () => {
 
                                     {/* Cool Premium Assurance Cards */}
                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 mt-3 border-t border-slate-100">
-                                        {/* Card 1: 24h Response */}
+                                        {/* Card 1: 4 Working Days Turnaround */}
                                         <div className="group relative overflow-hidden rounded-2xl p-3 bg-gradient-to-br from-blue-50/80 via-sky-50/40 to-white border border-blue-100/80 hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-9 h-9 rounded-xl bg-blue-600/10 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-200 shadow-xs">
@@ -626,7 +626,7 @@ const Contact = () => {
                                                 </div>
                                                 <div className="min-w-0">
                                                     <p className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
-                                                        Within 24 Hours
+                                                        4 Working Days
                                                     </p>
                                                     <p className="text-[11px] text-slate-500 truncate mt-0.5 font-medium">
                                                         Prompt response
