@@ -305,7 +305,7 @@ const Contact = () => {
                                                 </a>
                                             </div>
                                             <span className="block text-xs text-slate-300/80 mt-1 leading-normal">
-                                                Admissions helpline &amp; WhatsApp assistance
+                                                Monday – Friday: 9:00 AM – 6:00 PM IST
                                             </span>
                                         </div>
                                     </div>
@@ -424,22 +424,6 @@ const Contact = () => {
                                 <p className="mt-1 text-slate-500 text-sm leading-relaxed">
                                     Fill out your details below and our academic counseling team will respond within 24 business hours.
                                 </p>
-
-                                {/* Micro Trust Assurances */}
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4 pt-3.5 border-t border-slate-100/80">
-                                    <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium">
-                                        <Clock className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                                        <span>Within 24 business hrs</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium">
-                                        <Award className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                                        <span>Academic Advisors</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium">
-                                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                                        <span>100% Confidential</span>
-                                    </div>
-                                </div>
                             </div>
 
                             {/* SUCCESS MESSAGE */}
@@ -629,6 +613,22 @@ const Contact = () => {
                                         <span className="text-xs text-slate-400 text-center sm:text-right">
                                             ISO 27001 data compliance &amp; privacy assured
                                         </span>
+                                    </div>
+
+                                    {/* Micro Trust Assurances moved to bottom of card */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3 mt-3 border-t border-slate-100">
+                                        <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium justify-center sm:justify-start">
+                                            <Clock className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                                            <span>Within 24 business hrs</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium justify-center sm:justify-start">
+                                            <Award className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                                            <span>Academic Advisors</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium justify-center sm:justify-start">
+                                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                            <span>100% Confidential</span>
+                                        </div>
                                     </div>
 
                                     <p className="text-xs text-slate-400 leading-relaxed pt-3 mt-3 border-t border-slate-100">
