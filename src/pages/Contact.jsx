@@ -13,7 +13,10 @@ import {
     Check,
     ExternalLink,
     Send,
-    Globe
+    Globe,
+    Clock,
+    Award,
+    ShieldCheck
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { PRIMARY_CONTACT } from "../constants/contactInfo";
@@ -107,6 +110,8 @@ const Contact = () => {
         country: "India",
         country_code: "+91",
         phone: "",
+        inquiryType: "Individual Certification",
+        programInterest: "",
         message: "",
     });
 
@@ -189,12 +194,14 @@ const Contact = () => {
         e.preventDefault();
         try {
             await createTicket({
-                subject: formData.country ? `Contact Enquiry (${formData.country})` : "General Website Enquiry",
+                subject: formData.programInterest
+                    ? `${formData.inquiryType} - ${formData.programInterest} (${formData.country})`
+                    : `${formData.inquiryType} (${formData.country || "General"})`,
                 requester_name: formData.name,
                 requester_email: formData.email,
-                category: "General Support",
+                category: formData.inquiryType === "Corporate Training" ? "Corporate Inquiry" : "General Support",
                 priority: "Normal",
-                message: `Country: ${formData.country} (${formData.country_code || ""})\nPhone: ${formData.country_code || ""} ${formData.phone || "Not provided"}\n\n${formData.message}`,
+                message: `Purpose: ${formData.inquiryType}\nProgram of Interest: ${formData.programInterest || "General Inquiry"}\nCountry: ${formData.country} (${formData.country_code || ""})\nPhone: ${formData.country_code || ""} ${formData.phone || "Not provided"}\n\n${formData.message}`,
             });
         } catch (err) {
             console.warn("Contact form ticket sync fallback:", err);
@@ -211,6 +218,8 @@ const Contact = () => {
             country: prev.country || "India",
             country_code: prev.country_code || "+91",
             phone: "",
+            inquiryType: "Individual Certification",
+            programInterest: "",
             message: "",
         }));
 
@@ -405,81 +414,181 @@ const Contact = () => {
                         {/* =================================================
                             RIGHT COLUMN: CONTACT & INQUIRY FORM
                         ================================================= */}
-                        <div className="bg-white rounded-3xl p-7 sm:p-8 lg:p-9 border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col justify-between h-full">
-                            <div className="border-b border-slate-100 pb-5 mb-6">
+                        <div className="bg-white rounded-3xl p-7 sm:p-8 lg:p-9 border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col h-full">
+                            
+                            {/* Header */}
+                            <div className="border-b border-slate-100 pb-5 mb-5">
                                 <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
                                     Send Us a Message
                                 </h2>
-                                <p className="mt-1.5 text-slate-500 text-sm leading-relaxed">
+                                <p className="mt-1 text-slate-500 text-sm leading-relaxed">
                                     Fill out your details below and our academic counseling team will respond within 24 business hours.
                                 </p>
+
+                                {/* Micro Trust Assurances */}
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4 pt-3.5 border-t border-slate-100/80">
+                                    <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium">
+                                        <Clock className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                                        <span>Within 24 business hrs</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium">
+                                        <Award className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                                        <span>Academic Advisors</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 text-xs text-slate-600 font-medium">
+                                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                        <span>100% Confidential</span>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* SUCCESS MESSAGE */}
                             {submitted && (
-                                <div className="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl px-5 py-4 text-sm font-medium flex items-center gap-3">
+                                <div className="mb-5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl px-5 py-4 text-sm font-medium flex items-center gap-3">
                                     <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                                     <span>Thank you! Your message has been submitted. Our team will contact you shortly.</span>
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit} className="space-y-5">
-                                {/* ROW 1: NAME + EMAIL */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <form onSubmit={handleSubmit} className="space-y-4 flex-1 flex flex-col justify-between">
+                                <div className="space-y-4">
+
+                                    {/* ROW 1: INQUIRY PURPOSE PILLS */}
                                     <div>
-                                        <label htmlFor="contact-name" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
-                                            Your Full Name <span className="text-rose-500">*</span>
+                                        <label className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-2">
+                                            Purpose of Inquiry <span className="text-rose-500">*</span>
                                         </label>
-                                        <input
-                                            id="contact-name"
-                                            type="text"
-                                            name="name"
-                                            required
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            placeholder="e.g. John Doe"
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
-                                        />
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                            {[
+                                                "Individual Certification",
+                                                "Corporate Training",
+                                                "Lead Auditor Course",
+                                                "Exam & Verification"
+                                            ].map((type) => (
+                                                <button
+                                                    type="button"
+                                                    key={type}
+                                                    onClick={() => setFormData(prev => ({ ...prev, inquiryType: type }))}
+                                                    className={`px-3 py-2 rounded-xl text-xs font-medium text-center transition-all cursor-pointer border select-none ${
+                                                        formData.inquiryType === type
+                                                            ? "bg-[#131E4A] text-white border-[#131E4A] shadow-xs"
+                                                            : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
+                                                    }`}
+                                                >
+                                                    {type}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
 
-                                    <div>
-                                        <label htmlFor="contact-email" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
-                                            Email Address <span className="text-rose-500">*</span>
-                                        </label>
-                                        <input
-                                            id="contact-email"
-                                            type="email"
-                                            name="email"
-                                            required
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            placeholder="name@company.com"
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
-                                        />
-                                    </div>
-                                </div>
+                                    {/* ROW 2: NAME + EMAIL */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label htmlFor="contact-name" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                                Your Full Name <span className="text-rose-500">*</span>
+                                            </label>
+                                            <input
+                                                id="contact-name"
+                                                type="text"
+                                                name="name"
+                                                required
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                placeholder="e.g. John Doe"
+                                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
+                                            />
+                                        </div>
 
-                                {/* ROW 2: COUNTRY + PHONE / WHATSAPP */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div>
+                                            <label htmlFor="contact-email" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                                Email Address <span className="text-rose-500">*</span>
+                                            </label>
+                                            <input
+                                                id="contact-email"
+                                                type="email"
+                                                name="email"
+                                                required
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                placeholder="name@company.com"
+                                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* ROW 3: COUNTRY + PHONE / WHATSAPP */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label htmlFor="contact-country" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                                Country <span className="text-rose-500">*</span>
+                                            </label>
+                                            <div className="relative">
+                                                <select
+                                                    id="contact-country"
+                                                    name="country"
+                                                    required
+                                                    value={formData.country}
+                                                    onChange={handleCountryChange}
+                                                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
+                                                >
+                                                    <option value="" disabled>Select Country</option>
+                                                    {COUNTRIES.map((c) => (
+                                                        <option key={c.name} value={c.name}>
+                                                            {c.name} ({c.dial})
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400">
+                                                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label htmlFor="contact-phone" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                                Phone / WhatsApp
+                                            </label>
+                                            <div className="relative flex items-center">
+                                                <span className="absolute left-3.5 text-xs font-semibold text-slate-500 select-none">
+                                                    {formData.country_code || "+91"}
+                                                </span>
+                                                <input
+                                                    id="contact-phone"
+                                                    type="tel"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
+                                                    placeholder="98765 43210"
+                                                    className="w-full pl-16 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* ROW 4: COURSE / PROGRAM OF INTEREST */}
                                     <div>
-                                        <label htmlFor="contact-country" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
-                                            Country <span className="text-rose-500">*</span>
+                                        <label htmlFor="contact-program" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                            Course / Program of Interest <span className="text-slate-400 font-normal lowercase">(optional)</span>
                                         </label>
                                         <div className="relative">
                                             <select
-                                                id="contact-country"
-                                                name="country"
-                                                required
-                                                value={formData.country}
-                                                onChange={handleCountryChange}
-                                                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
+                                                id="contact-program"
+                                                name="programInterest"
+                                                value={formData.programInterest}
+                                                onChange={handleChange}
+                                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
                                             >
-                                                <option value="" disabled>Select Country</option>
-                                                {COUNTRIES.map((c) => (
-                                                    <option key={c.name} value={c.name}>
-                                                        {c.name} ({c.dial})
-                                                    </option>
-                                                ))}
+                                                <option value="">Select a course or program domain...</option>
+                                                <option value="ISO 9001:2015 Quality Management (QMS) Lead Auditor">ISO 9001:2015 Quality Management (QMS) Lead Auditor</option>
+                                                <option value="ISO 14001:2015 Environmental Management (EMS) Lead Auditor">ISO 14001:2015 Environmental Management (EMS) Lead Auditor</option>
+                                                <option value="ISO 45001:2018 Occupational Health & Safety (OH&S) Lead Auditor">ISO 45001:2018 Occupational Health & Safety (OH&S) Lead Auditor</option>
+                                                <option value="ISO 27001:2022 Information Security Management (ISMS)">ISO 27001:2022 Information Security Management (ISMS)</option>
+                                                <option value="Lean Six Sigma (Green Belt / Black Belt)">Lean Six Sigma (Green Belt / Black Belt)</option>
+                                                <option value="ISO 22000 / HACCP Food Safety Management">ISO 22000 / HACCP Food Safety Management</option>
+                                                <option value="Corporate / Custom Enterprise Batch Training">Corporate / Custom Enterprise Batch Training</option>
+                                                <option value="Other Certification / Verification Inquiry">Other Certification / Verification Inquiry</option>
                                             </select>
                                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400">
                                                 <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
@@ -489,67 +598,51 @@ const Contact = () => {
                                         </div>
                                     </div>
 
+                                    {/* ROW 5: MESSAGE */}
                                     <div>
-                                        <label htmlFor="contact-phone" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
-                                            Phone / WhatsApp
+                                        <label htmlFor="contact-message" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                            Your Message / Requirements <span className="text-rose-500">*</span>
                                         </label>
-                                        <div className="relative flex items-center">
-                                            <span className="absolute left-3.5 text-xs font-semibold text-slate-500 select-none">
-                                                {formData.country_code || "+91"}
-                                            </span>
-                                            <input
-                                                id="contact-phone"
-                                                type="tel"
-                                                name="phone"
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                                placeholder="98765 43210"
-                                                className="w-full pl-16 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
-                                            />
-                                        </div>
+                                        <textarea
+                                            id="contact-message"
+                                            name="message"
+                                            rows="4"
+                                            required
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            placeholder="Please provide details about your course interest, corporate batch size, or certification questions..."
+                                            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden resize-y"
+                                        ></textarea>
                                     </div>
                                 </div>
 
-                                {/* ROW 3: MESSAGE */}
-                                <div>
-                                    <label htmlFor="contact-message" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
-                                        Your Message / Requirements <span className="text-rose-500">*</span>
-                                    </label>
-                                    <textarea
-                                        id="contact-message"
-                                        name="message"
-                                        rows="5"
-                                        required
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        placeholder="Please provide details about your course interest, corporate batch size, or certification questions..."
-                                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden resize-y"
-                                    ></textarea>
-                                </div>
-
-                                {/* SUBMIT BUTTON */}
+                                {/* SUBMIT BUTTON & FOOTER */}
                                 <div className="pt-2">
-                                    <button
-                                        type="submit"
-                                        className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2 px-8 rounded-xl bg-[#131E4A] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] focus:ring-offset-2 select-none"
-                                    >
-                                        <Send className="w-4 h-4" />
-                                        <span>Send Inquiry Message</span>
-                                    </button>
-                                </div>
+                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                                        <button
+                                            type="submit"
+                                            className="w-full sm:w-auto h-[46px] inline-flex items-center justify-center gap-2 px-8 rounded-xl bg-[#131E4A] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] focus:ring-offset-2 select-none"
+                                        >
+                                            <Send className="w-4 h-4" />
+                                            <span>Send Inquiry Message</span>
+                                        </button>
+                                        <span className="text-xs text-slate-400 text-center sm:text-right">
+                                            ISO 27001 data compliance &amp; privacy assured
+                                        </span>
+                                    </div>
 
-                                <p className="text-xs text-slate-400 leading-relaxed pt-2 border-t border-slate-100">
-                                    By submitting this form, you acknowledge that Broadbeach Academy processes your contact details solely to respond to your inquiry in accordance with our{" "}
-                                    <a
-                                        href="/privacy-policy"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-blue-600 underline hover:text-[#131E4A] font-medium"
-                                    >
-                                        Privacy Policy
-                                    </a>.
-                                    We never share your personal information with third parties for promotional spam.
-                                </p>
+                                    <p className="text-xs text-slate-400 leading-relaxed pt-3 mt-3 border-t border-slate-100">
+                                        By submitting this form, you acknowledge that Broadbeach Academy processes your contact details solely to respond to your inquiry in accordance with our{" "}
+                                        <a
+                                            href="/privacy-policy"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-600 underline hover:text-[#131E4A] font-medium"
+                                        >
+                                            Privacy Policy
+                                        </a>.
+                                    </p>
+                                </div>
                             </form>
                         </div>
 
@@ -564,7 +657,7 @@ const Contact = () => {
                 <div className="w-full h-[400px] sm:h-[460px] lg:h-[500px]">
                     <iframe
                         title="Broadbeach Academy Location - Salarpuria Magnificia Commercial"
-                        src="https://maps.google.com/maps?q=Salarpuria+Magnificia+Commercial,+78+KC+Reddy+outer+ring+road,+Benniganahalli,+Pai+Layout,+Mahadevapura,+Bengaluru,+Karnataka+560016&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        src="https://maps.google.com/maps?q=Salarpuria+Magnificia+Commercial,+78+KC+Reddy+outer+ring+road,+Benniganahalli,+Pai+Layout,+Mahadevapura,+Bengaluru,+Karnataka 560016&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         className="w-full h-full border-0 block"
                         loading="lazy"
                         allowFullScreen=""
