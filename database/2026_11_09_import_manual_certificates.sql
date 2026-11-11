@@ -1,6 +1,6 @@
 -- Broadbeach Academy — Manual Certificates Import Migration
 -- Generated: 2026-11-09 13:36:44
--- Total Records: 5462
+-- Total Records: 5466
 
 CREATE TABLE IF NOT EXISTS `manual_certificates` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -5571,6 +5571,10 @@ INSERT INTO `manual_certificates` (`certificate_number`, `student_name`, `candid
 ('23BB02093', 'Ademola Olubunmi Joseph', '', 'ISO 22000:2022 FSMS Certified Internal Auditor', '2023-12-16', '2023-12-16', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
 ('23BB02092', 'ROBINSON UCHE NWACHUKWU', '', 'ISO 45001:2018 Certified Internal Auditor', '2023-12-10', '2023-12-10', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
 ('23BB02091', 'ROBINSON UCHE NWACHUKWU', '', 'ISO 14001:2015 Certified Internal Auditor', '2023-12-10', '2023-12-10', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
-('23BB02090', 'ROBINSON UCHE NWACHUKWU', '', 'ISO 9001:2015 Certified Internal Auditor', '2023-12-10', '2023-12-10', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid')
+('23BB02090', 'ROBINSON UCHE NWACHUKWU', '', 'ISO 9001:2015 Certified Internal Auditor', '2023-12-10', '2023-12-10', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
+('25BB234410', 'SUPRIYA.J', '', 'IECQ HSPM QC 080000', '2025-07-30', '2025-07-30', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
+('25BB234411', 'ASHOK JONNA', '', 'IECQ HSPM QC 080000', '2025-07-30', '2025-07-30', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
+('25BB234412', 'NANDHAKUMAR B', '', 'IECQ HSPM QC 080000', '2025-07-30', '2025-07-30', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
+('26BB03768', 'Eric Siaw nartey', '', 'LEAN SIX SIGMA BLACK BELT', '2026-10-27', '2026-10-27', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid')
 ON DUPLICATE KEY UPDATE `student_name`=VALUES(`student_name`), `course_name`=VALUES(`course_name`), `issue_date`=VALUES(`issue_date`), `status`=VALUES(`status`);
 

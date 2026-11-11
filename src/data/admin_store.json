@@ -131417,6 +131417,102 @@
           "details": "Batch imported into Master Certificate Registry."
         }
       ]
+    },
+    {
+      "id": 5463,
+      "certificate_number": "25BB234410",
+      "student_name": "SUPRIYA.J",
+      "candidate_email": "",
+      "course_name": "IECQ HSPM QC 080000",
+      "training_type": "Corporate Training",
+      "issuing_organization": "Broadbeach Academy",
+      "authorized_signatory": "Dr. K. R. Sharma, Academic Director",
+      "issue_date": "2025-07-30",
+      "completion_date": "2025-07-30",
+      "status": "valid",
+      "verification_status": "Valid",
+      "validity": "Lifetime",
+      "notes": "Country: INDIA. Sl No: 1, Month: JULY 2025. Date of Entry: 11-11-2026",
+      "history": [
+        {
+          "action": "imported",
+          "timestamp": "2026-11-11T00:00:00Z",
+          "performed_by": "System Administrator",
+          "details": "Batch imported into Master Certificate Registry."
+        }
+      ]
+    },
+    {
+      "id": 5464,
+      "certificate_number": "25BB234411",
+      "student_name": "ASHOK JONNA",
+      "candidate_email": "",
+      "course_name": "IECQ HSPM QC 080000",
+      "training_type": "Corporate Training",
+      "issuing_organization": "Broadbeach Academy",
+      "authorized_signatory": "Dr. K. R. Sharma, Academic Director",
+      "issue_date": "2025-07-30",
+      "completion_date": "2025-07-30",
+      "status": "valid",
+      "verification_status": "Valid",
+      "validity": "Lifetime",
+      "notes": "Country: INDIA. Sl No: 2, Month: JULY 2025. Date of Entry: 11-11-2026",
+      "history": [
+        {
+          "action": "imported",
+          "timestamp": "2026-11-11T00:00:00Z",
+          "performed_by": "System Administrator",
+          "details": "Batch imported into Master Certificate Registry."
+        }
+      ]
+    },
+    {
+      "id": 5465,
+      "certificate_number": "25BB234412",
+      "student_name": "NANDHAKUMAR B",
+      "candidate_email": "",
+      "course_name": "IECQ HSPM QC 080000",
+      "training_type": "Corporate Training",
+      "issuing_organization": "Broadbeach Academy",
+      "authorized_signatory": "Dr. K. R. Sharma, Academic Director",
+      "issue_date": "2025-07-30",
+      "completion_date": "2025-07-30",
+      "status": "valid",
+      "verification_status": "Valid",
+      "validity": "Lifetime",
+      "notes": "Country: INDIA. Sl No: 3, Month: AUGUST 2025. Date of Entry: 11-11-2026",
+      "history": [
+        {
+          "action": "imported",
+          "timestamp": "2026-11-11T00:00:00Z",
+          "performed_by": "System Administrator",
+          "details": "Batch imported into Master Certificate Registry."
+        }
+      ]
+    },
+    {
+      "id": 5466,
+      "certificate_number": "26BB03768",
+      "student_name": "Eric Siaw nartey",
+      "candidate_email": "",
+      "course_name": "LEAN SIX SIGMA BLACK BELT",
+      "training_type": "Corporate Training",
+      "issuing_organization": "Broadbeach Academy",
+      "authorized_signatory": "Dr. K. R. Sharma, Academic Director",
+      "issue_date": "2026-10-27",
+      "completion_date": "2026-10-27",
+      "status": "valid",
+      "verification_status": "Valid",
+      "validity": "Lifetime",
+      "notes": "Country: GHANA. Sl No: 2497, Month: OCTOBER 2026.",
+      "history": [
+        {
+          "action": "imported",
+          "timestamp": "2026-11-11T00:00:00Z",
+          "performed_by": "System Administrator",
+          "details": "Batch imported into Master Certificate Registry."
+        }
+      ]
     }
   ],
   "tickets": [
