@@ -165,17 +165,6 @@ const FreeCertifications = () => {
         };
     }, []);
 
-    // Category Counts calculation
-    const categoryCounts = useMemo(() => {
-        const counts = { All: certificates.length };
-        certificates.forEach((c) => {
-            if (c.category) {
-                counts[c.category] = (counts[c.category] || 0) + 1;
-            }
-        });
-        return counts;
-    }, [certificates]);
-
     // Unique Categories List with deliberate logical ordering
     const categories = useMemo(() => {
         const preferredOrder = [
@@ -306,71 +295,76 @@ const FreeCertifications = () => {
                     </div>
                 </div>
 
-                {/* Filters & Search Control Bar */}
-                <div className="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3 sm:p-4 mb-6 flex flex-col lg:flex-row items-center justify-between gap-4 shadow-xs">
-                    {/* Category Tabs */}
-                    <div className="flex items-center gap-1.5 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 scrollbar-none">
-                        {categories.map((cat) => {
-                            const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
-                            const count = categoryCounts[cat] || 0;
-                            return (
-                                <button
-                                    key={cat}
-                                    onClick={() => setSelectedCategory(cat)}
-                                    className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
-                                        isSelected
-                                            ? "bg-[#0a1e38] text-white shadow-xs"
-                                            : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
-                                    }`}
-                                >
-                                    <span>{cat}</span>
-                                    <span
-                                        className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-                                            isSelected
-                                                ? "bg-white/20 text-white"
-                                                : "bg-slate-100 text-slate-500"
-                                        }`}
-                                    >
-                                        {count}
-                                    </span>
-                                </button>
-                            );
-                        })}
-                    </div>
-
-                    {/* Search & Sort */}
-                    <div className="flex items-center gap-3 w-full lg:w-auto">
-                        <div className="relative flex-1 sm:w-72">
-                            <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
+                {/* Filters & Search Control Bar (Stacked, Clean & Responsive) */}
+                <div className="bg-slate-50/90 border border-slate-200/80 rounded-2xl p-3.5 sm:p-4 mb-6 shadow-xs space-y-3.5">
+                    {/* Top Tier: Search & Sort Controls */}
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                        {/* Search Input */}
+                        <div className="relative flex-1 max-w-md">
+                            <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none" />
                             <input
                                 type="text"
                                 placeholder="Search free courses..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-9 pr-8 py-2 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-600 shadow-xs"
+                                className="w-full pl-9 pr-8 py-2 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 shadow-xs"
                             />
                             {searchQuery && (
                                 <button
                                     onClick={() => setSearchQuery("")}
                                     aria-label="Clear search"
-                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer p-0.5"
+                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer p-1"
                                 >
                                     <FiX className="text-sm" />
                                 </button>
                             )}
                         </div>
 
-                        <div className="relative shrink-0">
-                            <select
-                                value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value)}
-                                aria-label="Sort certifications"
-                                className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-700 font-medium focus:outline-none focus:border-blue-600 cursor-pointer shadow-xs"
-                            >
-                                <option value="popular">Most Enrolled</option>
-                                <option value="rating">Top Rated</option>
-                                <option value="name">Alphabetical</option>
-                            </select>
+                        {/* Results Count & Sort Dropdown */}
+                        <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                            <span className="text-xs text-slate-500 font-medium hidden md:inline">
+                                Showing <strong className="text-slate-800 font-bold">{filteredCertificates.length}</strong> of {certificates.length} courses
+                            </span>
+
+                            <div className="flex items-center gap-2">
+                                <label htmlFor="sort-free-certs" className="text-xs text-slate-500 font-medium shrink-0">
+                                    Sort by:
+                                </label>
+                                <select
+                                    id="sort-free-certs"
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                    aria-label="Sort certifications"
+                                    className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-700 font-medium focus:outline-none focus:border-blue-600 cursor-pointer shadow-xs"
+                                >
+                                    <option value="popular">Most Enrolled</option>
+                                    <option value="rating">Top Rated</option>
+                                    <option value="name">Alphabetical</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Bottom Tier: Category Tabs (No overlapping badges, generous padding, zero truncation) */}
+                    <div className="pt-2.5 border-t border-slate-200/70">
+                        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+                            {categories.map((cat) => {
+                                const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
+                                return (
+                                    <button
+                                        key={cat}
+                                        type="button"
+                                        onClick={() => setSelectedCategory(cat)}
+                                        className={`shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                                            isSelected
+                                                ? "bg-[#0a1e38] text-white shadow-xs"
+                                                : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
+                                        }`}
+                                    >
+                                        {cat}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -380,7 +374,7 @@ const FreeCertifications = () => {
                     <div className="mb-6 flex flex-wrap items-center justify-between gap-3 px-1 text-xs text-slate-600">
                         <div className="flex items-center gap-2">
                             <span>
-                                Showing <strong className="text-[#0a1e38] font-bold">{filteredCertificates.length}</strong> of {certificates.length} courses
+                                Filtered results: <strong className="text-[#0a1e38] font-bold">{filteredCertificates.length}</strong> {filteredCertificates.length === 1 ? "course" : "courses"}
                             </span>
                             {selectedCategory !== "All" && (
                                 <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 px-2 py-0.5 rounded-md font-semibold border border-blue-200/60">
