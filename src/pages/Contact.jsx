@@ -14,10 +14,7 @@ import {
     ExternalLink,
     Send,
     Globe,
-    Clock,
-    Award,
-    GraduationCap,
-    ShieldCheck
+    Award
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { PRIMARY_CONTACT } from "../constants/contactInfo";
@@ -423,7 +420,7 @@ const Contact = () => {
                                     Send Us a Message
                                 </h2>
                                 <p className="mt-1 text-slate-500 text-sm leading-relaxed">
-                                    Fill out your details below and our academic counseling team will respond within 4 working days.
+                                    Fill out your details below and our academic counseling team will respond to your inquiry promptly.
                                 </p>
                             </div>
 
@@ -435,15 +432,15 @@ const Contact = () => {
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit} className="space-y-4 flex-1 flex flex-col justify-between">
-                                <div className="space-y-4">
+                            <form onSubmit={handleSubmit} className="space-y-5 flex-1 flex flex-col justify-between">
+                                <div className="space-y-5">
 
                                     {/* ROW 1: INQUIRY PURPOSE PILLS */}
                                     <div>
-                                        <label className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-2">
+                                        <label className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-2">
                                             Purpose of Inquiry <span className="text-rose-500">*</span>
                                         </label>
-                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                                             {[
                                                 "Individual Certification",
                                                 "Corporate Training",
@@ -454,7 +451,7 @@ const Contact = () => {
                                                     type="button"
                                                     key={type}
                                                     onClick={() => setFormData(prev => ({ ...prev, inquiryType: type }))}
-                                                    className={`px-3 py-2 rounded-xl text-xs font-medium text-center transition-all cursor-pointer border select-none ${
+                                                    className={`px-3.5 py-2.5 rounded-xl text-xs sm:text-[13px] font-medium text-center transition-all cursor-pointer border select-none ${
                                                         formData.inquiryType === type
                                                             ? "bg-[#131E4A] text-white border-[#131E4A] shadow-xs"
                                                             : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
@@ -469,7 +466,7 @@ const Contact = () => {
                                     {/* ROW 2: NAME + EMAIL */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label htmlFor="contact-name" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                            <label htmlFor="contact-name" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
                                                 Your Full Name <span className="text-rose-500">*</span>
                                             </label>
                                             <input
@@ -480,12 +477,12 @@ const Contact = () => {
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 placeholder="e.g. John Doe"
-                                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
+                                                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
                                             />
                                         </div>
 
                                         <div>
-                                            <label htmlFor="contact-email" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                            <label htmlFor="contact-email" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
                                                 Email Address <span className="text-rose-500">*</span>
                                             </label>
                                             <input
@@ -496,7 +493,7 @@ const Contact = () => {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 placeholder="name@company.com"
-                                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
+                                                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
                                             />
                                         </div>
                                     </div>
@@ -504,7 +501,7 @@ const Contact = () => {
                                     {/* ROW 3: COUNTRY + PHONE / WHATSAPP */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label htmlFor="contact-country" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                            <label htmlFor="contact-country" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
                                                 Country <span className="text-rose-500">*</span>
                                             </label>
                                             <div className="relative">
@@ -514,7 +511,7 @@ const Contact = () => {
                                                     required
                                                     value={formData.country}
                                                     onChange={handleCountryChange}
-                                                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
+                                                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
                                                 >
                                                     <option value="" disabled>Select Country</option>
                                                     {COUNTRIES.map((c) => (
@@ -532,7 +529,7 @@ const Contact = () => {
                                         </div>
 
                                         <div>
-                                            <label htmlFor="contact-phone" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                            <label htmlFor="contact-phone" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
                                                 Phone / WhatsApp
                                             </label>
                                             <div className="relative flex items-center">
@@ -546,7 +543,7 @@ const Contact = () => {
                                                     value={formData.phone}
                                                     onChange={handleChange}
                                                     placeholder="98765 43210"
-                                                    className="w-full pl-16 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
+                                                    className="w-full pl-16 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
                                                 />
                                             </div>
                                         </div>
@@ -554,7 +551,7 @@ const Contact = () => {
 
                                     {/* ROW 4: COURSE / PROGRAM OF INTEREST */}
                                     <div>
-                                        <label htmlFor="contact-program" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
+                                        <label htmlFor="contact-program" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
                                             Course / Program of Interest <span className="text-slate-400 font-normal lowercase">(optional)</span>
                                         </label>
                                         <div className="relative">
@@ -563,7 +560,7 @@ const Contact = () => {
                                                 name="programInterest"
                                                 value={formData.programInterest}
                                                 onChange={handleChange}
-                                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
+                                                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
                                             >
                                                 <option value="">Select a course or program domain...</option>
                                                 <option value="ISO 9001:2015 Quality Management (QMS) Lead Auditor">ISO 9001:2015 Quality Management (QMS) Lead Auditor</option>
@@ -583,94 +580,45 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* ROW 5: MESSAGE */}
+                                    {/* ROW 5: MESSAGE / REQUIREMENTS CONTEXT BOX */}
                                     <div>
-                                        <label htmlFor="contact-message" className="block text-xs font-semibold tracking-wider text-slate-600 uppercase mb-1.5">
-                                            Your Message / Requirements <span className="text-rose-500">*</span>
-                                        </label>
+                                        <div className="flex items-center justify-between mb-1.5">
+                                            <label htmlFor="contact-message" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase">
+                                                Your Message / Requirements <span className="text-rose-500">*</span>
+                                            </label>
+                                            <span className="text-[11px] text-slate-400 font-medium">
+                                                Detailed inquiry context
+                                            </span>
+                                        </div>
                                         <textarea
                                             id="contact-message"
                                             name="message"
-                                            rows="4"
+                                            rows="7"
                                             required
                                             value={formData.message}
                                             onChange={handleChange}
-                                            placeholder="Please provide details about your course interest, corporate batch size, or certification questions..."
-                                            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden resize-y"
+                                            placeholder="Please provide details about your course interest, corporate batch size, training mode (online/offline), preferred schedule, or certification verification questions..."
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden resize-y min-h-[170px]"
                                         ></textarea>
                                     </div>
                                 </div>
 
                                 {/* SUBMIT BUTTON & FOOTER */}
-                                <div className="pt-2">
-                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <div className="pt-4 border-t border-slate-100 mt-2">
+                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                                         <button
                                             type="submit"
-                                            className="w-full sm:w-auto h-[46px] inline-flex items-center justify-center gap-2 px-8 rounded-xl bg-[#131E4A] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] focus:ring-offset-2 select-none"
+                                            className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2.5 px-9 rounded-xl bg-[#131E4A] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] focus:ring-offset-2 select-none"
                                         >
                                             <Send className="w-4 h-4" />
                                             <span>Send Inquiry Message</span>
                                         </button>
-                                        <span className="text-xs text-slate-400 text-center sm:text-right">
+                                        <span className="text-xs text-slate-400 text-center sm:text-right font-medium">
                                             ISO 27001 data compliance &amp; privacy assured
                                         </span>
                                     </div>
 
-                                    {/* Cool Premium Assurance Cards */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 mt-3 border-t border-slate-100">
-                                        {/* Card 1: 4 Working Days Turnaround */}
-                                        <div className="group relative overflow-hidden rounded-2xl p-3 bg-gradient-to-br from-blue-50/80 via-sky-50/40 to-white border border-blue-100/80 hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-9 h-9 rounded-xl bg-blue-600/10 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-200 shadow-xs">
-                                                    <Clock className="w-4 h-4" />
-                                                </div>
-                                                <div className="min-w-0">
-                                                    <p className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
-                                                        4 Working Days
-                                                    </p>
-                                                    <p className="text-[11px] text-slate-500 truncate mt-0.5 font-medium">
-                                                        Prompt response
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Card 2: Academic Advisors */}
-                                        <div className="group relative overflow-hidden rounded-2xl p-3 bg-gradient-to-br from-amber-50/80 via-orange-50/40 to-white border border-amber-100/80 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-200 shadow-xs">
-                                                    <GraduationCap className="w-4 h-4" />
-                                                </div>
-                                                <div className="min-w-0">
-                                                    <p className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
-                                                        Academic Advisors
-                                                    </p>
-                                                    <p className="text-[11px] text-slate-500 truncate mt-0.5 font-medium">
-                                                        Certified counselors
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Card 3: 100% Confidential */}
-                                        <div className="group relative overflow-hidden rounded-2xl p-3 bg-gradient-to-br from-emerald-50/80 via-teal-50/40 to-white border border-emerald-100/80 hover:border-emerald-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-200 shadow-xs">
-                                                    <ShieldCheck className="w-4 h-4" />
-                                                </div>
-                                                <div className="min-w-0">
-                                                    <p className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
-                                                        100% Confidential
-                                                    </p>
-                                                    <p className="text-[11px] text-slate-500 truncate mt-0.5 font-medium">
-                                                        ISO 27001 secure
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <p className="text-xs text-slate-400 leading-relaxed pt-3 mt-3 border-t border-slate-100">
+                                    <p className="text-xs text-slate-400 leading-relaxed pt-4 mt-3 border-t border-slate-100/80">
                                         By submitting this form, you acknowledge that Broadbeach Academy processes your contact details solely to respond to your inquiry in accordance with our{" "}
                                         <a
                                             href="/privacy-policy"
