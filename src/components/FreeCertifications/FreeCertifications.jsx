@@ -9,74 +9,7 @@ import freeCoursesData, {
     deriveFreeCourseCategory,
 } from "../../data/freeCoursesData";
 
-const fallbackFreeCerts = [
-    {
-        id: "322",
-        name: "ISO 9001:2026 QMS Awareness",
-        category: "Quality Management",
-        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900",
-        students_count: 2850,
-        students: 2850,
-        rating: 4.9,
-        duration: "12 Hours",
-        description: "Master the foundational concepts of quality management systems with official certification.",
-    },
-    {
-        id: "332",
-        name: "ISO14001: 2026 EMS Awareness",
-        category: "Environmental Management",
-        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=900",
-        students_count: 1960,
-        students: 1960,
-        rating: 4.8,
-        duration: "12 Hours",
-        description: "Understand environmental impact analysis, sustainability, and compliance obligations.",
-    },
-    {
-        id: "323",
-        name: "ISO 45001:2018 OHSMS Awareness",
-        category: "Health & Safety",
-        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900",
-        students_count: 3240,
-        students: 3240,
-        rating: 4.9,
-        duration: "14 Hours",
-        description: "Key principles for mitigating workplace risks, occupational health, and safety protocols.",
-    },
-    {
-        id: "333",
-        name: "ISO 27001:2022 ISMS Awareness",
-        category: "Information Security",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900",
-        students_count: 4500,
-        students: 4500,
-        rating: 5.0,
-        duration: "16 Hours",
-        description: "Introduction to ISMS, security controls, and cyber risk management frameworks.",
-    },
-    {
-        id: "329",
-        name: "Lean Six Sigma White belt",
-        category: "Quality Management",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900",
-        students_count: 5120,
-        students: 5120,
-        rating: 4.9,
-        duration: "10 Hours",
-        description: "Master DMAIC fundamentals to participate effectively in process improvement initiatives.",
-    },
-    {
-        id: "324",
-        name: "ISO 22000:2018 FSMS Awareness",
-        category: "Food Safety",
-        image: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=900",
-        students_count: 1720,
-        students: 1720,
-        rating: 4.8,
-        duration: "10 Hours",
-        description: "Critical control points, hazard analysis, and hygienic practices in food handling.",
-    },
-];
+const fallbackFreeCerts = freeCoursesData;
 
 const normalizeCertification = (item, idx = 0) => {
     const idStr = String(item.id || idx + 1);
@@ -145,10 +78,25 @@ const FreeCertifications = () => {
                 if (!isMounted) return;
 
                 if (response.data?.success && Array.isArray(response.data?.data) && response.data.data.length > 0) {
-                    const normalized = response.data.data.map((c, idx) => normalizeCertification(c, idx));
+                    const backendMap = new Map();
+                    response.data.data.forEach((item) => {
+                        backendMap.set(String(item.id), item);
+                    });
+
+                    // Strictly bind to the 11 authoritative free courses
+                    const normalized = freeCoursesData.map((course, idx) => {
+                        const backendItem = backendMap.get(String(course.id)) || {};
+                        return normalizeCertification({
+                            ...course,
+                            ...backendItem,
+                            id: String(course.id),
+                            name: course.title,
+                            title: course.title,
+                        }, idx);
+                    });
                     setCertificates(normalized);
                 } else {
-                    setCertificates(fallbackFreeCerts.map((c, i) => normalizeCertification(c, i)));
+                    setCertificates(freeCoursesData.map((c, i) => normalizeCertification(c, i)));
                 }
             } catch (err) {
                 if (isMounted) {
@@ -279,7 +227,7 @@ const FreeCertifications = () => {
                             </div>
                             <div>
                                 <div className="text-xs text-slate-500 font-medium">Free Access</div>
-                                <div className="text-sm font-bold text-[#0a1e38]">{certificates.length}+ Tracks</div>
+                                <div className="text-sm font-bold text-[#0a1e38]">11 Tracks</div>
                             </div>
                         </div>
                         <div className="w-px h-8 bg-slate-200" />

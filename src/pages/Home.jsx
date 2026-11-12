@@ -16,8 +16,8 @@ const Home = () => {
         canonicalUrl="https://cadac.in/broadbeachlearning.com/"
       />
       <Hero />
-      <FreeCertifications />
       <CourseCategories />
+      <FreeCertifications />
       <FeaturedCourses />
       <Testimonials />
       <RecentBlogs />

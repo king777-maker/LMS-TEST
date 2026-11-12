@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  FaUsers,
-  FaGraduationCap,
-  FaGlobeAmericas,
   FaArrowRight,
+  FaUserTie,
+  FaGraduationCap,
 } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <section className="relative bg-gradient-to-b from-[#F8FAFC] via-[#F4F7FB] to-white py-10 sm:py-14 lg:py-16 xl:py-20 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-[#F8FAFC] via-[#F4F7FB] to-white pt-3 pb-4 sm:pt-5 sm:pb-6 lg:pt-5 lg:pb-5 lg:min-h-[calc(100vh-84px)] lg:max-h-[calc(100vh-84px)] flex flex-col justify-between overflow-hidden">
       {/* Subtle Ambient Background Blurs (Complementing Illustration's Blue & Orange Accents) */}
       <div
         className="absolute top-0 right-1/4 w-[480px] h-[480px] rounded-full bg-blue-100/35 blur-3xl pointer-events-none -z-0"
@@ -24,16 +23,18 @@ const Hero = () => {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+      <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 z-10 w-full flex-1 flex flex-col justify-between">
+        
+        {/* =========================================================
+            TOP ROW: TWO-COLUMN MAIN VIEWPORT HERO
+        ========================================================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-center my-auto w-full py-1 lg:py-0">
 
-          {/* =========================================================
-              LEFT COLUMN: 45% - 50% Content Hierarchy
-          ========================================================= */}
+          {/* LEFT COLUMN: 45% - 50% Content Hierarchy */}
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
             
             {/* Eyebrow Label */}
-            <div className="hero-fade-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 shadow-xs mb-4 sm:mb-5 select-none">
+            <div className="hero-fade-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 shadow-xs mb-3 sm:mb-4 select-none">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
@@ -44,7 +45,7 @@ const Hero = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="hero-fade-up text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[60px] font-black text-[#0C1433] leading-[1.12] tracking-tight">
+            <h1 className="hero-fade-up text-3xl sm:text-4xl lg:text-[44px] xl:text-[50px] 2xl:text-[56px] font-black text-[#0C1433] leading-[1.12] tracking-tight">
               Build Your Expertise. <br />
               Advance Your Career. <br />
               <span className="text-[#F7C600] inline-block drop-shadow-xs">
@@ -53,64 +54,16 @@ const Hero = () => {
             </h1>
 
             {/* Supporting Description */}
-            <p className="hero-fade-up-delay-1 mt-4 sm:mt-5 text-slate-600 text-sm sm:text-base lg:text-[16px] xl:text-[17px] leading-relaxed max-w-[560px]">
+            <p className="hero-fade-up-delay-1 mt-3 sm:mt-4 text-slate-600 text-xs sm:text-sm lg:text-[15px] xl:text-[16px] leading-relaxed max-w-[520px]">
               Advance your career with industry-focused ISO standards training, practical learning, and professional development.
             </p>
 
-            {/* Statistics Row: High-Scannability Trust Metrics */}
-            <div className="hero-fade-up-delay-2 grid grid-cols-3 gap-2 sm:gap-4 py-3 px-3 sm:px-5 my-5 sm:my-6 bg-white/90 backdrop-blur-xs rounded-2xl border border-slate-200/80 shadow-xs w-full max-w-[520px]">
-              {/* Stat 1: Students */}
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-100">
-                    <FaUsers className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  </div>
-                  <span className="text-base sm:text-xl font-black text-[#0C1433] tracking-tight">
-                    10k+
-                  </span>
-                </div>
-                <span className="text-[11px] sm:text-xs text-slate-500 font-medium mt-1 pl-0.5">
-                  Students Trained
-                </span>
-              </div>
-
-              {/* Stat 2: Courses */}
-              <div className="flex flex-col border-l border-slate-150 pl-2.5 sm:pl-4">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-100">
-                    <FaGraduationCap className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  </div>
-                  <span className="text-base sm:text-xl font-black text-[#0C1433] tracking-tight">
-                    150+
-                  </span>
-                </div>
-                <span className="text-[11px] sm:text-xs text-slate-500 font-medium mt-1 pl-0.5">
-                  Accredited Courses
-                </span>
-              </div>
-
-              {/* Stat 3: Global Reach */}
-              <div className="flex flex-col border-l border-slate-150 pl-2.5 sm:pl-4">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
-                    <FaGlobeAmericas className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  </div>
-                  <span className="text-base sm:text-xl font-black text-[#0C1433] tracking-tight">
-                    45+
-                  </span>
-                </div>
-                <span className="text-[11px] sm:text-xs text-slate-500 font-medium mt-1 pl-0.5">
-                  Countries Worldwide
-                </span>
-              </div>
-            </div>
-
             {/* Action Buttons: Unified Height & Clear Hierarchy */}
-            <div className="hero-fade-up-delay-3 flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
+            <div className="hero-fade-up-delay-2 flex flex-wrap items-center gap-3.5 mt-5 sm:mt-6 w-full sm:w-auto">
               {/* Primary Action */}
               <Link
                 to="/course"
-                className="group h-[48px] sm:h-[50px] px-7 sm:px-8 rounded-xl bg-[#131E4A] hover:bg-[#1c2b66] active:scale-98 text-white font-bold text-sm sm:text-[15px] shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2.5 whitespace-nowrap cursor-pointer"
+                className="group h-[46px] sm:h-[48px] px-7 sm:px-8 rounded-xl bg-[#131E4A] hover:bg-[#1c2b66] active:scale-98 text-white font-bold text-sm sm:text-[15px] shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2.5 whitespace-nowrap cursor-pointer"
               >
                 <span>Explore Courses</span>
                 <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-200" />
@@ -119,7 +72,7 @@ const Hero = () => {
               {/* Secondary Action */}
               <Link
                 to="/about-us"
-                className="h-[48px] sm:h-[50px] px-6 sm:px-7 rounded-xl bg-white hover:bg-slate-50 hover:border-slate-300 active:scale-98 text-[#0C1433] font-bold text-sm sm:text-[15px] border border-slate-200/90 shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
+                className="h-[46px] sm:h-[48px] px-6 sm:px-7 rounded-xl bg-white hover:bg-slate-50 hover:border-slate-300 active:scale-98 text-[#0C1433] font-bold text-sm sm:text-[15px] border border-slate-200/90 shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
               >
                 <span>How It Works</span>
               </Link>
@@ -127,14 +80,12 @@ const Hero = () => {
 
           </div>
 
-          {/* =========================================================
-              RIGHT COLUMN: 50% - 55% Integrated Illustration
-          ========================================================= */}
-          <div className="lg:col-span-6 xl:col-span-6 flex items-center justify-center lg:justify-end mt-4 lg:mt-0 relative">
-            <div className="relative w-full max-w-[540px] sm:max-w-[580px] lg:max-w-[620px] xl:max-w-[680px]">
+          {/* RIGHT COLUMN: 50% - 55% Integrated Large Illustration */}
+          <div className="lg:col-span-6 xl:col-span-6 flex items-center justify-center lg:justify-end mt-2 lg:mt-0 relative">
+            <div className="relative w-full max-w-[560px] sm:max-w-[620px] lg:max-w-[680px] xl:max-w-[740px] 2xl:max-w-[780px]">
               
-              {/* Natural Integrated Illustration without Box or Heavy Border */}
-              <div className="hero-illustration-float w-full flex items-center justify-center">
+              {/* Enlarged Natural Integrated Illustration */}
+              <div className="hero-illustration-float w-full flex items-center justify-center lg:justify-end">
                 <img
                   src="/assets/hero-illustration.png"
                   alt="Broadbeach Academy professional learning and certification platform"
@@ -142,9 +93,9 @@ const Hero = () => {
                   height={768}
                   fetchPriority="high"
                   loading="eager"
-                  className="w-full h-auto object-contain select-none drop-shadow-xl"
+                  className="w-full h-auto object-contain select-none drop-shadow-2xl"
                   style={{
-                    maxHeight: "min(620px, calc(100vh - 180px))",
+                    maxHeight: "min(530px, calc(100vh - 230px))",
                   }}
                 />
               </div>
@@ -153,6 +104,83 @@ const Hero = () => {
           </div>
 
         </div>
+
+        {/* =========================================================
+            BOTTOM ROW: 4 AUTHENTIC PASTEL STAT CARDS
+        ========================================================= */}
+        <div className="hero-fade-up-delay-3 pt-3 lg:pt-4 pb-1 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+            
+            {/* Card 1: 10k+ Students Trained (Warm Yellow) */}
+            <div className="flex items-center gap-4 px-5 py-3.5 sm:px-6 sm:py-4 rounded-2xl bg-[#FFF8E7] border border-amber-200/50 shadow-xs hover:-translate-y-0.5 transition-transform duration-200">
+              <div className="shrink-0 flex items-center justify-center text-[#F59E0B]">
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2.5" ry="2.5" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="text-xl sm:text-2xl font-black text-[#0C1433] leading-none tracking-tight">
+                  10k+
+                </div>
+                <div className="text-xs sm:text-[13px] font-semibold text-slate-600 mt-1 leading-tight">
+                  Students Trained
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: 150+ Accredited Courses (Slate / Cool Grey-Blue) */}
+            <div className="flex items-center gap-4 px-5 py-3.5 sm:px-6 sm:py-4 rounded-2xl bg-[#EDF0F5] border border-slate-200/70 shadow-xs hover:-translate-y-0.5 transition-transform duration-200">
+              <div className="shrink-0 flex items-center justify-center text-[#1E293B]">
+                <FaUserTie className="w-9 h-9" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-xl sm:text-2xl font-black text-[#0C1433] leading-none tracking-tight">
+                  150+
+                </div>
+                <div className="text-xs sm:text-[13px] font-semibold text-slate-600 mt-1 leading-tight">
+                  Accredited Courses
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: 45+ Countries Worldwide (Soft Purple / Lavender) */}
+            <div className="flex items-center gap-4 px-5 py-3.5 sm:px-6 sm:py-4 rounded-2xl bg-[#F3EEFC] border border-purple-200/50 shadow-xs hover:-translate-y-0.5 transition-transform duration-200">
+              <div className="shrink-0 flex items-center justify-center text-[#7C3AED]">
+                <FaGraduationCap className="w-10 h-10" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-xl sm:text-2xl font-black text-[#0C1433] leading-none tracking-tight">
+                  45+
+                </div>
+                <div className="text-xs sm:text-[13px] font-semibold text-slate-600 mt-1 leading-tight">
+                  Countries Worldwide
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: 95% Positive Reviews (Soft Teal / Cyan) */}
+            <div className="flex items-center gap-4 px-5 py-3.5 sm:px-6 sm:py-4 rounded-2xl bg-[#E6F7F8] border border-teal-200/50 shadow-xs hover:-translate-y-0.5 transition-transform duration-200">
+              <div className="shrink-0 flex items-center justify-center text-[#0D9488]">
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l2.4 2.4 3.4-.6 1.3 3.1 3.2 1.2-.4 3.4 2.2 2.6-1.8 2.9.9 3.3-3.2 1.3-1.2 3.2-3.4-.4-2.4 2.4-2.4-2.4-3.4.4-1.2-3.2-3.2-1.3.9-3.3-1.8-2.9 2.2-2.6-.4-3.4 3.2-1.2 1.3-3.1 3.4.6L12 2z" />
+                  <polyline points="9 12 11 14 15 10" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="text-xl sm:text-2xl font-black text-[#0C1433] leading-none tracking-tight">
+                  95%
+                </div>
+                <div className="text-xs sm:text-[13px] font-semibold text-slate-600 mt-1 leading-tight">
+                  Positive Reviews
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   );
