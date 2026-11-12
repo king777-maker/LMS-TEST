@@ -63,19 +63,19 @@ const SearchBar = ({ onSelectCourse }) => {
   return (
     <div ref={containerRef} className="relative z-40 shrink-0">
       <div
-        className={`relative flex items-center w-24 sm:w-28 xl:w-32 2xl:w-40 h-7.5 xl:h-8 text-[11px] xl:text-xs px-2.5 xl:px-3 bg-white/10 border border-white/15 rounded-lg text-white transition-all duration-200 shrink-0 ${
+        className={`relative flex items-center w-28 sm:w-36 xl:w-44 2xl:w-52 focus-within:w-40 sm:focus-within:w-48 xl:focus-within:w-60 h-8 xl:h-8.5 text-[11.5px] xl:text-xs px-2.5 xl:px-3 bg-white/10 border border-white/15 rounded-xl text-white transition-all duration-200 shrink-0 ${
           isFocused ? "border-white/40 ring-1 ring-white/30 bg-white/20" : "hover:bg-white/15"
         }`}
       >
-        <FaSearch className="text-slate-400 text-[10px] xl:text-xs shrink-0 mr-1.5" />
+        <FaSearch className="text-slate-300 text-[11px] xl:text-xs shrink-0 mr-1.5" />
         <input
           type="text"
           value={query}
           aria-label="Search certifications and courses"
           onFocus={() => setIsFocused(true)}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search..."
-          className="w-full min-w-0 bg-transparent text-white placeholder-slate-400 text-[11px] xl:text-xs outline-none focus:outline-none font-medium leading-none"
+          placeholder="Search courses..."
+          className="w-full min-w-0 bg-transparent text-white placeholder-slate-300 text-[11.5px] xl:text-xs outline-none focus:outline-none font-medium leading-none"
         />
         {query && (
           <button
