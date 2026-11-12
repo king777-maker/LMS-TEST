@@ -193,13 +193,13 @@ const Contact = () => {
         try {
             await createTicket({
                 subject: formData.programInterest
-                    ? `${formData.inquiryType} - ${formData.programInterest} (${formData.country})`
-                    : `${formData.inquiryType} (${formData.country || "General"})`,
+                    ? `Course Inquiry: ${formData.programInterest} (${formData.country || "General"})`
+                    : `Contact Inquiry from ${formData.name || "Website Visitor"} (${formData.country || "General"})`,
                 requester_name: formData.name,
                 requester_email: formData.email,
-                category: formData.inquiryType === "Corporate Training" ? "Corporate Inquiry" : "General Support",
+                category: formData.programInterest?.includes("Corporate") ? "Corporate Inquiry" : "General Support",
                 priority: "Normal",
-                message: `Purpose: ${formData.inquiryType}\nProgram of Interest: ${formData.programInterest || "General Inquiry"}\nCountry: ${formData.country} (${formData.country_code || ""})\nPhone: ${formData.country_code || ""} ${formData.phone || "Not provided"}\n\n${formData.message}`,
+                message: `Program of Interest: ${formData.programInterest || "General Inquiry"}\nCountry: ${formData.country || "Not specified"} (${formData.country_code || ""})\nPhone: ${formData.country_code || ""} ${formData.phone || "Not provided"}\n\nMessage:\n${formData.message}`,
             });
         } catch (err) {
             console.warn("Contact form ticket sync fallback:", err);
@@ -302,9 +302,6 @@ const Contact = () => {
                                                     <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
                                                 </a>
                                             </div>
-                                            <span className="block text-xs text-slate-300/80 mt-1 leading-normal">
-                                                Monday – Friday: 9:00 AM – 6:00 PM IST
-                                            </span>
                                         </div>
                                     </div>
 
@@ -435,35 +432,7 @@ const Contact = () => {
                             <form onSubmit={handleSubmit} className="space-y-5 flex-1 flex flex-col justify-between">
                                 <div className="space-y-5">
 
-                                    {/* ROW 1: INQUIRY PURPOSE PILLS */}
-                                    <div>
-                                        <label className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-2">
-                                            Purpose of Inquiry <span className="text-rose-500">*</span>
-                                        </label>
-                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                                            {[
-                                                "Individual Certification",
-                                                "Corporate Training",
-                                                "Lead Auditor Course",
-                                                "Exam & Verification"
-                                            ].map((type) => (
-                                                <button
-                                                    type="button"
-                                                    key={type}
-                                                    onClick={() => setFormData(prev => ({ ...prev, inquiryType: type }))}
-                                                    className={`px-3.5 py-2.5 rounded-xl text-xs sm:text-[13px] font-medium text-center transition-all cursor-pointer border select-none ${
-                                                        formData.inquiryType === type
-                                                            ? "bg-[#131E4A] text-white border-[#131E4A] shadow-xs"
-                                                            : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
-                                                    }`}
-                                                >
-                                                    {type}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* ROW 2: NAME + EMAIL */}
+                                    {/* ROW 1: NAME + EMAIL */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
                                             <label htmlFor="contact-name" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
@@ -498,7 +467,7 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* ROW 3: COUNTRY + PHONE / WHATSAPP */}
+                                    {/* ROW 2: COUNTRY + PHONE / WHATSAPP */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
                                             <label htmlFor="contact-country" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
@@ -549,7 +518,7 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* ROW 4: COURSE / PROGRAM OF INTEREST */}
+                                    {/* ROW 3: COURSE / PROGRAM OF INTEREST */}
                                     <div>
                                         <label htmlFor="contact-program" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
                                             Course / Program of Interest <span className="text-slate-400 font-normal lowercase">(optional)</span>
@@ -580,7 +549,7 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* ROW 5: MESSAGE / REQUIREMENTS CONTEXT BOX */}
+                                    {/* ROW 4: MESSAGE / REQUIREMENTS CONTEXT BOX */}
                                     <div>
                                         <div className="flex items-center justify-between mb-1.5">
                                             <label htmlFor="contact-message" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase">
@@ -593,12 +562,12 @@ const Contact = () => {
                                         <textarea
                                             id="contact-message"
                                             name="message"
-                                            rows="7"
+                                            rows="8"
                                             required
                                             value={formData.message}
                                             onChange={handleChange}
                                             placeholder="Please provide details about your course interest, corporate batch size, training mode (online/offline), preferred schedule, or certification verification questions..."
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden resize-y min-h-[170px]"
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden resize-y min-h-[190px]"
                                         ></textarea>
                                     </div>
                                 </div>
