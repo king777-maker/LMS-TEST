@@ -44,13 +44,10 @@ const Hero = () => {
               </span>
             </div>
 
-            {/* Main Heading: 56–60px Desktop, line-height: 1.1, weight: 700–800, Orange Final Line */}
-            <h1 className="hero-fade-up text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] 2xl:text-[60px] font-extrabold text-[#121C46] leading-[1.1] tracking-tight">
-              Build Your Expertise. <br />
-              Advance Your Career. <br />
-              <span className="text-[#F97316] font-extrabold inline-block">
-                Get Certified.
-              </span>
+            {/* Main Heading: Exactly 2 Lines */}
+            <h1 className="hero-fade-up text-[32px] sm:text-4xl md:text-5xl lg:text-[42px] xl:text-[48px] 2xl:text-[52px] font-extrabold text-[#121C46] leading-[1.14] tracking-tight">
+              <span className="block sm:whitespace-nowrap">Build Your Expertise.</span>
+              <span className="block sm:whitespace-nowrap text-[#F97316]">Advance Your Career.</span>
             </h1>
 
             {/* Supporting Description: 18–20px Desktop, 24–28px Heading Gap, #475569 */}
