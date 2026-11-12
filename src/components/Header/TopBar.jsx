@@ -286,9 +286,9 @@ const TopBar = ({
               <button
                 type="button"
                 onClick={onOpenRegister}
-                className="text-slate-300 hover:text-white font-semibold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none"
+                className="text-[#F7C600] hover:text-[#ffe066] font-bold text-[10.5px] sm:text-[11.5px] px-1.5 sm:px-2 py-0.5 transition-colors cursor-pointer leading-none tracking-wider uppercase"
               >
-                Register
+                REGISTER
               </button>
             </div>
           )}

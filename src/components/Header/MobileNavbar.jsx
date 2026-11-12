@@ -22,15 +22,12 @@ import PromoBadge from "./PromoBadge";
 import { formatDropdownCourseTitle } from "../../utils/courseTitleFormatter";
 
 const corporateLinks = [
-  { label: "About Broadbeach", path: "/about" },
-  { label: "Our History", path: "/about/history" },
-  { label: "Vision & Mission", path: "/about/vision" },
-  { label: "Core Values", path: "/about/core-values" },
-  { label: "Leadership & Team", path: "/about/our-team" },
-  { label: "Accreditations & Approvals", path: "/accreditations-approvals" },
-  { label: "Our Corporate Customers", path: "/about/our-customers" },
-  { label: "Industries Served", path: "/about/industries" },
-  { label: "Global Footprint", path: "/about/global-foot-print" }
+  { label: "About Us", path: "/about-us" },
+  { label: "Our Team", path: "/about/our-team" },
+  { label: "Our vision", path: "/about/vision" },
+  { label: "Our Approvals", path: "/accreditations-approvals" },
+  { label: "Global Reach", path: "/about/global-foot-print" },
+  { label: "Happy Customers", path: "/about/our-customers" }
 ];
 
 const MobileNavbar = ({
@@ -187,9 +184,9 @@ const MobileNavbar = ({
                     onClose();
                     onOpenRegister();
                   }}
-                  className="w-full min-h-[42px] py-2 px-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-xl shadow-xs transition-all cursor-pointer text-center border border-blue-400/30"
+                  className="w-full min-h-[42px] py-2 px-3 bg-[#F7C600] hover:bg-[#ffd83b] text-[#0C1433] font-bold text-xs rounded-xl shadow-xs transition-all cursor-pointer text-center uppercase tracking-wider"
                 >
-                  Register
+                  REGISTER
                 </button>
               </div>
             )}
@@ -257,7 +254,7 @@ const MobileNavbar = ({
             >
               <span className="flex items-center gap-2">
                 <FaInfoCircle className="text-amber-400" />
-                <span>About Broadbeach</span>
+                <span>About Us</span>
               </span>
               <FaChevronDown
                 className={`text-[10px] text-slate-400 transition-transform duration-200 ${

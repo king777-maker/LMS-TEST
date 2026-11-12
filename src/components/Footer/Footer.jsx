@@ -534,22 +534,9 @@ const Footer = () => {
                             </div>
 
                             <div className="pt-1">
-                                <span className="block font-bold text-white mb-1">
-                                    International Offices
-                                </span>
-                                <p className="leading-relaxed">
-                                    Canada, UK, Sweden, USA, Philippines<br />
-                                    Qatar, UAE, Saudi Arabia, Singapore<br />
-                                    USA
-                                </p>
-                            </div>
-
-
-                            <div className="pt-4">
-
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <span className="block font-bold text-white mb-1">
-                                        Phone:
+                                        Phone :
                                     </span>
                                     <div className="flex items-center gap-2">
                                         <a
@@ -573,7 +560,7 @@ const Footer = () => {
 
                                 <div>
                                     <span className="block font-bold text-white mb-1">
-                                        Email:
+                                        Email :
                                     </span>
                                     <a
                                         href="mailto:certification@broadbeach.in"
@@ -582,7 +569,16 @@ const Footer = () => {
                                         certification@broadbeach.in
                                     </a>
                                 </div>
+                            </div>
 
+                            <div className="pt-2">
+                                <span className="block font-bold text-white mb-1">
+                                    International Offices
+                                </span>
+                                <p className="leading-relaxed">
+                                    Canada, UK, Sweden, USA, Philippines<br />
+                                    Qatar, UAE, Saudi Arabia, Singapore
+                                </p>
                             </div>
 
                         </div>

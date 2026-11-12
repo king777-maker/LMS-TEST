@@ -118,6 +118,90 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
             className="hidden xl:flex items-center gap-1 xl:gap-1.5 2xl:gap-3 min-w-0 shrink"
             aria-label="Main Navigation Categories"
           >
+            {/* ===================================================
+                ABOUT US DROPDOWN
+            =================================================== */}
+            <div
+              className="relative flex items-center shrink-0"
+              onMouseEnter={() => handleMouseEnter("about-us")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                to="/about-us"
+                onClick={() => setOpenDropdownId(null)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setOpenDropdownId((prev) => (prev === "about-us" ? null : "about-us"));
+                  } else if (e.key === "Escape") {
+                    setOpenDropdownId(null);
+                  }
+                }}
+                className={`flex items-center gap-1 px-2 py-1 xl:px-2.5 2xl:px-3 rounded-md text-[11.5px] xl:text-xs 2xl:text-[13px] font-bold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                  openDropdownId === "about-us"
+                    ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
+                    : "text-white/95 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <span>About Us</span>
+                <FaChevronDown
+                  className={`text-[7.5px] 2xl:text-[8px] ml-0.5 transition-transform duration-200 shrink-0 ${
+                    openDropdownId === "about-us" ? "rotate-180 text-amber-300" : "text-white/70"
+                  }`}
+                />
+              </Link>
+
+              {/* About Us Dropdown Menu */}
+              {openDropdownId === "about-us" && (
+                <div
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={handleMouseLeave}
+                  className="absolute top-full left-0 mt-2.5 w-56 bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200/90 py-2.5 px-2 z-[9999] animate-fadeInSlideDown"
+                >
+                  <div className="space-y-1">
+                    <Link
+                      to="/about/our-team"
+                      onClick={() => setOpenDropdownId(null)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                      <span>Our Team</span>
+                    </Link>
+                    <Link
+                      to="/about/vision"
+                      onClick={() => setOpenDropdownId(null)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                      <span>Our vision</span>
+                    </Link>
+                    <Link
+                      to="/accreditations-approvals"
+                      onClick={() => setOpenDropdownId(null)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                      <span>Our Approvals</span>
+                    </Link>
+                    <Link
+                      to="/about/global-foot-print"
+                      onClick={() => setOpenDropdownId(null)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+                      <span>Global Reach</span>
+                    </Link>
+                    <Link
+                      to="/about/our-customers"
+                      onClick={() => setOpenDropdownId(null)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" />
+                      <span>Happy Customers</span>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
             {navigationCategories.map((category) => {
               const isOpen = openDropdownId === category.id;
 

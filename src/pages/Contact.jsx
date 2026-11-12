@@ -70,32 +70,37 @@ const COUNTRIES = [
 
 const GLOBAL_REPRESENTATIVES = [
     {
-        name: "SAUDI ARABIA, QC Trainer",
-        whatsappUrl: "https://wa.me/966599807084",
-        phone: "(+966)599807084"
+        name: "CANADA & USA",
+        whatsappUrl: "https://wa.me/917338649737",
+        phone: "(+91)7338649737"
     },
     {
-        name: "PHILIPPINES, MANILA",
+        name: "EUROPE & UK",
+        whatsappUrl: "https://wa.me/917338649737",
+        phone: "(+91)7338649737"
+    },
+    {
+        name: "MIDDLE EAST",
+        whatsappUrl: "https://wa.me/917338649737",
+        phone: "(+91)7338649737"
+    },
+    {
+        name: "PHILIPPINES",
         whatsappUrl: "https://wa.me/639061718210",
         phone: "(+63)9061718210"
     },
     {
-        name: "NIGERIA, JUEDCONSULT",
+        name: "NIGERIA",
         whatsappUrl: "https://wa.me/2348032648339",
         phone: "(+234)8032648339"
     },
     {
-        name: "MENA, AFRICA, ASIA",
+        name: "AFRICA",
         whatsappUrl: "https://wa.me/917338649737",
         phone: "(+91)7338649737"
     },
     {
-        name: "Canada Office",
-        whatsappUrl: "https://wa.me/917338649737",
-        phone: "(+91)7338649737"
-    },
-    {
-        name: "London Office",
+        name: "SOUTH ASIA",
         whatsappUrl: "https://wa.me/917338649737",
         phone: "(+91)7338649737"
     }
@@ -108,8 +113,7 @@ const Contact = () => {
         country: "India",
         country_code: "+91",
         phone: "",
-        inquiryType: "Individual Certification",
-        programInterest: "",
+        nationality: "",
         message: "",
     });
 
@@ -196,14 +200,12 @@ const Contact = () => {
         }
         try {
             await createTicket({
-                subject: formData.programInterest
-                    ? `Course Inquiry: ${formData.programInterest} (${formData.country || "General"})`
-                    : `Contact Inquiry from ${formData.name || "Website Visitor"} (${formData.country || "General"})`,
+                subject: `Contact Inquiry from ${formData.name || "Website Visitor"} (${formData.country || "General"})`,
                 requester_name: formData.name,
                 requester_email: formData.email,
-                category: formData.programInterest?.includes("Corporate") ? "Corporate Inquiry" : "General Support",
+                category: "General Support",
                 priority: "Normal",
-                message: `Program of Interest: ${formData.programInterest || "General Inquiry"}\nCountry: ${formData.country || "Not specified"} (${formData.country_code || ""})\nPhone: ${formData.country_code || ""} ${formData.phone || "Not provided"}\n\nMessage:\n${formData.message}`,
+                message: `Country: ${formData.country || "Not specified"} (${formData.country_code || ""})\nNationality: ${formData.nationality || "Not specified"}\nPhone: ${formData.country_code || ""} ${formData.phone || "Not provided"}\n\nMessage:\n${formData.message}`,
             });
         } catch (err) {
             console.warn("Contact form ticket sync fallback:", err);
@@ -220,8 +222,7 @@ const Contact = () => {
             country: prev.country || "India",
             country_code: prev.country_code || "+91",
             phone: "",
-            inquiryType: "Individual Certification",
-            programInterest: "",
+            nationality: "",
             message: "",
         }));
 
@@ -523,35 +524,20 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* ROW 3: COURSE / PROGRAM OF INTEREST */}
+                                    {/* ROW 3: NATIONALITY */}
                                     <div>
-                                        <label htmlFor="contact-program" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
-                                            Course / Program of Interest <span className="text-slate-400 font-normal lowercase">(optional)</span>
+                                        <label htmlFor="contact-nationality" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
+                                            Nationality <span className="text-slate-400 font-normal lowercase">(optional)</span>
                                         </label>
-                                        <div className="relative">
-                                            <select
-                                                id="contact-program"
-                                                name="programInterest"
-                                                value={formData.programInterest}
-                                                onChange={handleChange}
-                                                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden appearance-none cursor-pointer"
-                                            >
-                                                <option value="">Select a course or program domain...</option>
-                                                <option value="ISO 9001:2015 Quality Management (QMS) Lead Auditor">ISO 9001:2015 Quality Management (QMS) Lead Auditor</option>
-                                                <option value="ISO 14001:2015 Environmental Management (EMS) Lead Auditor">ISO 14001:2015 Environmental Management (EMS) Lead Auditor</option>
-                                                <option value="ISO 45001:2018 Occupational Health & Safety (OH&S) Lead Auditor">ISO 45001:2018 Occupational Health & Safety (OH&S) Lead Auditor</option>
-                                                <option value="ISO 27001:2022 Information Security Management (ISMS)">ISO 27001:2022 Information Security Management (ISMS)</option>
-                                                <option value="Lean Six Sigma (Green Belt / Black Belt)">Lean Six Sigma (Green Belt / Black Belt)</option>
-                                                <option value="ISO 22000 / HACCP Food Safety Management">ISO 22000 / HACCP Food Safety Management</option>
-                                                <option value="Corporate / Custom Enterprise Batch Training">Corporate / Custom Enterprise Batch Training</option>
-                                                <option value="Other Certification / Verification Inquiry">Other Certification / Verification Inquiry</option>
-                                            </select>
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400">
-                                                <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd" />
-                                                </svg>
-                                            </div>
-                                        </div>
+                                        <input
+                                            id="contact-nationality"
+                                            type="text"
+                                            name="nationality"
+                                            value={formData.nationality}
+                                            onChange={handleChange}
+                                            placeholder="e.g. Indian, Canadian, British, American..."
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm placeholder:text-slate-400 focus:bg-white focus:border-[#131E4A] focus:ring-2 focus:ring-[#131E4A]/15 transition-all outline-hidden"
+                                        />
                                     </div>
 
                                     {/* ROW 4: MESSAGE / REQUIREMENTS CONTEXT BOX */}
