@@ -612,8 +612,8 @@ const Contact = () => {
             <section className="w-full bg-slate-100 border-t border-slate-200/80">
                 <div className="w-full h-[400px] sm:h-[460px] lg:h-[500px]">
                     <iframe
-                        title="Broadbeach Academy Location - Salarpuria Magnificia Commercial"
-                        src="https://maps.google.com/maps?q=Salarpuria+Magnificia+Commercial,+78+KC+Reddy+outer+ring+road,+Benniganahalli,+Pai+Layout,+Mahadevapura,+Bengaluru,+Karnataka 560016&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        title="Broadbeach Academy Location - World Trade Center Bengaluru"
+                        src="https://maps.google.com/maps?q=World+Trade+Center,+22nd+Floor,+Dr+Rajkumar+Rd,+Malleshwaram,+Bengaluru,+Karnataka+560055&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         className="w-full h-full border-0 block"
                         loading="lazy"
                         allowFullScreen=""
@@ -680,10 +680,10 @@ const Contact = () => {
                                         Email us
                                     </p>
                                     <a
-                                        href="mailto:info@broadbeach.in"
+                                        href="mailto:certification@broadbeach.in"
                                         className="block text-slate-300 hover:text-white transition-colors text-sm sm:text-base mt-0.5 break-all"
                                     >
-                                        info@broadbeach.in
+                                        certification@broadbeach.in
                                     </a>
                                 </div>
                             </div>
