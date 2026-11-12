@@ -55,10 +55,10 @@ const CTASection = () => {
                         {/* Action CTA */}
                         <div className="flex items-center justify-center pt-2">
                             <Link
-                                to="/contact"
+                                to="/register"
                                 className="h-[48px] px-8 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-[#071526] font-extrabold text-sm sm:text-base shadow-md hover:shadow-lg active:scale-98 transition-all duration-200 flex items-center justify-center gap-2.5 whitespace-nowrap cursor-pointer"
                             >
-                                <span>Contact an Advisor</span>
+                                <span>Register Now</span>
                                 <FaArrowRight className="text-xs" />
                             </Link>
                         </div>

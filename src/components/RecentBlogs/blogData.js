@@ -5,7 +5,7 @@ const blogData = [
     category: "QUALITY MANAGEMENT",
     description:
       "ISO 14001:2026 replaces the 2015 standard, strengthening environmental management and climate action.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "26 AUG 2026",
     readTime: "5 min read",
     image:
@@ -21,7 +21,7 @@ const blogData = [
     category: "HEALTH & SAFETY",
     description:
       "Environmental sustainability is now essential for modern businesses, driving responsible practices, innovation, competitiveness, and long-term success.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "26 AUG 2026",
     readTime: "6 min read",
     image:
@@ -37,7 +37,7 @@ const blogData = [
     category: "LEADERSHIP",
     description:
       "ISO 14001 provides a structured framework for organizations to manage, monitor, and improve environmental performance",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "26 AUG 2026",
     readTime: "7 min read",
     image:
@@ -53,7 +53,7 @@ const blogData = [
     category: "LEAN SIX SIGMA",
     description:
       "Everything you need to know before enrolling in a Lean Six Sigma Green Belt certification program.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "26 AUG 2026",
     readTime: "4 min read",
     image:
@@ -68,7 +68,7 @@ const blogData = [
     category: "INTERNAL AUDITOR",
     description:
       "Learn how Internal Auditor certifications can strengthen your auditing skills and open new career opportunities.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "26 AUG 2026",
     readTime: "5 min read",
     image:
@@ -83,7 +83,7 @@ const blogData = [
     category: "CYBER SECURITY",
     description:
       "Compare the most in-demand cyber security certifications for beginners and experienced professionals.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "12 Jul 2026",
     readTime: "6 min read",
     image:
@@ -98,7 +98,7 @@ const blogData = [
     category: "BUSINESS ANALYTICS",
     description:
       "Discover the certifications and skills required to become a successful business analyst.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "08 Jul 2026",
     readTime: "5 min read",
     image:
@@ -113,7 +113,7 @@ const blogData = [
     category: "CLOUD COMPUTING",
     description:
       "A complete guide to cloud certifications from beginner to advanced levels across leading platforms.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "05 Jul 2026",
     readTime: "8 min read",
     image:
@@ -128,7 +128,7 @@ const blogData = [
     category: "PROJECT MANAGEMENT",
     description:
       "Explore certifications that help project managers lead teams, deliver projects, and grow professionally.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "01 Jul 2026",
     readTime: "6 min read",
     image:
@@ -143,7 +143,7 @@ const blogData = [
     category: "LEAD AUDITOR",
     description:
       "Understand the career opportunities available after becoming an ISO 9001 Lead Auditor.",
-    author: "Broadbeach Innovation",
+    author: "Broadbeach",
     date: "28 Jun 2026",
     readTime: "5 min read",
     image:

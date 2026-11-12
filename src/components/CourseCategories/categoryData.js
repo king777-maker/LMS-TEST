@@ -28,7 +28,7 @@ const categoryData = [
         courses: 24,
         icon: Laptop,
         color: "#2563EB",
-        image: "https://picsum.photos/seed/free-courses/800/600",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
         link: "/category/free-courses",
     },
 
@@ -39,7 +39,7 @@ const categoryData = [
         courses: 18,
         icon: BriefcaseBusiness,
         color: "#10B981",
-        image: "https://picsum.photos/seed/internal-auditor/800/600",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
         link: "/category/internal-auditor",
     },
 
@@ -50,7 +50,7 @@ const categoryData = [
         courses: 15,
         icon: Palette,
         color: "#7C3AED",
-        image: "https://picsum.photos/seed/lead-auditor/800/600",
+        image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
         link: "/category/lead-auditor",
     },
 
@@ -61,7 +61,7 @@ const categoryData = [
         courses: 12,
         icon: HeartPulse,
         color: "#EF4444",
-        image: "https://picsum.photos/seed/lean-six-sigma/800/600",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
         link: "/category/lean-six-sigma",
     },
 
@@ -72,7 +72,7 @@ const categoryData = [
         courses: 21,
         icon: Globe,
         color: "#F97316",
-        image: "https://picsum.photos/seed/health-safety/800/600",
+        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
         link: "/category/health-safety-hse",
     },
 
@@ -83,7 +83,7 @@ const categoryData = [
         courses: 16,
         icon: Network,
         color: "#06B6D4",
-        image: "https://picsum.photos/seed/environment/800/600",
+        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=800&q=80",
         link: "/category/environment",
     },
 
@@ -94,7 +94,7 @@ const categoryData = [
         courses: 19,
         icon: Megaphone,
         color: "#EC4899",
-        image: "https://picsum.photos/seed/professional-certifications/800/600",
+        image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
         link: "/category/professional-certifications",
     },
 
@@ -105,7 +105,7 @@ const categoryData = [
         courses: 14,
         icon: TrendingUp,
         color: "#059669",
-        image: "https://picsum.photos/seed/quality-assurance/800/600",
+        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
         link: "/category/professional-certifications",
     },
 
@@ -116,7 +116,7 @@ const categoryData = [
         courses: 11,
         icon: Camera,
         color: "#64748B",
-        image: "https://picsum.photos/seed/business-management/800/600",
+        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
         link: "/category/professional-certifications",
     },
 
@@ -127,7 +127,7 @@ const categoryData = [
         courses: 13,
         icon: Music,
         color: "#6D28D9",
-        image: "https://picsum.photos/seed/aerospace-defence/800/600",
+        image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80",
         link: "/category/aerospace",
     },
 
@@ -138,7 +138,7 @@ const categoryData = [
         courses: 22,
         icon: Settings,
         color: "#6B7280",
-        image: "https://picsum.photos/seed/automotive-industry/800/600",
+        image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80",
         link: "/category/professional-certifications",
     },
 
@@ -149,7 +149,7 @@ const categoryData = [
         courses: 9,
         icon: ClipboardList,
         color: "#F59E0B",
-        image: "https://picsum.photos/seed/hr-industrial/800/600",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
         link: "/category/professional-certifications",
     },
 
@@ -160,7 +160,7 @@ const categoryData = [
         courses: 9,
         icon: Monitor,
         color: "#2563EB",
-        image: "https://picsum.photos/seed/information-technology/800/600",
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
         link: "/category/information-security",
     },
 
@@ -171,7 +171,7 @@ const categoryData = [
         courses: 9,
         icon: ShieldCheck,
         color: "#7C3AED",
-        image: "https://picsum.photos/seed/information-security/800/600",
+        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
         link: "/category/information-security",
     },
 
@@ -182,7 +182,7 @@ const categoryData = [
         courses: 9,
         icon: Calculator,
         color: "#059669",
-        image: "https://picsum.photos/seed/carbon-accounting/800/600",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80",
         link: "/category/environment",
     },
 
@@ -193,7 +193,7 @@ const categoryData = [
         courses: 9,
         icon: Shield,
         color: "#EC4899",
-        image: "https://picsum.photos/seed/posh-workplace/800/600",
+        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
         link: "/category/professional-certifications",
     },
 
@@ -204,7 +204,7 @@ const categoryData = [
         courses: 9,
         icon: GraduationCap,
         color: "#F97316",
-        image: "https://picsum.photos/seed/managerial-programs/800/600",
+        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
         link: "/category/management-certifications",
     },
 
@@ -215,7 +215,7 @@ const categoryData = [
         courses: 9,
         icon: BookOpen,
         color: "#06B6D4",
-        image: "https://picsum.photos/seed/fresher-entry-level/800/600",
+        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
         link: "#",
     },
 
@@ -226,7 +226,7 @@ const categoryData = [
         courses: 5,
         icon: BookOpen,
         color: "#06B6D4",
-        image: "https://picsum.photos/seed/train-the-trainer/800/600",
+        image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80",
         link: "#",
     },
 
@@ -237,7 +237,7 @@ const categoryData = [
         courses: 5,
         icon: BookOpen,
         color: "#06B6D4",
-        image: "https://picsum.photos/seed/qa-qc-program/800/600",
+        image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80",
         link: "#",
     },
 

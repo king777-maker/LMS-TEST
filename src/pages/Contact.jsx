@@ -422,7 +422,7 @@ const Contact = () => {
                                     Send Us a Message
                                 </h2>
                                 <p className="mt-1 text-slate-500 text-sm leading-relaxed">
-                                    Fill out your details below and our academic counseling team will respond to your inquiry promptly.
+                                    Fill the inquiry below and our team will reach out to u shortly
                                 </p>
                             </div>
 
