@@ -664,3 +664,57 @@ button[aria-selected="true"][data-active-theme="gold"] span {
   color: #047857;
   border: 1px solid #a7f3d0;
 }
+
+/* ========================================================
+   HERO ENTRANCE & GENTLE FLOAT ANIMATIONS
+   ======================================================== */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.hero-fade-up {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-fade-up-delay-1 {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.hero-fade-up-delay-2 {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+}
+
+.hero-fade-up-delay-3 {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+
+.hero-illustration-float {
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-up,
+  .hero-fade-up-delay-1,
+  .hero-fade-up-delay-2,
+  .hero-fade-up-delay-3,
+  .hero-illustration-float {
+    animation: none !important;
+    transform: none !important;
+  }
+}
