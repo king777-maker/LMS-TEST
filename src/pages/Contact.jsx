@@ -190,6 +190,10 @@ const Contact = () => {
     // =====================================================
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!formData.phone || !formData.phone.trim()) {
+            toast.error("Please enter your Phone / WhatsApp number.");
+            return;
+        }
         try {
             await createTicket({
                 subject: formData.programInterest
@@ -499,7 +503,7 @@ const Contact = () => {
 
                                         <div>
                                             <label htmlFor="contact-phone" className="block text-xs font-semibold tracking-wider text-slate-700 uppercase mb-1.5">
-                                                Phone / WhatsApp
+                                                Phone / WhatsApp <span className="text-rose-500">*</span>
                                             </label>
                                             <div className="relative flex items-center">
                                                 <span className="absolute left-3.5 text-xs font-semibold text-slate-500 select-none">
@@ -509,6 +513,7 @@ const Contact = () => {
                                                     id="contact-phone"
                                                     type="tel"
                                                     name="phone"
+                                                    required
                                                     value={formData.phone}
                                                     onChange={handleChange}
                                                     placeholder="98765 43210"
@@ -574,7 +579,7 @@ const Contact = () => {
 
                                 {/* SUBMIT BUTTON & FOOTER */}
                                 <div className="pt-4 border-t border-slate-100 mt-2">
-                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <div className="flex items-center">
                                         <button
                                             type="submit"
                                             className="w-full sm:w-auto h-[48px] inline-flex items-center justify-center gap-2.5 px-9 rounded-xl bg-[#131E4A] hover:bg-[#15467e] active:scale-[0.98] text-white font-semibold text-sm tracking-wide transition-all duration-150 cursor-pointer shadow-sm focus:outline-hidden focus:ring-2 focus:ring-[#131E4A] focus:ring-offset-2 select-none"
@@ -582,9 +587,6 @@ const Contact = () => {
                                             <Send className="w-4 h-4" />
                                             <span>Send Inquiry Message</span>
                                         </button>
-                                        <span className="text-xs text-slate-400 text-center sm:text-right font-medium">
-                                            ISO 27001 data compliance &amp; privacy assured
-                                        </span>
                                     </div>
 
                                     <p className="text-xs text-slate-400 leading-relaxed pt-4 mt-3 border-t border-slate-100/80">
