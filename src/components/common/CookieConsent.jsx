@@ -105,7 +105,7 @@ export const CookieConsent = () => {
                         setShowPreferences(true);
                         setIsOpen(true);
                     }}
-                    className="fixed bottom-3.5 right-3.5 sm:bottom-5 sm:right-5 z-30 p-0 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-3 focus:ring-[#F7C600]/60 focus:ring-offset-2 select-none cursor-pointer group bg-transparent border-0 overflow-hidden"
+                    className="fixed bottom-6 right-6 z-40 p-0 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-3 focus:ring-[#F97316]/60 focus:ring-offset-2 select-none cursor-pointer group bg-transparent border-0 overflow-hidden"
                     title="Manage Privacy Preferences"
                     aria-label="Manage Privacy Preferences"
                 >
