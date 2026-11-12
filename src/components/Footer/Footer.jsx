@@ -525,14 +525,24 @@ const Footer = () => {
                             "
                         >
 
-                            <p>
-                                Broadbeach Innovations Bengaluru, India <br />Vancouver, UAE, Doha, Qatar
-                            </p>
-                            <p>
-                                Canada, London, United Kingdom, New York,
-                                USA, Port Harcourt, Nigeria, Riyadh,
-                                Saudi Arabia, Manila, Philippines, Dubai
-                            </p>
+                            <div>
+                                <p className="leading-relaxed">
+                                    <span className="font-bold text-white">India HQ : </span>
+                                    2201, 22nd Floor<br />
+                                    World Trade Center Bengaluru
+                                </p>
+                            </div>
+
+                            <div className="pt-1">
+                                <span className="block font-bold text-white mb-1">
+                                    International Offices
+                                </span>
+                                <p className="leading-relaxed">
+                                    Canada, UK, Sweden, USA, Philippines<br />
+                                    Qatar, UAE, Saudi Arabia, Singapore<br />
+                                    USA
+                                </p>
+                            </div>
 
 
                             <div className="pt-4">
