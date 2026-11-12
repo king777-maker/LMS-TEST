@@ -105,16 +105,16 @@ export const CookieConsent = () => {
                         setShowPreferences(true);
                         setIsOpen(true);
                     }}
-                    className="fixed bottom-6 right-6 z-40 p-0 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-3 focus:ring-[#F97316]/60 focus:ring-offset-2 select-none cursor-pointer group bg-transparent border-0 overflow-hidden"
+                    className="fixed bottom-5 right-5 z-30 p-0 rounded-xl shadow-md opacity-70 hover:opacity-100 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#F97316]/50 select-none cursor-pointer group bg-transparent border-0 overflow-hidden"
                     title="Manage Privacy Preferences"
                     aria-label="Manage Privacy Preferences"
                 >
                     <img
                         src={cookieIcon || "/assets/cookie-preferences-icon.png"}
                         alt="Manage Privacy Preferences"
-                        className="w-9 h-9 sm:w-10 sm:h-10 object-contain rounded-xl shadow-sm transition-all group-hover:brightness-105"
-                        width={40}
-                        height={40}
+                        className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-xl shadow-xs transition-all group-hover:brightness-105"
+                        width={36}
+                        height={36}
                         loading="eager"
                     />
                 </button>
