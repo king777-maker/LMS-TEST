@@ -39,26 +39,28 @@ const BlogCard = ({ blog }) => {
           "
         />
 
-        {/* Category */}
-
-        {/* <span
+        {/* Category Badge */}
+        <span
           className="
             absolute
-            top-5
-            left-5
-            bg-[#2168D8]
-            text-white
-            text-xs
-            font-semibold
-            px-4
-            py-2
+            top-4
+            left-4
+            bg-[#131E4A]/90
+            backdrop-blur-xs
+            text-amber-300
+            text-[11px]
+            font-bold
+            px-3
+            py-1.5
             rounded-full
             uppercase
-            tracking-wide
+            tracking-wider
+            shadow-sm
+            border border-white/20
           "
         >
           {blog.category}
-        </span> */}
+        </span>
       </div>
 
       {/* Content */}

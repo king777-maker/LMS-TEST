@@ -104,20 +104,20 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       ref={navContainerRef}
       className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
-      <div className="max-w-[1720px] mx-auto px-3 sm:px-4 xl:px-6 2xl:px-8 flex items-center justify-between gap-2.5 xl:gap-3 2xl:gap-4 w-full h-[54px]">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between xl:justify-start w-full h-[54px]">
         
         {/* =======================================================
-            LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
+            1. BRAND LOGO (Left Corner)
         ======================================================= */}
-        <div className="flex items-center gap-2.5 xl:gap-3 2xl:gap-4 shrink-0 min-w-0">
-          {/* Anchored Brand Logo on Far Left Corner */}
-          <BrandLogo className="shrink-0" />
+        <BrandLogo className="shrink-0" />
 
-          {/* Desktop Navigation Links */}
-          <nav
-            className="hidden xl:flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 shrink-0"
-            aria-label="Main Navigation Categories"
-          >
+        {/* =======================================================
+            2. DESKTOP NAVIGATION LINKS (Follows Logo)
+        ======================================================= */}
+        <nav
+          className="hidden xl:flex items-center gap-1 2xl:gap-1.5 shrink-0 ml-4 xl:ml-5 2xl:ml-6"
+          aria-label="Main Navigation Categories"
+        >
             {/* ===================================================
                 ABOUT US DROPDOWN (Matches CourseDropdown Visual System)
             =================================================== */}
@@ -246,12 +246,36 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
               );
             })}
           </nav>
+
+        {/* =======================================================
+            3. DESKTOP CONTROLS: SEARCH BAR & VERIFY CERTIFICATE
+            Positioned immediately after navigation links with controlled 24–32px gap
+        ======================================================= */}
+        <div className="hidden xl:flex items-center gap-3 xl:gap-3.5 shrink-0 ml-6 xl:ml-7 2xl:ml-8">
+          <SearchBar />
+          <Link
+            to="/verify-certificate"
+            className="shrink-0 whitespace-nowrap h-8 px-3 text-xs font-bold rounded-xl bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
+            aria-label="Verify Certificate"
+          >
+            <FaAward className="text-xs text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
+            <span>Verify Certificate</span>
+          </Link>
         </div>
 
         {/* =======================================================
-            TABLET / MOBILE HAMBURGER BUTTON
+            4. TABLET / MOBILE CONTROLS (Viewport < 1280px)
         ======================================================= */}
-        <div className="flex xl:hidden items-center gap-1.5 shrink-0">
+        <div className="flex xl:hidden items-center gap-2 shrink-0">
+          <SearchBar />
+          <Link
+            to="/verify-certificate"
+            className="shrink-0 whitespace-nowrap h-8 px-2.5 text-[11px] font-bold rounded-xl bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs hidden sm:flex items-center gap-1"
+            aria-label="Verify Certificate"
+          >
+            <FaAward className="text-xs" />
+            <span className="hidden md:inline">Verify</span>
+          </Link>
           <button
             type="button"
             aria-label={
@@ -271,21 +295,6 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
             )}
             <span className="hidden sm:inline">Browse Categories</span>
           </button>
-        </div>
-
-        {/* =======================================================
-            RIGHT CONTROLS CONTAINER: SEARCH BAR & VERIFY CERTIFICATE
-        ======================================================= */}
-        <div className="flex items-center gap-2 xl:gap-3 shrink-0">
-          <SearchBar />
-          <Link
-            to="/verify-certificate"
-            className="shrink-0 whitespace-nowrap h-8 px-3 text-xs font-bold rounded-xl bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
-            aria-label="Verify Certificate"
-          >
-            <FaAward className="text-xs text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
-            <span>Verify Certificate</span>
-          </Link>
         </div>
 
       </div>
