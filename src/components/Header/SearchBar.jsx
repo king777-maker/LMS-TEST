@@ -63,7 +63,7 @@ const SearchBar = ({ onSelectCourse }) => {
   return (
     <div ref={containerRef} className="relative z-40 shrink-0">
       <div
-        className={`relative flex items-center w-28 xl:w-32 2xl:w-36 focus-within:w-36 xl:focus-within:w-40 2xl:focus-within:w-44 h-8 text-xs px-2.5 bg-white/10 border border-white/15 rounded-xl text-white transition-all duration-200 shrink-0 ${
+        className={`relative flex items-center w-28 sm:w-32 xl:w-32 2xl:w-36 h-8 text-xs px-2.5 bg-white/10 border border-white/15 rounded-xl text-white transition-all duration-200 shrink-0 ${
           isFocused ? "border-white/40 ring-1 ring-white/30 bg-white/20" : "hover:bg-white/15"
         }`}
       >

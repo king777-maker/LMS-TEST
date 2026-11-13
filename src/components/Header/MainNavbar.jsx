@@ -104,7 +104,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       ref={navContainerRef}
       className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full h-[54px]">
+      <div className="max-w-[1720px] mx-auto px-3 sm:px-4 xl:px-4 2xl:px-8 flex items-center justify-between w-full h-[54px]">
         
         {/* =======================================================
             1. BRAND LOGO (Fixed on Far Left)
@@ -115,7 +115,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
             2. DESKTOP NAVIGATION LINKS (Distributed Evenly Across Available Space)
         ======================================================= */}
         <nav
-          className="hidden xl:flex flex-1 items-center justify-evenly min-w-0 px-2 lg:px-4 2xl:px-8"
+          className="hidden xl:flex flex-1 items-center justify-evenly min-w-0 px-1 2xl:px-6"
           aria-label="Main Navigation Categories"
         >
             {/* ===================================================
@@ -136,7 +136,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     setOpenDropdownId(null);
                   }
                 }}
-                className={`flex items-center gap-1 px-2 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[12px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                className={`flex items-center gap-1 px-1.5 xl:px-1.5 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[11.5px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                   openDropdownId === "about-us"
                     ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                     : "text-white/95 hover:bg-white/10 hover:text-white"
@@ -223,7 +223,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     onMouseLeave={handleMouseLeave}
                     onClick={() => handleTriggerClick(category)}
                     onKeyDown={(e) => handleKeyDown(e, category)}
-                    className={`flex items-center gap-1 px-2 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[12px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                    className={`flex items-center gap-1 px-1.5 xl:px-1.5 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[11.5px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                       isOpen
                         ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                         : "text-white/95 hover:bg-white/10 hover:text-white"
@@ -251,7 +251,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
             3. DESKTOP CONTROLS: SEARCH & VERIFY (Far-Right Corner)
             Kept together using flex-shrink: 0 with 12-16px gap
         ======================================================= */}
-        <div className="hidden xl:flex items-center gap-3 xl:gap-3.5 2xl:gap-4 shrink-0">
+        <div className="hidden xl:flex items-center gap-2.5 xl:gap-3 2xl:gap-4 shrink-0 ml-3 xl:ml-4 2xl:ml-6">
           <SearchBar />
           <Link
             to="/verify-certificate"
