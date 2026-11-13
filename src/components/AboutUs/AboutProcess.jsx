@@ -53,11 +53,11 @@ const AboutProcess = () => {
         <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3.5 select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
-            <span>Our Methodology</span>
+            <span>Academic Methodology</span>
           </div>
 
           <h2 className="text-[30px] sm:text-[36px] lg:text-[40px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
-            How Learning Works
+            Our 4-Phase Quality Framework
           </h2>
 
           <p className="mt-4 text-[#475569] text-base sm:text-[17px] leading-[1.7]">
@@ -124,3 +124,4 @@ const AboutProcess = () => {
 };
 
 export default AboutProcess;
+

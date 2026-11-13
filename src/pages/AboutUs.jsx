@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AboutHero from "../components/AboutUs/AboutHero";
 import AboutStory from "../components/AboutUs/AboutStory";
+import AboutHowItWorks from "../components/AboutUs/AboutHowItWorks";
 import AboutFeatures from "../components/AboutUs/AboutFeatures";
 import AboutProcess from "../components/AboutUs/AboutProcess";
 import AboutMissionVision from "../components/AboutUs/AboutMissionVision";
@@ -45,32 +46,37 @@ const AboutUs = () => {
       <AboutHero />
 
       {/* =========================================================
-          2. WHO WE ARE (Editorial Story)
+          2. WHO WE ARE (Editorial Story Introduction)
       ========================================================= */}
       <AboutStory />
 
       {/* =========================================================
-          3. WHY CHOOSE BROADBEACH ACADEMY (3x2 Feature Grid)
+          3. HOW IT WORKS (Interactive Zigzag Vertical Timeline)
+      ========================================================= */}
+      <AboutHowItWorks />
+
+      {/* =========================================================
+          4. WHY CHOOSE BROADBEACH ACADEMY (3x2 Feature Grid)
       ========================================================= */}
       <AboutFeatures />
 
       {/* =========================================================
-          4. HOW LEARNING WORKS (4-Step Illustrated Process)
+          5. OUR METHODOLOGY (4-Step Quality Framework)
       ========================================================= */}
       <AboutProcess />
 
       {/* =========================================================
-          5. OUR MISSION & VISION (Two Editorial Cards)
+          6. OUR MISSION & VISION (Two Editorial Cards)
       ========================================================= */}
       <AboutMissionVision />
 
       {/* =========================================================
-          6. WHO WE SERVE (Audience Cards)
+          7. WHO WE SERVE (Audience Cards)
       ========================================================= */}
       <AboutAudience />
 
       {/* =========================================================
-          7. CLOSING CTA BANNER
+          8. CLOSING CTA BANNER
       ========================================================= */}
       <AboutCTA />
     </div>
