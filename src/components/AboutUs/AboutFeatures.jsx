@@ -65,34 +65,34 @@ const features = [
 
 const AboutFeatures = () => {
   return (
-    <section className="relative bg-[#F6F8FC] py-20 lg:py-24 xl:py-28 border-y border-[#E2E8F0]/80">
+    <section className="relative bg-[#F6F8FC] py-10 sm:py-12 lg:py-16 border-y border-[#E2E8F0]/80">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3.5 select-none">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-2.5 select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
             <span>The Broadbeach Advantage</span>
           </div>
 
-          <h2 className="text-[30px] sm:text-[36px] lg:text-[40px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
+          <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
             Why Choose Broadbeach Academy
           </h2>
 
-          <p className="mt-4 text-[#475569] text-base sm:text-[17px] leading-[1.7]">
+          <p className="mt-2.5 text-[#475569] text-sm sm:text-base leading-[1.6]">
             Built specifically to deliver measurable career results, our programs combine
             academic rigor with actionable real-world auditing and management expertise.
           </p>
         </div>
 
         {/* 3x2 Grid of Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {features.map((feat, index) => {
             const Icon = feat.icon;
             return (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-7 sm:p-8 border border-[#E2E8F0] shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col"
+                className="group bg-white rounded-2xl p-5 sm:p-6 border border-[#E2E8F0] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
               >
                 {/* Duotone Icon Tile */}
                 <div

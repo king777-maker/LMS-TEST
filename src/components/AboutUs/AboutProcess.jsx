@@ -46,21 +46,21 @@ const steps = [
 
 const AboutProcess = () => {
   return (
-    <section className="relative bg-white py-20 lg:py-24 xl:py-28 overflow-hidden">
+    <section className="relative bg-white py-10 sm:py-12 lg:py-16 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3.5 select-none">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-2.5 select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
             <span>Academic Methodology</span>
           </div>
 
-          <h2 className="text-[30px] sm:text-[36px] lg:text-[40px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
+          <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
             Our 4-Phase Quality Framework
           </h2>
 
-          <p className="mt-4 text-[#475569] text-base sm:text-[17px] leading-[1.7]">
+          <p className="mt-2.5 text-[#475569] text-sm sm:text-base leading-[1.6]">
             A transparent, streamlined journey from your initial course selection
             to verified completion and professional mastery.
           </p>
@@ -71,11 +71,11 @@ const AboutProcess = () => {
           
           {/* Desktop Connecting Horizontal Line */}
           <div
-            className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-[2px] border-t-2 border-dashed border-[#CBD5E1] -z-0"
+            className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-[2px] border-t-2 border-dashed border-[#CBD5E1] -z-0"
             aria-hidden="true"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5 relative z-10">
             {steps.map((st, index) => {
               const Icon = st.icon;
               return (
@@ -84,15 +84,15 @@ const AboutProcess = () => {
                   className="flex flex-col items-center text-center group"
                 >
                   {/* Step Icon Badge */}
-                  <div className="relative mb-6">
+                  <div className="relative mb-4">
                     <div
-                      className={`w-[72px] h-[72px] rounded-2xl flex items-center justify-center border shadow-xs bg-white ${st.badgeColor} group-hover:scale-105 group-hover:shadow-md transition-all duration-200`}
+                      className={`w-[60px] h-[60px] rounded-2xl flex items-center justify-center border shadow-2xs bg-white ${st.badgeColor} group-hover:scale-105 group-hover:shadow-xs transition-all duration-200`}
                     >
-                      <Icon className="text-2xl" />
+                      <Icon className="text-xl" />
                     </div>
 
                     {/* Step Number Tag */}
-                    <span className="absolute -top-2.5 -right-2 px-2 py-0.5 rounded-full bg-[#121C46] text-white text-[10px] font-extrabold tracking-wider border-2 border-white shadow-xs">
+                    <span className="absolute -top-2 -right-1.5 px-1.5 py-0.5 rounded-full bg-[#121C46] text-white text-[9px] font-extrabold tracking-wider border-2 border-white shadow-xs">
                       {st.step}
                     </span>
                   </div>

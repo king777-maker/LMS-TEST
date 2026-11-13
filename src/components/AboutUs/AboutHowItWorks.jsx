@@ -113,7 +113,7 @@ const AboutHowItWorks = () => {
   return (
     <section
       id="how-it-works"
-      className="relative bg-white py-20 lg:py-28 xl:py-32 overflow-hidden border-t border-slate-100 select-none"
+      className="relative bg-white py-10 sm:py-12 lg:py-16 overflow-hidden border-t border-slate-100 select-none"
       aria-label="How Broadbeach Academy Works"
     >
       {/* Subtle organic background wave contours matching the reference */}
@@ -140,17 +140,17 @@ const AboutHowItWorks = () => {
         {/* =======================================================
             SECTION HEADER
         ======================================================= */}
-        <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20 lg:mb-24">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-2xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 lg:mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-2xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-2.5 select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-[#F97316] animate-pulse" />
             <span>Structured Learning Pathway</span>
           </div>
 
-          <h2 className="text-[32px] sm:text-[38px] lg:text-[44px] font-extrabold text-[#121C46] tracking-tight leading-[1.2]">
+          <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-extrabold text-[#121C46] tracking-tight leading-[1.2]">
             How It Works
           </h2>
 
-          <p className="mt-3.5 text-[#475569] text-base sm:text-lg leading-[1.6] max-w-xl mx-auto">
+          <p className="mt-2.5 text-[#475569] text-sm sm:text-base leading-[1.6] max-w-xl mx-auto">
             Your Journey from Enrollment to Certification
           </p>
         </div>
@@ -162,7 +162,7 @@ const AboutHowItWorks = () => {
           
           {/* Desktop & Tablet Centered Vertical Connecting Line */}
           <div
-            className="hidden md:block absolute left-1/2 top-10 bottom-16 -translate-x-1/2 w-[2px] bg-slate-200 -z-0"
+            className="hidden md:block absolute left-1/2 top-8 bottom-12 -translate-x-1/2 w-[2px] bg-slate-200 -z-0"
             aria-hidden="true"
           >
             {/* Animated Progressive Fill Line */}
@@ -174,7 +174,7 @@ const AboutHowItWorks = () => {
 
           {/* Mobile Vertical Connecting Line (Anchored Left at 24px) */}
           <div
-            className="md:hidden absolute left-[23px] top-8 bottom-12 w-[2px] bg-slate-200 -z-0"
+            className="md:hidden absolute left-[23px] top-6 bottom-10 w-[2px] bg-slate-200 -z-0"
             aria-hidden="true"
           >
             <div
@@ -186,7 +186,7 @@ const AboutHowItWorks = () => {
           {/* =====================================================
               TIMELINE STEPS (Alternating on Desktop)
           ===================================================== */}
-          <div className="space-y-16 sm:space-y-20 lg:space-y-28">
+          <div className="space-y-8 sm:space-y-10 lg:space-y-12">
             {timelineSteps.map((step, index) => {
               const isActive = activeSteps[index];
               const IllustrationComponent = step.illustration;
@@ -256,7 +256,7 @@ const AboutHowItWorks = () => {
                     >
                       {/* Large Subtle Watermark Number */}
                       <span
-                        className={`absolute -top-10 sm:-top-14 select-none font-black text-7xl sm:text-8xl lg:text-9xl text-slate-100/90 tracking-tighter -z-0 pointer-events-none transition-transform duration-700 ${
+                        className={`absolute -top-5 sm:-top-6 select-none font-black text-6xl sm:text-7xl lg:text-8xl text-slate-100/90 tracking-tighter -z-0 pointer-events-none transition-transform duration-700 ${
                           step.align === "left"
                             ? "md:right-10 lg:right-16 translate-x-4"
                             : "md:left-10 lg:left-16 -translate-x-4"

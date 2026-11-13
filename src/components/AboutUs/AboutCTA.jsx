@@ -9,11 +9,11 @@ import { FaArrowRight, FaUserCheck } from "react-icons/fa";
  */
 const AboutCTA = () => {
   return (
-    <section className="relative bg-white pb-20 sm:pb-24 lg:pb-28">
+    <section className="relative bg-white pb-10 sm:pb-12 lg:pb-14">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
         
         {/* Navy Rounded Panel */}
-        <div className="relative rounded-3xl bg-[#121C46] text-white p-8 sm:p-12 lg:p-16 overflow-hidden shadow-xl border border-white/10">
+        <div className="relative rounded-3xl bg-[#121C46] text-white p-6 sm:p-8 lg:p-10 overflow-hidden shadow-xl border border-white/10">
           
           {/* Subtle Geometric Background Elements */}
           <div

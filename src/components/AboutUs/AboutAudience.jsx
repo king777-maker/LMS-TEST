@@ -41,55 +41,55 @@ const audiences = [
 
 const AboutAudience = () => {
   return (
-    <section className="relative bg-white py-20 lg:py-24 xl:py-28 overflow-hidden">
+    <section className="relative bg-white py-10 sm:py-12 lg:py-16 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3.5 select-none">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
             <span>Target Audiences</span>
           </div>
 
-          <h2 className="text-[30px] sm:text-[36px] lg:text-[40px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
+          <h2 className="text-[26px] sm:text-[32px] lg:text-[36px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
             Who We Serve
           </h2>
 
-          <p className="mt-4 text-[#475569] text-base sm:text-[17px] leading-[1.7]">
+          <p className="mt-3 text-[#475569] text-sm sm:text-base leading-[1.6]">
             Tailored learning pathways engineered for individuals at every career stage
             as well as corporate compliance teams.
           </p>
         </div>
 
         {/* 3 Audience Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {audiences.map((aud, index) => {
             const Icon = aud.icon;
             return (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-8 border border-[#E2E8F0] shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
+                className="group bg-white rounded-2xl p-6 sm:p-7 border border-[#E2E8F0] shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   {/* Badge & Icon */}
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-between mb-5">
                     <div
-                      className={`w-13 h-13 rounded-2xl flex items-center justify-center border ${aud.accent} group-hover:scale-105 transition-transform duration-200`}
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center border ${aud.accent} group-hover:scale-105 transition-transform duration-200`}
                     >
-                      <Icon className="text-2xl" />
+                      <Icon className="text-xl" />
                     </div>
-                    <span className="text-[10px] font-extrabold tracking-wider text-[#475569] uppercase bg-[#F6F8FC] px-3 py-1 rounded-full border border-[#E2E8F0]">
+                    <span className="text-[10px] font-extrabold tracking-wider text-[#475569] uppercase bg-[#F6F8FC] px-2.5 py-0.5 rounded-full border border-[#E2E8F0]">
                       {aud.badge}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-[#121C46] leading-snug mb-3">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#121C46] leading-snug mb-2.5">
                     {aud.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[#475569] text-sm sm:text-[15px] leading-[1.7] mb-8">
+                  <p className="text-[#475569] text-sm leading-[1.65] mb-6">
                     {aud.description}
                   </p>
                 </div>
