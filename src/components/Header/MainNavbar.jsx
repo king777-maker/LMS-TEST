@@ -104,18 +104,18 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       ref={navContainerRef}
       className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
-      <div className="max-w-[1720px] mx-auto px-3 sm:px-4 lg:px-6 2xl:px-8 flex items-center justify-between gap-2 xl:gap-3 w-full h-[54px]">
+      <div className="max-w-[1720px] mx-auto px-3 sm:px-4 xl:px-6 2xl:px-8 flex items-center justify-between gap-2.5 xl:gap-3 2xl:gap-4 w-full h-[54px]">
         
         {/* =======================================================
             LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
         ======================================================= */}
-        <div className="flex items-center gap-2 xl:gap-2.5 2xl:gap-5 shrink-0">
+        <div className="flex items-center gap-2.5 xl:gap-3 2xl:gap-4 shrink-0 min-w-0">
           {/* Anchored Brand Logo on Far Left Corner */}
           <BrandLogo className="shrink-0" />
 
           {/* Desktop Navigation Links */}
           <nav
-            className="hidden xl:flex items-center gap-0.5 xl:gap-1.5 2xl:gap-2.5 shrink-0"
+            className="hidden xl:flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 shrink-0"
             aria-label="Main Navigation Categories"
           >
             {/* ===================================================
@@ -136,7 +136,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     setOpenDropdownId(null);
                   }
                 }}
-                className={`flex items-center gap-1 px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg text-xs xl:text-[12px] 2xl:text-[13.5px] font-bold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                className={`flex items-center gap-1 px-2 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[12px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                   openDropdownId === "about-us"
                     ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                     : "text-white/95 hover:bg-white/10 hover:text-white"
@@ -144,7 +144,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
               >
                 <span>About Us</span>
                 <FaChevronDown
-                  className={`text-[7px] xl:text-[7.5px] 2xl:text-[8.5px] ml-0.5 transition-transform duration-200 shrink-0 ${
+                  className={`text-[7px] ml-0.5 transition-transform duration-200 shrink-0 ${
                     openDropdownId === "about-us" ? "rotate-180 text-amber-300" : "text-white/70"
                   }`}
                 />
@@ -223,29 +223,21 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     onMouseLeave={handleMouseLeave}
                     onClick={() => handleTriggerClick(category)}
                     onKeyDown={(e) => handleKeyDown(e, category)}
-                    className={`flex items-center gap-1 px-2 xl:px-2.5 2xl:px-3 py-1.5 rounded-lg text-xs xl:text-[12px] 2xl:text-[13.5px] font-bold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                    className={`flex items-center gap-1 px-2 xl:px-2 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[12px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                       isOpen
                         ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                         : "text-white/95 hover:bg-white/10 hover:text-white"
                     }`}
                   >
                     <span>
-                      {category.id === "professional-certifications" ? (
-                        <>
-                          <span className="hidden 2xl:inline">Professional Certifications</span>
-                          <span className="2xl:hidden">Certifications</span>
-                        </>
-                      ) : category.id === "health-safety-hse" ? (
-                        <>
-                          <span className="hidden 2xl:inline">Health &amp; Safety (HSE)</span>
-                          <span className="2xl:hidden">Health &amp; Safety</span>
-                        </>
-                      ) : (
-                        category.title
-                      )}
+                      {category.id === "professional-certifications"
+                        ? "Certifications"
+                        : category.id === "health-safety-hse"
+                        ? "Health & Safety"
+                        : category.title}
                     </span>
                     <FaChevronDown
-                      className={`text-[7px] xl:text-[7.5px] 2xl:text-[8.5px] ml-0.5 transition-transform duration-200 shrink-0 ${
+                      className={`text-[7px] ml-0.5 transition-transform duration-200 shrink-0 ${
                         isOpen ? "rotate-180 text-amber-300" : "text-white/70"
                       }`}
                     />
@@ -284,11 +276,11 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
         {/* =======================================================
             RIGHT CONTROLS CONTAINER: SEARCH BAR & VERIFY CERTIFICATE
         ======================================================= */}
-        <div className="flex items-center gap-1.5 xl:gap-2 2xl:gap-3 shrink-0 ml-auto pl-2">
+        <div className="flex items-center gap-2 xl:gap-3 shrink-0">
           <SearchBar />
           <Link
             to="/verify-certificate"
-            className="shrink-0 whitespace-nowrap h-8 xl:h-8.5 px-2.5 xl:px-3 2xl:px-3.5 text-[11px] xl:text-xs font-bold rounded-xl bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
+            className="shrink-0 whitespace-nowrap h-8 px-3 text-xs font-bold rounded-xl bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
             aria-label="Verify Certificate"
           >
             <FaAward className="text-xs text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
