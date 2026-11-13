@@ -104,18 +104,18 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
       ref={navContainerRef}
       className="w-full bg-[#131E4A] text-white relative shadow-md select-none z-40 border-t border-white/10"
     >
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between xl:justify-start w-full h-[54px]">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full h-[54px]">
         
         {/* =======================================================
-            1. BRAND LOGO (Left Corner)
+            1. BRAND LOGO (Fixed on Far Left)
         ======================================================= */}
         <BrandLogo className="shrink-0" />
 
         {/* =======================================================
-            2. DESKTOP NAVIGATION LINKS (Follows Logo)
+            2. DESKTOP NAVIGATION LINKS (Distributed Evenly Across Available Space)
         ======================================================= */}
         <nav
-          className="hidden xl:flex items-center gap-1 2xl:gap-1.5 shrink-0 ml-4 xl:ml-5 2xl:ml-6"
+          className="hidden xl:flex flex-1 items-center justify-evenly min-w-0 px-2 lg:px-4 2xl:px-8"
           aria-label="Main Navigation Categories"
         >
             {/* ===================================================
@@ -248,10 +248,10 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
           </nav>
 
         {/* =======================================================
-            3. DESKTOP CONTROLS: SEARCH BAR & VERIFY CERTIFICATE
-            Positioned immediately after navigation links with controlled 24–32px gap
+            3. DESKTOP CONTROLS: SEARCH & VERIFY (Far-Right Corner)
+            Kept together using flex-shrink: 0 with 12-16px gap
         ======================================================= */}
-        <div className="hidden xl:flex items-center gap-3 xl:gap-3.5 shrink-0 ml-6 xl:ml-7 2xl:ml-8">
+        <div className="hidden xl:flex items-center gap-3 xl:gap-3.5 2xl:gap-4 shrink-0">
           <SearchBar />
           <Link
             to="/verify-certificate"

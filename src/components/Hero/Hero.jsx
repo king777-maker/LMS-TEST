@@ -10,9 +10,9 @@ const Hero = () => {
   return (
     <>
       {/* =========================================================
-          FRAME 1: HERO SECTION (Controlled Spacing & Proportions)
+          FRAME 1: HERO SECTION (Balanced Spacing & Proportions)
       ========================================================= */}
-      <section className="relative bg-gradient-to-b from-[#F8FAFC] via-[#F4F7FB] to-white pt-4 pb-6 sm:pt-5 sm:pb-8 lg:pt-6 lg:pb-10 xl:pt-7 xl:pb-12 overflow-hidden flex items-center">
+      <section className="relative bg-gradient-to-b from-[#F8FAFC] via-[#F4F7FB] to-white pt-3 pb-3 sm:pt-4 sm:pb-4 lg:pt-5 lg:pb-5 xl:pt-6 xl:pb-6 overflow-hidden flex items-center">
         {/* Subtle Ambient Background Blurs */}
         <div
           className="absolute top-0 right-1/4 w-[480px] h-[480px] rounded-full bg-blue-100/35 blur-3xl pointer-events-none -z-0"
@@ -80,9 +80,9 @@ const Hero = () => {
 
             </div>
 
-            {/* RIGHT COLUMN: 52% Target Layout (Visual Center Lifted Upward ~20px) */}
-            <div className="flex items-center justify-center lg:justify-end mt-4 lg:mt-0 relative overflow-visible -translate-y-2 lg:-translate-y-5 xl:-translate-y-6">
-              <div className="relative w-full max-w-[620px] sm:max-w-[680px] lg:max-w-[720px] xl:max-w-[780px] 2xl:max-w-[820px]">
+            {/* RIGHT COLUMN: 52% Target Layout (Naturally Aligned Visual Center) */}
+            <div className="flex items-center justify-center lg:justify-end mt-3 lg:mt-0 relative overflow-visible -translate-y-1 lg:-translate-y-2">
+              <div className="relative w-full max-w-[560px] sm:max-w-[620px] lg:max-w-[660px] xl:max-w-[720px] 2xl:max-w-[760px]">
                 
                 {/* Natural Integrated Illustration without artificial harsh bottom fade */}
                 <div className="hero-illustration-float w-full flex items-center justify-center lg:justify-end">
@@ -95,7 +95,7 @@ const Hero = () => {
                     loading="eager"
                     className="w-full h-auto object-contain select-none"
                     style={{
-                      maxHeight: "min(580px, calc(100vh - 180px))",
+                      maxHeight: "min(480px, calc(100vh - 220px))",
                     }}
                   />
                 </div>
@@ -110,7 +110,7 @@ const Hero = () => {
       {/* =========================================================
           FRAME 2: 4 UNIFIED NEUTRAL STATISTICS CARDS (Closer to Fold)
       ========================================================= */}
-      <section className="relative bg-white border-y border-slate-200/80 py-8 sm:py-9 lg:py-10 z-20">
+      <section className="relative bg-white border-y border-slate-200/80 py-5 sm:py-6 lg:py-7 z-20">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5">
             
