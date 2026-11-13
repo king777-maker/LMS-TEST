@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaArrowRight, FaHeadset } from "react-icons/fa";
+import { FaArrowRight, FaUserCheck } from "react-icons/fa";
 
 /**
  * AboutCTA Component
@@ -63,13 +63,13 @@ const AboutCTA = () => {
                 <FaArrowRight className="text-xs transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
 
-              {/* Secondary Advisor Button */}
+              {/* Secondary Enrollment Button */}
               <Link
-                to="/contact"
-                className="h-[52px] sm:h-[54px] px-7 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm sm:text-base border border-white/20 shadow-xs hover:shadow-sm transition-all duration-200 active:scale-98 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
+                to="/register"
+                className="h-[52px] sm:h-[54px] px-7 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm sm:text-base border border-white/20 shadow-xs hover:shadow-sm transition-all duration-200 active:scale-98 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer uppercase tracking-wider"
               >
-                <FaHeadset className="text-xs text-amber-300" />
-                <span>Speak with an Advisor</span>
+                <FaUserCheck className="text-xs text-amber-300" />
+                <span>ENROLL NOW</span>
               </Link>
             </div>
 

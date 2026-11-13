@@ -68,16 +68,16 @@ const AboutHeroIllustration = ({ className = "" }) => {
         <circle cx="300" cy="220" r="120" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="4 4" />
 
         {/* Floating Abstract Element 1: ISO Standards Badge (Top Left) */}
-        <g transform="translate(60, 90)" filter="url(#cardShadow)">
-          <rect width="130" height="70" rx="16" fill="url(#cardGrad1)" stroke="#E2E8F0" strokeWidth="1.5" />
-          <circle cx="36" cy="35" r="18" fill="#EFF6FF" />
+        <g transform="translate(42, 90)" filter="url(#cardShadow)">
+          <rect width="168" height="62" rx="15" fill="url(#cardGrad1)" stroke="#E2E8F0" strokeWidth="1.5" />
+          <circle cx="30" cy="31" r="16" fill="#EFF6FF" />
           <path
-            d="M36 24 L42 27 L42 35 C42 40 36 44 36 44 C36 44 30 40 30 35 L30 27 Z"
+            d="M30 21 L35.5 23.5 L35.5 31 C35.5 35.5 30 39 30 39 C30 39 24.5 35.5 24.5 31 L24.5 23.5 Z"
             fill="#2563EB"
           />
-          <path d="M34 34 L36 36 L39 31" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <text x="64" y="32" fill="#121C46" fontSize="11" fontWeight="700" fontFamily="sans-serif">ISO STANDARD</text>
-          <text x="64" y="46" fill="#475569" fontSize="9" fontWeight="600" fontFamily="sans-serif">Audited & Verified</text>
+          <path d="M28.5 30.5 L30 32 L33 28.5" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <text x="54" y="28" fill="#121C46" fontSize="10.5" fontWeight="700" fontFamily="sans-serif">ISO STANDARDS</text>
+          <text x="54" y="42" fill="#475569" fontSize="8.5" fontWeight="600" fontFamily="sans-serif">Audited &amp; Verified</text>
         </g>
 
         {/* Floating Abstract Element 2: Completion Rate Card (Top Right) */}
