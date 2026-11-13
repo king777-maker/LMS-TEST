@@ -37,8 +37,8 @@ const CategoryCard = ({ category }) => {
                 className="
                     absolute inset-0 z-20
                     bg-gradient-to-t
-                    from-[#102F53]/90
-                    via-[#102F53]/40
+                    from-[#131E4A]/95
+                    via-[#131E4A]/45
                     to-transparent
                 "
             />
@@ -73,8 +73,8 @@ const CategoryCard = ({ category }) => {
                     absolute inset-0 z-40
                     p-5 flex flex-col justify-between
                     text-white
-                    bg-[#102F53]/90
-                    backdrop-blur-sm
+                    bg-[#131E4A]/92
+                    backdrop-blur-md
                     opacity-0 scale-95
                     group-hover:opacity-100
                     group-hover:scale-100

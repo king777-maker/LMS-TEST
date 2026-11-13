@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaChevronDown, FaBars, FaTimes, FaAward } from "react-icons/fa";
+import { FaChevronDown, FaBars, FaTimes, FaAward, FaChevronRight } from "react-icons/fa";
 import { navigationCategories } from "../../data/coursesData";
 import BrandLogo from "./BrandLogo";
 import SearchBar from "./SearchBar";
@@ -109,17 +109,17 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
         {/* =======================================================
             LEFT: BRAND LOGO + HORIZONTAL NAVIGATION LINKS
         ======================================================= */}
-        <div className="flex items-center gap-1.5 xl:gap-2.5 2xl:gap-4 min-w-0 shrink">
+        <div className="flex items-center gap-3 xl:gap-5 2xl:gap-8 min-w-0 shrink">
           {/* Anchored Brand Logo on Far Left Corner */}
           <BrandLogo className="shrink-0" />
 
           {/* Desktop Navigation Links */}
           <nav
-            className="hidden xl:flex items-center gap-0.5 xl:gap-1 2xl:gap-2 min-w-0"
+            className="hidden xl:flex items-center gap-1 xl:gap-2 2xl:gap-3.5 min-w-0"
             aria-label="Main Navigation Categories"
           >
             {/* ===================================================
-                ABOUT US DROPDOWN
+                ABOUT US DROPDOWN (Matches CourseDropdown Visual System)
             =================================================== */}
             <div
               className="relative flex items-center shrink-0"
@@ -136,7 +136,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     setOpenDropdownId(null);
                   }
                 }}
-                className={`flex items-center gap-1 px-1.5 py-1 xl:px-2 2xl:px-2.5 rounded-lg text-[11px] xl:text-[11.5px] 2xl:text-xs font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 xl:px-3 2xl:px-3.5 rounded-lg text-[13px] xl:text-[13.5px] 2xl:text-[14px] font-bold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                   openDropdownId === "about-us"
                     ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                     : "text-white/95 hover:bg-white/10 hover:text-white"
@@ -144,59 +144,61 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
               >
                 <span>About Us</span>
                 <FaChevronDown
-                  className={`text-[7px] 2xl:text-[7.5px] ml-0.5 transition-transform duration-200 shrink-0 ${
+                  className={`text-[8px] xl:text-[8.5px] 2xl:text-[9px] ml-0.5 transition-transform duration-200 shrink-0 ${
                     openDropdownId === "about-us" ? "rotate-180 text-amber-300" : "text-white/70"
                   }`}
                 />
               </Link>
 
-              {/* About Us Dropdown Menu */}
+              {/* About Us Dropdown Menu — Standardized to CourseDropdown Style */}
               {openDropdownId === "about-us" && (
                 <div
                   onMouseEnter={cancelClose}
                   onMouseLeave={handleMouseLeave}
-                  className="absolute top-full left-0 mt-2.5 w-56 bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200/90 py-2.5 px-2 z-[9999] animate-fadeInSlideDown"
+                  className="hidden xl:flex absolute top-full left-0 mt-0.5 w-[300px] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col select-none overflow-hidden"
                 >
-                  <div className="space-y-1">
+                  {/* Category Header */}
+                  <div className="shrink-0 h-[34px] px-4 border-b border-slate-100 flex items-center justify-between bg-white rounded-t-[14px] select-none">
+                    <h3 className="text-[12px] font-bold uppercase tracking-wider text-[#0A192F]">
+                      ABOUT BROADBEACH
+                    </h3>
+                    <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100/80 shrink-0 leading-none">
+                      5 Sections
+                    </span>
+                  </div>
+
+                  {/* Section Rows */}
+                  <div className="flex flex-col flex-1 divide-y divide-slate-100/80">
+                    {[
+                      { to: "/about/our-team", label: "Our Team" },
+                      { to: "/about/vision", label: "Our Vision" },
+                      { to: "/accreditations-approvals", label: "Our Approvals" },
+                      { to: "/about/global-foot-print", label: "Global Reach" },
+                      { to: "/about/our-customers", label: "Happy Customers" },
+                    ].map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        onClick={() => setOpenDropdownId(null)}
+                        className="flex items-center justify-between h-[36px] min-h-[36px] px-4 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer border-b border-slate-100/80 last:border-b-0"
+                      >
+                        <span className="text-[13px] font-medium leading-normal text-[#0A192F] group-hover:text-[#0052CC] transition-colors">
+                          {item.label}
+                        </span>
+                        <FaChevronRight className="text-[9px] text-slate-400 group-hover:text-[#0052CC] transition-colors shrink-0" />
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="shrink-0 h-[35px] px-4 border-t border-slate-100 bg-slate-50/90 rounded-b-[14px] flex items-center justify-between select-none">
                     <Link
-                      to="/about/our-team"
+                      to="/about-us"
                       onClick={() => setOpenDropdownId(null)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
+                      className="w-full flex items-center justify-between text-[12.5px] font-bold text-[#0052CC] hover:text-blue-700 transition-colors cursor-pointer leading-none"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                      <span>Our Team</span>
-                    </Link>
-                    <Link
-                      to="/about/vision"
-                      onClick={() => setOpenDropdownId(null)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
-                      <span>Our vision</span>
-                    </Link>
-                    <Link
-                      to="/accreditations-approvals"
-                      onClick={() => setOpenDropdownId(null)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                      <span>Our Approvals</span>
-                    </Link>
-                    <Link
-                      to="/about/global-foot-print"
-                      onClick={() => setOpenDropdownId(null)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
-                      <span>Global Reach</span>
-                    </Link>
-                    <Link
-                      to="/about/our-customers"
-                      onClick={() => setOpenDropdownId(null)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-[#131E4A] hover:bg-slate-100 transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" />
-                      <span>Happy Customers</span>
+                      <span>Explore About Us</span>
+                      <FaChevronRight className="text-[10px] shrink-0 ml-auto" />
                     </Link>
                   </div>
                 </div>
@@ -221,7 +223,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     onMouseLeave={handleMouseLeave}
                     onClick={() => handleTriggerClick(category)}
                     onKeyDown={(e) => handleKeyDown(e, category)}
-                    className={`flex items-center gap-1 px-1.5 py-1 xl:px-2 2xl:px-2.5 rounded-lg text-[11px] xl:text-[11.5px] 2xl:text-xs font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                    className={`flex items-center gap-1.5 px-2.5 py-1.5 xl:px-3 2xl:px-3.5 rounded-lg text-[13px] xl:text-[13.5px] 2xl:text-[14px] font-bold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                       isOpen
                         ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                         : "text-white/95 hover:bg-white/10 hover:text-white"
@@ -243,7 +245,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                       )}
                     </span>
                     <FaChevronDown
-                      className={`text-[7px] 2xl:text-[7.5px] ml-0.5 transition-transform duration-200 shrink-0 ${
+                      className={`text-[8px] xl:text-[8.5px] 2xl:text-[9px] ml-0.5 transition-transform duration-200 shrink-0 ${
                         isOpen ? "rotate-180 text-amber-300" : "text-white/70"
                       }`}
                     />
@@ -282,14 +284,14 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
         {/* =======================================================
             RIGHT CONTROLS CONTAINER: SEARCH BAR & VERIFY CERTIFICATE
         ======================================================= */}
-        <div className="flex items-center gap-1.5 xl:gap-2 shrink-0 ml-auto pl-2">
+        <div className="flex items-center gap-2 xl:gap-3 shrink-0 ml-auto pl-2">
           <SearchBar />
           <Link
             to="/verify-certificate"
-            className="shrink-0 whitespace-nowrap h-8 xl:h-8.5 px-2.5 xl:px-3 text-[11px] xl:text-xs font-bold rounded-xl bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
+            className="shrink-0 whitespace-nowrap h-8 xl:h-8.5 px-3 xl:px-3.5 text-xs xl:text-[12.5px] font-bold rounded-xl bg-amber-400 hover:bg-amber-300 text-[#07162c] shadow-xs flex items-center gap-1.5 transition-all duration-200 hover:shadow-md cursor-pointer leading-none"
             aria-label="Verify Certificate"
           >
-            <FaAward className="text-[11px] text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
+            <FaAward className="text-xs text-[#07162c] group-hover:rotate-12 transition-transform duration-200 shrink-0" />
             <span>Verify Certificate</span>
           </Link>
         </div>

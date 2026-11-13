@@ -222,11 +222,11 @@ const categoryData = [
     {
         id: 19,
         number: "19",
-        title: "Train the Trainner",
+        title: "Train the Trainer",
         courses: 5,
         icon: BookOpen,
         color: "#06B6D4",
-        image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
         link: "#",
     },
 
@@ -237,7 +237,7 @@ const categoryData = [
         courses: 5,
         icon: BookOpen,
         color: "#06B6D4",
-        image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
         link: "#",
     },
 

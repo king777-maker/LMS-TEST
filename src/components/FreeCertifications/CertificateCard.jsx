@@ -36,6 +36,32 @@ const CertificateCard = ({ certificate }) => {
         return rating.toFixed(1);
     };
 
+    const promoBadge = (() => {
+        const id = String(certificate.id || certificate.altId || "");
+        if (id === "322" || id === "1" || id === "333" || id === "6" || id === "323" || id === "3" || id === "329" || id === "10") {
+            return {
+                type: "HOT",
+                label: "HOT",
+                icon: "🔥",
+                style: "bg-orange-50 text-[#EA580C] border-orange-200/90",
+            };
+        }
+        if (id === "325" || id === "5" || id === "328" || id === "9" || id === "330" || id === "11") {
+            return {
+                type: "NEW",
+                label: "NEW",
+                icon: "⚡",
+                style: "bg-emerald-50 text-emerald-700 border-emerald-200/90",
+            };
+        }
+        return {
+            type: "POPULAR",
+            label: "POPULAR",
+            icon: "★",
+            style: "bg-amber-50 text-amber-800 border-amber-200/90",
+        };
+    })();
+
     return (
         <div
             onClick={handleEnroll}
@@ -71,16 +97,16 @@ const CertificateCard = ({ certificate }) => {
                 {/* Subtle Overlay on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#102B4E]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* CHAMPAGNE GOLD & NAVY BADGE */}
+                {/* THEME BRAND BADGE: Deep Navy #131E4A & Theme Gold #F7C600 */}
                 <div
                     className="
                         absolute top-3 right-3
-                        bg-[#102B4E]/90 backdrop-blur-md text-[#E8B95D]
+                        bg-[#131E4A]/95 backdrop-blur-md text-[#F7C600]
                         text-[10px] font-extrabold
                         uppercase tracking-wider
                         px-2.5 py-1 rounded-md
-                        border border-[#E8B95D]/30
-                        shadow-sm
+                        border border-[#F7C600]/40
+                        shadow-sm select-none
                     "
                 >
                     Free Certification
@@ -97,9 +123,17 @@ const CertificateCard = ({ certificate }) => {
                     </span>
                 </div>
 
-                {/* TITLE */}
-                <h3 className="text-base font-bold text-[#102B4E] leading-snug min-h-[44px] line-clamp-2 group-hover:text-[#4F46E5] transition-colors">
-                    {getAuthoritativeCourseName(certificate.id, certificate.name)}
+                {/* TITLE WITH BADGE */}
+                <h3 className="text-base font-bold text-[#102B4E] leading-snug min-h-[44px] line-clamp-2 group-hover:text-[#0052CC] transition-colors flex flex-wrap items-center gap-1.5">
+                    <span>{getAuthoritativeCourseName(certificate.id, certificate.name)}</span>
+                    {promoBadge && (
+                        <span
+                            className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9.5px] font-extrabold uppercase tracking-wider ${promoBadge.style} border shadow-2xs shrink-0 select-none`}
+                        >
+                            <span className="text-[10px] leading-none">{promoBadge.icon}</span>
+                            <span>{promoBadge.label}</span>
+                        </span>
+                    )}
                 </h3>
 
                 {/* DESCRIPTION */}

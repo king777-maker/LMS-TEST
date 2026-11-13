@@ -227,7 +227,7 @@ const FreeCertifications = () => {
                             </div>
                             <div>
                                 <div className="text-xs text-slate-500 font-medium">Free Access</div>
-                                <div className="text-sm font-bold text-[#0a1e38]">11 Tracks</div>
+                                <div className="text-sm font-bold text-[#0a1e38]">11 Courses</div>
                             </div>
                         </div>
                         <div className="w-px h-8 bg-slate-200" />
@@ -237,7 +237,7 @@ const FreeCertifications = () => {
                             </div>
                             <div>
                                 <div className="text-xs text-slate-500 font-medium">Accreditation</div>
-                                <div className="text-sm font-bold text-[#0a1e38]">Verified</div>
+                                <div className="text-sm font-bold text-[#0a1e38]">Free Certificate</div>
                             </div>
                         </div>
                     </div>

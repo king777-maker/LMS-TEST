@@ -71,10 +71,10 @@ const Hero = () => {
 
                 {/* Secondary Action */}
                 <Link
-                  to="/about-us"
-                  className="h-[52px] sm:h-[54px] px-6 sm:px-7 rounded-xl bg-white hover:bg-slate-50 text-[#121C46] font-semibold text-base border border-[#CBD5E1] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
+                  to="/register"
+                  className="h-[52px] sm:h-[54px] px-6 sm:px-7 rounded-xl bg-white hover:bg-slate-50 text-[#121C46] font-bold text-base border border-[#CBD5E1] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer uppercase tracking-wide"
                 >
-                  <span>How It Works</span>
+                  <span>ENROLL NOW</span>
                 </Link>
               </div>
 
