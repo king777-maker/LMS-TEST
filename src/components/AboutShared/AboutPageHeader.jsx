@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
-import AboutNavTabs from "./AboutNavTabs";
 
 /**
  * AboutPageHeader — Consistent, elegant banner for About Us child pages
@@ -69,9 +68,6 @@ const AboutPageHeader = ({
           )}
         </div>
       </section>
-
-      {/* Sub-Navigation Tabs */}
-      {showTabs && <AboutNavTabs />}
     </>
   );
 };
