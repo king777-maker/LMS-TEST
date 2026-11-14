@@ -23,7 +23,6 @@ const AboutStory = () => {
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=80"
                 alt="Broadbeach Academy professional instructors and learners collaborating on curriculum development"
                 className="w-full h-[300px] sm:h-[340px] lg:h-[360px] object-cover"
-                loading="lazy"
               />
               
               {/* Floating Feature Overlay Card */}

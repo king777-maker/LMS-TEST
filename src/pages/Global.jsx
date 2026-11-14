@@ -1,821 +1,233 @@
-import GallerySection from "./GallerySection";
-import ImageCard from "./ImageCard";
-import SectionTitle from "./SectionTitle";
-import SeeMoreButton from "./SeeMoreButton";
+import React, { useEffect } from "react";
+import {
+  FaGlobe,
+  FaMapMarkedAlt,
+  FaBuilding,
+  FaShieldAlt,
+  FaUsers,
+  FaAward,
+  FaCheckCircle,
+  FaClock,
+} from "react-icons/fa";
+import AboutPageHeader from "../components/AboutShared/AboutPageHeader";
+import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
+import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 
+/**
+ * Global (Global Reach) Page — Broadbeach Academy
+ * Standardized using:
+ * 1. Split-Screen 50/50 Layout for Worldwide Reach and Enterprise Compliance Standardization.
+ * 2. Media Object Layout for Regional Learning Corridors and International Metrics.
+ */
 const Global = () => {
-    const assets = "/assets";
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
-    const designImages = [
-        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80",
-    ];
+  const regionalHubs = [
+    {
+      icon: <FaGlobe />,
+      iconColor: "text-[#2563EB]",
+      iconBg: "bg-blue-50 border-blue-100",
+      title: "Europe & United Kingdom",
+      subtitle: "ISO 9001, 14001 & ESG Focus",
+      description:
+        "Serving professionals across the UK, Germany, France, and Scandinavia seeking accredited Lead Auditor and environmental sustainability credentials.",
+    },
+    {
+      icon: <FaBuilding />,
+      iconColor: "text-[#F97316]",
+      iconBg: "bg-orange-50 border-orange-100",
+      title: "Asia-Pacific Manufacturing Hub",
+      subtitle: "Lean & Aerospace Quality",
+      description:
+        "Extensive corporate adoption across Singapore, India, Japan, and Australia for industrial quality management and aerospace supplier compliance.",
+    },
+    {
+      icon: <FaShieldAlt />,
+      iconColor: "text-[#D97706]",
+      iconBg: "bg-amber-50 border-amber-100",
+      title: "Middle East & Gulf Region",
+      subtitle: "Occupational Safety (ISO 45001)",
+      description:
+        "Rapid adoption across the UAE, Saudi Arabia, and Qatar within energy, infrastructure, logistics, and heavy construction safety management.",
+    },
+    {
+      icon: <FaAward />,
+      iconColor: "text-emerald-600",
+      iconBg: "bg-emerald-50 border-emerald-100",
+      title: "North America",
+      subtitle: "Information Security (ISO 27001)",
+      description:
+        "Supporting compliance directors, IT auditors, and quality managers across the US and Canada in cybersecurity and quality integration.",
+    },
+    {
+      icon: <FaUsers />,
+      iconColor: "text-purple-600",
+      iconBg: "bg-purple-50 border-purple-100",
+      title: "Africa & Emerging Markets",
+      subtitle: "Vocational & Professional Access",
+      description:
+        "Eliminating high travel expenses by providing direct online access to international Lead Auditor tracks for ambitious African professionals.",
+    },
+    {
+      icon: <FaMapMarkedAlt />,
+      iconColor: "text-indigo-600",
+      iconBg: "bg-indigo-50 border-indigo-100",
+      title: "Latin America & Global Logistics",
+      subtitle: "Export & Supply Chain Standards",
+      description:
+        "Training agricultural, automotive, and logistics quality personnel to meet strict global trade and import-export audit requirements.",
+    },
+  ];
 
-    const capabilityImages = [
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80",
-    ];
+  const globalHighlights = [
+    {
+      icon: <FaGlobe />,
+      number: "45+",
+      label: "Countries With Active Learners",
+    },
+    {
+      icon: <FaClock />,
+      number: "24/7",
+      label: "Global Cloud Learning Availability",
+    },
+    {
+      icon: <FaUsers />,
+      number: "50,000+",
+      label: "Worldwide Community of Graduates",
+    },
+    {
+      icon: <FaCheckCircle />,
+      number: "100%",
+      label: "Online Verifiable Credentials",
+    },
+  ];
 
-    const qualityImages = [
-        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&auto=format&fit=crop&q=80",
-    ];
+  return (
+    <main className="min-h-screen bg-white text-[#121C46]">
+      {/* 1. PAGE HEADER */}
+      <AboutPageHeader
+        title="Global Reach:"
+        highlight="Education Across 45+ Nations"
+        description="Empowering compliance professionals, internal auditors, and corporate teams with borderless standards education."
+        breadcrumbs={[{ label: "Global Reach" }]}
+      />
 
-    const logisticsImages = [
-        "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=800&auto=format&fit=crop&q=80",
-    ];
+      {/* 2. SPLIT-SCREEN GLOBAL OVERVIEW (50/50: Text Left, Image Right) */}
+      <AboutSplitSection
+        eyebrow="INTERNATIONAL FOOTPRINT"
+        eyebrowColor="blue"
+        eyebrowIcon={<FaGlobe className="text-xs text-[#2563EB]" />}
+        title="Connecting Compliance Leaders"
+        highlightText="Across The World."
+        paragraphs={[
+          "International standards are inherently global. Quality management, environmental protection, and occupational safety do not change at national borders—they unite organizations under shared principles of excellence.",
+          "Broadbeach Online Academy was designed from day one to serve this international reality. Today, our students study across Europe, the Middle East, Asia-Pacific, Africa, and the Americas, sharing knowledge and earning credentials recognized across the globe.",
+        ]}
+        bullets={[
+          { text: "Curricula fully harmonized with international ISO/IEC specifications" },
+          { text: "Self-paced study adapted to every global timezone" },
+          { text: "Multi-jurisdiction case studies reflecting diverse regulatory frameworks" },
+        ]}
+        imageSrc="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1000&auto=format&fit=crop&q=80"
+        imageAlt="Broadbeach Academy Global Footprint"
+        imagePosition="right"
+        floatingBadge={{
+          title: "WORLDWIDE NETWORK",
+          subtitle: "Active Learners in 45+ Countries",
+          icon: <FaGlobe />,
+        }}
+        bgColor="white"
+      />
 
-    return (
-        <main className="bg-white text-[#252525]">
+      {/* 3. MEDIA OBJECT: REGIONAL CORRIDORS */}
+      <section className="bg-[#F8FAFC] py-12 sm:py-16 lg:py-20 border-y border-[#E2E8F0]">
+        <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
+              <span>Worldwide Presence</span>
+            </div>
+            <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-extrabold text-[#121C46] leading-tight">
+              Our Regional Learning Corridors
+            </h2>
+            <p className="mt-3 text-[#475569] text-sm sm:text-base leading-relaxed">
+              Explore how professionals and enterprises across different continents leverage Broadbeach credentials.
+            </p>
+          </div>
 
-            {/* =====================================
-                PAGE TITLE
-            ====================================== */}
-            <section className="pt-14 md:pt-16 pb-8">
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
+          {/* 3-Column Grid of Media Objects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {regionalHubs.map((hub, index) => (
+              <AboutMediaObject
+                key={index}
+                icon={hub.icon}
+                iconColor={hub.iconColor}
+                iconBg={hub.iconBg}
+                title={hub.title}
+                subtitle={hub.subtitle}
+                description={hub.description}
+                variant="card"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
-                    <SectionTitle title="ABOUT US" center />
+      {/* 4. SPLIT-SCREEN ENTERPRISE STANDARDIZATION (50/50: Image Left, Text Right) */}
+      <AboutSplitSection
+        eyebrow="ENTERPRISE AUDIT CONSISTENCY"
+        eyebrowColor="orange"
+        title="Standardizing Compliance"
+        highlightText="Across Multi-Site Organizations"
+        paragraphs={[
+          "For multinational enterprises with operations spread across continents, maintaining consistent internal audit standards is a persistent challenge.",
+          "Broadbeach Online Academy provides corporations with a unified curriculum framework. When quality managers across factories in Germany, India, and Mexico complete the same Lead Auditor curriculum, internal audit reporting becomes consistent, comparable, and reliable.",
+        ]}
+        bullets={[
+          { text: "Standardized audit checklist formats and grading criteria" },
+          { text: "Centralized verification of employee credentials" },
+          { text: "Scalable corporate cohort training with dedicated dashboards" },
+        ]}
+        imageSrc="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1000&auto=format&fit=crop&q=80"
+        imageAlt="Global Enterprise Compliance Standardization"
+        imagePosition="left"
+        floatingBadge={{
+          title: "ENTERPRISE CONSISTENCY",
+          subtitle: "Harmonized Audit Protocols",
+          icon: <FaBuilding />,
+        }}
+        bgColor="white"
+      />
 
+      {/* 5. MEDIA OBJECT: GLOBAL STATS */}
+      <section className="bg-[#0F1E36] py-12 sm:py-14 text-white">
+        <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {globalHighlights.map((gh, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/10"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white/10 text-[#FFDB58] flex items-center justify-center text-2xl shrink-0">
+                  {gh.icon}
                 </div>
-            </section>
-
-
-            {/* =====================================
-                HISTORY
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div
-                        className="
-                            grid
-                            lg:grid-cols-2
-                            gap-8 lg:gap-12
-                            items-center
-                            pb-12
-                            border-b border-gray-300
-                        "
-                    >
-                        <div>
-
-
-                            <p className="text-[#0062A8] text-[18px] md:text-[20px] leading-[1.55] mt-5">
-                                Over the last 11 years Verga has evolved to be the
-                                leading custom built manufacturer of the excavator
-                                attachments in the global Markets.
-                            </p>
-
-                            <p className="mt-4 text-[16px] md:text-[17px] leading-[1.9]">
-                                Today, Verga is a premier, global leader in design,
-                                engineering and manufacturing of excavator attachments
-                                for construction, Agriculture, Forestry, Landscaping
-                                and Mining industries. Verga has over 400 associates
-                                operating at 2 facilities to support our customers on
-                                global platforms with a focus on quality, and
-                                operational excellence.
-                            </p>
-
-                        </div>
-
-
-                        <ImageCard
-                            src="/assets/about/bb_history.jpeg"
-                            alt="Company History"
-                            className="h-[280px] md:h-[330px]"
-                        />
-
-                    </div>
-
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                    {gh.number}
+                  </div>
+                  <div className="text-xs text-slate-300 font-medium leading-snug mt-0.5">
+                    {gh.label}
+                  </div>
                 </div>
-            </section>
-
-
-            {/* =====================================
-                VISION / MISSION / VALUES
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div
-                        className="
-                            grid
-                            md:grid-cols-2
-                            gap-8
-                            py-10
-                            border-b border-gray-300
-                        "
-                    >
-
-                        <ImageCard
-                            src="/assets/about/vision-mission.jpg"
-                            alt="Our Vision and Mission"
-                            className="h-[350px] lg:h-[430px]"
-                        />
-
-                        <ImageCard
-                            src="/assets/about/values.jpg"
-                            alt="Our Values"
-                            className="h-[350px] lg:h-[430px]"
-                        />
-
-                    </div>
-
-                </div>
-            </section>
-
-
-            {/* =====================================
-                GOVERNANCE POLICY
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div
-                        className="
-                            grid
-                            lg:grid-cols-2
-                            gap-8 lg:gap-12
-                            items-center
-                            py-10
-                            border-b border-gray-300
-                        "
-                    >
-
-                        <div>
-
-                            <SectionTitle title="GOVERNANCE POLICY" />
-
-                            <p className="mt-5 text-[16px] md:text-[17px] leading-[1.9]">
-                                We at Verga are committed to highest standards of
-                                corporate governance in all the activities we
-                                undertake. Verga looks at corporate governance as the
-                                cornerstone for all performance sustained superior for
-                                serving all the Employees.
-                            </p>
-
-                            <p className="mt-4 text-[16px] md:text-[17px] leading-[1.9]">
-                                Apart from drawing from the various legal provisions,
-                                the Verga practices are continuously benchmarked with
-                                industry practices. The entire process begins with the
-                                functioning of the Board of Directors, with leading
-                                professionals and experts serving as independent
-                                Consultant. Key elements in corporate governance, we
-                                believe are integrity, transparency, internal controls,
-                                risk management, internal/external communications and
-                                good standards of safety and health.
-                            </p>
-
-                        </div>
-
-
-                        <ImageCard
-                            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&auto=format&fit=crop&q=80"
-                            alt="Governance Policy"
-                            className="h-[350px] md:h-[430px]"
-                        />
-
-                    </div>
-
-                </div>
-            </section>
-
-
-            {/* =====================================
-                DESIGN
-            ====================================== */}
-            <GallerySection
-                title="DESIGN"
-                description="Our highly experienced product design team is responsible for turning special requirements of our customers into innovative and cost-effective products."
-                paragraph="The committed design team is equipped to conduct reverse engineering (RE) and value engineering (VE) in addition to New Part Development (NPD) as required. They leverage full-fledged 2D and 3D design facilities as they execute the design."
-                images={designImages}
-            />
-
-
-            {/* =====================================
-                CERTIFICATIONS
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div className="py-10 border-b border-gray-300">
-
-                        <SectionTitle
-                            title="CERTIFICATIONS"
-                            center
-                        />
-
-                        <p
-                            className="
-                                max-w-[1200px]
-                                mx-auto
-                                mt-5
-                                text-center
-                                text-[16px] md:text-[17px]
-                                leading-[1.8]
-                            "
-                        >
-                            Verga use management systems as a driver for continual
-                            improvement & sustainable growth. Our certified systems
-                            ensure our products and services meet our customers’
-                            needs and expectations.
-                        </p>
-
-
-                        <div
-                            className="
-                                grid
-                                md:grid-cols-2
-                                lg:grid-cols-3
-                                gap-6
-                                mt-10
-                            "
-                        >
-
-                            <ImageCard
-                                src="/assets/certificate/certificate-template.png"
-                                alt="ISO 9001 Certificate"
-                                className="h-[480px]"
-                                contain
-                            />
-
-                            <ImageCard
-                                src="/assets/certificate/certificate-template.png"
-                                alt="ISO 14001 Certificate"
-                                className="h-[480px]"
-                                contain
-                            />
-
-                            <ImageCard
-                                src="/assets/certificate/certificate-template.png"
-                                alt="Hardox Certificate"
-                                className="h-[480px]"
-                                contain
-                            />
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-
-
-            {/* =====================================
-                NEW PRODUCT DEVELOPMENT
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div
-                        className="
-                            grid
-                            lg:grid-cols-2
-                            gap-8 lg:gap-12
-                            items-center
-                            py-10
-                            border-b border-gray-300
-                        "
-                    >
-
-                        <ImageCard
-                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=80"
-                            alt="New Product Development"
-                            className="h-[340px]"
-                            contain
-                        />
-
-
-                        <div>
-
-                            <SectionTitle title="NEW PRODUCT DEVELOPMENT" />
-
-                            <p className="mt-5 text-[#0062A8] text-[18px] md:text-[20px] leading-[1.55]">
-                                We owe our success to deep innovation in our
-                                approach. Continuous innovation is made possible by
-                                our talented and resourceful workforce. Our Prototype
-                                Development process executes the products the right
-                                first time and every time.
-                            </p>
-
-                            <p className="mt-4 text-[16px] md:text-[17px] leading-[1.9]">
-                                Our NPD (New Part Development) team is united by a
-                                wealth of experience and technical knowledge built
-                                over the years of serving more than 245 customers
-                                worldwide. They work closely with our customers from
-                                Design, Development through Production stages to
-                                ensure flawless final product through smooth
-                                execution.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-
-
-            {/* =====================================
-                STEELS WE USE
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div
-                        className="
-                            grid
-                            lg:grid-cols-2
-                            gap-8 lg:gap-12
-                            items-center
-                            py-10
-                            border-b border-gray-300
-                        "
-                    >
-
-                        <div>
-
-                            <SectionTitle title="STEELS WE USE" />
-
-                            <p className="mt-5 text-[#0062A8] text-[18px] md:text-[20px] leading-[1.55]">
-                                We use wear and abrasion resistant, high strength
-                                steel plates that make sturdy attachments suited for
-                                long service in extreme field conditions.
-                            </p>
-
-                            <p className="mt-4 text-[16px] md:text-[17px] leading-[1.8]">
-                                We use a wide variety of high grade steel alloys and
-                                castings based on customer requirements. The
-                                materials we use range from:
-                            </p>
-
-
-                            <ul className="mt-4 space-y-3">
-
-                                {[
-                                    "E350, S235, S355 EN grade Structural Steels",
-                                    "Weldox S690QL",
-                                    "Hardox HB400®, HB450®, HB 500®",
-                                    "Bars : EN8D, 25MnCr5, 20CrMo4, 20MnV6",
-                                    "Imported High grade Casted GETs",
-                                ].map((item) => (
-
-                                    <li
-                                        key={item}
-                                        className="
-                                            flex
-                                            items-start
-                                            gap-4
-                                            text-[16px]
-                                        "
-                                    >
-                                        <span className="text-[#0062A8] text-2xl leading-none">
-                                            ›
-                                        </span>
-
-                                        {item}
-
-                                    </li>
-
-                                ))}
-
-                            </ul>
-
-                        </div>
-
-
-                        <ImageCard
-                            src="https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=1000&auto=format&fit=crop&q=80"
-                            alt="Steels We Use"
-                            className="h-[370px]"
-                            contain
-                        />
-
-                    </div>
-
-                </div>
-            </section>
-
-
-            {/* =====================================
-                WELDING STANDARDS
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div
-                        className="
-                            grid
-                            lg:grid-cols-2
-                            gap-8 lg:gap-12
-                            items-center
-                            py-10
-                            border-b border-gray-300
-                        "
-                    >
-
-                        <ImageCard
-                            src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1000&auto=format&fit=crop&q=80"
-                            alt="Welding Standards"
-                            className="h-[350px]"
-                        />
-
-
-                        <div>
-
-                            <SectionTitle title="WELDING STANDARDS" />
-
-                            <p className="mt-5 text-[#0062A8] text-[18px] md:text-[20px] leading-[1.55]">
-                                Welding is both an art and a science for us here at
-                                Verga. Our certified welders don’t just ‘pass code’,
-                                but, their welds must be both structurally sound and
-                                aesthetically pleasing.
-                            </p>
-
-                            <p className="mt-4 text-[16px] md:text-[17px] leading-[1.9]">
-                                Our welding experts are certified in high quality
-                                structural welding as per AWS D1.1 and EN 1090-1 as
-                                well as EN/ISO 9606, EN/ISO 14732 and EN/ISO
-                                15611-15614. They are also trained in various
-                                specific processes such as material selection and
-                                defect detection in order to meet the highest
-                                standards.
-                            </p>
-
-                            <p className="mt-3 text-[16px] md:text-[17px] leading-[1.9]">
-                                Our welding inspections are done in accordance with
-                                ASNT E1417 and the inspectors are certified as per
-                                SNT-TC-1A.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-
-
-            {/* =====================================
-                CAPABILITIES
-            ====================================== */}
-            <GallerySection
-                title="CAPABILITIES"
-                description="The crux of our manufacturing operations is our plants established in the industrial area of Malur, Kolar District near the city of Bangalore, India."
-                paragraph="We have an installed capacity of 1000 tons/month. Our 400-strong team of designers and manufacturing professionals look forward to addressing your specific business requirements. We had additional space of 30000 square feet that can be used to expand our capacity even further."
-                images={capabilityImages}
-            />
-
-
-            {/* =====================================
-                QUALITY
-            ====================================== */}
-            <GallerySection
-                title="QUALITY"
-                description="We abide by the highest international standards for quality. Our workforce is trained and certified in the quality practices and we have streamlined and standardized our production facilities."
-                paragraph="We practice inspection techniques certified by the world’s leading certification bodies. The 5-gate inspection process ensures high quality and yield. Our welders are certified on AWS D1.1, EN/ISO 9606, EN/ISO 14732 and EN/ISO 15611-15614. Welding Inspections are done in accordance with ASNT E1417 and inspectors are certified per SNT-TC-1A. With these extensive standardized techniques and processes, quality is assured with Verga."
-                images={qualityImages}
-            />
-
-
-            {/* =====================================
-                LOGISTICS
-            ====================================== */}
-            <section>
-                <div className="max-w-[1440px] mx-auto px-5 md:px-8">
-
-                    <div className="py-10">
-
-                        <SectionTitle
-                            title="LOGISTICS"
-                            center
-                        />
-
-                        <p
-                            className="
-                                max-w-[1250px]
-                                mx-auto
-                                mt-5
-                                text-center
-                                text-[#0062A8]
-                                text-[18px] md:text-[20px]
-                                leading-[1.55]
-                            "
-                        >
-                            Our exclusive international logistics network is
-                            selected very cautiously through a carefully screened
-                            selection process in order to ensure superior quality
-                            and reliability of freight transport.
-                        </p>
-
-                        <p
-                            className="
-                                max-w-[1200px]
-                                mx-auto
-                                mt-4
-                                text-center
-                                text-[16px] md:text-[17px]
-                                leading-[1.8]
-                            "
-                        >
-                            We consider logistics to be an important and integrated
-                            business capability in order to move right things at the
-                            right speed and the right time. We enjoy easy
-                            connectivity to air and sea transportation and is
-                            time-tested and extremely reliable.
-                        </p>
-
-
-                        {/* WORLD MAP */}
-
-                        <div className="mt-10">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&auto=format&fit=crop&q=80"
-                                alt="Global Logistics Network"
-                                onError={(e) => {
-                                    e.currentTarget.onerror = null;
-                                    e.currentTarget.src = "/assets/broadbeach_campus.jpg";
-                                }}
-                                className="
-                                    w-full
-                                    max-w-[1000px]
-                                    mx-auto
-                                    object-contain
-                                "
-                            />
-
-                        </div>
-
-
-                        {/* LOGISTICS IMAGES */}
-
-                        <div
-                            className="
-                                grid
-                                sm:grid-cols-2
-                                lg:grid-cols-4
-                                gap-4
-                                mt-10
-                            "
-                        >
-
-                            {logisticsImages.map((image, index) => (
-
-                                <ImageCard
-                                    key={index}
-                                    src={image}
-                                    alt={`Logistics ${index + 1}`}
-                                    className="h-[190px]"
-                                />
-
-                            ))}
-
-                        </div>
-
-
-                        <div className="flex justify-center mt-5">
-
-                            <SeeMoreButton />
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-            {/* =====================================================
-    GLOBAL REACH MAP SECTION
-===================================================== */}
-
-            <section className="bg-white py-12 md:py-16">
-
-                <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-
-                    {/* HEADING */}
-                    <div className="text-center max-w-[850px] mx-auto">
-
-                        <span
-                            className="
-                    text-[#2168D8]
-                    text-[12px]
-                    md:text-[13px]
-                    font-bold
-                    uppercase
-                    tracking-[2px]
-                "
-                        >
-                            Our Worldwide Presence
-                        </span>
-
-                        <h2
-                            className="
-                    text-[#131E4A]
-                    text-[28px]
-                    md:text-[36px]
-                    font-bold
-                    mt-2
-                "
-                        >
-                            Connecting Learners{" "}
-                            <span className="text-[#2168D8]">
-                                Across the Globe
-                            </span>
-                        </h2>
-
-                        {/* LINE */}
-                        <div
-                            className="
-                    w-[60px]
-                    h-[3px]
-                    bg-[#FFDB58]
-                    mx-auto
-                    mt-4
-                "
-                        />
-
-                        <p
-                            className="
-                    text-[#64748B]
-                    text-[14px]
-                    md:text-[16px]
-                    leading-[1.8]
-                    mt-5
-                "
-                        >
-                            Broadbeach Online Academy connects professionals
-                            across countries through internationally recognized
-                            certification programs and industry-focused learning.
-                        </p>
-
-                    </div>
-
-
-                    {/* ================= MAP ================= */}
-
-                    <div
-                        className="
-                max-w-[950px]
-                mx-auto
-
-                mt-8
-                md:mt-10
-
-                flex
-                justify-center
-            "
-                    >
-
-                        <img
-                            src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1000&auto=format&fit=crop&q=80"
-                            alt="Broadbeach Online Academy Global Presence"
-                            onError={(e) => {
-                                e.currentTarget.onerror = null;
-                                e.currentTarget.src = "/assets/broadbeach_campus.jpg";
-                            }}
-                            className="
-                    w-full
-                    max-h-[430px]
-                    object-contain
-                "
-                        />
-
-                    </div>
-
-
-                    {/* ================= STATS ================= */}
-
-                    <div
-                        className="
-                max-w-[800px]
-                mx-auto
-
-                mt-8
-
-                grid
-                grid-cols-3
-
-                border-t
-                border-[#E2E8F0]
-
-                pt-6
-            "
-                    >
-
-                        {/* COUNTRIES */}
-                        <div
-                            className="
-                    text-center
-                    border-r
-                    border-[#E2E8F0]
-                    px-2
-                "
-                        >
-                            <h3
-                                className="
-                        text-[#2168D8]
-                        text-[22px]
-                        md:text-[28px]
-                        font-bold
-                    "
-                            >
-                                45+
-                            </h3>
-
-                            <p
-                                className="
-                        text-[#64748B]
-                        text-[11px]
-                        md:text-[13px]
-                        mt-1
-                    "
-                            >
-                                Countries Reached
-                            </p>
-                        </div>
-
-
-                        {/* STUDENTS */}
-                        <div
-                            className="
-                    text-center
-                    border-r
-                    border-[#E2E8F0]
-                    px-2
-                "
-                        >
-                            <h3
-                                className="
-                        text-[#2168D8]
-                        text-[22px]
-                        md:text-[28px]
-                        font-bold
-                    "
-                            >
-                                10K+
-                            </h3>
-
-                            <p
-                                className="
-                        text-[#64748B]
-                        text-[11px]
-                        md:text-[13px]
-                        mt-1
-                    "
-                            >
-                                Global Learners
-                            </p>
-                        </div>
-
-
-                        {/* COURSES */}
-                        <div className="text-center px-2">
-
-                            <h3
-                                className="
-                        text-[#2168D8]
-                        text-[22px]
-                        md:text-[28px]
-                        font-bold
-                    "
-                            >
-                                150+
-                            </h3>
-
-                            <p
-                                className="
-                        text-[#64748B]
-                        text-[11px]
-                        md:text-[13px]
-                        mt-1
-                    "
-                            >
-                                Professional Courses
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-            <GallerySection />
-            <ImageCard />
-        </main>
-    );
-
-
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 };
-
 
 export default Global;

@@ -85,31 +85,31 @@ const AboutFeatures = () => {
           </p>
         </div>
 
-        {/* 3x2 Grid of Feature Cards */}
+        {/* 3x2 Grid of Feature Media Objects */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {features.map((feat, index) => {
             const Icon = feat.icon;
             return (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-5 sm:p-6 border border-[#E2E8F0] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
+                className="group bg-white rounded-2xl p-5 sm:p-6 border border-[#E2E8F0] shadow-xs hover:border-[#CBD5E1] hover:shadow-md transition-all duration-200 flex items-start gap-4"
               >
-                {/* Duotone Icon Tile */}
+                {/* Media Object Left: Duotone Icon Tile */}
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center border mb-6 ${feat.accent} group-hover:scale-105 transition-transform duration-200`}
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center border shrink-0 ${feat.accent} group-hover:scale-105 transition-transform duration-200 shadow-xs`}
                 >
                   <Icon className="text-xl" />
                 </div>
 
-                {/* Card Title */}
-                <h3 className="text-lg sm:text-[19px] font-bold text-[#121C46] leading-snug mb-3">
-                  {feat.title}
-                </h3>
-
-                {/* Card Description */}
-                <p className="text-[#475569] text-sm sm:text-[15px] leading-[1.65] flex-1">
-                  {feat.description}
-                </p>
+                {/* Media Object Body: Title and Descriptive Copy */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base sm:text-[17px] font-bold text-[#121C46] leading-snug mb-1.5">
+                    {feat.title}
+                  </h3>
+                  <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+                    {feat.description}
+                  </p>
+                </div>
               </div>
             );
           })}

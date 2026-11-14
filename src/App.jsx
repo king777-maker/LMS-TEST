@@ -37,6 +37,7 @@ import { Toaster } from "react-hot-toast";
 
 import History from "./pages/History";
 import Vision from "./pages/Vision";
+import Mission from "./pages/Mission";
 import CoreValues from "./pages/CoreValues";
 import OurTeam from "./pages/OurTeam";
 import Accreditations from "./pages/Accreditations";
@@ -197,6 +198,11 @@ function App() {
             <Route
               path="/about/vision"
               element={<Vision />}
+            />
+
+            <Route
+              path="/about/mission"
+              element={<Mission />}
             />
 
             <Route

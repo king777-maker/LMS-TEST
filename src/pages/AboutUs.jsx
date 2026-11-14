@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AboutHero from "../components/AboutUs/AboutHero";
+import AboutNavTabs from "../components/AboutShared/AboutNavTabs";
 import AboutStory from "../components/AboutUs/AboutStory";
 import AboutHowItWorks from "../components/AboutUs/AboutHowItWorks";
 import AboutFeatures from "../components/AboutUs/AboutFeatures";
@@ -28,6 +29,9 @@ const AboutUs = () => {
           1. ABOUT HERO
       ========================================================= */}
       <AboutHero />
+
+      {/* Sub-Navigation Tabs */}
+      <AboutNavTabs />
 
       {/* =========================================================
           2. WHO WE ARE (Editorial Story Introduction)
