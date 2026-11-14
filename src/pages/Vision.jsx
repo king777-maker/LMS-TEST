@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import {
   FaLightbulb,
+  FaBullseye,
+  FaCheck,
   FaGlobe,
   FaLaptopCode,
   FaCertificate,
@@ -15,9 +17,10 @@ import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 
 /**
  * Our Vision Page — Broadbeach Academy
- * Standardized using:
- * 1. Split-Screen 50/50 Layout for Vision Statement and Educational Philosophy.
- * 2. Media Object Layout for Strategic Pillars and Long-Term Horizon Milestones.
+ * Includes:
+ * 1. The exact "Our Vision & Mission" section from the About Us home page.
+ * 2. Split-Screen 50/50 Layout for Vision Statement and Educational Philosophy.
+ * 3. Media Object Layout for Strategic Pillars and Long-Term Horizon Milestones.
  */
 const Vision = () => {
   useEffect(() => {
@@ -121,7 +124,120 @@ const Vision = () => {
         breadcrumbs={[{ label: "Our Vision" }]}
       />
 
-      {/* 2. SPLIT-SCREEN VISION STATEMENT (50/50: Text Left, Image Right) */}
+      {/* 2. OUR VISION & MISSION SECTION (Exact Section from About Us Home Page) */}
+      <section className="relative bg-[#F8FAFC] py-12 sm:py-16 lg:py-20 border-b border-[#E2E8F0]">
+        <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
+          
+          {/* Section Heading */}
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FFC400]" />
+              <span>Guiding Principles</span>
+            </div>
+
+            <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
+              Our Vision &amp; Mission
+            </h2>
+
+            <p className="mt-3 text-[#475569] text-sm sm:text-base leading-[1.6]">
+              The strategic foundations driving our curriculum, academic support, and dedication to learner achievement.
+            </p>
+          </div>
+
+          {/* Two Balanced Editorial Cards (Vision First, Mission Second) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            
+            {/* Vision Card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-[#E2E8F0] shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#2563EB]">
+                    <FaLightbulb className="text-xl" />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB] bg-blue-50/80 px-3 py-1 rounded-full border border-blue-100">
+                    Future Horizon
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-[24px] font-extrabold text-[#121C46] leading-tight mb-3">
+                  Our Vision
+                </h3>
+
+                <p className="text-[#475569] text-sm sm:text-[15.5px] leading-[1.7]">
+                  To be the most trusted and recognized online academy for international standards
+                  training, ISO lead auditor education, and professional development—setting the
+                  benchmark for modern, learner-centric certification pathways across global industries.
+                </p>
+              </div>
+
+              {/* Key Pillars */}
+              <div className="mt-6 pt-5 border-t border-[#E2E8F0] space-y-3">
+                {[
+                  "Expanding global access to internationally recognized qualifications",
+                  "Innovating interactive learning platforms and simulation methodologies",
+                  "Building a worldwide community of certified standards champions",
+                ].map((pillar, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-blue-100 text-[#2563EB] flex items-center justify-center shrink-0 mt-0.5">
+                      <FaCheck className="text-[10px]" />
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-[#121C46] leading-relaxed">
+                      {pillar}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mission Card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-[#E2E8F0] shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#F97316]">
+                    <FaBullseye className="text-xl" />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#F97316] bg-orange-50/80 px-3 py-1 rounded-full border border-orange-100">
+                    Core Purpose
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-[24px] font-extrabold text-[#121C46] leading-tight mb-3">
+                  Our Mission
+                </h3>
+
+                <p className="text-[#475569] text-sm sm:text-[15.5px] leading-[1.7]">
+                  To empower learners and organizations globally by delivering accessible,
+                  practical, and rigorous professional standards training. We strive to make
+                  complex compliance frameworks actionable, enabling professionals to lead audits,
+                  protect workplace health and safety, and advance their careers with verified credentials.
+                </p>
+              </div>
+
+              {/* Key Pillars */}
+              <div className="mt-6 pt-5 border-t border-[#E2E8F0] space-y-3">
+                {[
+                  "Delivering practical, job-ready auditing and compliance knowledge",
+                  "Fostering continuous learning through accessible digital delivery",
+                  "Maintaining uncompromised academic integrity and course quality",
+                ].map((pillar, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-orange-100 text-[#F97316] flex items-center justify-center shrink-0 mt-0.5">
+                      <FaCheck className="text-[10px]" />
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-[#121C46] leading-relaxed">
+                      {pillar}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. SPLIT-SCREEN VISION STATEMENT (50/50: Text Left, Image Right) */}
       <AboutSplitSection
         eyebrow="ACADEMY VISION"
         eyebrowColor="blue"
@@ -150,7 +266,7 @@ const Vision = () => {
         bgColor="white"
       />
 
-      {/* 3. MEDIA OBJECT: STRATEGIC PILLARS */}
+      {/* 4. MEDIA OBJECT: STRATEGIC PILLARS */}
       <section className="bg-[#F8FAFC] py-12 sm:py-16 lg:py-20 border-y border-[#E2E8F0]">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
@@ -184,7 +300,7 @@ const Vision = () => {
         </div>
       </section>
 
-      {/* 4. SPLIT-SCREEN PHILOSOPHY (50/50: Image Left, Text Right) */}
+      {/* 5. SPLIT-SCREEN PHILOSOPHY (50/50: Image Left, Text Right) */}
       <AboutSplitSection
         eyebrow="EDUCATIONAL PHILOSOPHY"
         eyebrowColor="orange"
@@ -199,7 +315,7 @@ const Vision = () => {
           { text: "Formulating actionable corrective action requests (CARs)" },
           { text: "Developing confident audit leadership and communication" },
         ]}
-        imageSrc="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1000&auto=format&fit=crop&q=80"
+        imageSrc="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Interactive Professional Learning"
         imagePosition="left"
         floatingBadge={{
@@ -210,7 +326,7 @@ const Vision = () => {
         bgColor="white"
       />
 
-      {/* 5. MEDIA OBJECT: HORIZON MILESTONES */}
+      {/* 6. MEDIA OBJECT: HORIZON MILESTONES */}
       <section className="bg-[#F8FAFC] py-12 sm:py-16 lg:py-20 border-t border-[#E2E8F0]">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
