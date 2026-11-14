@@ -44,42 +44,42 @@ const Accreditations  = () => {
             id: 1,
             title: "ISO 9001 Certification",
             subtitle: "Quality Management System",
-            image: `${assets}/about/global-footprints/certificate-1.jpg`,
+            image: "/assets/certificate/certificate-template.png",
         },
 
         {
             id: 2,
             title: "ISO 14001 Certification",
             subtitle: "Environmental Management",
-            image: `${assets}/about/global-footprints/certificate-2.jpg`,
+            image: "/assets/certificate/certificate-template.png",
         },
 
         {
             id: 3,
             title: "ISO 45001 Certification",
             subtitle: "Occupational Health & Safety",
-            image: `${assets}/about/global-footprints/certificate-3.jpg`,
+            image: "/assets/certificate/certificate-template.png",
         },
 
         {
             id: 4,
             title: "International Accreditation",
             subtitle: "Globally Recognized Standards",
-            image: `${assets}/about/global-footprints/certificate-4.jpg`,
+            image: "/assets/certificate/certificate-template.png",
         },
 
         {
             id: 5,
             title: "Training Accreditation",
             subtitle: "Professional Training Standards",
-            image: `${assets}/about/global-footprints/certificate-5.jpg`,
+            image: "/assets/certificate/certificate-template.png",
         },
 
         {
             id: 6,
             title: "Global Certification",
             subtitle: "International Recognition",
-            image: `${assets}/about/global-footprints/certificate-6.jpg`,
+            image: "/assets/certificate/certificate-template.png",
         },
 
     ];
@@ -309,8 +309,12 @@ const Accreditations  = () => {
                         >
 
                             <img
-                                src={`${assets}/about/global-footprints/global-presence.jpg`}
+                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80"
                                 alt="Broadbeach Global Presence"
+                                onError={(e) => {
+                                    e.currentTarget.onerror = null;
+                                    e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                                }}
                                 className="
                                     w-full
                                     h-full
@@ -1109,8 +1113,12 @@ const Accreditations  = () => {
                     >
 
                         <img
-                            src={`${assets}/about/global-footprints/global-learning.jpg`}
+                            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&auto=format&fit=crop&q=80"
                             alt="Global Online Learning"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                            }}
                             className="
                                 w-full
                                 h-full
@@ -1312,6 +1320,10 @@ const CertificateCard = ({ certificate }) => {
                 <img
                     src={certificate.image}
                     alt={certificate.title}
+                    onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/assets/certificate/certificate-template.png";
+                    }}
                     className="
                         max-w-full
                         max-h-full

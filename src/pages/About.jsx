@@ -15,6 +15,10 @@ const About = () => {
                         <img
                             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900"
                             alt="About"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                            }}
                             className="w-full h-[630px] object-cover rounded-[28px]"
                         />
                     </div>

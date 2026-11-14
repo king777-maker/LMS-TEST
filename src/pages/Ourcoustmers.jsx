@@ -20,30 +20,30 @@ const Ourcoustmers = () => {
     const teamMembers = [
         {
             id: 1,
-            name: "John Anderson",
-            designation: "Chief Executive Officer",
-            image: `${assets}/about/team/member-1.jpg`,
+            name: "Rajesh Kumar",
+            designation: "Senior Lead Auditor, Automotive Systems",
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
         {
             id: 2,
-            name: "Sarah Williams",
-            designation: "Head of Training",
-            image: `${assets}/about/team/member-2.jpg`,
+            name: "Priya Sharma",
+            designation: "HSE Manager, Infrastructure & Energy",
+            image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
         {
             id: 3,
-            name: "Michael Brown",
-            designation: "Director of Operations",
-            image: `${assets}/about/team/member-3.jpg`,
+            name: "David Miller",
+            designation: "ISO 27001 Consultant, Enterprise Cloud",
+            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
         {
             id: 4,
-            name: "Emma Wilson",
-            designation: "Learning & Development Head",
-            image: `${assets}/about/team/member-4.jpg`,
+            name: "Anita Desai",
+            designation: "Operations Lead, Aerospace Logistics",
+            image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
     ];
@@ -149,8 +149,12 @@ const Ourcoustmers = () => {
                     >
 
                         <img
-                            src={`${assets}/about/team/team-wide.jpg`}
-                            alt="Broadbeach Online Academy Team"
+                            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80"
+                            alt="Broadbeach Online Academy Customers"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                            }}
                             className="
                                 absolute
                                 inset-0
@@ -583,8 +587,12 @@ const Ourcoustmers = () => {
                     >
 
                         <img
-                            src={`${assets}/about/team/team-culture.jpg`}
-                            alt="Ourcoustmers Culture"
+                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80"
+                            alt="Our Customers and Graduates"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                            }}
                             className="
                                 w-full
                                 h-full
@@ -884,6 +892,10 @@ const TeamCard = ({ member }) => {
                 <img
                     src={member.image}
                     alt={member.name}
+                    onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80";
+                    }}
                     className="
                         w-full
                         h-full

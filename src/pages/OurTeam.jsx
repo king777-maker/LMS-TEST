@@ -22,28 +22,28 @@ const OurTeam = () => {
             id: 1,
             name: "John Anderson",
             designation: "Chief Executive Officer",
-            image: `${assets}/about/team/member-1.jpg`,
+            image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
         {
             id: 2,
             name: "Sarah Williams",
             designation: "Head of Training",
-            image: `${assets}/about/team/member-2.jpg`,
+            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
         {
             id: 3,
             name: "Michael Brown",
             designation: "Director of Operations",
-            image: `${assets}/about/team/member-3.jpg`,
+            image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
         {
             id: 4,
             name: "Emma Wilson",
             designation: "Learning & Development Head",
-            image: `${assets}/about/team/member-4.jpg`,
+            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop&q=80",
             linkedin: "#",
         },
     ];
@@ -149,8 +149,12 @@ const OurTeam = () => {
                     >
 
                         <img
-                            src={`${assets}/about/team/team-wide.jpg`}
+                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80"
                             alt="Broadbeach Online Academy Team"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                            }}
                             className="
                                 absolute
                                 inset-0
@@ -583,8 +587,12 @@ const OurTeam = () => {
                     >
 
                         <img
-                            src={`${assets}/about/team/team-culture.jpg`}
+                            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&auto=format&fit=crop&q=80"
                             alt="Our Team Culture"
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                            }}
                             className="
                                 w-full
                                 h-full
@@ -884,6 +892,10 @@ const TeamCard = ({ member }) => {
                 <img
                     src={member.image}
                     alt={member.name}
+                    onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=80";
+                    }}
                     className="
                         w-full
                         h-full

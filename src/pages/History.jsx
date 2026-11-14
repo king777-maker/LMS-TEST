@@ -4,34 +4,34 @@ import SectionTitle from "./SectionTitle";
 import SeeMoreButton from "./SeeMoreButton";
 
 const History = () => {
-    const assets = import.meta.env.VITE_API_URL_ASSETS;
+    const assets = "/assets";
 
     const designImages = [
-        `${assets}/about/design-1.jpg`,
-        `${assets}/about/design-2.jpg`,
-        `${assets}/about/design-3.jpg`,
-        `${assets}/about/design-4.jpg`,
+        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80",
     ];
 
     const capabilityImages = [
-        `${assets}/about/capability-1.jpg`,
-        `${assets}/about/capability-2.jpg`,
-        `${assets}/about/capability-3.jpg`,
-        `${assets}/about/capability-4.jpg`,
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80",
     ];
 
     const qualityImages = [
-        `${assets}/about/quality-1.jpg`,
-        `${assets}/about/quality-2.jpg`,
-        `${assets}/about/quality-3.jpg`,
-        `${assets}/about/quality-4.jpg`,
+        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&auto=format&fit=crop&q=80",
     ];
 
     const logisticsImages = [
-        `${assets}/about/logistics-1.jpg`,
-        `${assets}/about/logistics-2.jpg`,
-        `${assets}/about/logistics-3.jpg`,
-        `${assets}/about/logistics-4.jpg`,
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=800&auto=format&fit=crop&q=80",
     ];
 
     return (
@@ -81,7 +81,7 @@ const History = () => {
 
 
                         <ImageCard
-                            src={`${assets}/bb_history.jpeg`}
+                            src="/assets/about/bb_history.jpeg"
                             alt="Company History"
                             className="h-[280px] md:h-[330px]"
                         />
@@ -109,13 +109,13 @@ const History = () => {
                     >
 
                         <ImageCard
-                            src={`${assets}/about/vision-mission.jpg`}
+                            src="/assets/about/vision-mission.jpg"
                             alt="Our Vision and Mission"
                             className="h-[350px] lg:h-[430px]"
                         />
 
                         <ImageCard
-                            src={`${assets}/about/values.jpg`}
+                            src="/assets/about/values.jpg"
                             alt="Our Values"
                             className="h-[350px] lg:h-[430px]"
                         />
@@ -171,7 +171,7 @@ const History = () => {
 
 
                         <ImageCard
-                            src={`${assets}/about/governance.jpg`}
+                            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&auto=format&fit=crop&q=80"
                             alt="Governance Policy"
                             className="h-[350px] md:h-[430px]"
                         />
@@ -234,21 +234,21 @@ const History = () => {
                         >
 
                             <ImageCard
-                                src={`${assets}/about/certificate-1.jpg`}
+                                src="/assets/certificate/certificate-template.png"
                                 alt="ISO 9001 Certificate"
                                 className="h-[480px]"
                                 contain
                             />
 
                             <ImageCard
-                                src={`${assets}/about/certificate-2.jpg`}
+                                src="/assets/certificate/certificate-template.png"
                                 alt="ISO 14001 Certificate"
                                 className="h-[480px]"
                                 contain
                             />
 
                             <ImageCard
-                                src={`${assets}/about/certificate-3.jpg`}
+                                src="/assets/certificate/certificate-template.png"
                                 alt="Hardox Certificate"
                                 className="h-[480px]"
                                 contain
@@ -280,7 +280,7 @@ const History = () => {
                     >
 
                         <ImageCard
-                            src={`${assets}/about/product-development.jpg`}
+                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=80"
                             alt="New Product Development"
                             className="h-[340px]"
                             contain
@@ -386,7 +386,7 @@ const History = () => {
 
 
                         <ImageCard
-                            src={`${assets}/about/steels.jpg`}
+                            src="https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=1000&auto=format&fit=crop&q=80"
                             alt="Steels We Use"
                             className="h-[370px]"
                             contain
@@ -416,7 +416,7 @@ const History = () => {
                     >
 
                         <ImageCard
-                            src={`${assets}/about/welding.jpg`}
+                            src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1000&auto=format&fit=crop&q=80"
                             alt="Welding Standards"
                             className="h-[350px]"
                         />
@@ -532,8 +532,12 @@ const History = () => {
                         <div className="mt-10">
 
                             <img
-                                src={`${assets}/about/world-map.png`}
+                                src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&auto=format&fit=crop&q=80"
                                 alt="Global Logistics Network"
+                                onError={(e) => {
+                                    e.currentTarget.onerror = null;
+                                    e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                                }}
                                 className="
                                     w-full
                                     max-w-[1000px]

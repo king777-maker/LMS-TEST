@@ -17,8 +17,12 @@ const ImageCard = ({
         >
 
             <img
-                src={src}
-                alt={alt}
+                src={src || "/assets/broadbeach_campus.jpg"}
+                alt={alt || "Broadbeach Online Academy"}
+                onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/assets/broadbeach_campus.jpg";
+                }}
                 className={`
                     w-full
                     h-full

@@ -226,3 +226,4 @@ const AboutCategories = () => {
 };
 
 export default AboutCategories;
+
