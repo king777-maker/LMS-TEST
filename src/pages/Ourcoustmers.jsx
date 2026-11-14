@@ -17,6 +17,7 @@ import {
 import AboutPageHeader from "../components/AboutShared/AboutPageHeader";
 import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
 import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
+import CustomerSphere3D from "../components/AboutUs/CustomerSphere3D";
 
 /**
  * Our Customers (Happy Customers & Corporate Partners) — Broadbeach Academy
@@ -238,18 +239,21 @@ const Ourcoustmers = () => {
         bgColor="white"
       />
 
-      {/* 3. OFFICIAL CLIENT LOGOS SHOWCASE (From User Provided Image Assets) */}
-      <section className="bg-[#F8FAFC] py-14 sm:py-16 lg:py-20 border-y border-[#E2E8F0]">
+      {/* 3. INTERACTIVE 3D "OUR HAPPY CUSTOMERS" SPHERICAL GALLERY */}
+      <CustomerSphere3D />
+
+      {/* 4. OFFICIAL CLIENT LOGOS SHOWCASE (From User Provided Image Assets) */}
+      <section className="bg-white py-14 sm:py-16 lg:py-20 border-y border-[#E2E8F0]">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
-              <span>Our Esteemed Clients</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
+              <span>Enterprise Client Network</span>
             </div>
             <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-extrabold text-[#121C46] leading-tight">
-              Our Happy Customers &amp; Client Organizations
+              Corporate Clients &amp; Partner Organizations
             </h2>
             <p className="mt-3 text-[#475569] text-sm sm:text-base lg:text-[16.5px] leading-relaxed">
               We take immense pride in training and certifying the teams of premier aerospace contractors, industrial manufacturers, logistics networks, and universities worldwide.
@@ -362,77 +366,6 @@ const Ourcoustmers = () => {
             </div>
           </div>
 
-        </div>
-      </section>
-
-      {/* 4. MEDIA OBJECT: VERIFIED LEARNER REVIEWS */}
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
-        <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
-              <span>Verified Alumni Feedback</span>
-            </div>
-            <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-extrabold text-[#121C46] leading-tight">
-              What Our Graduates Say
-            </h2>
-            <p className="mt-3 text-[#475569] text-sm sm:text-base leading-relaxed">
-              Read authentic feedback from working quality directors, health & safety leads, and compliance specialists.
-            </p>
-          </div>
-
-          {/* 2-Column Grid of Media Object Testimonials */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
-            {customerReviews.map((rev) => (
-              <div
-                key={rev.id}
-                className="bg-white rounded-2xl p-5 sm:p-6 border border-[#E2E8F0] shadow-xs hover:border-[#CBD5E1] transition-all duration-200 flex flex-col sm:flex-row items-start gap-4 sm:gap-5"
-              >
-                {/* Media Left: Student Photo */}
-                <div className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-[#E2E8F0] shadow-xs bg-slate-100">
-                  <img
-                    src={rev.image}
-                    alt={rev.name}
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = "/assets/broadbeach_campus.jpg";
-                    }}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-1 left-1 bg-[#121C46] text-[#FFDB58] p-1 rounded-md text-[10px]">
-                    <FaQuoteLeft />
-                  </div>
-                </div>
-
-                {/* Media Body: Review Details */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#2563EB] bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md">
-                      {rev.certificate}
-                    </span>
-                    <div className="flex text-amber-400 text-xs">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} />
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-[#475569] italic leading-relaxed mt-2">
-                    "{rev.quote}"
-                  </p>
-
-                  <div className="mt-3 pt-2.5 border-t border-[#F1F5F9]">
-                    <div className="text-sm font-bold text-[#121C46]">
-                      {rev.name}
-                    </div>
-                    <div className="text-xs text-[#2563EB] font-medium">
-                      {rev.role} • <span className="text-slate-500">{rev.company}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
