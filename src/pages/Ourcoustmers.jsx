@@ -228,7 +228,7 @@ const Ourcoustmers = () => {
           { text: "98.4% student satisfaction rating across all courses" },
           { text: "Verifiable credentials that build credibility during audits and interviews" },
         ]}
-        imageSrc="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80"
+        imageSrc="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Broadbeach Academy Happy Customers and Learners"
         imagePosition="right"
         floatingBadge={{
@@ -239,10 +239,7 @@ const Ourcoustmers = () => {
         bgColor="white"
       />
 
-      {/* 3. INTERACTIVE 3D "OUR HAPPY CUSTOMERS" SPHERICAL GALLERY */}
-      <CustomerSphere3D />
-
-      {/* 4. OFFICIAL CLIENT LOGOS SHOWCASE (From User Provided Image Assets) */}
+      {/* 3. OFFICIAL CLIENT LOGOS SHOWCASE (Corporate Clients & Partner Organizations) */}
       <section className="bg-white py-14 sm:py-16 lg:py-20 border-y border-[#E2E8F0]">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           
@@ -368,6 +365,9 @@ const Ourcoustmers = () => {
 
         </div>
       </section>
+
+      {/* 4. INTERACTIVE 3D "OUR HAPPY CUSTOMERS" SPHERICAL GALLERY */}
+      <CustomerSphere3D />
 
       {/* 5. SPLIT-SCREEN ENTERPRISE PARTNERSHIPS (50/50: Image Left, Text Right) */}
       <AboutSplitSection

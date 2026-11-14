@@ -130,7 +130,7 @@ const Global = () => {
           { text: "Self-paced study adapted to every global timezone" },
           { text: "Multi-jurisdiction case studies reflecting diverse regulatory frameworks" },
         ]}
-        imageSrc="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1000&auto=format&fit=crop&q=80"
+        imageSrc="https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Broadbeach Academy Global Footprint"
         imagePosition="right"
         floatingBadge={{
@@ -190,7 +190,7 @@ const Global = () => {
           { text: "Centralized verification of employee credentials" },
           { text: "Scalable corporate cohort training with dedicated dashboards" },
         ]}
-        imageSrc="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1000&auto=format&fit=crop&q=80"
+        imageSrc="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Global Enterprise Compliance Standardization"
         imagePosition="left"
         floatingBadge={{

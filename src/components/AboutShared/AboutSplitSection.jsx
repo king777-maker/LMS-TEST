@@ -89,7 +89,7 @@ const AboutSplitSection = ({
 
             {/* Title / Heading */}
             <h2
-              className={`text-[28px] sm:text-[34px] lg:text-[40px] font-extrabold leading-[1.2] tracking-tight ${
+              className={`text-[22px] sm:text-[26px] lg:text-[30px] font-extrabold leading-[1.25] tracking-tight ${
                 isNavyBg ? "text-white" : "text-[#121C46]"
               }`}
             >
@@ -102,7 +102,7 @@ const AboutSplitSection = ({
             {/* Subtitle / Tagline */}
             {subtitle && (
               <p
-                className={`mt-2.5 text-base sm:text-lg font-medium leading-relaxed ${
+                className={`mt-2 text-xs sm:text-sm font-medium leading-relaxed ${
                   isNavyBg ? "text-blue-200" : "text-[#2563EB]"
                 }`}
               >
@@ -112,11 +112,11 @@ const AboutSplitSection = ({
 
             {/* Paragraphs */}
             {paragraphs.length > 0 && (
-              <div className="mt-4 space-y-3.5">
+              <div className="mt-3.5 space-y-2.5">
                 {paragraphs.map((p, index) => (
                   <p
                     key={index}
-                    className={`text-sm sm:text-base lg:text-[16.5px] leading-[1.7] ${
+                    className={`text-xs sm:text-[13.5px] lg:text-[14px] leading-[1.65] ${
                       isNavyBg ? "text-slate-300" : "text-[#475569]"
                     }`}
                   >
@@ -128,14 +128,14 @@ const AboutSplitSection = ({
 
             {/* Bullets / Checklist */}
             {bullets.length > 0 && (
-              <div className="mt-5 space-y-2.5 w-full">
+              <div className="mt-4 space-y-2 w-full">
                 {bullets.map((b, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <span className="text-[#F97316] text-base shrink-0 mt-0.5">
+                  <div key={index} className="flex items-start gap-2.5">
+                    <span className="text-[#F97316] text-sm shrink-0 mt-0.5">
                       {b.icon || <FaCheckCircle className="text-[#F97316]" />}
                     </span>
                     <span
-                      className={`text-sm sm:text-[15px] font-medium leading-relaxed ${
+                      className={`text-xs sm:text-[13px] font-medium leading-snug ${
                         isNavyBg ? "text-slate-200" : "text-[#121C46]"
                       }`}
                     >
@@ -148,12 +148,12 @@ const AboutSplitSection = ({
 
             {/* CTAs */}
             {(ctaPrimary || ctaSecondary) && (
-              <div className="flex flex-wrap items-center gap-3.5 mt-6 sm:mt-7 w-full sm:w-auto">
+              <div className="flex flex-wrap items-center gap-3 mt-5 sm:mt-6 w-full sm:w-auto">
                 {ctaPrimary &&
                   (ctaPrimary.to ? (
                     <Link
                       to={ctaPrimary.to}
-                      className="h-[46px] sm:h-[48px] px-6 sm:px-7 rounded-xl bg-[#121C46] hover:bg-[#1b2a64] active:scale-98 text-white font-bold text-sm sm:text-base shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
+                      className="h-[42px] sm:h-[44px] px-5 sm:px-6 rounded-xl bg-[#121C46] hover:bg-[#1b2a64] active:scale-98 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
                     >
                       <span>{ctaPrimary.label}</span>
                       <FaArrowRight className="text-xs" />
@@ -161,7 +161,7 @@ const AboutSplitSection = ({
                   ) : (
                     <a
                       href={ctaPrimary.href || "#"}
-                      className="h-[46px] sm:h-[48px] px-6 sm:px-7 rounded-xl bg-[#121C46] hover:bg-[#1b2a64] active:scale-98 text-white font-bold text-sm sm:text-base shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
+                      className="h-[42px] sm:h-[44px] px-5 sm:px-6 rounded-xl bg-[#121C46] hover:bg-[#1b2a64] active:scale-98 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
                     >
                       <span>{ctaPrimary.label}</span>
                       <FaArrowRight className="text-xs" />
@@ -172,14 +172,14 @@ const AboutSplitSection = ({
                   (ctaSecondary.to ? (
                     <Link
                       to={ctaSecondary.to}
-                      className="h-[46px] sm:h-[48px] px-5 sm:px-6 rounded-xl bg-white hover:bg-slate-50 active:scale-98 text-[#121C46] font-bold text-sm sm:text-base border border-[#E2E8F0] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center whitespace-nowrap cursor-pointer"
+                      className="h-[42px] sm:h-[44px] px-4 sm:px-5 rounded-xl bg-white hover:bg-slate-50 active:scale-98 text-[#121C46] font-bold text-xs sm:text-sm border border-[#E2E8F0] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center whitespace-nowrap cursor-pointer"
                     >
                       <span>{ctaSecondary.label}</span>
                     </Link>
                   ) : (
                     <a
                       href={ctaSecondary.href || "#"}
-                      className="h-[46px] sm:h-[48px] px-5 sm:px-6 rounded-xl bg-white hover:bg-slate-50 active:scale-98 text-[#121C46] font-bold text-sm sm:text-base border border-[#E2E8F0] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center whitespace-nowrap cursor-pointer"
+                      className="h-[42px] sm:h-[44px] px-4 sm:px-5 rounded-xl bg-white hover:bg-slate-50 active:scale-98 text-[#121C46] font-bold text-xs sm:text-sm border border-[#E2E8F0] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-center whitespace-nowrap cursor-pointer"
                     >
                       <span>{ctaSecondary.label}</span>
                     </a>

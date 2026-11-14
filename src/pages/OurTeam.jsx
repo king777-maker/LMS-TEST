@@ -111,7 +111,7 @@ const OurTeam = () => {
           { text: "Dedicated academic support and continuous learner guidance" },
           { text: "Curricula structured according to international quality frameworks" },
         ]}
-        imageSrc="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80"
+        imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Broadbeach Academy Team Collaboration"
         imagePosition="right"
         floatingBadge={{

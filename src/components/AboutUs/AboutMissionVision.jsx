@@ -26,13 +26,13 @@ const AboutMissionVision = () => {
               </div>
 
               {/* Title */}
-              <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
+              <h2 className="text-[22px] sm:text-[26px] lg:text-[30px] font-extrabold text-[#121C46] leading-[1.25] tracking-tight">
                 Our Vision:{" "}
                 <span className="text-[#2563EB]">Leading Global Standards</span>
               </h2>
 
               {/* Narrative Statement */}
-              <p className="mt-4 text-[#475569] text-sm sm:text-base lg:text-[16.5px] leading-[1.7]">
+              <p className="mt-3 text-[#475569] text-xs sm:text-[13.5px] lg:text-[14px] leading-[1.65]">
                 To be the most trusted and recognized online academy for international standards
                 training, ISO lead auditor education, and professional development—setting the
                 benchmark for modern, learner-centric certification pathways across global industries.
@@ -90,8 +90,8 @@ const AboutMissionVision = () => {
               <div className="absolute -inset-3 bg-blue-100/60 rounded-3xl rotate-1 -z-0" />
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E8F0] shadow-sm bg-white">
                 <img
-                  src="/assets/about/vision-mission.jpg"
-                  alt="Broadbeach Academy Vision"
+                  src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1000&auto=format&fit=crop&q=80"
+                  alt="Broadbeach Academy Vision: Leading Global Standards"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = "/assets/broadbeach_campus.jpg";
@@ -137,8 +137,8 @@ const AboutMissionVision = () => {
               <div className="absolute -inset-3 bg-orange-100/60 rounded-3xl -rotate-1 -z-0" />
               <div className="relative rounded-2xl overflow-hidden border border-[#E2E8F0] shadow-sm bg-white">
                 <img
-                  src="/assets/about/values.jpg"
-                  alt="Broadbeach Academy Mission & Values"
+                  src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1000&auto=format&fit=crop&q=80"
+                  alt="Broadbeach Academy Mission: Empowering Practical Mastery"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = "/assets/broadbeach_campus.jpg";
@@ -172,13 +172,13 @@ const AboutMissionVision = () => {
               </div>
 
               {/* Title */}
-              <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-extrabold text-[#121C46] leading-[1.2] tracking-tight">
+              <h2 className="text-[22px] sm:text-[26px] lg:text-[30px] font-extrabold text-[#121C46] leading-[1.25] tracking-tight">
                 Our Mission:{" "}
                 <span className="text-[#F97316]">Empowering Practical Mastery</span>
               </h2>
 
               {/* Narrative Statement */}
-              <p className="mt-4 text-[#475569] text-sm sm:text-base lg:text-[16.5px] leading-[1.7]">
+              <p className="mt-3 text-[#475569] text-xs sm:text-[13.5px] lg:text-[14px] leading-[1.65]">
                 To empower learners and organizations globally by delivering accessible,
                 practical, and rigorous professional standards training. We make complex
                 compliance frameworks actionable—enabling professionals to lead audits,

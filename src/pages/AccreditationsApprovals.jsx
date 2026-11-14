@@ -268,8 +268,8 @@ const AccreditationsApprovals = () => {
           { text: "Practical audit simulation scenarios guided by ISO 19011:2018" },
           { text: "Verifiable credentials that withstand third-party employer scrutiny" },
         ]}
-        imageSrc="/assets/certificate/certificate-template.png"
-        imageAlt="Broadbeach Academy Official Accredited Certificate"
+        imageSrc="https://images.unsplash.com/photo-1450133064473-71024230f91b?w=1000&auto=format&fit=crop&q=80"
+        imageAlt="Broadbeach Academy Official Accredited Standards Documentation"
         imagePosition="right"
         floatingBadge={{
           title: "ACCREDITED RIGOR",
@@ -334,7 +334,7 @@ const AccreditationsApprovals = () => {
           { text: "Public 24/7 web validation tool accessible from any device" },
           { text: "Full protection against credential counterfeiting or alteration" },
         ]}
-        imageSrc="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&auto=format&fit=crop&q=80"
+        imageSrc="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Broadbeach Academy Online Credential Authentication"
         imagePosition="left"
         floatingBadge={{

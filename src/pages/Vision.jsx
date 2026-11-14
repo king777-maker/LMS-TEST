@@ -253,7 +253,7 @@ const Vision = () => {
           { text: "Practical curriculum designed for immediate workplace application" },
           { text: "Verifiable credentials that build genuine employer confidence" },
         ]}
-        imageSrc="/assets/about/vision-mission.jpg"
+        imageSrc="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Broadbeach Academy Vision and Mission"
         imagePosition="right"
         floatingBadge={{
@@ -315,7 +315,7 @@ const Vision = () => {
           { text: "Formulating actionable corrective action requests (CARs)" },
           { text: "Developing confident audit leadership and communication" },
         ]}
-        imageSrc="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1000&auto=format&fit=crop&q=80"
+        imageSrc="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Interactive Professional Learning"
         imagePosition="left"
         floatingBadge={{
