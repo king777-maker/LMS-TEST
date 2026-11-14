@@ -136,7 +136,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     setOpenDropdownId(null);
                   }
                 }}
-                className={`flex items-center gap-1 px-1.5 xl:px-1.5 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[11.5px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                className={`flex items-center gap-1 px-1.5 xl:px-1.5 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[13px] 2xl:text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                   openDropdownId === "about-us"
                     ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                     : "text-white/95 hover:bg-white/10 hover:text-white"
@@ -144,7 +144,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
               >
                 <span>About Us</span>
                 <FaChevronDown
-                  className={`text-[7px] ml-0.5 transition-transform duration-200 shrink-0 ${
+                  className={`text-[8px] ml-0.5 transition-transform duration-200 shrink-0 ${
                     openDropdownId === "about-us" ? "rotate-180 text-amber-300" : "text-white/70"
                   }`}
                 />
@@ -223,7 +223,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                     onMouseLeave={handleMouseLeave}
                     onClick={() => handleTriggerClick(category)}
                     onKeyDown={(e) => handleKeyDown(e, category)}
-                    className={`flex items-center gap-1 px-1.5 xl:px-1.5 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[11.5px] 2xl:text-[12.5px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
+                    className={`flex items-center gap-1 px-1.5 xl:px-1.5 2xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[13px] 2xl:text-[14px] font-semibold text-white whitespace-nowrap transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 leading-none ${
                       isOpen
                         ? "bg-white/20 text-white shadow-xs ring-1 ring-white/30"
                         : "text-white/95 hover:bg-white/10 hover:text-white"
@@ -237,7 +237,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                         : category.title}
                     </span>
                     <FaChevronDown
-                      className={`text-[7px] ml-0.5 transition-transform duration-200 shrink-0 ${
+                      className={`text-[8px] ml-0.5 transition-transform duration-200 shrink-0 ${
                         isOpen ? "rotate-180 text-amber-300" : "text-white/70"
                       }`}
                     />

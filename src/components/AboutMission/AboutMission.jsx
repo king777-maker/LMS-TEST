@@ -6,16 +6,16 @@ import {
 
 const cards = [
   {
-    icon: <FaBullseye />,
-    title: "Our Mission",
-    description:
-      "Deliver world-class online certification programs that empower professionals with practical skills and globally recognized credentials.",
-  },
-  {
     icon: <FaEye />,
     title: "Our Vision",
     description:
       "Become the world's most trusted learning platform by making quality education accessible, flexible, and career-focused.",
+  },
+  {
+    icon: <FaBullseye />,
+    title: "Our Mission",
+    description:
+      "Deliver world-class online certification programs that empower professionals with practical skills and globally recognized credentials.",
   },
   {
     icon: <FaAward />,
