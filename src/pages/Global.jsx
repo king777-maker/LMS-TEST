@@ -9,7 +9,7 @@ import {
   FaCheckCircle,
   FaClock,
 } from "react-icons/fa";
-import AboutPageHeader from "../components/AboutShared/AboutPageHeader";
+import AboutBranchHero from "../components/AboutShared/AboutBranchHero";
 import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
 import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 
@@ -106,12 +106,22 @@ const Global = () => {
 
   return (
     <main className="min-h-screen bg-white text-[#121C46]">
-      {/* 1. PAGE HEADER */}
-      <AboutPageHeader
+      {/* 1. BRANCH HERO (Split-Screen with Animated Cartoon Illustration) */}
+      <AboutBranchHero
+        type="global"
+        eyebrow="Worldwide Footprint"
+        eyebrowColor="blue"
         title="Global Reach:"
-        highlight="Education Across 45+ Nations"
-        description="Empowering compliance professionals, internal auditors, and corporate teams with borderless standards education."
+        highlight="Education Across 45+ Nations."
+        description="Empowering compliance professionals, internal auditors, and corporate teams with borderless standards education and verifiable international credentials."
         breadcrumbs={[{ label: "Global Reach" }]}
+        chips={[
+          { text: "45+ Active Countries" },
+          { text: "24/7 Cloud Learning" },
+          { text: "50,000+ Alumni Network" },
+        ]}
+        primaryCta={{ label: "Explore International Courses", to: "/courses" }}
+        secondaryCta={{ label: "Enterprise Partnerships", to: "/about/our-customers" }}
       />
 
       {/* 2. SPLIT-SCREEN GLOBAL OVERVIEW (50/50: Text Left, Image Right) */}

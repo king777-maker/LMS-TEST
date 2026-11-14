@@ -9,7 +9,7 @@ import {
   FaBookReader,
   FaShieldAlt,
 } from "react-icons/fa";
-import AboutPageHeader from "../components/AboutShared/AboutPageHeader";
+import AboutBranchHero from "../components/AboutShared/AboutBranchHero";
 import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
 import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 
@@ -88,12 +88,22 @@ const OurTeam = () => {
 
   return (
     <main className="min-h-screen bg-white text-[#121C46]">
-      {/* 1. PAGE HEADER */}
-      <AboutPageHeader
-        title="Our Team:"
-        highlight="The Minds Behind Broadbeach"
+      {/* 1. BRANCH HERO (Split-Screen with Animated Cartoon Illustration) */}
+      <AboutBranchHero
+        type="team"
+        eyebrow="Faculty & Practitioners"
+        eyebrowColor="blue"
+        title="Meet the Minds Behind"
+        highlight="Broadbeach."
         description="Meet the experienced educators, industry practitioners, and certification leaders dedicated to empowering professionals across the globe."
         breadcrumbs={[{ label: "Our Team" }]}
+        chips={[
+          { text: "Lead Auditor Faculty" },
+          { text: "10+ Years Excellence" },
+          { text: "1:1 Academic Mentorship" },
+        ]}
+        primaryCta={{ label: "Explore Courses", to: "/courses" }}
+        secondaryCta={{ label: "Our Vision", to: "/about/vision" }}
       />
 
       {/* 2. SPLIT-SCREEN INTRODUCTION (50/50: Text Left, Image Right) */}

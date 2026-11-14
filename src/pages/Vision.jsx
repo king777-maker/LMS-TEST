@@ -11,7 +11,7 @@ import {
   FaShieldAlt,
   FaAward,
 } from "react-icons/fa";
-import AboutPageHeader from "../components/AboutShared/AboutPageHeader";
+import AboutBranchHero from "../components/AboutShared/AboutBranchHero";
 import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
 import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 
@@ -116,12 +116,22 @@ const Vision = () => {
 
   return (
     <main className="min-h-screen bg-white text-[#121C46]">
-      {/* 1. PAGE HEADER */}
-      <AboutPageHeader
-        title="Our Vision:"
-        highlight="Transforming Professional Learning"
-        description="Setting the global benchmark for practical, learner-centric ISO standards training and credentialing."
+      {/* 1. BRANCH HERO (Split-Screen with Animated Cartoon Illustration) */}
+      <AboutBranchHero
+        type="vision"
+        eyebrow="Strategic Horizon"
+        eyebrowColor="orange"
+        title="Our Vision for"
+        highlight="Global Learning."
+        description="Setting the global benchmark for practical, learner-centric ISO standards training and credentialing across international industry corridors."
         breadcrumbs={[{ label: "Our Vision" }]}
+        chips={[
+          { text: "Global Standards Alignment" },
+          { text: "AI-Assisted Virtual Labs" },
+          { text: "50,000+ Certified Target" },
+        ]}
+        primaryCta={{ label: "View Our Programs", to: "/courses" }}
+        secondaryCta={{ label: "Global Reach", to: "/about/global-foot-print" }}
       />
 
       {/* 2. OUR VISION & MISSION SECTION (Exact Section from About Us Home Page) */}

@@ -17,7 +17,7 @@ import {
   FaUserCheck,
   FaSyncAlt,
 } from "react-icons/fa";
-import AboutPageHeader from "../components/AboutShared/AboutPageHeader";
+import AboutBranchHero from "../components/AboutShared/AboutBranchHero";
 import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
 import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 
@@ -201,12 +201,22 @@ const AccreditationsApprovals = () => {
 
   return (
     <main className="min-h-screen bg-white text-[#121C46]">
-      {/* 1. PAGE HEADER */}
-      <AboutPageHeader
-        title="Accreditations & Approvals:"
-        highlight="Rigorous Quality Benchmarks"
+      {/* 1. BRANCH HERO (Split-Screen with Animated Cartoon Illustration) */}
+      <AboutBranchHero
+        type="approvals"
+        eyebrow="International Compliance"
+        eyebrowColor="emerald"
+        title="Accreditations &"
+        highlight="Approved Standards."
         description="Every Broadbeach Academy program is engineered in strict alignment with international ISO quality, environmental, safety, and auditing specifications."
-        breadcrumbs={[{ label: "Accreditations & Approvals" }]}
+        breadcrumbs={[{ label: "Our Approvals" }]}
+        chips={[
+          { text: "ISO 19011:2018 Auditing Protocols" },
+          { text: "24/7 QR Verification Registry" },
+          { text: "100% Immutable Digital Credentials" },
+        ]}
+        primaryCta={{ label: "Verify a Certificate", to: "/verify-certificate" }}
+        secondaryCta={{ label: "Explore ISO Tracks", to: "/courses" }}
       />
 
       {/* 2. TRUST STATS RIBBON */}

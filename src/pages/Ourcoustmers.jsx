@@ -14,7 +14,7 @@ import {
   FaUniversity,
   FaGlobe,
 } from "react-icons/fa";
-import AboutPageHeader from "../components/AboutShared/AboutPageHeader";
+import AboutBranchHero from "../components/AboutShared/AboutBranchHero";
 import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
 import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 import CustomerSphere3D from "../components/AboutUs/CustomerSphere3D";
@@ -204,12 +204,22 @@ const Ourcoustmers = () => {
 
   return (
     <main className="min-h-screen bg-white text-[#121C46]">
-      {/* 1. PAGE HEADER */}
-      <AboutPageHeader
+      {/* 1. BRANCH HERO (Split-Screen with Animated Cartoon Illustration) */}
+      <AboutBranchHero
+        type="customers"
+        eyebrow="Enterprise & Learner Trust"
+        eyebrowColor="yellow"
         title="Happy Customers:"
-        highlight="Trusted by 70+ Leading Global Organizations"
-        description="From premier aerospace and defense giants to multinational engineering enterprises and universities, explore the organizations that trust Broadbeach Academy."
+        highlight="Trusted Across Industries."
+        description="From premier aerospace contractors to industrial manufacturing giants and universities, explore the professionals and organizations thriving with Broadbeach Academy."
         breadcrumbs={[{ label: "Happy Customers" }]}
+        chips={[
+          { text: "70+ Corporate Clients" },
+          { text: "98.4% Satisfaction Rate" },
+          { text: "Verifiable Audit Credentials" },
+        ]}
+        primaryCta={{ label: "View Corporate Partners", to: "#corporate-partners" }}
+        secondaryCta={{ label: "Student Testimonials", to: "#testimonials" }}
       />
 
       {/* 2. SPLIT-SCREEN CUSTOMER INTRO (50/50: Text Left, Image Right) */}
