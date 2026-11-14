@@ -6,6 +6,7 @@ import AboutHowItWorks from "../components/AboutUs/AboutHowItWorks";
 import AboutFeatures from "../components/AboutUs/AboutFeatures";
 import AboutProcess from "../components/AboutUs/AboutProcess";
 import AboutMissionVision from "../components/AboutUs/AboutMissionVision";
+import AboutCategories from "../components/AboutUs/AboutCategories";
 import AboutAudience from "../components/AboutUs/AboutAudience";
 import AboutCTA from "../components/AboutUs/AboutCTA";
 
@@ -49,17 +50,22 @@ const AboutUs = () => {
       <AboutProcess />
 
       {/* =========================================================
-          6. OUR MISSION & VISION (Two Editorial Cards)
+          6. OUR VISION & MISSION (Two Editorial Cards)
       ========================================================= */}
       <AboutMissionVision />
 
       {/* =========================================================
-          7. WHO WE SERVE (Audience Cards)
+          7. SKILL CATEGORIES (High-Level Overview of What We Teach)
+      ========================================================= */}
+      <AboutCategories />
+
+      {/* =========================================================
+          8. WHO WE SERVE (Audience Cards)
       ========================================================= */}
       <AboutAudience />
 
       {/* =========================================================
-          8. CLOSING CTA BANNER
+          9. CLOSING CTA BANNER
       ========================================================= */}
       <AboutCTA />
     </div>

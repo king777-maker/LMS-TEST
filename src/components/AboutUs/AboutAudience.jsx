@@ -41,12 +41,12 @@ const audiences = [
 
 const AboutAudience = () => {
   return (
-    <section className="relative bg-white py-10 sm:py-12 lg:py-16 overflow-hidden">
+    <section className="relative bg-[#F6F8FC] py-10 sm:py-12 lg:py-16 overflow-hidden border-t border-[#E2E8F0]/80">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F8FC] border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E2E8F0] shadow-xs text-xs font-bold uppercase tracking-wider text-[#121C46] mb-3 select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
             <span>Target Audiences</span>
           </div>
