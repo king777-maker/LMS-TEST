@@ -81,7 +81,7 @@ const OurTeam = () => {
     },
     {
       icon: <FaAward />,
-      number: "10+",
+      number: "20+",
       label: "Years of Educational Excellence",
     },
   ];
@@ -99,8 +99,8 @@ const OurTeam = () => {
         breadcrumbs={[{ label: "Our Team" }]}
         chips={[
           { text: "Lead Auditor Faculty" },
-          { text: "10+ Years Excellence" },
-          { text: "1:1 Academic Mentorship" },
+          { text: "20+ Years Excellence" },
+          { text: "100% online courses" },
         ]}
         primaryCta={{ label: "Explore Courses", to: "/courses" }}
         secondaryCta={{ label: "Our Vision", to: "/about/vision" }}
@@ -119,7 +119,7 @@ const OurTeam = () => {
         bullets={[
           { text: "Active Lead Auditors with real-world auditing tenure" },
           { text: "Dedicated academic support and continuous learner guidance" },
-          { text: "Curricula structured according to international quality frameworks" },
+          { text: "Curriculum structured according to international quality frameworks" },
         ]}
         imageSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=80"
         imageAlt="Broadbeach Academy Team Collaboration"
@@ -192,7 +192,7 @@ const OurTeam = () => {
       </section>
 
       {/* 5. MEDIA OBJECT STATS BAR */}
-      <section className="bg-[#0F1E36] py-12 sm:py-14 text-white">
+      <section className="bg-[#131E4A] py-12 sm:py-14 text-white">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {stats.map((st, index) => (

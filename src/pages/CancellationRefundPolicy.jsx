@@ -68,7 +68,7 @@ const CancellationRefundPolicy = () => {
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
             At Broadbeach Academy, we provide instant access to high-quality
-            professional training curricula, interactive slide decks, and verifiable
+            professional training curriculum, interactive slide decks, and verifiable
             certification examinations. Because digital products and learning
             materials are made accessible immediately upon enrollment, our
             cancellation and refund terms balance learner flexibility with the

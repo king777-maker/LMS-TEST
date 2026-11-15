@@ -60,7 +60,7 @@ const Vision = () => {
       iconColor: "text-emerald-600",
       iconBg: "bg-emerald-50 border-emerald-100",
       title: "Industry Compliance Alignment",
-      subtitle: "Up-to-Date Curricula",
+      subtitle: "Up-to-Date Curriculum",
       description:
         "Continuous curriculum revision ensuring complete synchronization with new ISO editions, Annex SL updates, and statutory rules.",
     },
@@ -341,7 +341,7 @@ const Vision = () => {
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
             <h2 className="text-[26px] sm:text-[32px] font-extrabold text-[#121C46] leading-tight">
-              Looking Ahead: Strategic Milestones
+              Looking Ahead: Strategic Milestones by 2030
             </h2>
             <p className="mt-2 text-[#475569] text-sm sm:text-base leading-relaxed">
               Our roadmap for technological innovation and educational expansion over the next decade.

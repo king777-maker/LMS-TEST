@@ -220,7 +220,7 @@ const AccreditationsApprovals = () => {
       />
 
       {/* 2. TRUST STATS RIBBON */}
-      <section className="bg-[#0F1E36] py-10 text-white border-b border-white/10">
+      <section className="bg-[#131E4A] py-10 text-white border-b border-white/10">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="text-center p-3 rounded-xl bg-white/5 border border-white/10">
@@ -274,7 +274,7 @@ const AccreditationsApprovals = () => {
           "Whether enrolling in ISO 9001 Quality Management, ISO 14001 Environmental Protection, ISO 45001 Occupational Safety, or ISO 27001 Information Security, learners acquire the exact competencies required by certifying bodies, accredited registrars, and corporate employers.",
         ]}
         bullets={[
-          { text: "Curricula mapped clause-by-clause to official standard requirements" },
+          { text: "Curriculum mapped clause-by-clause to official standard requirements" },
           { text: "Practical audit simulation scenarios guided by ISO 19011:2018" },
           { text: "Verifiable credentials that withstand third-party employer scrutiny" },
         ]}

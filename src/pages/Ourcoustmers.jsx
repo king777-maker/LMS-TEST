@@ -18,6 +18,7 @@ import AboutBranchHero from "../components/AboutShared/AboutBranchHero";
 import AboutSplitSection from "../components/AboutShared/AboutSplitSection";
 import AboutMediaObject from "../components/AboutShared/AboutMediaObject";
 import CustomerSphere3D from "../components/AboutUs/CustomerSphere3D";
+import PartnerMarquee4Rows from "../components/AboutUs/PartnerMarquee4Rows";
 
 /**
  * Our Customers (Happy Customers & Corporate Partners) — Broadbeach Academy
@@ -267,70 +268,8 @@ const Ourcoustmers = () => {
             </p>
           </div>
 
-          {/* Client Logo Gallery Cards (Full Resolution Display) */}
-          <div className="space-y-8">
-            
-            {/* Sheet 1: Major Corporate & Aerospace Clients */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-[#E2E8F0] shadow-sm">
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#F1F5F9]">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-[#121C46]">
-                    Aerospace, Defence &amp; Industrial Engineering Partners
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#475569] mt-0.5">
-                    Safran, Adani Defence, Mahindra Rise, Elbit Systems, Asteria Aerospace, Senvion, Sieger, and associated leaders.
-                  </p>
-                </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-[#2563EB] border border-blue-100 text-xs font-bold uppercase tracking-wider">
-                  <FaCheckCircle className="text-xs" />
-                  <span>Verified Corporate Clients</span>
-                </span>
-              </div>
-
-              <div className="rounded-xl overflow-hidden bg-white border border-slate-100 p-2 sm:p-4 flex items-center justify-center">
-                <img
-                  src="/assets/customers/customer-logos-1.jpg"
-                  alt="Our Happy Customers - Aerospace, Defense, and Industrial Engineering Clients"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/assets/broadbeach_campus.jpg";
-                  }}
-                  className="w-full h-auto object-contain max-h-[550px] rounded-lg"
-                />
-              </div>
-            </div>
-
-            {/* Sheet 2: Technology, Manufacturing & Institutional Partners */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-[#E2E8F0] shadow-sm">
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#F1F5F9]">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-[#121C46]">
-                    Technology, Supply Chain &amp; Academic Partners
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#475569] mt-0.5">
-                    Christ University, CADAC, Creative Tech, Bolt, MV Technologies, Aviation Services, Alpha Design, and partners.
-                  </p>
-                </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 text-[#F97316] border border-orange-100 text-xs font-bold uppercase tracking-wider">
-                  <FaCheckCircle className="text-xs" />
-                  <span>Institutional Partners</span>
-                </span>
-              </div>
-
-              <div className="rounded-xl overflow-hidden bg-white border border-slate-100 p-2 sm:p-4 flex items-center justify-center">
-                <img
-                  src="/assets/customers/customer-logos-2.jpg"
-                  alt="Our Happy Customers - Technology, Universities, and Corporate Partners"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/assets/broadbeach_campus.jpg";
-                  }}
-                  className="w-full h-auto object-contain max-h-[500px] rounded-lg"
-                />
-              </div>
-            </div>
-
-          </div>
+          {/* 4-Row Continuous Alternating Horizontal Scroll (No Duplicates) */}
+          <PartnerMarquee4Rows />
 
           {/* Sector Badges Pill Showcase */}
           <div className="mt-12">
@@ -435,7 +374,7 @@ const Ourcoustmers = () => {
       </section>
 
       {/* 7. MEDIA OBJECT: SATISFACTION METRICS */}
-      <section className="bg-[#0F1E36] py-12 sm:py-14 text-white">
+      <section className="bg-[#131E4A] py-12 sm:py-14 text-white">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {satisfactionMetrics.map((sm, index) => (

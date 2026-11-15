@@ -80,7 +80,7 @@ const History = () => {
   const heritageStats = [
     {
       icon: <FaCalendarAlt />,
-      number: "10+",
+      number: "20+",
       label: "Years of Educational Excellence",
     },
     {
@@ -200,7 +200,7 @@ const History = () => {
       />
 
       {/* 5. MEDIA OBJECT: STATS METRICS */}
-      <section className="bg-[#0F1E36] py-12 sm:py-14 text-white">
+      <section className="bg-[#131E4A] py-12 sm:py-14 text-white">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {heritageStats.map((st, index) => (

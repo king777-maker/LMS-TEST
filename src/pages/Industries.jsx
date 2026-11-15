@@ -121,7 +121,7 @@ const Industries = () => {
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
             <h2 className="text-[28px] sm:text-[34px] font-extrabold text-[#121C46] leading-tight">
-              Specialized Industry Curricula
+              Specialized Industry Curriculum
             </h2>
             <p className="mt-2.5 text-[#475569] text-sm sm:text-base leading-relaxed">
               Explore how our course tracks adapt standard clauses to solve sector-specific compliance challenges.

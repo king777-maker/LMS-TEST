@@ -72,22 +72,8 @@ const TestimonialCard = ({ testimonial }) => {
       </div>
 
       {/* User */}
-      <div className="flex items-center mt-6 pt-4 border-t border-slate-100">
-        <img
-          src={testimonial.image}
-          alt={testimonial.name}
-          className="
-          w-13
-          h-13
-          rounded-full
-          object-cover
-          border-3
-          border-[#EDF4FF]
-          shrink-0
-          "
-        />
-
-        <div className="ml-3.5 min-w-0">
+      <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100">
+        <div className="min-w-0">
           <h4
             className="
             text-[#1D3557]

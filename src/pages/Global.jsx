@@ -136,7 +136,7 @@ const Global = () => {
           "Broadbeach Online Academy was designed from day one to serve this international reality. Today, our students study across Europe, the Middle East, Asia-Pacific, Africa, and the Americas, sharing knowledge and earning credentials recognized across the globe.",
         ]}
         bullets={[
-          { text: "Curricula fully harmonized with international ISO/IEC specifications" },
+          { text: "Curriculum fully harmonized with international ISO/IEC specifications" },
           { text: "Self-paced study adapted to every global timezone" },
           { text: "Multi-jurisdiction case studies reflecting diverse regulatory frameworks" },
         ]}
@@ -212,7 +212,7 @@ const Global = () => {
       />
 
       {/* 5. MEDIA OBJECT: GLOBAL STATS */}
-      <section className="bg-[#0F1E36] py-12 sm:py-14 text-white">
+      <section className="bg-[#131E4A] py-12 sm:py-14 text-white">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {globalHighlights.map((gh, index) => (

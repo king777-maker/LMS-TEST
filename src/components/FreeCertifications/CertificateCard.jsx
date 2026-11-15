@@ -102,14 +102,14 @@ const CertificateCard = ({ certificate }) => {
                     className="
                         absolute top-3 right-3
                         bg-[#131E4A]/95 backdrop-blur-md text-[#F7C600]
-                        text-[10px] font-extrabold
+                        text-[11px] font-extrabold
                         uppercase tracking-wider
                         px-2.5 py-1 rounded-md
                         border border-[#F7C600]/40
                         shadow-sm select-none
                     "
                 >
-                    Free Certification
+                    Free
                 </div>
             </div>
 

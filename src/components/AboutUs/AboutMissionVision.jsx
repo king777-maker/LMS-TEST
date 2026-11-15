@@ -190,7 +190,7 @@ const AboutMissionVision = () => {
                 {[
                   {
                     title: "Job-Ready Auditing Capabilities",
-                    desc: "Curricula tailored around real audit checklists, non-conformity reporting, and evidence review.",
+                    desc: "Curriculum tailored around real audit checklists, non-conformity reporting, and evidence review.",
                   },
                   {
                     title: "Flexible Digital Self-Paced Access",
