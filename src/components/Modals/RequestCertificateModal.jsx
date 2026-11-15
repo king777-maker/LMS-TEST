@@ -90,10 +90,10 @@ const RequestCertificateModal = ({ isOpen, onClose }) => {
       ></div>
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-xl bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-10 animate-fadeInSlideDown">
+      <div className="relative w-full max-w-xl bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-10 animate-modal-enter origin-center">
         
         {/* Header */}
-        <div className="bg-[#08182b] text-white p-5 flex items-center justify-between border-b border-white/10">
+        <div className="settle-header bg-[#08182b] text-white p-5 flex items-center justify-between border-b border-white/10">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-[#F5A623] text-[#08182b] flex items-center justify-center font-bold text-lg shadow-xs">
               <FaAward />
@@ -144,7 +144,7 @@ const RequestCertificateModal = ({ isOpen, onClose }) => {
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 sm:p-6 max-h-[75vh] overflow-y-auto custom-dropdown-scroll">
+        <div className="settle-body p-5 sm:p-6 max-h-[75vh] overflow-y-auto custom-dropdown-scroll">
           
           {/* ===================================================
               TAB 1: VERIFY CREDENTIAL
@@ -197,7 +197,7 @@ const RequestCertificateModal = ({ isOpen, onClose }) => {
               {hasSearched && (
                 <div className="mt-4 pt-4 border-t border-slate-100">
                   {searchResult ? (
-                    <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-50/90 to-teal-50/50 border border-emerald-200 shadow-xs space-y-3">
+                    <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-50/90 to-teal-50/50 border border-emerald-200 shadow-xs space-y-3 pulse-success">
                       <div className="flex items-center justify-between">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-600 text-white shadow-2xs">
                           <FaCheckCircle className="text-[10px]" />

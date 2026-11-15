@@ -155,7 +155,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                 <div
                   onMouseEnter={cancelClose}
                   onMouseLeave={handleMouseLeave}
-                  className="hidden xl:flex absolute top-full left-0 mt-0.5 w-[300px] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col select-none overflow-hidden"
+                  className="hidden xl:flex absolute top-full left-0 mt-0.5 w-[300px] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 origin-top animate-popover-enter before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col select-none overflow-hidden"
                 >
                   {/* Category Header */}
                   <div className="shrink-0 h-[34px] px-4 border-b border-slate-100 flex items-center justify-between bg-white rounded-t-[14px] select-none">
@@ -175,12 +175,13 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                       { to: "/accreditations-approvals", label: "Our Approvals" },
                       { to: "/about/global-foot-print", label: "Global Reach" },
                       { to: "/about/our-customers", label: "Happy Customers" },
-                    ].map((item) => (
+                    ].map((item, idx) => (
                       <Link
                         key={item.to}
                         to={item.to}
                         onClick={() => setOpenDropdownId(null)}
-                        className="flex items-center justify-between h-[36px] min-h-[36px] px-4 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer border-b border-slate-100/80 last:border-b-0"
+                        style={{ "--stagger-i": idx }}
+                        className="stagger-row flex items-center justify-between h-[36px] min-h-[36px] px-4 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer border-b border-slate-100/80 last:border-b-0"
                       >
                         <span className="text-[13px] font-medium leading-normal text-[#0A192F] group-hover:text-[#0052CC] transition-colors">
                           {item.label}
@@ -289,9 +290,9 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
             className="flex items-center gap-1.5 px-2.5 h-7.5 sm:h-8 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer border border-white/20 transition-all leading-none"
           >
             {isMobileOpen ? (
-              <FaTimes className="text-xs" />
+              <FaTimes className="text-xs icon-crossfade-in" />
             ) : (
-              <FaBars className="text-xs" />
+              <FaBars className="text-xs icon-crossfade-in" />
             )}
             <span className="hidden sm:inline">Browse Categories</span>
           </button>

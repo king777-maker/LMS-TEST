@@ -57,7 +57,7 @@ const EnrollButton = ({
         text-[16px] leading-normal
         rounded-[14px]
         shadow-md hover:shadow-lg
-        hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99]
+        hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]
         focus:outline-none focus:ring-4 focus:ring-[#93C5FD]/60
         disabled:bg-[#CBD5E1] disabled:!text-[#475569] disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none
         transition-all duration-200

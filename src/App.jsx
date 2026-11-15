@@ -164,6 +164,10 @@ function App() {
               }}
               toastOptions={{
                 duration: 4000,
+                className: "ease-entrance shadow-lg rounded-xl border border-slate-200 font-sans text-xs sm:text-sm",
+                success: {
+                  className: "pulse-success border-emerald-300 bg-white text-slate-800 shadow-md",
+                },
               }}
             />
 

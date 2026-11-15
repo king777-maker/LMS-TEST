@@ -84,27 +84,23 @@ const ProfessionalDesktopDropdown = ({
             <div
                 className="
                     absolute
-
                     right-0
                     top-full
-
                     pt-2
-
                     w-[380px]
-
                     z-[1000]
-
+                    origin-top-right
                     opacity-0
                     invisible
-
-                    translate-y-2
-
+                    scale-95
+                    translate-y-1
                     group-hover/professional:opacity-100
                     group-hover/professional:visible
+                    group-hover/professional:scale-100
                     group-hover/professional:translate-y-0
-
                     transition-all
-                    duration-200
+                    duration-[180ms]
+                    ease-out
                 "
             >
 

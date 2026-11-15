@@ -243,7 +243,7 @@ export const CookieConsent = () => {
                                                 }`}
                                             >
                                                 <span
-                                                    className={`inline-block h-4.5 w-4.5 transform rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out ${
+                                                    className={`switch-knob inline-block h-4.5 w-4.5 transform rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out ${
                                                         preferences.analytics ? "translate-x-5" : "translate-x-0.5"
                                                     }`}
                                                 />
@@ -281,7 +281,7 @@ export const CookieConsent = () => {
                                                 }`}
                                             >
                                                 <span
-                                                    className={`inline-block h-4.5 w-4.5 transform rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out ${
+                                                    className={`switch-knob inline-block h-4.5 w-4.5 transform rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out ${
                                                         preferences.functional ? "translate-x-5" : "translate-x-0.5"
                                                     }`}
                                                 />

@@ -60,7 +60,7 @@ const Button = forwardRef(
 
     // Base structural styling
     const baseClasses =
-      "inline-flex items-center justify-center font-semibold whitespace-nowrap transition-all duration-150 select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD43B] focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100";
+      "inline-flex items-center justify-center font-semibold whitespace-nowrap transition-all duration-150 select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD43B] focus-visible:ring-offset-2 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100";
 
     // Variant calculation
     let variantClasses = "";

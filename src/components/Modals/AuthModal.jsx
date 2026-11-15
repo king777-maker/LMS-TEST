@@ -173,10 +173,10 @@ const AuthModal = ({ isOpen, onClose, initialTab = "login", onLoginSuccess }) =>
       ></div>
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-md bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-10 animate-fadeInSlideDown">
+      <div className="relative w-full max-w-md bg-white text-slate-800 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-10 animate-modal-enter origin-center">
         
         {/* Header */}
-        <div className="bg-[#08182b] text-white p-5 flex items-center justify-between border-b border-white/10">
+        <div className="settle-header bg-[#08182b] text-white p-5 flex items-center justify-between border-b border-white/10">
           <div>
             <h3 className="text-base sm:text-lg font-bold text-white">
               {tab === "login" ? "Welcome to Broadbeach Academy" : "Create Student Account"}

@@ -54,13 +54,16 @@ const DesktopDropdown = ({
                     pt-2
                     max-h-[calc(100vh-140px)]
                     overflow-y-auto
+                    origin-top
                     opacity-0
                     invisible
-                    translate-y-2
+                    scale-95
+                    translate-y-1
                     group-hover:opacity-100
                     group-hover:visible
+                    group-hover:scale-100
                     group-hover:translate-y-0
-                    transition-all duration-200
+                    transition-all duration-[180ms] ease-out
                 `}
             >
                 <div

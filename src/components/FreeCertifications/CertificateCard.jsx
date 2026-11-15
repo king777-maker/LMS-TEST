@@ -74,6 +74,7 @@ const CertificateCard = ({ certificate }) => {
                 shadow-[0_2px_10px_rgba(16,43,78,0.04)]
                 hover:shadow-[0_12px_28px_rgba(16,43,78,0.10)]
                 hover:-translate-y-1
+                active:scale-[0.97]
                 transition-all duration-300
                 w-full
                 flex flex-col

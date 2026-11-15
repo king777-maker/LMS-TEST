@@ -422,7 +422,7 @@ textarea {
 }
 
 .btn-base:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 /* Standard Sizing Tokens */
@@ -574,7 +574,7 @@ button[aria-selected="true"][data-active-theme="gold"] span {
 .btn-enroll:active:not(:disabled) {
   background-color: #1E40AF !important;
   color: #FFFFFF !important;
-  transform: translateY(0) scale(0.99);
+  transform: translateY(0) scale(0.97);
 }
 
 .btn-enroll:focus-visible {
@@ -708,12 +708,265 @@ button[aria-selected="true"][data-active-theme="gold"] span {
   animation: heroFloat 6s ease-in-out infinite;
 }
 
+/* ========================================================
+   BROADBEACH ACADEMY — 20 UI ANIMATION DESIGN RULES ENGINE
+   ======================================================== */
+
+:root {
+  /* 1. Ease-out for entrances: Fast start, graceful deceleration */
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  /* 9. Ease-in-out for moves: Smooth acceleration & deceleration */
+  --ease-move: cubic-bezier(0.4, 0, 0.2, 1);
+  /* 2 & 15. Dropdown timings: 180ms in, 144ms out (20% shorter) */
+  --dropdown-enter-duration: 180ms;
+  --dropdown-exit-duration: 144ms;
+  /* Modal timings: 220ms in, 176ms out (20% shorter) */
+  --modal-enter-duration: 220ms;
+  --modal-exit-duration: 176ms;
+  /* 3. Stagger step: exactly 30ms */
+  --stagger-step: 30ms;
+}
+
+/* 4. Scale to 0.97 on press & 14. Don't tween while held */
+button:active:not(:disabled),
+a:active:not([disabled]),
+[role="button"]:active:not([aria-disabled="true"]),
+.press-97:active,
+.btn-base:active,
+.btn-enroll:active:not(:disabled) {
+  transform: scale(0.97) !important;
+  transition-duration: 50ms !important;
+  transition-timing-function: var(--ease-entrance) !important;
+}
+
+/* 13. No bounce on everyday UI: strictly damped zero-overshoot transitions */
+.no-bounce,
+.btn-base,
+.btn-enroll,
+.card-standard,
+.input-standard,
+nav a,
+nav button {
+  animation-timing-function: var(--ease-entrance);
+}
+
+/* 10. Start popovers at 0.95 & 11. Enter from the trigger & 12. Exit to the trigger */
+@keyframes popoverEnterFromTrigger {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes popoverExitToTrigger {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+}
+
+.animate-popover-enter,
+.animate-fadeInSlideDown {
+  transform-origin: top center;
+  animation: popoverEnterFromTrigger var(--dropdown-enter-duration) var(--ease-entrance) both;
+}
+
+.animate-popover-exit {
+  transform-origin: top center;
+  animation: popoverExitToTrigger var(--dropdown-exit-duration) var(--ease-entrance) both;
+}
+
+.origin-trigger-top {
+  transform-origin: top center !important;
+}
+
+.origin-trigger-left {
+  transform-origin: top left !important;
+}
+
+.origin-trigger-right {
+  transform-origin: top right !important;
+}
+
+/* Modal Dialog Entrance: Starts at 0.95 with ease-out */
+@keyframes modalEnterFrom95 {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-enter {
+  animation: modalEnterFrom95 var(--modal-enter-duration) var(--ease-entrance) both;
+}
+
+/* 3. Stagger list rows by 30ms */
+.stagger-row {
+  animation: heroFadeUp 0.35s var(--ease-entrance) both;
+  animation-delay: calc(var(--stagger-i, 0) * var(--stagger-step));
+}
+
+.stagger-delay-1 { animation-delay: 30ms !important; }
+.stagger-delay-2 { animation-delay: 60ms !important; }
+.stagger-delay-3 { animation-delay: 90ms !important; }
+.stagger-delay-4 { animation-delay: 120ms !important; }
+.stagger-delay-5 { animation-delay: 150ms !important; }
+.stagger-delay-6 { animation-delay: 180ms !important; }
+.stagger-delay-7 { animation-delay: 210ms !important; }
+.stagger-delay-8 { animation-delay: 240ms !important; }
+
+/* 5. Stretch moving knobs 12% on switch/slider interactions */
+.switch-knob {
+  transition: transform 200ms var(--ease-entrance), width 150ms ease, background-color 200ms ease;
+  transform-origin: center;
+}
+
+.switch-knob:active,
+button[role="switch"]:active .switch-knob,
+button[role="switch"]:active span[class*="rounded-full"] {
+  transform: scaleX(1.12) scaleY(0.92) !important;
+}
+
+/* 6. Stagger as details settle in modal/drawers */
+.settle-header {
+  animation: heroFadeUp 0.24s var(--ease-entrance) 0ms both;
+}
+.settle-body {
+  animation: heroFadeUp 0.28s var(--ease-entrance) 30ms both;
+}
+.settle-footer {
+  animation: heroFadeUp 0.32s var(--ease-entrance) 60ms both;
+}
+
+/* 7. Arcs for object movement */
+@keyframes arcTravel {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(6px, -4px, 0);
+  }
+  100% {
+    transform: translate3d(12px, 0, 0);
+  }
+}
+.motion-arc {
+  animation: arcTravel 3s var(--ease-move) infinite alternate;
+}
+
+/* 8. Pulse to confirm success */
+@keyframes confirmSuccessPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  45% {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.15);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.pulse-success {
+  animation: confirmSuccessPulse 420ms var(--ease-entrance) 1 !important;
+}
+
+/* 16. Overlap old & new states */
+.state-crossfade-container {
+  display: grid;
+  grid-template-areas: "overlap";
+}
+.state-crossfade-panel {
+  grid-area: overlap;
+  transition: opacity 180ms var(--ease-entrance), transform 180ms var(--ease-entrance);
+}
+
+/* 17. Masks for reveals & colour */
+.mask-reveal-h {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 260ms var(--ease-entrance);
+}
+.mask-hidden-left {
+  clip-path: inset(0 100% 0 0);
+}
+
+/* 18. Crossfade icons + blur (smooth icon morphing) */
+@keyframes iconCrossfadeEnter {
+  0% {
+    opacity: 0;
+    filter: blur(2px);
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+@keyframes iconCrossfadeExit {
+  0% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(2px);
+    transform: scale(0.85);
+  }
+}
+
+.icon-crossfade-in {
+  animation: iconCrossfadeEnter 180ms var(--ease-entrance) both;
+}
+
+.icon-crossfade-out {
+  animation: iconCrossfadeExit 144ms var(--ease-entrance) both;
+}
+
+/* 19. Rubber band past bounds */
+.rubber-band-container {
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 20. Reuse the same layoutId / shared indicator transition */
+.shared-layout-pill {
+  transition: transform 220ms var(--ease-move), width 220ms var(--ease-move), left 220ms var(--ease-move);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-fade-up,
   .hero-fade-up-delay-1,
   .hero-fade-up-delay-2,
   .hero-fade-up-delay-3,
-  .hero-illustration-float {
+  .hero-illustration-float,
+  .animate-popover-enter,
+  .animate-fadeInSlideDown,
+  .animate-popover-exit,
+  .animate-modal-enter,
+  .stagger-row,
+  .motion-arc,
+  .pulse-success,
+  .icon-crossfade-in,
+  .icon-crossfade-out {
     animation: none !important;
     transform: none !important;
   }

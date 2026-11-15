@@ -111,7 +111,7 @@ const CourseDropdown = ({
         left: "50%",
         transform: shiftX ? `translateX(calc(-50% + ${shiftX}px))` : "translateX(-50%)",
       }}
-      className="hidden xl:flex absolute top-full left-1/2 w-[700px] max-w-[calc(100vw-32px)] max-h-[min(470px,calc(100vh-110px))] mt-0.5 bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col transition-transform duration-150 select-none"
+      className="hidden xl:flex absolute top-full left-1/2 w-[700px] max-w-[calc(100vw-32px)] max-h-[min(470px,calc(100vh-110px))] mt-0.5 bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 origin-top animate-popover-enter before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col transition-transform duration-150 select-none"
     >
       {/* =========================================================
           1. CATEGORY HEADER (Completely removed for Free Courses:
@@ -176,7 +176,8 @@ const CourseDropdown = ({
               role="menuitem"
               to={getCourseUrl(course)}
               onClick={onClose}
-              className={`flex items-center justify-between h-[34px] min-h-[34px] px-4 py-1 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0 ${
+              style={{ "--stagger-i": Math.min(index, 8) }}
+              className={`stagger-row flex items-center justify-between h-[34px] min-h-[34px] px-4 py-1 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0 ${
                 isFirstItem && !shouldShowHeader && !hasSubcategories
                   ? "rounded-t-[14px]"
                   : ""

@@ -254,7 +254,7 @@ const FreeCertifications = () => {
                                     key={cat}
                                     type="button"
                                     onClick={() => setSelectedCategory(cat)}
-                                    className={`h-10 px-4 rounded-xl text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer inline-flex items-center justify-center shrink-0 border select-none active:scale-[0.98] ${
+                                    className={`h-10 px-4 rounded-xl text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer inline-flex items-center justify-center shrink-0 border select-none active:scale-[0.97] ${
                                         isSelected
                                             ? "bg-[#0a1e38] text-white border-[#0a1e38] shadow-xs"
                                             : "bg-white hover:bg-slate-100 text-slate-700 border-slate-200"
@@ -347,11 +347,13 @@ const FreeCertifications = () => {
                     </div>
                 )}
 
-                {/* Cards Grid */}
+                {/* Cards Grid with 30ms Stagger (Rule 3) */}
                 {filteredCertificates.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
-                        {filteredCertificates.map((cert) => (
-                            <CertificateCard key={cert.id} certificate={cert} />
+                        {filteredCertificates.map((cert, index) => (
+                            <div key={cert.id} style={{ "--stagger-i": Math.min(index, 11) }} className="stagger-row h-full">
+                                <CertificateCard certificate={cert} />
+                            </div>
                         ))}
                     </div>
                 ) : (
