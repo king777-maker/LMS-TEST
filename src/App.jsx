@@ -5,15 +5,15 @@ import { AuthPromptProvider } from "./context/AuthPromptContext";
 import { AdminProvider } from "./context/AdminContext";
 
 /* =========================================================
-   BROADBEACH ACADEMY ADMIN PANEL (5 MODULES)
+   BROADBEACH ACADEMY ADMIN PANEL (Lazy-Loaded Modules)
 ========================================================= */
 import AdminLogin from "./pages/admin/AdminLogin";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import OnlineCertMaster from "./pages/admin/OnlineCertMaster";
-import ManualCertMaster from "./pages/admin/ManualCertMaster";
-import TicketMaster from "./pages/admin/TicketMaster";
-import TrashBin from "./pages/admin/TrashBin";
-import AdminAccess from "./pages/admin/AdminAccess";
+const AdminDashboard = React.lazy(() => import("./pages/admin/AdminDashboard"));
+const OnlineCertMaster = React.lazy(() => import("./pages/admin/OnlineCertMaster"));
+const ManualCertMaster = React.lazy(() => import("./pages/admin/ManualCertMaster"));
+const TicketMaster = React.lazy(() => import("./pages/admin/TicketMaster"));
+const TrashBin = React.lazy(() => import("./pages/admin/TrashBin"));
+const AdminAccess = React.lazy(() => import("./pages/admin/AdminAccess"));
 import AdminLayout from "./components/Admin/AdminLayout";
 import AdminProtectedRoute from "./components/Admin/AdminProtectedRoute";
 import { adminRoutes, ADMIN_BASE_PATH, isSecretAdminLoginPath } from "./utils/adminRoutes";
@@ -26,12 +26,12 @@ import About from "./pages/About";
 import Course from "./pages/Course";
 import Enroll from "./pages/Enroll";
 import Learning from "./pages/Learning";
-import Assignment from "./pages/Assignment";
-import Result from "./pages/Result";
-import Certificate from "./pages/Certificate";
+const Assignment = React.lazy(() => import("./pages/Assignment"));
+const Result = React.lazy(() => import("./pages/Result"));
+const Certificate = React.lazy(() => import("./pages/Certificate"));
 import LessonVideo from "./pages/LessonVideo";
 import LessonContent from "./pages/LessonContent";
-import LessonSlides from "./pages/LessonSlides";
+const LessonSlides = React.lazy(() => import("./pages/LessonSlides"));
 
 import { Toaster } from "react-hot-toast";
 
@@ -48,7 +48,7 @@ import Global from "./pages/Global";
 
 import CourseDetails from "./pages/courses/CourseDetails";
 import FreeCoursesPage from "./pages/FreeCoursesPage";
-import CertificateAccess from "./pages/CertificateAccess";
+const CertificateAccess = React.lazy(() => import("./pages/CertificateAccess"));
 import MainCategoryPage from "./pages/MainCategoryPage";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -71,21 +71,28 @@ import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import AboutUs from "./pages/AboutUs";
 import AccreditationsApprovals from "./pages/AccreditationsApprovals";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import CancellationRefundPolicy from "./pages/CancellationRefundPolicy";
-import TermsOfUse from "./pages/TermsOfUse";
-import ReturnPolicy from "./pages/ReturnPolicy";
-import DataCompliancePolicy from "./pages/DataCompliancePolicy";
-import DataProtectionPolicy from "./pages/DataProtectionPolicy";
-import ConsentManagementPolicy from "./pages/ConsentManagementPolicy";
-import AccessibilityStatement from "./pages/AccessibilityStatement";
-import CookiePolicy from "./pages/CookiePolicy";
+const TermsAndConditions = React.lazy(() => import("./pages/TermsAndConditions"));
+const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
+const CancellationRefundPolicy = React.lazy(() => import("./pages/CancellationRefundPolicy"));
+const TermsOfUse = React.lazy(() => import("./pages/TermsOfUse"));
+const ReturnPolicy = React.lazy(() => import("./pages/ReturnPolicy"));
+const DataCompliancePolicy = React.lazy(() => import("./pages/DataCompliancePolicy"));
+const DataProtectionPolicy = React.lazy(() => import("./pages/DataProtectionPolicy"));
+const ConsentManagementPolicy = React.lazy(() => import("./pages/ConsentManagementPolicy"));
+const AccessibilityStatement = React.lazy(() => import("./pages/AccessibilityStatement"));
+const CookiePolicy = React.lazy(() => import("./pages/CookiePolicy"));
 import RaiseATicket from "./pages/RaiseATicket";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/common/CookieConsent";
 import MaintenancePage from "./pages/MaintenancePage";
 import { IS_MAINTENANCE_MODE } from "./config/maintenance";
+
+const PageFallback = () => (
+  <div className="min-h-[50vh] flex flex-col items-center justify-center p-8 bg-slate-50/50">
+    <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-3" />
+    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Loading...</span>
+  </div>
+);
 
 
 
@@ -175,7 +182,8 @@ function App() {
           {/* ===================================================
               ALL ROUTES
           =================================================== */}
-          <Routes>
+          <React.Suspense fallback={<PageFallback />}>
+            <Routes>
 
             {/* =================================================
                 HOME
@@ -722,6 +730,7 @@ function App() {
               element={<NotFound />}
             />
           </Routes>
+        </React.Suspense>
 
         </main>
 
