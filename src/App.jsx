@@ -233,6 +233,16 @@ function App() {
             />
 
             <Route
+              path="/about/our-approvals"
+              element={<AccreditationsApprovals />}
+            />
+
+            <Route
+              path="/about/approvals"
+              element={<AccreditationsApprovals />}
+            />
+
+            <Route
               path="/about/our-customers"
               element={<Ourcoustmers />}
             />
