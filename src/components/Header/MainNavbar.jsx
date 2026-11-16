@@ -155,7 +155,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                 <div
                   onMouseEnter={cancelClose}
                   onMouseLeave={handleMouseLeave}
-                  className="hidden xl:flex absolute top-full left-0 mt-0.5 w-[300px] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 origin-top animate-popover-enter before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col select-none overflow-hidden"
+                  className="hidden xl:flex absolute top-full left-0 mt-0.5 w-[300px] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 origin-top animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col select-none overflow-hidden"
                 >
                   {/* Category Header */}
                   <div className="shrink-0 h-[34px] px-4 border-b border-slate-100 flex items-center justify-between bg-white rounded-t-[14px] select-none">

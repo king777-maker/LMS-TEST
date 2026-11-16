@@ -98,19 +98,18 @@ const LogoCard = ({ client }) => {
   return (
     <div
       className="
-        flex items-center justify-center px-4 py-2.5 rounded-2xl
-        bg-white border border-[#E2E8F0] shadow-2xs
-        hover:border-[#2563EB] hover:shadow-md hover:-translate-y-0.5
-        transition-all duration-200 shrink-0
-        w-[175px] sm:w-[205px] h-[76px] sm:h-[84px]
-        select-none cursor-pointer group/card
+        flex items-center justify-center px-4 py-2 shrink-0
+        w-[170px] sm:w-[210px] h-[72px] sm:h-[84px]
+        select-none cursor-pointer group/logo
+        rounded-xl hover:bg-slate-50/70
+        transition-all duration-200 hover:scale-108
       "
       title={client.name}
     >
       <img
         src={client.logo}
         alt={client.name}
-        className="max-h-[50px] max-w-[150px] w-auto h-auto object-contain transition-transform duration-200 group-hover/card:scale-106"
+        className="max-h-[50px] sm:max-h-[58px] max-w-[150px] sm:max-w-[185px] w-auto h-auto object-contain transition-all duration-200 group-hover/logo:brightness-105"
         onError={(e) => {
           e.currentTarget.style.display = "none";
           if (e.currentTarget.nextSibling) {
@@ -131,9 +130,9 @@ const MarqueeRow = ({ items, direction = "left", speed = "42s" }) => {
   const animClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
 
   return (
-    <div className="relative w-full overflow-hidden py-1.5 group">
+    <div className="relative w-full overflow-hidden py-1 group">
       <div
-        className={`flex gap-4 sm:gap-5 w-max ${animClass} group-hover:[animation-play-state:paused]`}
+        className={`flex gap-8 sm:gap-12 w-max ${animClass} group-hover:[animation-play-state:paused]`}
         style={{ animationDuration: speed }}
       >
         {doubleList.map((client, idx) => (

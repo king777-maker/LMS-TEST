@@ -30,7 +30,6 @@ const CourseDropdown = ({
 }) => {
   const [selectedSubcatId, setSelectedSubcatId] = useState("all");
   const dropdownRef = useRef(null);
-  const [shiftX, setShiftX] = useState(0);
 
   const isFreeCourses = category?.id === "free-courses" || category?.id === "free";
   const shouldShowHeader = !isFreeCourses && !category?.hideHeader;
@@ -68,34 +67,6 @@ const CourseDropdown = ({
     return `/courses/${course.id || course.slug}`;
   };
 
-  // Centering & Viewport boundary clamp:
-  // Starts centered beneath the navbar (left: 50%, translate: -50%),
-  // and dynamically clamps with 16px margin if viewport edges are exceeded.
-  useEffect(() => {
-    const handleReposition = () => {
-      if (!dropdownRef.current) return;
-      const rect = dropdownRef.current.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
-      const margin = 16;
-
-      let shift = 0;
-      if (rect.right > viewportWidth - margin) {
-        shift = viewportWidth - margin - rect.right;
-      } else if (rect.left < margin) {
-        shift = margin - rect.left;
-      }
-      setShiftX((prev) => prev + shift);
-    };
-
-    setShiftX(0);
-    const raf = requestAnimationFrame(handleReposition);
-    window.addEventListener("resize", handleReposition);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", handleReposition);
-    };
-  }, [category, selectedSubcatId]);
-
   return (
     <div
       ref={dropdownRef}
@@ -104,20 +75,16 @@ const CourseDropdown = ({
       aria-label={`${category?.title || "Course"} options`}
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
-      style={{
-        left: "50%",
-        transform: shiftX ? `translateX(calc(-50% + ${shiftX}px))` : "translateX(-50%)",
-      }}
-      className="hidden xl:flex absolute top-full z-50 mt-0.5 pointer-events-auto"
+      className="hidden xl:flex absolute top-full left-1/2 -translate-x-1/2 z-50 mt-0.5 pointer-events-auto select-none"
     >
-      {/* Decoupled Animated Content Card — Prevents CSS Animation from Overwriting translateX(-50%) */}
+      {/* Animated Content Card — Centered beneath navbar with 150-250ms ease-out entrance */}
       <div
         style={{
           width: "700px",
           maxWidth: "calc(100vw - 32px)",
           maxHeight: "min(470px, calc(100vh - 110px))",
         }}
-        className="w-[700px] max-w-[calc(100vw-32px)] max-h-[min(470px,calc(100vh-110px))] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 origin-top animate-popover-enter before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex flex-col select-none overflow-hidden"
+        className="w-[700px] max-w-[calc(100vw-32px)] max-h-[min(470px,calc(100vh-110px))] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 origin-top animate-fadeInSlideDown before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex flex-col select-none overflow-hidden"
       >
         {/* =========================================================
             1. CATEGORY HEADER (Completely removed for Free Courses:
