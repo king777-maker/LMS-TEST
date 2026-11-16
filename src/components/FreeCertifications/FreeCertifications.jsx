@@ -1,6 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { FiSearch, FiSliders, FiBookOpen, FiAward, FiX, FiRotateCcw } from "react-icons/fi";
+import { FiSearch, FiBookOpen, FiAward, FiX, FiRotateCcw } from "react-icons/fi";
 import CertificateCard from "./CertificateCard";
 import { getFreeCertifications } from "../../api/api";
 import freeCoursesData, {
@@ -9,14 +8,11 @@ import freeCoursesData, {
     deriveFreeCourseCategory,
 } from "../../data/freeCoursesData";
 
-const fallbackFreeCerts = freeCoursesData;
+const staticCourseMap = new Map(freeCoursesData.map((c) => [String(c.id), c]));
 
 const normalizeCertification = (item, idx = 0) => {
     const idStr = String(item.id || idx + 1);
-    const matchedStatic = freeCoursesData.find(
-        (s) => String(s.id) === idStr ||
-               s.title?.toLowerCase() === (item.name || item.title || "").toLowerCase()
-    );
+    const matchedStatic = staticCourseMap.get(idStr) || freeCoursesData[idx];
     const staticMeta = STATIC_FREE_CERT_METADATA[idStr] || {};
     const category = staticMeta.category || deriveFreeCourseCategory(item);
     
@@ -62,9 +58,8 @@ const normalizeCertification = (item, idx = 0) => {
 };
 
 const FreeCertifications = () => {
-    const [certificates, setCertificates] = useState(() => fallbackFreeCerts.map((c, i) => normalizeCertification(c, i)));
+    const [certificates, setCertificates] = useState(() => freeCoursesData.map((c, i) => normalizeCertification(c, i)));
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [sortBy, setSortBy] = useState("popular");
@@ -100,7 +95,7 @@ const FreeCertifications = () => {
                 }
             } catch (err) {
                 if (isMounted) {
-                    setCertificates(fallbackFreeCerts.map((c, i) => normalizeCertification(c, i)));
+                    setCertificates(freeCoursesData.map((c, i) => normalizeCertification(c, i)));
                 }
             } finally {
                 if (isMounted) setLoading(false);
