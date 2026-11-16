@@ -252,6 +252,11 @@ function App() {
               element={<Global />}
             />
 
+            <Route
+              path="/about/global-reach"
+              element={<Global />}
+            />
+
 
             {/* =================================================
                 COURSE
