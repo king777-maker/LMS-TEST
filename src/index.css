@@ -773,10 +773,24 @@ nav button {
   }
 }
 
-.animate-popover-enter,
-.animate-fadeInSlideDown {
+@keyframes fadeInSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-popover-enter {
   transform-origin: top center;
   animation: popoverEnterFromTrigger var(--dropdown-enter-duration) var(--ease-entrance) both;
+}
+
+.animate-fadeInSlideDown {
+  animation: fadeInSlideDown var(--dropdown-enter-duration) var(--ease-entrance) both;
 }
 
 .animate-popover-exit {
@@ -816,6 +830,22 @@ nav button {
 .stagger-row {
   animation: heroFadeUp 0.35s var(--ease-entrance) both;
   animation-delay: calc(var(--stagger-i, 0) * var(--stagger-step));
+}
+
+@keyframes dropdownRowFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-row-stagger {
+  animation: dropdownRowFade 140ms var(--ease-entrance) both;
+  animation-delay: calc(var(--stagger-i, 0) * 20ms);
 }
 
 .stagger-delay-1 { animation-delay: 30ms !important; }

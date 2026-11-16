@@ -181,7 +181,7 @@ const MainNavbar = ({ onToggleMobile, isMobileOpen }) => {
                         to={item.to}
                         onClick={() => setOpenDropdownId(null)}
                         style={{ "--stagger-i": idx }}
-                        className="stagger-row flex items-center justify-between h-[36px] min-h-[36px] px-4 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer border-b border-slate-100/80 last:border-b-0"
+                        className="dropdown-row-stagger flex items-center justify-between h-[36px] min-h-[36px] px-4 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer border-b border-slate-100/80 last:border-b-0"
                       >
                         <span className="text-[13px] font-medium leading-normal text-[#0A192F] group-hover:text-[#0052CC] transition-colors">
                           {item.label}

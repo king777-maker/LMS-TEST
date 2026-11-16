@@ -105,28 +105,34 @@ const CourseDropdown = ({
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
       style={{
-        width: "700px",
-        maxWidth: "calc(100vw - 32px)",
-        maxHeight: "min(470px, calc(100vh - 110px))",
         left: "50%",
         transform: shiftX ? `translateX(calc(-50% + ${shiftX}px))` : "translateX(-50%)",
       }}
-      className="hidden xl:flex absolute top-full left-1/2 w-[700px] max-w-[calc(100vw-32px)] max-h-[min(470px,calc(100vh-110px))] mt-0.5 bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 z-50 origin-top animate-popover-enter before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex-col transition-transform duration-150 select-none"
+      className="hidden xl:flex absolute top-full z-50 mt-0.5 pointer-events-auto"
     >
-      {/* =========================================================
-          1. CATEGORY HEADER (Completely removed for Free Courses:
-          No "FREE COURSES" heading, No "11 Courses" badge, No separator)
-      ========================================================= */}
-      {shouldShowHeader && (
-        <div className="shrink-0 h-[34px] px-4 border-b border-slate-100 flex items-center justify-between bg-white rounded-t-[14px] select-none">
-          <h3 className="text-[12.5px] font-bold uppercase tracking-wider text-[#0A192F]">
-            {categoryTitle}
-          </h3>
-          <span className="text-[10.5px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100/80 shrink-0 leading-none">
-            {courseCount} {courseCount === 1 ? "Course" : "Courses"}
-          </span>
-        </div>
-      )}
+      {/* Decoupled Animated Content Card — Prevents CSS Animation from Overwriting translateX(-50%) */}
+      <div
+        style={{
+          width: "700px",
+          maxWidth: "calc(100vw - 32px)",
+          maxHeight: "min(470px, calc(100vh - 110px))",
+        }}
+        className="w-[700px] max-w-[calc(100vw-32px)] max-h-[min(470px,calc(100vh-110px))] bg-white text-slate-800 rounded-[14px] shadow-[0_12px_36px_rgba(10,25,47,0.14)] border border-slate-200/90 origin-top animate-popover-enter before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-[''] flex flex-col select-none overflow-hidden"
+      >
+        {/* =========================================================
+            1. CATEGORY HEADER (Completely removed for Free Courses:
+            No "FREE COURSES" heading, No "11 Courses" badge, No separator)
+        ========================================================= */}
+        {shouldShowHeader && (
+          <div className="shrink-0 h-[34px] px-4 border-b border-slate-100 flex items-center justify-between bg-white rounded-t-[14px] select-none">
+            <h3 className="text-[12.5px] font-bold uppercase tracking-wider text-[#0A192F]">
+              {categoryTitle}
+            </h3>
+            <span className="text-[10.5px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100/80 shrink-0 leading-none">
+              {courseCount} {courseCount === 1 ? "Course" : "Courses"}
+            </span>
+          </div>
+        )}
 
       {/* Optional Track Filter Bar for categories with multiple tracks (e.g. Professional Certifications) */}
       {hasSubcategories && (
@@ -177,7 +183,7 @@ const CourseDropdown = ({
               to={getCourseUrl(course)}
               onClick={onClose}
               style={{ "--stagger-i": Math.min(index, 8) }}
-              className={`stagger-row flex items-center justify-between h-[34px] min-h-[34px] px-4 py-1 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0 ${
+              className={`dropdown-row-stagger flex items-center justify-between h-[34px] min-h-[34px] px-4 py-1 text-slate-800 hover:text-[#0052CC] hover:bg-slate-50/90 transition-colors duration-150 group cursor-pointer focus-visible:outline-none focus-visible:bg-slate-100 border-b border-slate-100/80 last:border-b-0 ${
                 isFirstItem && !shouldShowHeader && !hasSubcategories
                   ? "rounded-t-[14px]"
                   : ""
@@ -220,7 +226,8 @@ const CourseDropdown = ({
         </Link>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default CourseDropdown;
