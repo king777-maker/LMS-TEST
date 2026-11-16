@@ -496,7 +496,7 @@ export const resolveCourse = (identifier) => {
 
   const finalizeCourse = (c) => {
     if (!c) return null;
-    const authName = getAuthoritativeCourseName(c.certification_id || c.id || c.slug);
+    const authName = getAuthoritativeCourseName(c.certification_id || c.id || c.slug, c.title || c.name);
     if (authName) {
       return {
         ...c,

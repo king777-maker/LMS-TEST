@@ -29,12 +29,13 @@ import {
   BadgeCheck,
   Globe,
   Check,
+  X,
 } from "lucide-react";
 
 import { getCourseDetails, getFreeCertifications, enrollCourse } from "../../api/api";
 import { resolveCourse, getAllPortalCourses } from "../../data/coursesResolver";
 import { isCourseOnlineAvailable, LAUNCH_STATUS_CONFIG, FREE_COURSE_DB_MAP } from "../../constants/courseAvailability";
-import { AUTHORITATIVE_FREE_COURSE_NAMES } from "../../data/freeCoursesData";
+import { freeCoursesData, AUTHORITATIVE_FREE_COURSE_NAMES } from "../../data/freeCoursesData";
 import EnrollmentEnquiryForm from "../../components/course/EnrollmentEnquiryForm";
 
 // Subcomponents
@@ -60,6 +61,7 @@ const CourseDetails = () => {
   const [activeTab, setActiveTab] = useState("course-overview");
   const [expandedModules, setExpandedModules] = useState(new Set([1])); // Module 1 open by default
   const [copiedLink, setCopiedLink] = useState(false);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
 
   // Phase 1 Online Availability
   const isOnlineCourse = isCourseOnlineAvailable(courseSlugParam, course || initialCourse);
@@ -165,12 +167,30 @@ const CourseDetails = () => {
     });
   };
 
-  // Smooth in-page section navigation with sticky header offset
+  // Synchronize activeTab based on user scroll position
+  useEffect(() => {
+    const sections = ["course-overview", "course-syllabus", "certification-verification", "course-faqs"];
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveTab(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth in-page section navigation with sticky header & tab bar offset
   const scrollToSection = (sectionId) => {
     setActiveTab(sectionId);
     const el = document.getElementById(sectionId);
     if (el) {
-      const headerOffset = 110;
+      const headerOffset = 165;
       const elementPosition = el.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({
@@ -341,213 +361,187 @@ const CourseDetails = () => {
     { id: "course-faqs", label: "Frequently Asked Questions", icon: HelpCircle },
   ];
 
+  const staticFree = (freeCoursesData || []).find(
+    (f) =>
+      String(f.id) === String(course.id) ||
+      f.slug === course.slug ||
+      f.title?.toLowerCase() === (course.title || course.name || "").toLowerCase()
+  );
+  const validPreviewVideo = course.video_url || course.video || course.preview_video || staticFree?.video_url || null;
+
   return (
-    <div className="course-page bg-[#F8FAFD] min-h-screen">
+    <div className="course-page bg-[#F8FAFC] min-h-screen">
       {/* =========================================================================
-          HERO BANNER SECTION (Full Width Responsive Header with Integrated Start Course,
-          Aligned Section Navigation, and Preview Play Button Overlay)
+          HERO BANNER SECTION (Light Split-Screen: 55% Text / 45% Course Preview)
       ========================================================================= */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#08203E] via-[#131E4A] to-[#124275] text-white py-8 sm:py-10 lg:py-12 border-b border-white/10">
-        {/* Subtle decorative background blur */}
-        <div className="absolute inset-0 pointer-events-none opacity-15 overflow-hidden">
-          <img
-            src={courseImage}
-            alt=""
-            className="w-full h-full object-cover blur-md scale-105"
-          />
-        </div>
-        <div className="absolute inset-0 bg-[#131E4A]/85 pointer-events-none" />
-
-        <div className="relative z-10 course-page__container">
-          {/* Breadcrumbs */}
-          <nav className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-300 mb-4 sm:mb-6">
-            <Link to="/" className="hover:text-white transition">Home</Link>
-            <ChevronRight size={14} className="text-slate-400" />
-            <Link to="/courses" className="hover:text-white transition">Courses</Link>
-            <ChevronRight size={14} className="text-slate-400" />
-            <span className="text-slate-300">{course.category || "Certifications"}</span>
-            <ChevronRight size={14} className="text-slate-400" />
-            <span className="text-[#F8D85A] font-semibold truncate max-w-xs sm:max-w-md">
-              {course.name || course.title}
-            </span>
-          </nav>
-
-          {/* Hero 2-Column Responsive Layout */}
-          <div className="grid lg:grid-cols-12 gap-8 xl:gap-10 items-center">
+      <section className="relative overflow-hidden bg-[#F8FAFC] text-slate-800 py-10 sm:py-12 lg:py-14 border-b border-slate-200/80">
+        <div className="course-page__container">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             
-            {/* LEFT COLUMN: Title, Meta, Start Course CTA & Aligned Navigation Controls */}
-            <div className="lg:col-span-7 xl:col-span-8 flex flex-col items-start gap-4">
+            {/* LEFT COLUMN: 55% Text, Metadata & CTA */}
+            <div className="lg:col-span-7 flex flex-col items-start gap-3.5">
               
-              {/* Badges row */}
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#F8D85A] text-[#08203E] shadow-xs">
-                  <Sparkles size={13} />
-                  {isFree ? "100% Free Foundation Course" : "Professional Certification"}
+              {/* Breadcrumbs (smaller, neutral) */}
+              <nav className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 font-medium" aria-label="Breadcrumbs">
+                <Link to="/" className="hover:text-[#0A1E38] transition-colors">Home</Link>
+                <ChevronRight size={12} className="text-slate-400 shrink-0" />
+                <Link to="/courses" className="hover:text-[#0A1E38] transition-colors">Courses</Link>
+                <ChevronRight size={12} className="text-slate-400 shrink-0" />
+                <span className="text-slate-500">{course.category || "Certifications"}</span>
+                <ChevronRight size={12} className="text-slate-400 shrink-0" />
+                <span className="text-slate-800 font-semibold truncate max-w-xs sm:max-w-sm">
+                  {course.name || course.title}
+                </span>
+              </nav>
+
+              {/* Essential Badges row */}
+              <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border shadow-2xs ${
+                  isFree
+                    ? "bg-amber-50 text-amber-900 border-amber-200/80"
+                    : "bg-blue-50 text-blue-900 border-blue-200/80"
+                }`}>
+                  <Sparkles size={13} className={isFree ? "text-amber-600" : "text-blue-600"} />
+                  {isFree ? "Free Course" : "Professional Certification"}
                 </span>
 
                 {course.code && (
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/15">
+                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                     {course.code}
                   </span>
                 )}
 
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                  <ShieldCheck size={13} /> ISO Standards Aligned
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-2xs">
+                  <ShieldCheck size={13} className="text-emerald-600" /> ISO Standards Aligned
                 </span>
               </div>
 
-              {/* Course Title */}
-              <h1 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] font-extrabold text-white tracking-tight leading-tight">
+              {/* Course Title: 44-52px desktop, 30-36px mobile */}
+              <h1 className="text-3xl sm:text-[34px] lg:text-[44px] xl:text-[48px] font-extrabold text-[#0A1E38] tracking-tight leading-[1.16]">
                 {course.name || course.title}
               </h1>
 
-              {/* Short Description */}
-              <p className="text-slate-200 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl">
+              {/* Short Description: 18-20px comfortable line spacing */}
+              <p className="text-base sm:text-lg lg:text-[18px] text-slate-600 leading-relaxed max-w-2xl">
                 {course.description || course.short_description}
               </p>
 
-              {/* Meta stats row */}
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm">
+              {/* Compact Course Information Row (Level, Language, Rating & Reviews, Duration) */}
+              <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-5 gap-y-2 text-xs sm:text-sm text-slate-600 font-medium py-2 border-y border-slate-200/70 w-full sm:w-auto">
+                <div className="flex items-center gap-1.5">
+                  <GraduationCap size={16} className="text-[#0A1E38] shrink-0" />
+                  <span>Level: <strong className="font-semibold text-slate-800">{course.level || "Beginner"}</strong></span>
+                </div>
+                <span className="hidden sm:inline text-slate-300">•</span>
+                <div className="flex items-center gap-1.5">
+                  <Globe size={15} className="text-[#0A1E38] shrink-0" />
+                  <span>Language: <strong className="font-semibold text-slate-800">{course.language || "English"}</strong></span>
+                </div>
+                <span className="hidden sm:inline text-slate-300">•</span>
+                <div className="flex items-center gap-1.5">
+                  <Star size={15} className="fill-[#FFB800] text-[#FFB800] shrink-0" />
+                  <span className="font-bold text-slate-800">{course.rating || "4.9"}</span>
+                  <span className="text-slate-500">({course.reviews || 240}+ reviews)</span>
+                </div>
                 {!isFree && course.duration && (
-                  <div className="flex items-center gap-1.5 bg-[#24496D] text-white px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
-                    <Clock3 size={15} className="text-[#FFD95A] shrink-0" />
-                    <span>Duration: <strong className="font-semibold text-white">{course.duration}</strong></span>
-                  </div>
+                  <>
+                    <span className="hidden sm:inline text-slate-300">•</span>
+                    <div className="flex items-center gap-1.5">
+                      <Clock3 size={15} className="text-[#0A1E38] shrink-0" />
+                      <span>Duration: <strong className="font-semibold text-slate-800">{course.duration}</strong></span>
+                    </div>
+                  </>
                 )}
-
-                <div className="flex items-center gap-1.5 bg-[#24496D] text-white px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
-                  <GraduationCap size={15} className="text-[#FFD95A] shrink-0" />
-                  <span>Level: <strong className="font-semibold text-white">{course.level || "Beginner"}</strong></span>
-                </div>
-
-                <div className="flex items-center gap-1.5 bg-[#24496D] text-white px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
-                  <Languages size={15} className="text-[#FFD95A] shrink-0" />
-                  <span>Language: <strong className="font-semibold text-white">{course.language || "English"}</strong></span>
-                </div>
-
-                <div className="flex items-center gap-1.5 bg-[#344B50] px-3.5 py-1.5 rounded-xl border border-white/[0.12] shadow-xs">
-                  <Star size={14} className="fill-[#FFD95A] text-[#FFD95A] shrink-0" />
-                  <span className="text-[#FFD95A] font-bold">4.9</span>
-                  <span className="text-white font-normal">({course.reviews || 240}+)</span>
-                </div>
               </div>
 
-              {/* Working Start Course CTA (Own row, ~60px height, aligned left, gold & dark navy) */}
-              <div className="w-full flex items-center justify-start my-1 sm:my-1.5">
+              {/* Primary CTA (Start Course Button: 52-60px height) */}
+              <div className="pt-2">
                 {isOnlineCourse ? (
                   <button
                     type="button"
                     onClick={handleStartCourse}
-                    className="h-[60px] min-h-[60px] px-8 rounded-[14px] font-bold text-base sm:text-[17px] bg-[#FFB800] hover:bg-[#F5A900] active:bg-[#E6A600] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-3 outline-none whitespace-nowrap select-none self-start focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
+                    className="h-[54px] min-h-[54px] px-8 rounded-xl font-bold text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0A1E38] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer inline-flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2"
                   >
-                    <GraduationCap size={22} className="text-[#0B1F3A] shrink-0" />
+                    <GraduationCap size={20} className="text-[#0A1E38] shrink-0" />
                     <span>Start Course</span>
-                    <ArrowRight size={20} className="text-[#0B1F3A] shrink-0" />
+                    <ArrowRight size={18} className="text-[#0A1E38] shrink-0" />
                   </button>
                 ) : (
                   <button
                     type="button"
                     onClick={() => scrollToSection("offline-enquiry-section")}
-                    className="h-[60px] min-h-[60px] px-8 rounded-[14px] font-bold text-base sm:text-[17px] bg-[#FFB800] hover:bg-[#F5A900] active:bg-[#E6A600] active:scale-[0.98] text-[#0B1F3A] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-3 outline-none whitespace-nowrap select-none self-start focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E]"
+                    className="h-[54px] min-h-[54px] px-8 rounded-xl font-bold text-base bg-[#FFB800] hover:bg-[#F5A900] active:scale-[0.98] text-[#0A1E38] shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer inline-flex items-center justify-center gap-2.5 outline-none whitespace-nowrap select-none focus-visible:ring-2 focus-visible:ring-[#FFB800] focus-visible:ring-offset-2"
                   >
-                    <FileText size={22} className="text-[#0B1F3A] shrink-0" />
+                    <FileText size={19} className="text-[#0A1E38] shrink-0" />
                     <span>{LAUNCH_STATUS_CONFIG.cta}</span>
-                    <ArrowRight size={20} className="text-[#0B1F3A] shrink-0" />
+                    <ArrowRight size={18} className="text-[#0A1E38] shrink-0" />
                   </button>
                 )}
               </div>
 
-              {/* Standardized Course Section Navigation Controls (Equal Height, Consistent Gaps & Responsive Grid) */}
-              <div
-                className="w-full grid grid-cols-2 min-[1200px]:grid-cols-4 gap-2.5 sm:gap-3 xl:gap-3.5 pt-1.5 pb-1"
-                role="tablist"
-                aria-label="Course section navigation"
-              >
-                {courseTabs.map((tab) => {
-                  const IconComp = tab.icon;
-                  const isActive = activeTab === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      data-active-theme={isActive ? "gold" : undefined}
-                      style={isActive ? { color: "#0B1F3A" } : undefined}
-                      onClick={() => scrollToSection(tab.id)}
-                      className={`h-[48px] min-h-[48px] px-2 xl:px-2.5 rounded-[12px] font-semibold text-[11px] sm:text-[11.5px] xl:text-[12px] transition-all duration-150 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border outline-none active:scale-[0.98] select-none focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#08203E] ${
-                        isActive
-                          ? "bg-[#FFD95A] text-[#0B1F3A] border-[#FFD95A] font-bold shadow-none"
-                          : "bg-[#193E63] text-white hover:text-white border-white/20 hover:bg-[#204E7C]"
-                      }`}
-                    >
-                      <IconComp
-                        size={15}
-                        className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFB800]"}`}
-                      />
-                      <span
-                        className="tracking-tight leading-tight text-center sm:text-left sm:tracking-normal whitespace-normal sm:whitespace-nowrap"
-                        style={isActive ? { color: "#0B1F3A" } : undefined}
-                      >
-                        {tab.label}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
             </div>
 
-            {/* RIGHT COLUMN: Course Preview Image & Centered Circular Play Button */}
-            <div className="lg:col-span-5 xl:col-span-4 flex justify-center">
-              <div className="relative w-full max-w-md">
+            {/* RIGHT COLUMN: 45% Course Preview Card (16:9, rounded-2xl, subtle shadow) */}
+            <div className="lg:col-span-5 flex justify-center w-full">
+              <div className="relative w-full max-w-lg lg:max-w-none">
                 <div
-                  onClick={handleStartCourse}
-                  className="relative aspect-video sm:aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900 border-2 border-white/25 shadow-2xl group cursor-pointer"
+                  onClick={validPreviewVideo ? () => setIsPreviewModalOpen(true) : handleStartCourse}
+                  className="relative aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/90 shadow-xl shadow-slate-200/60 group cursor-pointer select-none"
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      handleStartCourse();
+                      if (validPreviewVideo) setIsPreviewModalOpen(true);
+                      else handleStartCourse();
                     }
                   }}
-                  aria-label={`Start or preview course: ${course.name || course.title}`}
+                  aria-label={`Preview course: ${course.name || course.title}`}
                 >
                   <img
                     src={courseImage}
                     alt={course.name || course.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
+
                   {/* Category Pill */}
-                  <span className="absolute top-3 left-3 bg-[#131E4A]/90 backdrop-blur-xs text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20 shadow-xs">
-                    {course.category || "Free Course"}
+                  <span className="absolute top-3.5 left-3.5 bg-[#0A1E38]/90 backdrop-blur-xs text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20 shadow-xs">
+                    {course.category || "Course"}
                   </span>
 
-                  {/* Free Sponsored Badge */}
-                  <span className="absolute top-3 right-3 bg-[#F8D85A] text-[#07162c] text-[11px] font-extrabold px-2.5 py-1 rounded-full shadow-xs">
-                    FREE
+                  {/* Free / Format Badge */}
+                  <span className={`absolute top-3.5 right-3.5 text-[11px] font-extrabold px-2.5 py-1 rounded-full shadow-xs ${
+                    isFree ? "bg-[#FFB800] text-[#0A1E38]" : "bg-white/95 text-[#0A1E38]"
+                  }`}>
+                    {isFree ? "FREE" : "CERTIFIED"}
                   </span>
 
-                  {/* Centered Circular White Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div
-                      className="w-[52px] h-[52px] sm:w-[56px] sm:h-[56px] rounded-full bg-white text-[#1E5FA8] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-200"
-                      aria-hidden="true"
-                    >
-                      <Play size={24} className="fill-[#1E5FA8] text-[#1E5FA8] translate-x-0.5" />
+                  {/* Centered Circular Play Button (only when valid preview video exists) */}
+                  {validPreviewVideo && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsPreviewModalOpen(true);
+                        }}
+                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white text-[#0A1E38] flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer group-hover:shadow-2xl"
+                        aria-label="Play course preview video"
+                      >
+                        <Play size={22} className="fill-[#0A1E38] text-[#0A1E38] translate-x-0.5" />
+                      </button>
                     </div>
-                  </div>
+                  )}
 
                   {/* Bottom Preview Tag */}
-                  <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-xs text-white/95">
-                    <span className="flex items-center gap-1.5 font-medium">
-                      <PlayCircle size={14} className="text-[#F8D85A]" /> Start Course Preview
+                  <div className="absolute bottom-3.5 inset-x-3.5 flex items-center justify-between text-xs text-white/95 pointer-events-none">
+                    <span className="flex items-center gap-1.5 font-medium text-[12px] drop-shadow-xs">
+                      <PlayCircle size={15} className="text-[#FFB800]" />
+                      {validPreviewVideo ? "Watch Preview Video" : "Accredited Course Curriculum"}
                     </span>
-                    <span className="font-semibold text-white bg-black/50 backdrop-blur-xs px-2 py-0.5 rounded text-[11px]">
-                      {isFree ? "Self-Paced" : (course.duration || "Self-Paced")}
+                    <span className="font-semibold text-white bg-black/60 backdrop-blur-xs px-2.5 py-1 rounded-lg text-[11px]">
+                      {isFree ? "100% Online • Self-Paced" : (course.duration || "Self-Paced")}
                     </span>
                   </div>
                 </div>
@@ -559,7 +553,47 @@ const CourseDetails = () => {
       </section>
 
       {/* =========================================================================
-          MAIN COURSE LAYOUT: 68% Content / 32% Sticky Sidebar (Consistent Grid)
+          MODERN HORIZONTAL SECTION NAVIGATION TAB BAR (Sticky below Header)
+      ========================================================================= */}
+      <div className="sticky top-[108px] z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
+        <div className="course-page__container">
+          <nav
+            className="flex items-center gap-2 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth -mb-px w-full"
+            role="tablist"
+            aria-label="Course section navigation"
+          >
+            {courseTabs.map((tab) => {
+              const IconComp = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  data-active-theme={isActive ? "gold" : undefined}
+                  onClick={() => scrollToSection(tab.id)}
+                  style={isActive ? { color: "#0A1E38" } : undefined}
+                  className={`shrink-0 py-3 sm:py-4 px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all duration-150 inline-flex items-center gap-2 whitespace-nowrap cursor-pointer border-b-2 select-none active:scale-[0.98] ${
+                    isActive
+                      ? "border-[#FFB800] text-[#0A1E38] font-bold"
+                      : "border-transparent text-slate-500 hover:text-[#0A1E38] hover:border-slate-300"
+                  }`}
+                >
+                  <IconComp
+                    size={16}
+                    className={isActive ? "text-[#FFB800]" : "text-slate-400"}
+                  />
+                  <span style={isActive ? { color: "#0A1E38" } : undefined}>{tab.label}</span>
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+      </div>
+
+      {/* =========================================================================
+          MAIN COURSE LAYOUT: Content & Sticky Sidebar
       ========================================================================= */}
       <div className="course-page__container py-8 sm:py-10 md:py-12">
         <div className="course-page__layout">
@@ -572,41 +606,6 @@ const CourseDetails = () => {
                 <EnrollmentEnquiryForm course={course} />
               </div>
             )}
-
-            {/* Standardized Sticky In-Page Navigation Bar */}
-            <div className="grid grid-cols-2 min-[1200px]:grid-cols-4 gap-2.5 sm:gap-3 xl:gap-3.5 border-b border-slate-200/80 pb-3 max-w-full sticky top-20 bg-[#F8FAFD]/95 backdrop-blur-md z-20 pt-1.5 select-none">
-              {courseTabs.map((tab) => {
-                const IconComponent = tab.icon;
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    data-active-theme={isActive ? "gold" : undefined}
-                    style={isActive ? { color: "#0B1F3A" } : undefined}
-                    onClick={() => scrollToSection(tab.id)}
-                    className={`h-[48px] min-h-[48px] px-2 xl:px-2.5 rounded-[12px] text-[11px] sm:text-[11.5px] xl:text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer border outline-none active:scale-[0.98] select-none focus-visible:ring-2 focus-visible:ring-[#FFD95A] focus-visible:ring-offset-2 ${
-                      isActive
-                        ? "bg-[#FFD95A] text-[#0B1F3A] border-[#FFD95A] font-bold shadow-none"
-                        : "bg-[#193E63] text-white border-white/20 hover:bg-[#204E7C] hover:text-white"
-                    }`}
-                  >
-                    <IconComponent
-                      size={15}
-                      className={`shrink-0 ${isActive ? "text-[#0B1F3A]" : "text-[#FFB800]"}`}
-                    />
-                    <span
-                      className="tracking-tight leading-tight text-center sm:text-left sm:tracking-normal whitespace-normal sm:whitespace-nowrap"
-                      style={isActive ? { color: "#0B1F3A" } : undefined}
-                    >
-                      {tab.label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
 
             {/* SECTION 1: COURSE OVERVIEW */}
             <section id="course-overview" className="scroll-mt-28 space-y-6">
@@ -1193,6 +1192,37 @@ const CourseDetails = () => {
           </div>
         </div>
       </section>
+      {/* Video Preview Modal */}
+      {isPreviewModalOpen && validPreviewVideo && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-xs animate-fade-in"
+          onClick={() => setIsPreviewModalOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Course Preview Video"
+        >
+          <div
+            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/20 aspect-video flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsPreviewModalOpen(false)}
+              className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center transition cursor-pointer shadow-lg"
+              aria-label="Close preview"
+            >
+              <X size={20} />
+            </button>
+            <iframe
+              src={validPreviewVideo}
+              title="Course Preview Video"
+              className="w-full h-full border-0"
+              allow="autoplay; encrypted-media; fullscreen"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
