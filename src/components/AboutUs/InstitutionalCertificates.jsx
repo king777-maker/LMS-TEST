@@ -306,30 +306,7 @@ export default function InstitutionalCertificates() {
           ))}
         </div>
 
-        {/* TRUST BANNER */}
-        <div className="mt-10 p-5 sm:p-6 rounded-2xl bg-white border border-[#CBD5E1] shadow-xs flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center text-2xl shrink-0 border border-blue-100">
-              <FaShieldAlt />
-            </div>
-            <div>
-              <div className="font-extrabold text-[#121C46] text-base sm:text-lg">
-                Direct Third-Party Authenticity &amp; Audit Trail
-              </div>
-              <div className="text-xs sm:text-sm text-[#475569] mt-0.5">
-                Every certificate displayed above is actively registered and can be verified directly on official accreditation databases.
-              </div>
-            </div>
-          </div>
 
-          <a
-            href="/verify-certificate"
-            className="shrink-0 px-5 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center gap-2"
-          >
-            <span>Search Student Certificate Registry</span>
-            <FaExternalLinkAlt className="text-xs" />
-          </a>
-        </div>
       </div>
 
       {/* FULL-SCREEN CERTIFICATE MODAL */}
