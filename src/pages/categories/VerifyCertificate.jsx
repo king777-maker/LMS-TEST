@@ -93,19 +93,19 @@ const VerifyCertificate = () => {
       searchParams.get("student_name") ||
       searchParams.get("studentName");
     if (urlName && !isPlaceholder(urlName)) {
-      return urlName.trim();
+      return String(urlName).trim().toUpperCase();
     }
 
     // 1. Direct logged-in user name (ensures verification page matches the active user identity)
     const loggedInName = getLoggedInUserName();
     if (loggedInName && !isPlaceholder(loggedInName)) {
-      return loggedInName;
+      return String(loggedInName).trim().toUpperCase();
     }
 
     // 2. Direct record name if valid non-placeholder
     const recordName = certRecord?.student_name || certRecord?.studentName;
     if (!isPlaceholder(recordName)) {
-      return String(recordName).trim();
+      return String(recordName).trim().toUpperCase();
     }
 
     // 3. Fallback to any bb_certificates in localStorage with a real name
@@ -115,7 +115,7 @@ const VerifyCertificate = () => {
         for (const c of allCerts) {
           const n = c.student_name || c.studentName;
           if (!isPlaceholder(n)) {
-            return String(n).trim();
+            return String(n).trim().toUpperCase();
           }
         }
       }
@@ -132,13 +132,14 @@ const VerifyCertificate = () => {
           const item = JSON.parse(sessionStorage.getItem(key) || "null");
           const sName = item?.studentName || item?.student_name;
           if (!isPlaceholder(sName)) {
-            return String(sName).trim();
+            return String(sName).trim().toUpperCase();
           }
         }
       }
     } catch (e) {}
 
-    return loggedInName || recordName || "Verified Learner";
+    const fallbackName = loggedInName || recordName || "VERIFIED LEARNER";
+    return String(fallbackName).trim().toUpperCase();
   };
 
 
@@ -260,7 +261,7 @@ const VerifyCertificate = () => {
           const isRev = foundOverride.status === "revoked" || foundOverride.verification_status === "Revoked";
           return {
             certificate_number: foundOverride.certificate_number,
-            student_name: foundOverride.student_name,
+            student_name: foundOverride.student_name ? String(foundOverride.student_name).trim().toUpperCase() : "VERIFIED LEARNER",
             course_name: foundOverride.course_name || "Professional Certification",
             score: 100,
             total_questions: 10,
@@ -285,7 +286,7 @@ const VerifyCertificate = () => {
         const isRevoked = manualMatch.status === "revoked" || manualMatch.verification_status === "Revoked";
         return {
           certificate_number: manualMatch.certificate_number,
-          student_name: manualMatch.student_name,
+          student_name: manualMatch.student_name ? String(manualMatch.student_name).trim().toUpperCase() : "VERIFIED LEARNER",
           course_name: manualMatch.course_name || "Professional Certification",
           score: 100,
           total_questions: 10,
@@ -648,8 +649,8 @@ const VerifyCertificate = () => {
                       <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
                         Certificate Holder
                       </p>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-[#08182D] mt-0.5">
-                        {data.student_name || "—"}
+                      <h3 className="text-lg sm:text-xl font-extrabold text-[#08182D] mt-0.5 uppercase tracking-wide">
+                        {data.student_name ? String(data.student_name).toUpperCase() : "—"}
                       </h3>
                       <p className="text-xs sm:text-[13px] font-semibold text-[#131E4A] mt-0.5">
                         {data.course_name || "—"}
@@ -670,7 +671,8 @@ const VerifyCertificate = () => {
                         />
                         <CertificateDetail
                           label="Candidate Name"
-                          value={data.student_name}
+                          value={data.student_name ? String(data.student_name).toUpperCase() : "—"}
+                          uppercase={true}
                         />
                         <CertificateDetail
                           label="Certification / Course"
@@ -706,8 +708,8 @@ const VerifyCertificate = () => {
                     <div className="p-4 space-y-3 bg-white">
                       <div className="text-center pb-2 border-b border-rose-100">
                         {data?.student_name && (
-                          <h3 className="text-lg font-bold text-slate-900">
-                            {data.student_name}
+                          <h3 className="text-lg font-bold text-slate-900 uppercase tracking-wide">
+                            {String(data.student_name).toUpperCase()}
                           </h3>
                         )}
                         {data?.course_name && (
@@ -806,16 +808,23 @@ const CertificateDetail = ({
   label,
   value,
   green = false,
+  uppercase = false,
 }) => {
+  const isCandidateName = String(label || "").toLowerCase().includes("candidate name");
+  const shouldUppercase = uppercase || isCandidateName;
+  const displayVal = value !== null && value !== undefined && value !== "" ? String(value) : "";
+
   return (
     <div className="bg-white p-2.5 sm:p-3 rounded-xl border border-slate-200/70 shadow-2xs">
       <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">
         {label}
       </p>
       <p className={`mt-0.5 break-words font-semibold text-xs sm:text-[13px] ${
+        shouldUppercase ? "uppercase font-bold" : ""
+      } ${
         green ? "text-emerald-600 font-bold" : "text-slate-800"
       }`}>
-        {value !== null && value !== undefined && value !== "" ? value : "—"}
+        {displayVal ? (shouldUppercase ? displayVal.toUpperCase() : displayVal) : "—"}
       </p>
     </div>
   );
