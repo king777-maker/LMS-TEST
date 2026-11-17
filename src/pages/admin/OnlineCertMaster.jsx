@@ -423,8 +423,8 @@ const OnlineCertMaster = () => {
 
                       {/* Candidate */}
                       <td className="py-3 px-4">
-                        <div className="font-bold text-slate-900">
-                          {cert.student_name}
+                        <div className="font-bold text-slate-900 uppercase">
+                          {cert.student_name ? String(cert.student_name).toUpperCase() : "—"}
                         </div>
                         <div className="text-[11px] text-slate-400 truncate max-w-[180px]">
                           {cert.candidate_email || "learner.verified@broadbeach.in"}
@@ -610,8 +610,8 @@ const OnlineCertMaster = () => {
 
                   {/* Candidate and Course details */}
                   <div className="space-y-1 text-xs">
-                    <div className="font-bold text-slate-900 leading-tight">
-                      {cert.student_name}
+                    <div className="font-bold text-slate-900 leading-tight uppercase">
+                      {cert.student_name ? String(cert.student_name).toUpperCase() : "—"}
                     </div>
                     <div className="text-[11px] text-slate-500 font-medium line-clamp-2">
                       {cert.course_name}
@@ -774,7 +774,7 @@ const OnlineCertMaster = () => {
                 </div>
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-slate-600 font-medium">1. Learner Identity:</span>
-                  <span className="font-bold text-[#131E4A] truncate">{selectedCert.student_name}</span>
+                  <span className="font-bold text-[#131E4A] truncate uppercase">{selectedCert.student_name ? String(selectedCert.student_name).toUpperCase() : "—"}</span>
                 </div>
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-slate-600 font-medium">2. Course Verification:</span>

@@ -649,7 +649,10 @@ const VerifyCertificate = () => {
                       <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
                         Certificate Holder
                       </p>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-[#08182D] mt-0.5 uppercase tracking-wide">
+                      <h3
+                        style={{ textTransform: "uppercase" }}
+                        className="text-lg sm:text-xl font-extrabold text-[#08182D] mt-0.5 uppercase tracking-wide"
+                      >
                         {data.student_name ? String(data.student_name).toUpperCase() : "—"}
                       </h3>
                       <p className="text-xs sm:text-[13px] font-semibold text-[#131E4A] mt-0.5">
@@ -819,7 +822,9 @@ const CertificateDetail = ({
       <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">
         {label}
       </p>
-      <p className={`mt-0.5 break-words font-semibold text-xs sm:text-[13px] ${
+      <p
+        style={shouldUppercase ? { textTransform: "uppercase" } : undefined}
+        className={`mt-0.5 break-words font-semibold text-xs sm:text-[13px] ${
         shouldUppercase ? "uppercase font-bold" : ""
       } ${
         green ? "text-emerald-600 font-bold" : "text-slate-800"

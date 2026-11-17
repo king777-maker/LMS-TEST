@@ -261,7 +261,7 @@ const ManualCertMaster = () => {
     }
 
     const payload = {
-      student_name: createForm.student_name.trim(),
+      student_name: createForm.student_name.trim().toUpperCase(),
       candidate_email: createForm.candidate_email.trim(),
       course_name: finalCourseName,
       certificate_number: autoIdMode ? "" : createForm.certificate_number.trim(),
@@ -310,7 +310,10 @@ const ManualCertMaster = () => {
     setPendingPinAction({
       type: "edit",
       id: selectedCert.certificate_number,
-      payload: { ...editForm },
+      payload: {
+        ...editForm,
+        student_name: editForm.student_name.trim().toUpperCase(),
+      },
     });
     setPinModalOpen(true);
   };
@@ -536,8 +539,8 @@ const ManualCertMaster = () => {
 
                       {/* Candidate */}
                       <td className="py-3 px-4">
-                        <div className="font-bold text-slate-900">
-                          {cert.student_name}
+                        <div className="font-bold text-slate-900 uppercase">
+                          {cert.student_name ? String(cert.student_name).toUpperCase() : "—"}
                         </div>
                         <div className="text-[11px] text-slate-400 truncate max-w-[160px]">
                           {cert.candidate_email || "Offline Registration"}

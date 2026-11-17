@@ -423,7 +423,7 @@ const Certificate = () => {
         location.state?.student_name ||
         "";
 
-    const registeredName = [
+    const rawRegisteredName = [
         user?.first_name,
         user?.last_name,
     ]
@@ -444,6 +444,7 @@ const Certificate = () => {
         certificate?.student_name
         ||
         "Student";
+    const registeredName = String(rawRegisteredName).toUpperCase();
 
 
     // =====================================================
