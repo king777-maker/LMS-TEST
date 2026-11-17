@@ -131513,6 +131513,30 @@
           "details": "Batch imported into Master Certificate Registry."
         }
       ]
+    },
+    {
+      "id": 5467,
+      "certificate_number": "26BB03769",
+      "student_name": "jagdeep singh",
+      "candidate_email": "jsmuman@gmail.com",
+      "course_name": "IATF 16949:2016 INTERNAL AUDITOR",
+      "training_type": "Corporate Training",
+      "issuing_organization": "Broadbeach Academy",
+      "authorized_signatory": "Dr. K. R. Sharma, Academic Director",
+      "issue_date": "2026-09-17",
+      "completion_date": "2026-09-17",
+      "status": "valid",
+      "verification_status": "Valid",
+      "validity": "Lifetime",
+      "notes": "Country: INDIA. Sl No: 2498, Month: NOVEMBER 2026. Date of Issue: 17-09-2026",
+      "history": [
+        {
+          "action": "imported",
+          "timestamp": "2026-11-17T00:00:00Z",
+          "performed_by": "System Administrator",
+          "details": "Batch imported into Master Certificate Registry."
+        }
+      ]
     }
   ],
   "tickets": [
@@ -132001,6 +132025,24 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "LOG-MWKSI81U-CERT",
+      "timestamp": "2026-11-17T14:30:47.874Z",
+      "created_at": "2026-11-17T14:30:47.893Z",
+      "actor_name": "System Administrator",
+      "performed_by": "System Administrator",
+      "actor_email": "admin@broadbeachlearning.com",
+      "performed_by_email": "admin@broadbeachlearning.com",
+      "actor_role": "super_admin",
+      "action_category": "CERTIFICATE",
+      "module": "Manual Cert Master",
+      "action": "IMPORT_MANUAL_CERTIFICATE",
+      "target_type": "manual_certificate",
+      "target_id": "26BB03769",
+      "details": "Imported manual certificate 26BB03769 for student 'jagdeep singh' (IATF 16949:2016 INTERNAL AUDITOR, jsmuman@gmail.com).",
+      "status": "success",
+      "outcome": "Success"
+    },
     {
       "id": "LOG-MW6MM0FZ-616",
       "timestamp": "2026-11-07T16:37:00.478Z",

@@ -1,6 +1,6 @@
 -- Broadbeach Academy — Manual Certificates Import Migration
 -- Generated: 2026-11-09 13:36:44
--- Total Records: 5466
+-- Total Records: 5467
 
 CREATE TABLE IF NOT EXISTS `manual_certificates` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -5575,6 +5575,7 @@ INSERT INTO `manual_certificates` (`certificate_number`, `student_name`, `candid
 ('25BB234410', 'SUPRIYA.J', '', 'IECQ HSPM QC 080000', '2025-07-30', '2025-07-30', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
 ('25BB234411', 'ASHOK JONNA', '', 'IECQ HSPM QC 080000', '2025-07-30', '2025-07-30', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
 ('25BB234412', 'NANDHAKUMAR B', '', 'IECQ HSPM QC 080000', '2025-07-30', '2025-07-30', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
-('26BB03768', 'Eric Siaw nartey', '', 'LEAN SIX SIGMA BLACK BELT', '2026-10-27', '2026-10-27', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid')
+('26BB03768', 'Eric Siaw nartey', '', 'LEAN SIX SIGMA BLACK BELT', '2026-10-27', '2026-10-27', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid'),
+('26BB03769', 'jagdeep singh', 'jsmuman@gmail.com', 'IATF 16949:2016 INTERNAL AUDITOR', '2026-09-17', '2026-09-17', 'Broadbeach Academy', 'Dr. K. R. Sharma, Academic Director', 'Corporate Training', 'valid', 'Valid')
 ON DUPLICATE KEY UPDATE `student_name`=VALUES(`student_name`), `course_name`=VALUES(`course_name`), `issue_date`=VALUES(`issue_date`), `status`=VALUES(`status`);
 

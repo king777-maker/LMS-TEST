@@ -26,6 +26,7 @@ import { getCourseProgress, resolveUserId } from "../utils/progressTracker";
 import { FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
 import { getAuthoritativeCourseName } from "../data/freeCoursesData";
 import { resolveCourse } from "../data/coursesResolver";
+import { findManualCertificate } from "../data/manualCertificatesData";
 
 
 const Certificate = () => {
@@ -288,6 +289,30 @@ const Certificate = () => {
 
                     setLoading(true);
                     setError("");
+
+                    // Check if URL parameter is a manual certificate number (e.g. 26BB03769)
+                    const manualMatch = findManualCertificate(id);
+                    if (manualMatch) {
+                        if (!mounted) return;
+                        setIsEligible(true);
+                        setCertificate({
+                            certificate_number: manualMatch.certificate_number,
+                            student_name: manualMatch.student_name,
+                            course_name: manualMatch.course_name,
+                            score: 100,
+                            total: 100,
+                            percentage: 100,
+                            issued_at: manualMatch.issue_date,
+                            completion_date: manualMatch.completion_date || manualMatch.issue_date,
+                            status: manualMatch.status || "active",
+                            verification_status: manualMatch.verification_status || "Verified",
+                            source: "manual",
+                            issuing_organization: manualMatch.issuing_organization || "Broadbeach Academy",
+                            authorized_signatory: manualMatch.authorized_signatory || "Dr. K. R. Sharma, Academic Director",
+                        });
+                        setLoading(false);
+                        return;
+                    }
 
 
                     const [
