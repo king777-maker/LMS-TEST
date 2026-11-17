@@ -20,14 +20,14 @@ import { WORLD_MAP_FEATURES } from "../../data/worldMapFeatures";
 
 // Top featured hubs for quick filter pills
 const TOP_HUBS = [
-  { name: "India", count: "5,000", iso: "in" },
-  { name: "Nigeria", count: "2,000", iso: "ng" },
-  { name: "Saudi Arabia", count: "1,000", iso: "sa" },
-  { name: "Philippines", count: "1,000", iso: "ph" },
-  { name: "United Arab Emirates", count: "800", iso: "ae" },
-  { name: "United States", count: "800", iso: "us" },
-  { name: "United Kingdom", count: "750", iso: "gb" },
-  { name: "Canada", count: "300", iso: "ca" }
+  { name: "India", count: "5,000+", iso: "in" },
+  { name: "Nigeria", count: "2,000+", iso: "ng" },
+  { name: "Saudi Arabia", count: "1,000+", iso: "sa" },
+  { name: "Philippines", count: "1,000+", iso: "ph" },
+  { name: "United Arab Emirates", count: "800+", iso: "ae" },
+  { name: "United States", count: "800+", iso: "us" },
+  { name: "United Kingdom", count: "750+", iso: "gb" },
+  { name: "Canada", count: "300+", iso: "ca" }
 ];
 
 // Base SVG ViewBox dimensions
@@ -275,78 +275,78 @@ export default function GlobalWorldMap() {
   }, []);
 
   return (
-    <section className="w-full bg-white py-12 sm:py-16 lg:py-20 border-b border-[#E2E8F0]">
+    <section className="w-full bg-white py-5 sm:py-6 lg:py-7 border-b border-[#E2E8F0]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8FAFC] border border-[#CBD5E1] text-[#121C46] text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+        <div className="text-center max-w-2xl mx-auto mb-3 sm:mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F8FAFC] border border-[#CBD5E1] text-[#121C46] text-[11px] font-bold uppercase tracking-wider mb-2 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#2563EB] animate-pulse" />
             <span>Interactive World Map</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#121C46] tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#121C46] tracking-tight leading-tight">
             Our Global Reach
           </h2>
 
-          <p className="mt-3.5 text-base sm:text-lg text-[#475569] leading-relaxed">
+          <p className="mt-1 text-xs sm:text-sm text-[#475569] leading-relaxed max-w-xl mx-auto">
             Explore our worldwide certification footprint and discover the number of certifications issued across different countries.
           </p>
         </div>
 
         {/* METRICS STRIP */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
-          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 flex items-center gap-3.5 transition-all hover:border-[#CBD5E1] shadow-xs">
-            <div className="w-11 h-11 rounded-lg bg-[#121C46] text-[#FFDB58] flex items-center justify-center text-xl shrink-0">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mb-3">
+          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-2.5 sm:p-3 flex items-center gap-3 transition-all hover:border-[#CBD5E1] shadow-xs">
+            <div className="w-8 h-8 rounded-lg bg-[#121C46] text-[#FFDB58] flex items-center justify-center text-sm sm:text-base shrink-0">
               <FaGlobeAmericas />
             </div>
             <div>
-              <div className="text-2xl font-black text-[#121C46] leading-none">
+              <div className="text-lg sm:text-xl font-black text-[#121C46] leading-none">
                 {TOTAL_COUNTRIES}
               </div>
-              <div className="text-xs font-semibold text-[#64748B] mt-1">
+              <div className="text-[10px] sm:text-[11px] font-semibold text-[#64748B] mt-0.5">
                 Active Countries
               </div>
             </div>
           </div>
 
-          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 flex items-center gap-3.5 transition-all hover:border-[#CBD5E1] shadow-xs">
-            <div className="w-11 h-11 rounded-lg bg-[#2563EB] text-white flex items-center justify-center text-xl shrink-0">
+          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-2.5 sm:p-3 flex items-center gap-3 transition-all hover:border-[#CBD5E1] shadow-xs">
+            <div className="w-8 h-8 rounded-lg bg-[#2563EB] text-white flex items-center justify-center text-sm sm:text-base shrink-0">
               <FaAward />
             </div>
             <div>
-              <div className="text-2xl font-black text-[#121C46] leading-none">
+              <div className="text-lg sm:text-xl font-black text-[#121C46] leading-none">
                 {TOTAL_CERTIFICATIONS.toLocaleString()}+
               </div>
-              <div className="text-xs font-semibold text-[#64748B] mt-1">
+              <div className="text-[10px] sm:text-[11px] font-semibold text-[#64748B] mt-0.5">
                 Certifications Issued
               </div>
             </div>
           </div>
 
-          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 flex items-center gap-3.5 transition-all hover:border-[#CBD5E1] shadow-xs">
-            <div className="w-11 h-11 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xl shrink-0">
+          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-2.5 sm:p-3 flex items-center gap-3 transition-all hover:border-[#CBD5E1] shadow-xs">
+            <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm sm:text-base shrink-0">
               <FaCheckCircle />
             </div>
             <div>
-              <div className="text-2xl font-black text-[#121C46] leading-none">
+              <div className="text-lg sm:text-xl font-black text-[#121C46] leading-none">
                 100%
               </div>
-              <div className="text-xs font-semibold text-[#64748B] mt-1">
+              <div className="text-[10px] sm:text-[11px] font-semibold text-[#64748B] mt-0.5">
                 Verifiable Credentials
               </div>
             </div>
           </div>
 
-          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 flex items-center gap-3.5 transition-all hover:border-[#CBD5E1] shadow-xs">
-            <div className="w-11 h-11 rounded-lg bg-[#F97316] text-white flex items-center justify-center text-xl shrink-0">
+          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-2.5 sm:p-3 flex items-center gap-3 transition-all hover:border-[#CBD5E1] shadow-xs">
+            <div className="w-8 h-8 rounded-lg bg-[#F97316] text-white flex items-center justify-center text-sm sm:text-base shrink-0">
               <FaMapMarkerAlt />
             </div>
             <div>
-              <div className="text-2xl font-black text-[#121C46] leading-none">
+              <div className="text-lg sm:text-xl font-black text-[#121C46] leading-none">
                 93
               </div>
-              <div className="text-xs font-semibold text-[#64748B] mt-1">
+              <div className="text-[10px] sm:text-[11px] font-semibold text-[#64748B] mt-0.5">
                 Interactive Pin Hubs
               </div>
             </div>
@@ -354,11 +354,11 @@ export default function GlobalWorldMap() {
         </div>
 
         {/* CONTROLS BAR: SEARCH & QUICK HUBS */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-4">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-2.5 sm:mb-3">
           
           {/* Quick Hub Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 md:pb-0 scrollbar-none text-xs w-full md:w-auto">
-            <span className="text-[#64748B] font-bold uppercase tracking-wider whitespace-nowrap mr-1 flex items-center gap-1 shrink-0">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs w-full md:w-auto">
+            <span className="text-[#64748B] font-bold uppercase tracking-wider whitespace-nowrap mr-1 flex items-center gap-1 shrink-0 text-[11px]">
               Top Hubs:
             </span>
             {TOP_HUBS.map((hub) => (
@@ -369,7 +369,7 @@ export default function GlobalWorldMap() {
                   const target = CERTIFICATIONS_BY_ISO[hub.iso];
                   if (target) handleSelectCountry(target);
                 }}
-                className={`shrink-0 px-2.5 py-1 rounded-full whitespace-nowrap font-medium transition-all border ${
+                className={`shrink-0 px-2.5 py-1 rounded-full whitespace-nowrap font-medium transition-all border text-xs ${
                   activeCountry?.iso === hub.iso
                     ? "bg-[#121C46] text-[#FFDB58] border-[#121C46] shadow-sm font-semibold"
                     : "bg-[#F1F5F9] text-[#334155] border-[#E2E8F0] hover:bg-[#E2E8F0] hover:text-[#0F172A]"
@@ -393,7 +393,7 @@ export default function GlobalWorldMap() {
                   setIsSearchOpen(true);
                 }}
                 onFocus={() => setIsSearchOpen(true)}
-                className="w-full pl-9 pr-8 py-2 text-sm bg-white border border-[#CBD5E1] rounded-lg text-[#121C46] placeholder-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#121C46] focus:border-transparent transition-all shadow-2xs"
+                className="w-full pl-9 pr-8 py-1.5 text-xs sm:text-sm bg-white border border-[#CBD5E1] rounded-lg text-[#121C46] placeholder-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#121C46] focus:border-transparent transition-all shadow-2xs"
               />
               <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-xs pointer-events-none" />
               {searchQuery && (
@@ -412,13 +412,13 @@ export default function GlobalWorldMap() {
 
             {/* Autocomplete Dropdown */}
             {isSearchOpen && searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#E2E8F0] rounded-lg shadow-xl max-h-64 overflow-y-auto z-40">
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#E2E8F0] rounded-lg shadow-xl max-h-60 overflow-y-auto z-40">
                 {searchResults.map((c) => (
                   <button
                     key={c.iso}
                     type="button"
                     onClick={() => handleSelectCountry(c)}
-                    className="w-full px-3.5 py-2.5 text-left text-sm hover:bg-[#F8FAFC] flex items-center justify-between border-b border-[#F1F5F9] last:border-b-0 transition-colors"
+                    className="w-full px-3.5 py-2 text-left text-xs sm:text-sm hover:bg-[#F8FAFC] flex items-center justify-between border-b border-[#F1F5F9] last:border-b-0 transition-colors"
                   >
                     <div className="flex items-center gap-2">
                       <span className="w-5 h-5 rounded bg-[#2563EB] text-white text-[10px] font-bold flex items-center justify-center uppercase">
@@ -426,8 +426,8 @@ export default function GlobalWorldMap() {
                       </span>
                       <span className="font-semibold text-[#121C46]">{c.name}</span>
                     </div>
-                    <span className="text-xs font-bold text-[#2563EB] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
-                      {c.formattedCount} certs
+                    <span className="text-[11px] font-bold text-[#2563EB] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                      {c.formattedCount}+ certificates Issued
                     </span>
                   </button>
                 ))}
@@ -485,21 +485,20 @@ export default function GlobalWorldMap() {
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
-          className={`relative w-full rounded-2xl bg-white border border-[#CBD5E1] shadow-lg overflow-hidden select-none transition-colors ${
+          className={`relative w-full rounded-2xl bg-white border border-[#CBD5E1] shadow-lg overflow-hidden select-none transition-colors h-[400px] sm:h-[440px] lg:h-[460px] max-h-[55vh] flex items-center justify-center ${
             zoom > 1 ? (isDragging ? "cursor-grabbing" : "cursor-grab") : "cursor-default"
           }`}
-          style={{ minHeight: "440px" }}
         >
           {/* FLOATING ZOOM & RESET CONTROLS */}
-          <div className="absolute top-4 right-4 z-20 flex flex-col gap-1.5 bg-white/95 backdrop-blur-md p-1.5 rounded-xl border border-[#CBD5E1] shadow-md">
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex flex-col gap-1 bg-white/95 backdrop-blur-md p-1 rounded-lg border border-[#CBD5E1] shadow-md">
             <button
               type="button"
               onClick={handleZoomIn}
               title="Zoom In"
               aria-label="Zoom In"
-              className="w-9 h-9 flex items-center justify-center rounded-lg bg-white hover:bg-[#F1F5F9] text-[#121C46] border border-[#E2E8F0] transition-colors shadow-2xs font-bold"
+              className="w-8 h-8 flex items-center justify-center rounded-md bg-white hover:bg-[#F1F5F9] text-[#121C46] border border-[#E2E8F0] transition-colors shadow-2xs font-bold"
             >
-              <FaPlus className="text-xs" />
+              <FaPlus className="text-[11px]" />
             </button>
             <button
               type="button"
@@ -507,22 +506,22 @@ export default function GlobalWorldMap() {
               disabled={zoom <= 1}
               title="Zoom Out"
               aria-label="Zoom Out"
-              className={`w-9 h-9 flex items-center justify-center rounded-lg border transition-colors shadow-2xs font-bold ${
+              className={`w-8 h-8 flex items-center justify-center rounded-md border transition-colors shadow-2xs font-bold ${
                 zoom <= 1
                   ? "bg-slate-50 text-slate-300 border-slate-100 cursor-not-allowed"
                   : "bg-white hover:bg-[#F1F5F9] text-[#121C46] border-[#E2E8F0]"
               }`}
             >
-              <FaMinus className="text-xs" />
+              <FaMinus className="text-[11px]" />
             </button>
             <button
               type="button"
               onClick={handleReset}
               title="Reset Map View"
               aria-label="Reset Map View"
-              className="w-9 h-9 flex items-center justify-center rounded-lg bg-white hover:bg-[#F1F5F9] text-[#121C46] border border-[#E2E8F0] transition-colors shadow-2xs font-bold"
+              className="w-8 h-8 flex items-center justify-center rounded-md bg-white hover:bg-[#F1F5F9] text-[#121C46] border border-[#E2E8F0] transition-colors shadow-2xs font-bold"
             >
-              <FaUndo className="text-xs" />
+              <FaUndo className="text-[11px]" />
             </button>
           </div>
 
@@ -585,9 +584,9 @@ export default function GlobalWorldMap() {
                 <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
                   Total Certifications
                 </div>
-                <div className="text-[30px] font-black text-[#FBBF24] leading-tight flex items-baseline gap-1.5">
-                  {displayCountry.formattedCount}
-                  <span className="text-xs font-semibold text-slate-300">issued</span>
+                <div className="text-[28px] sm:text-[30px] font-black text-[#FBBF24] leading-tight flex items-baseline gap-1.5">
+                  {displayCountry.formattedCount}+
+                  <span className="text-xs font-semibold text-slate-300">certificates Issued</span>
                 </div>
               </div>
 
@@ -613,11 +612,12 @@ export default function GlobalWorldMap() {
           )}
 
           {/* SVG WORLD MAP */}
-          <div className="w-full h-full p-2 sm:p-4 flex items-center justify-center">
+          <div className="w-full h-full p-2 sm:p-3 flex items-center justify-center overflow-hidden">
             <svg
               ref={svgRef}
               viewBox={`${SVG_VIEWBOX.minX} ${SVG_VIEWBOX.minY} ${SVG_VIEWBOX.width} ${SVG_VIEWBOX.height}`}
-              className="w-full h-auto max-h-[750px] transition-transform duration-75 ease-out"
+              className="w-full h-full max-h-[380px] sm:max-h-[420px] lg:max-h-[440px] object-contain transition-transform duration-75 ease-out"
+              preserveAspectRatio="xMidYMid meet"
               style={{
                 filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.03))"
               }}
@@ -734,7 +734,7 @@ export default function GlobalWorldMap() {
                         className="cursor-pointer group pin-group focus:outline-none"
                         tabIndex={0}
                         role="button"
-                        aria-label={`${country.name}: ${country.formattedCount} certifications`}
+                        aria-label={`${country.name}: ${country.formattedCount}+ certificates issued`}
                         onMouseEnter={() => handleMouseEnter(country)}
                         onMouseLeave={() => handleMouseLeave(country.iso)}
                         onClick={(e) => {
@@ -803,24 +803,24 @@ export default function GlobalWorldMap() {
           </div>
 
           {/* COMPACT BOTTOM LEGEND */}
-          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-20 flex flex-wrap items-center gap-2 sm:gap-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-[#CBD5E1] shadow-sm text-xs font-semibold text-[#121C46]">
+          <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 z-20 flex flex-wrap items-center gap-2 sm:gap-3.5 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[#CBD5E1] shadow-xs text-[11px] font-semibold text-[#121C46]">
             <div className="flex items-center gap-1.5">
-              <span className="w-3.5 h-3.5 rounded-sm bg-[#2563EB] border border-white shrink-0" />
+              <span className="w-3 h-3 rounded-xs bg-[#2563EB] border border-white shrink-0" />
               <span>Certified Footprint (93 Countries)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-3.5 h-3.5 rounded-sm bg-[#E2E8F0] border border-[#CBD5E1] shrink-0" />
+              <span className="w-3 h-3 rounded-xs bg-[#E2E8F0] border border-[#CBD5E1] shrink-0" />
               <span>Emerging Regions</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-full bg-[#121C46] border border-[#FFDB58] shrink-0" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#121C46] border border-[#FFDB58] shrink-0" />
               <span>Active Pin (Hover to View)</span>
             </div>
           </div>
         </div>
 
         {/* BOTTOM HINT */}
-        <div className="mt-3 text-center text-xs text-[#64748B]">
+        <div className="mt-2 text-center text-[11px] text-[#64748B]">
           Hover or tap any location pin or certified country to view verified certification records. Use zoom controls to explore dense regions.
         </div>
       </div>
