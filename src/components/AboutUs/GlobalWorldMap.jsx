@@ -72,35 +72,55 @@ export default function GlobalWorldMap() {
     ).slice(0, 8);
   }, [searchQuery]);
 
-  // Recalculate tooltip position based on the pin's live client rect
-  const updateTooltipPos = useCallback(() => {
-    if (!displayCountry || !containerRef.current) {
-      setTooltipPos(null);
-      return;
-    }
-    const pinEl = document.getElementById(`pin-${displayCountry.iso}`);
+  // Dynamic tooltip calculation (anchored to pin's live position or SVG coordinates)
+  const calculateTooltipPosition = useCallback((country) => {
+    if (!country || !containerRef.current) return null;
+    const pinEl = document.getElementById(`pin-${country.iso}`);
+    const containerRect = containerRef.current.getBoundingClientRect();
+
     if (pinEl) {
       const pinRect = pinEl.getBoundingClientRect();
-      const containerRect = containerRef.current.getBoundingClientRect();
-
       const x = pinRect.left - containerRect.left + pinRect.width / 2;
       const y = pinRect.top - containerRect.top + pinRect.height / 2;
-
       const isNearTop = y < 165;
-      const margin = Math.min(130, containerRect.width / 2);
+      const margin = Math.min(135, containerRect.width / 2);
       const clampedX = Math.min(Math.max(x, margin), containerRect.width - margin);
-
-      setTooltipPos({
-        x: clampedX,
-        y,
-        isNearTop
-      });
+      return { x: clampedX, y, isNearTop };
     }
-  }, [displayCountry]);
 
+    if (svgRef.current) {
+      const svgRect = svgRef.current.getBoundingClientRect();
+      const relX = (country.cx - SVG_VIEWBOX.minX) / SVG_VIEWBOX.width;
+      const relY = (country.cy - SVG_VIEWBOX.minY) / SVG_VIEWBOX.height;
+      const x = svgRect.left - containerRect.left + relX * svgRect.width;
+      const y = svgRect.top - containerRect.top + relY * svgRect.height;
+      const isNearTop = y < 165;
+      const margin = Math.min(135, containerRect.width / 2);
+      const clampedX = Math.min(Math.max(x, margin), containerRect.width - margin);
+      return { x: clampedX, y, isNearTop };
+    }
+    return null;
+  }, []);
+
+  const handleCountryHover = useCallback((country) => {
+    if (!country) {
+      setHoveredCountry(null);
+      return;
+    }
+    setHoveredCountry(country);
+    const pos = calculateTooltipPosition(country);
+    if (pos) setTooltipPos(pos);
+  }, [calculateTooltipPosition]);
+
+  // Keep tooltip updated during hover, select, zoom, or pan
   useEffect(() => {
-    updateTooltipPos();
-  }, [updateTooltipPos, zoom, pan]);
+    if (displayCountry) {
+      const pos = calculateTooltipPosition(displayCountry);
+      if (pos) setTooltipPos(pos);
+    } else {
+      setTooltipPos(null);
+    }
+  }, [displayCountry, calculateTooltipPosition, zoom, pan]);
 
   // Handle Zoom In
   const handleZoomIn = () => {
@@ -189,7 +209,7 @@ export default function GlobalWorldMap() {
         {/* SECTION HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8FAFC] border border-[#CBD5E1] text-[#121C46] text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#C93232] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#2563EB] animate-pulse" />
             <span>Interactive World Map</span>
           </div>
 
@@ -219,7 +239,7 @@ export default function GlobalWorldMap() {
           </div>
 
           <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 flex items-center gap-3.5 transition-all hover:border-[#CBD5E1] shadow-xs">
-            <div className="w-11 h-11 rounded-lg bg-[#C93232] text-white flex items-center justify-center text-xl shrink-0">
+            <div className="w-11 h-11 rounded-lg bg-[#2563EB] text-white flex items-center justify-center text-xl shrink-0">
               <FaAward />
             </div>
             <div>
@@ -329,12 +349,12 @@ export default function GlobalWorldMap() {
                     className="w-full px-3.5 py-2.5 text-left text-sm hover:bg-[#F8FAFC] flex items-center justify-between border-b border-[#F1F5F9] last:border-b-0 transition-colors"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="w-5 h-5 rounded bg-[#C93232] text-white text-[10px] font-bold flex items-center justify-center uppercase">
+                      <span className="w-5 h-5 rounded bg-[#2563EB] text-white text-[10px] font-bold flex items-center justify-center uppercase">
                         {c.iso}
                       </span>
                       <span className="font-semibold text-[#121C46]">{c.name}</span>
                     </div>
-                    <span className="text-xs font-bold text-[#C93232] bg-red-50 px-2 py-0.5 rounded-full border border-red-100">
+                    <span className="text-xs font-bold text-[#2563EB] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
                       {c.formattedCount} certs
                     </span>
                   </button>
@@ -394,10 +414,12 @@ export default function GlobalWorldMap() {
           {/* ACTIVE TOOLTIP POPUP OVERLAY (Dynamically anchored to live pin position) */}
           {displayCountry && tooltipPos && (
             <div
-              className="absolute z-30 pointer-events-auto bg-[#121C46] text-white p-3.5 rounded-xl shadow-2xl border border-white/20 transition-all duration-150 animate-fadeIn"
+              className={`absolute z-30 ${
+                activeCountry ? "pointer-events-auto" : "pointer-events-none"
+              } bg-[#121C46] text-white p-3.5 rounded-xl shadow-2xl border border-white/20 transition-all duration-150 animate-fadeIn`}
               style={{
                 left: `${tooltipPos.x}px`,
-                top: `${tooltipPos.y + (tooltipPos.isNearTop ? 12 : -12)}px`,
+                top: `${tooltipPos.y + (tooltipPos.isNearTop ? 14 : -14)}px`,
                 transform: tooltipPos.isNearTop ? "translate(-50%, 0)" : "translate(-50%, -100%)",
                 minWidth: "190px",
                 maxWidth: "260px"
@@ -481,15 +503,39 @@ export default function GlobalWorldMap() {
                     const isHovered = hoveredCountry?.iso === feature.id;
 
                     // Fill color based on user specification:
-                    // Highlighted countries: red #C93232
-                    // Other countries: light gray #D5DDE0
-                    let fillColor = isHighlighted ? "#C93232" : "#D5DDE0";
-                    if (isHighlighted && (isSelected || isHovered)) {
-                      fillColor = "#A31D1D"; // Slightly deeper crimson on focus
+                    // - Countries with certification data: Royal Blue #2563EB
+                    // - Countries without reported data: Light Gray #E2E8F0
+                    // - Country hover color: Darker Royal Blue #1D4ED8
+                    // - Selected country color: Deep Blue #1E40AF
+                    let fillColor = isHighlighted ? "#2563EB" : "#E2E8F0";
+                    if (isHighlighted) {
+                      if (isSelected) {
+                        fillColor = "#1E40AF";
+                      } else if (isHovered) {
+                        fillColor = "#1D4ED8";
+                      }
                     }
 
-                    const strokeColor = "#FFFFFF";
-                    const strokeWidth = isSelected || isHovered ? 0.9 : 0.45;
+                    // Country borders: Subtle white or light-gray strokes
+                    const strokeColor = isHighlighted ? "#FFFFFF" : "#CBD5E1";
+                    const strokeWidth = isSelected || isHovered ? 0.85 : 0.45;
+
+                    const handleEnter = () => {
+                      if (isHighlighted && certData) {
+                        handleCountryHover(certData);
+                      }
+                    };
+                    const handleLeave = () => {
+                      if (isHighlighted) {
+                        setHoveredCountry((prev) => (prev?.iso === feature.id ? null : prev));
+                      }
+                    };
+                    const handleClick = (e) => {
+                      e.stopPropagation();
+                      if (isHighlighted && certData) {
+                        setActiveCountry(certData);
+                      }
+                    };
 
                     if (feature.type === "group") {
                       return (
@@ -500,18 +546,13 @@ export default function GlobalWorldMap() {
                           stroke={strokeColor}
                           strokeWidth={strokeWidth}
                           strokeLinejoin="round"
-                          className={`transition-colors duration-150 ${
-                            isHighlighted ? "cursor-pointer" : "cursor-default"
-                          }`}
-                          onPointerEnter={() => {
-                            if (isHighlighted) setHoveredCountry(certData);
+                          className={isHighlighted ? "cursor-pointer" : "cursor-default"}
+                          style={{
+                            transition: "fill 200ms ease, stroke 200ms ease, stroke-width 200ms ease"
                           }}
-                          onPointerLeave={() => {
-                            if (isHighlighted) setHoveredCountry(null);
-                          }}
-                          onClick={() => {
-                            if (isHighlighted) setActiveCountry(certData);
-                          }}
+                          onMouseEnter={handleEnter}
+                          onMouseLeave={handleLeave}
+                          onClick={handleClick}
                         >
                           {feature.paths.map((p, idx) => (
                             <path key={idx} d={p.d} />
@@ -529,18 +570,13 @@ export default function GlobalWorldMap() {
                         stroke={strokeColor}
                         strokeWidth={strokeWidth}
                         strokeLinejoin="round"
-                        className={`transition-colors duration-150 ${
-                          isHighlighted ? "cursor-pointer" : "cursor-default"
-                        }`}
-                        onPointerEnter={() => {
-                          if (isHighlighted) setHoveredCountry(certData);
+                        className={isHighlighted ? "cursor-pointer" : "cursor-default"}
+                        style={{
+                          transition: "fill 200ms ease, stroke 200ms ease, stroke-width 200ms ease"
                         }}
-                        onPointerLeave={() => {
-                          if (isHighlighted) setHoveredCountry(null);
-                        }}
-                        onClick={() => {
-                          if (isHighlighted) setActiveCountry(certData);
-                        }}
+                        onMouseEnter={handleEnter}
+                        onMouseLeave={handleLeave}
+                        onClick={handleClick}
                       />
                     );
                   })}
@@ -561,8 +597,10 @@ export default function GlobalWorldMap() {
                         tabIndex={0}
                         role="button"
                         aria-label={`${country.name}: ${country.formattedCount} certifications`}
-                        onPointerEnter={() => setHoveredCountry(country)}
-                        onPointerLeave={() => setHoveredCountry(null)}
+                        onMouseEnter={() => handleCountryHover(country)}
+                        onMouseLeave={() => {
+                          setHoveredCountry((prev) => (prev?.iso === country.iso ? null : prev));
+                        }}
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveCountry(country);
@@ -581,7 +619,7 @@ export default function GlobalWorldMap() {
                           r={isActive ? 8 : 4.5}
                           fill="#FFDB58"
                           opacity={isActive ? 0.7 : 0.3}
-                          className={isActive ? "animate-ping" : ""}
+                          className={`pointer-events-none ${isActive ? "animate-ping" : ""}`}
                         />
 
                         {/* Navy Blue Outer Pin Ring */}
@@ -621,11 +659,11 @@ export default function GlobalWorldMap() {
           {/* COMPACT BOTTOM LEGEND */}
           <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-20 flex flex-wrap items-center gap-2 sm:gap-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-[#CBD5E1] shadow-sm text-xs font-semibold text-[#121C46]">
             <div className="flex items-center gap-1.5">
-              <span className="w-3.5 h-3.5 rounded-sm bg-[#C93232] border border-white shrink-0" />
+              <span className="w-3.5 h-3.5 rounded-sm bg-[#2563EB] border border-white shrink-0" />
               <span>Certified Footprint (93 Countries)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-3.5 h-3.5 rounded-sm bg-[#D5DDE0] border border-white shrink-0" />
+              <span className="w-3.5 h-3.5 rounded-sm bg-[#E2E8F0] border border-[#CBD5E1] shrink-0" />
               <span>Emerging Regions</span>
             </div>
             <div className="flex items-center gap-1.5">
