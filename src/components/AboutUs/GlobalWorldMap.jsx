@@ -72,47 +72,108 @@ export default function GlobalWorldMap() {
     ).slice(0, 8);
   }, [searchQuery]);
 
-  // Dynamic tooltip calculation (anchored to pin's live position or SVG coordinates)
+  // Hover-intent and leave timer refs to ensure smooth, flicker-free transitions
+  const hoverIntentTimerRef = useRef(null);
+  const leaveTimerRef = useRef(null);
+
+  // Dynamic smart tooltip calculation (anchored to pin with edge clamping & boundary flip)
   const calculateTooltipPosition = useCallback((country) => {
     if (!country || !containerRef.current) return null;
-    const pinEl = document.getElementById(`pin-${country.iso}`);
     const containerRect = containerRef.current.getBoundingClientRect();
+    const pinEl = document.getElementById(`pin-${country.iso}`);
+
+    let pinX = 0;
+    let pinY = 0;
 
     if (pinEl) {
       const pinRect = pinEl.getBoundingClientRect();
-      const x = pinRect.left - containerRect.left + pinRect.width / 2;
-      const y = pinRect.top - containerRect.top + pinRect.height / 2;
-      const isNearTop = y < 165;
-      const margin = Math.min(135, containerRect.width / 2);
-      const clampedX = Math.min(Math.max(x, margin), containerRect.width - margin);
-      return { x: clampedX, y, isNearTop };
-    }
-
-    if (svgRef.current) {
+      pinX = pinRect.left - containerRect.left + pinRect.width / 2;
+      pinY = pinRect.top - containerRect.top + pinRect.height / 2;
+    } else if (svgRef.current) {
       const svgRect = svgRef.current.getBoundingClientRect();
       const relX = (country.cx - SVG_VIEWBOX.minX) / SVG_VIEWBOX.width;
       const relY = (country.cy - SVG_VIEWBOX.minY) / SVG_VIEWBOX.height;
-      const x = svgRect.left - containerRect.left + relX * svgRect.width;
-      const y = svgRect.top - containerRect.top + relY * svgRect.height;
-      const isNearTop = y < 165;
-      const margin = Math.min(135, containerRect.width / 2);
-      const clampedX = Math.min(Math.max(x, margin), containerRect.width - margin);
-      return { x: clampedX, y, isNearTop };
+      pinX = svgRect.left - containerRect.left + relX * svgRect.width;
+      pinY = svgRect.top - containerRect.top + relY * svgRect.height;
+    } else {
+      return null;
     }
-    return null;
+
+    const tooltipWidth = 256;
+    const halfWidth = tooltipWidth / 2;
+    const sideMargin = halfWidth + 14; // 142px
+
+    // Clamped X within container bounds so tooltip never overflows left/right
+    const clampedX = Math.min(Math.max(pinX, sideMargin), containerRect.width - sideMargin);
+
+    // Arrow offset points precisely at pin center even if tooltip is clamped near map edge
+    const arrowOffset = Math.max(-halfWidth + 20, Math.min(pinX - clampedX, halfWidth - 20));
+
+    // Vertical placement: prefer above the pin (14px gap)
+    // Flip below if pin is near container top (< 185px) or near viewport top (< 95px, avoiding navbar)
+    const distanceToViewportTop = containerRect.top + pinY;
+    const isNearTop = pinY < 185 || distanceToViewportTop < 95;
+
+    return {
+      x: clampedX,
+      y: pinY,
+      placement: isNearTop ? "bottom" : "top",
+      arrowOffset,
+    };
   }, []);
 
-  const handleCountryHover = useCallback((country) => {
-    if (!country) {
-      setHoveredCountry(null);
-      return;
-    }
-    setHoveredCountry(country);
-    const pos = calculateTooltipPosition(country);
-    if (pos) setTooltipPos(pos);
-  }, [calculateTooltipPosition]);
+  // Hover-intent entry handler (120ms debounce to prevent skittering jitter)
+  const handleMouseEnter = useCallback(
+    (country) => {
+      if (leaveTimerRef.current) {
+        clearTimeout(leaveTimerRef.current);
+        leaveTimerRef.current = null;
+      }
+      if (!country) return;
 
-  // Keep tooltip updated during hover, select, zoom, or pan
+      // Fast-path switch if tooltip is already active or open
+      if (hoveredCountry || activeCountry) {
+        if (hoverIntentTimerRef.current) clearTimeout(hoverIntentTimerRef.current);
+        setHoveredCountry(country);
+        const pos = calculateTooltipPosition(country);
+        if (pos) setTooltipPos(pos);
+        return;
+      }
+
+      // 120ms hover intent delay
+      if (hoverIntentTimerRef.current) clearTimeout(hoverIntentTimerRef.current);
+      hoverIntentTimerRef.current = setTimeout(() => {
+        setHoveredCountry(country);
+        const pos = calculateTooltipPosition(country);
+        if (pos) setTooltipPos(pos);
+      }, 120);
+    },
+    [calculateTooltipPosition, hoveredCountry, activeCountry]
+  );
+
+  // Leave handler with 120ms grace period so moving between pin and tooltip is smooth
+  const handleMouseLeave = useCallback((countryIso) => {
+    if (hoverIntentTimerRef.current) {
+      clearTimeout(hoverIntentTimerRef.current);
+      hoverIntentTimerRef.current = null;
+    }
+    if (leaveTimerRef.current) {
+      clearTimeout(leaveTimerRef.current);
+    }
+    leaveTimerRef.current = setTimeout(() => {
+      setHoveredCountry((prev) => (countryIso && prev?.iso !== countryIso ? prev : null));
+    }, 120);
+  }, []);
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverIntentTimerRef.current) clearTimeout(hoverIntentTimerRef.current);
+      if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current);
+    };
+  }, []);
+
+  // Keep tooltip updated during select, zoom, pan, or window resize
   useEffect(() => {
     if (displayCountry) {
       const pos = calculateTooltipPosition(displayCountry);
@@ -121,6 +182,17 @@ export default function GlobalWorldMap() {
       setTooltipPos(null);
     }
   }, [displayCountry, calculateTooltipPosition, zoom, pan]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (displayCountry) {
+        const pos = calculateTooltipPosition(displayCountry);
+        if (pos) setTooltipPos(pos);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [displayCountry, calculateTooltipPosition]);
 
   // Handle Zoom In
   const handleZoomIn = () => {
@@ -364,6 +436,49 @@ export default function GlobalWorldMap() {
           </div>
         </div>
 
+        {/* KEYFRAME ANIMATIONS FOR PREMIUM TOOLTIP & PREFERS-REDUCED-MOTION */}
+        <style>{`
+          @keyframes premiumTooltipInTop {
+            0% {
+              opacity: 0;
+              transform: translate(-50%, calc(-100% + 6px));
+            }
+            100% {
+              opacity: 1;
+              transform: translate(-50%, -100%);
+            }
+          }
+          @keyframes premiumTooltipInBottom {
+            0% {
+              opacity: 0;
+              transform: translate(-50%, -6px);
+            }
+            100% {
+              opacity: 1;
+              transform: translate(-50%, 0);
+            }
+          }
+          .animate-premium-tooltip-top {
+            animation: premiumTooltipInTop 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+          .animate-premium-tooltip-bottom {
+            animation: premiumTooltipInBottom 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .animate-premium-tooltip-top,
+            .animate-premium-tooltip-bottom {
+              animation: none !important;
+              opacity: 1 !important;
+            }
+            .pin-group,
+            .pin-halo,
+            .pin-circle,
+            .pin-core {
+              transition: none !important;
+            }
+          }
+        `}</style>
+
         {/* MAP CONTAINER */}
         <div
           ref={containerRef}
@@ -411,65 +526,88 @@ export default function GlobalWorldMap() {
             </button>
           </div>
 
-          {/* ACTIVE TOOLTIP POPUP OVERLAY (Dynamically anchored to live pin position) */}
+          {/* ACTIVE TOOLTIP POPUP OVERLAY (Soft Navy #111C3E, #31436A border, 30px #FBBF24 count) */}
           {displayCountry && tooltipPos && (
             <div
-              className={`absolute z-30 ${
-                activeCountry ? "pointer-events-auto" : "pointer-events-none"
-              } bg-[#121C46] text-white p-3.5 rounded-xl shadow-2xl border border-white/20 transition-all duration-150 animate-fadeIn`}
+              role="tooltip"
+              aria-hidden="false"
+              onMouseEnter={() => {
+                if (leaveTimerRef.current) {
+                  clearTimeout(leaveTimerRef.current);
+                  leaveTimerRef.current = null;
+                }
+              }}
+              onMouseLeave={() => handleMouseLeave(displayCountry.iso)}
+              className={`absolute z-30 pointer-events-auto bg-[#111C3E] text-white p-[18px] rounded-[16px] border border-[#31436A] shadow-[0_12px_32px_rgba(15,23,42,0.18)] ${
+                tooltipPos.placement === "top"
+                  ? "animate-premium-tooltip-top"
+                  : "animate-premium-tooltip-bottom"
+              }`}
               style={{
                 left: `${tooltipPos.x}px`,
-                top: `${tooltipPos.y + (tooltipPos.isNearTop ? 14 : -14)}px`,
-                transform: tooltipPos.isNearTop ? "translate(-50%, 0)" : "translate(-50%, -100%)",
-                minWidth: "190px",
-                maxWidth: "260px"
+                top: `${tooltipPos.y + (tooltipPos.placement === "top" ? -14 : 14)}px`,
+                transform: tooltipPos.placement === "top" ? "translate(-50%, -100%)" : "translate(-50%, 0)",
+                width: "256px",
+                maxWidth: "calc(100vw - 32px)"
               }}
             >
-              <div className="flex items-center justify-between pb-2 border-b border-white/15 mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded bg-[#FFDB58] text-[#121C46] text-[10px] font-black flex items-center justify-center uppercase">
-                    {displayCountry.iso}
-                  </span>
-                  <span className="font-extrabold text-sm text-white tracking-wide">
+              {/* Header: Location icon, Country name, subtle ISO code badge */}
+              <div className="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-[#31436A]/60">
+                <div className="flex items-center gap-2 min-w-0">
+                  <FaMapMarkerAlt className="text-[#FBBF24] text-xs shrink-0" />
+                  <span className="font-bold text-sm text-white truncate tracking-wide">
                     {displayCountry.name}
                   </span>
                 </div>
-                {activeCountry && (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveCountry(null);
-                    }}
-                    className="text-slate-300 hover:text-white p-0.5 rounded transition-colors"
-                  >
-                    <FaTimes className="text-xs" />
-                  </button>
-                )}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="bg-white/10 text-slate-300 font-mono text-[10px] font-semibold px-1.5 py-0.5 rounded uppercase tracking-wider">
+                    {displayCountry.iso}
+                  </span>
+                  {activeCountry && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveCountry(null);
+                      }}
+                      title="Close"
+                      aria-label="Close tooltip"
+                      className="text-slate-400 hover:text-white p-0.5 rounded transition-colors ml-0.5"
+                    >
+                      <FaTimes className="text-xs" />
+                    </button>
+                  )}
+                </div>
               </div>
 
-              <div className="space-y-1">
-                <div className="text-[11px] font-medium text-slate-300">
-                  Total Certifications:
+              {/* Body: Total Certifications label and 30px #FBBF24 count */}
+              <div className="space-y-0.5">
+                <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                  Total Certifications
                 </div>
-                <div className="text-2xl font-black text-[#FFDB58] flex items-baseline gap-1">
+                <div className="text-[30px] font-black text-[#FBBF24] leading-tight flex items-baseline gap-1.5">
                   {displayCountry.formattedCount}
                   <span className="text-xs font-semibold text-slate-300">issued</span>
                 </div>
-                <div className="text-[10px] text-emerald-400 font-medium flex items-center gap-1 mt-1 pt-1 border-t border-white/10">
-                  <FaCheckCircle className="text-[10px]" />
-                  <span>Verified ISO Certification Data</span>
-                </div>
               </div>
 
-              {/* Little arrow indicator */}
+              {/* Footer: Small teal verification indicator */}
+              <div className="flex items-center gap-1.5 pt-2.5 mt-2.5 border-t border-[#31436A]/60 text-teal-400 text-[11px] font-medium">
+                <FaCheckCircle className="text-teal-400 shrink-0 text-xs" />
+                <span>Verified Certification Records</span>
+              </div>
+
+              {/* Smart Arrow Caret */}
               <div
-                className={`absolute left-1/2 -translate-x-1/2 w-0 h-0 border-x-6 border-x-transparent ${
-                  tooltipPos.isNearTop
-                    ? "-top-2 border-b-6 border-b-[#121C46]"
-                    : "-bottom-2 border-t-6 border-t-[#121C46]"
+                className={`absolute w-2.5 h-2.5 bg-[#111C3E] rotate-45 pointer-events-none ${
+                  tooltipPos.placement === "top"
+                    ? "border-r border-b border-[#31436A] -bottom-[6px]"
+                    : "border-l border-t border-[#31436A] -top-[6px]"
                 }`}
-                style={{ filter: "drop-shadow(0 2px 2px rgba(0,0,0,0.2))" }}
+                style={{
+                  left: `calc(50% + ${tooltipPos.arrowOffset}px)`,
+                  transform: "translateX(-50%) rotate(45deg)"
+                }}
               />
             </div>
           )}
@@ -522,12 +660,12 @@ export default function GlobalWorldMap() {
 
                     const handleEnter = () => {
                       if (isHighlighted && certData) {
-                        handleCountryHover(certData);
+                        handleMouseEnter(certData);
                       }
                     };
                     const handleLeave = () => {
                       if (isHighlighted) {
-                        setHoveredCountry((prev) => (prev?.iso === feature.id ? null : prev));
+                        handleMouseLeave(feature.id);
                       }
                     };
                     const handleClick = (e) => {
@@ -582,7 +720,7 @@ export default function GlobalWorldMap() {
                   })}
                 </g>
 
-                {/* 2. PINS LAYER (Navy pins with yellow center & gentle pulse) */}
+                {/* 2. PINS LAYER (Navy pins with gold center, 1.15 scale & subtle yellow halo on hover) */}
                 <g id="country-pins">
                   {GLOBAL_CERTIFICATIONS.map((country) => {
                     const isSelected = activeCountry?.iso === country.iso;
@@ -593,14 +731,12 @@ export default function GlobalWorldMap() {
                       <g
                         key={country.iso}
                         id={`pin-${country.iso}`}
-                        className="cursor-pointer group"
+                        className="cursor-pointer group pin-group focus:outline-none"
                         tabIndex={0}
                         role="button"
                         aria-label={`${country.name}: ${country.formattedCount} certifications`}
-                        onMouseEnter={() => handleCountryHover(country)}
-                        onMouseLeave={() => {
-                          setHoveredCountry((prev) => (prev?.iso === country.iso ? null : prev));
-                        }}
+                        onMouseEnter={() => handleMouseEnter(country)}
+                        onMouseLeave={() => handleMouseLeave(country.iso)}
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveCountry(country);
@@ -611,30 +747,39 @@ export default function GlobalWorldMap() {
                             setActiveCountry(country);
                           }
                         }}
+                        style={{
+                          transform: isActive ? "scale(1.15)" : "scale(1)",
+                          transformOrigin: `${country.cx}px ${country.cy}px`,
+                          transition: "transform 180ms cubic-bezier(0.16, 1, 0.3, 1)"
+                        }}
                       >
-                        {/* Gentle outer pulse animation ring */}
+                        {/* Subtle yellow halo (only visible on active/hover, no continuous pinging) */}
                         <circle
                           cx={country.cx}
                           cy={country.cy}
-                          r={isActive ? 8 : 4.5}
-                          fill="#FFDB58"
-                          opacity={isActive ? 0.7 : 0.3}
-                          className={`pointer-events-none ${isActive ? "animate-ping" : ""}`}
+                          r={isActive ? 8.5 : 0}
+                          fill="#FBBF24"
+                          opacity={isActive ? 0.35 : 0}
+                          className="pin-halo pointer-events-none"
+                          style={{
+                            transition: "r 180ms ease, opacity 180ms ease"
+                          }}
                         />
 
                         {/* Navy Blue Outer Pin Ring */}
                         <circle
                           cx={country.cx}
                           cy={country.cy}
-                          r={isActive ? 4.8 : 3.4}
-                          fill="#121C46"
+                          r={isActive ? 4.8 : 3.5}
+                          fill="#111C3E"
                           stroke="#FFFFFF"
-                          strokeWidth={isActive ? 1.2 : 0.75}
+                          strokeWidth={isActive ? 1.2 : 0.8}
+                          className="pin-circle"
                           style={{
-                            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                            transition: "all 180ms cubic-bezier(0.16, 1, 0.3, 1)",
                             filter: isActive
-                              ? "drop-shadow(0 2px 4px rgba(18, 28, 70, 0.6))"
-                              : "drop-shadow(0 1px 2px rgba(18, 28, 70, 0.3))"
+                              ? "drop-shadow(0 2px 5px rgba(17, 28, 62, 0.6))"
+                              : "drop-shadow(0 1px 2px rgba(17, 28, 62, 0.3))"
                           }}
                         />
 
@@ -643,9 +788,10 @@ export default function GlobalWorldMap() {
                           cx={country.cx}
                           cy={country.cy}
                           r={isActive ? 2.2 : 1.4}
-                          fill="#FFDB58"
+                          fill="#FBBF24"
+                          className="pin-core"
                           style={{
-                            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
+                            transition: "all 180ms cubic-bezier(0.16, 1, 0.3, 1)"
                           }}
                         />
                       </g>
