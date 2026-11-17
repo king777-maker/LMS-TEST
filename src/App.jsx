@@ -21,56 +21,56 @@ import { adminRoutes, ADMIN_BASE_PATH, isSecretAdminLoginPath } from "./utils/ad
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Course from "./pages/Course";
-import Enroll from "./pages/Enroll";
-import Learning from "./pages/Learning";
+const Home = React.lazy(() => import("./pages/Home"));
+const About = React.lazy(() => import("./pages/About"));
+const Course = React.lazy(() => import("./pages/Course"));
+const Enroll = React.lazy(() => import("./pages/Enroll"));
+const Learning = React.lazy(() => import("./pages/Learning"));
 const Assignment = React.lazy(() => import("./pages/Assignment"));
 const Result = React.lazy(() => import("./pages/Result"));
 const Certificate = React.lazy(() => import("./pages/Certificate"));
-import LessonVideo from "./pages/LessonVideo";
-import LessonContent from "./pages/LessonContent";
+const LessonVideo = React.lazy(() => import("./pages/LessonVideo"));
+const LessonContent = React.lazy(() => import("./pages/LessonContent"));
 const LessonSlides = React.lazy(() => import("./pages/LessonSlides"));
 
 import { Toaster } from "react-hot-toast";
 
-import History from "./pages/History";
-import Vision from "./pages/Vision";
-import Mission from "./pages/Mission";
-import CoreValues from "./pages/CoreValues";
-import OurTeam from "./pages/OurTeam";
-import Accreditations from "./pages/Accreditations";
-import Ourcoustmers from "./pages/Ourcoustmers";
-import Industries from "./pages/Industries";
-import Media from "./pages/Media";
-import Global from "./pages/Global";
+const History = React.lazy(() => import("./pages/History"));
+const Vision = React.lazy(() => import("./pages/Vision"));
+const Mission = React.lazy(() => import("./pages/Mission"));
+const CoreValues = React.lazy(() => import("./pages/CoreValues"));
+const OurTeam = React.lazy(() => import("./pages/OurTeam"));
+const Accreditations = React.lazy(() => import("./pages/Accreditations"));
+const Ourcoustmers = React.lazy(() => import("./pages/Ourcoustmers"));
+const Industries = React.lazy(() => import("./pages/Industries"));
+const Media = React.lazy(() => import("./pages/Media"));
+const Global = React.lazy(() => import("./pages/Global"));
 
-import CourseDetails from "./pages/courses/CourseDetails";
-import FreeCoursesPage from "./pages/FreeCoursesPage";
+const CourseDetails = React.lazy(() => import("./pages/courses/CourseDetails"));
+const FreeCoursesPage = React.lazy(() => import("./pages/FreeCoursesPage"));
 const CertificateAccess = React.lazy(() => import("./pages/CertificateAccess"));
-import MainCategoryPage from "./pages/MainCategoryPage";
+const MainCategoryPage = React.lazy(() => import("./pages/MainCategoryPage"));
 import ScrollToTop from "./components/ScrollToTop";
 
-import FeaturedEnroll from "./pages/FeaturedEnroll";
-import Contact from "./pages/Contact";
+const FeaturedEnroll = React.lazy(() => import("./pages/FeaturedEnroll"));
+const Contact = React.lazy(() => import("./pages/Contact"));
 
 /* =========================================================
    CATEGORY PAGES
 ========================================================= */
-import Environment from "./pages/categories/Environment";
-import FoodSafety from "./pages/categories/FoodSafety";
-import VerifyCertificate from "./pages/categories/VerifyCertificate";
-import InformationSecurity from "./pages/categories/InformationSecurity";
-import EHSCertifications from "./pages/categories/EHSCertifications";
-import ManagementCertifications from "./pages/categories/ManagementCertifications";
-import MyCourses from "./pages/MyCourses";
-import MyProfile from "./pages/MyProfile";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+const Environment = React.lazy(() => import("./pages/categories/Environment"));
+const FoodSafety = React.lazy(() => import("./pages/categories/FoodSafety"));
+const VerifyCertificate = React.lazy(() => import("./pages/categories/VerifyCertificate"));
+const InformationSecurity = React.lazy(() => import("./pages/categories/InformationSecurity"));
+const EHSCertifications = React.lazy(() => import("./pages/categories/EHSCertifications"));
+const ManagementCertifications = React.lazy(() => import("./pages/categories/ManagementCertifications"));
+const MyCourses = React.lazy(() => import("./pages/MyCourses"));
+const MyProfile = React.lazy(() => import("./pages/MyProfile"));
+const LoginPage = React.lazy(() => import("./pages/LoginPage"));
+const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
-import AboutUs from "./pages/AboutUs";
-import AccreditationsApprovals from "./pages/AccreditationsApprovals";
+const AboutUs = React.lazy(() => import("./pages/AboutUs"));
+const AccreditationsApprovals = React.lazy(() => import("./pages/AccreditationsApprovals"));
 const TermsAndConditions = React.lazy(() => import("./pages/TermsAndConditions"));
 const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
 const CancellationRefundPolicy = React.lazy(() => import("./pages/CancellationRefundPolicy"));
@@ -81,10 +81,10 @@ const DataProtectionPolicy = React.lazy(() => import("./pages/DataProtectionPoli
 const ConsentManagementPolicy = React.lazy(() => import("./pages/ConsentManagementPolicy"));
 const AccessibilityStatement = React.lazy(() => import("./pages/AccessibilityStatement"));
 const CookiePolicy = React.lazy(() => import("./pages/CookiePolicy"));
-import RaiseATicket from "./pages/RaiseATicket";
-import NotFound from "./pages/NotFound";
+const RaiseATicket = React.lazy(() => import("./pages/RaiseATicket"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 import CookieConsent from "./components/common/CookieConsent";
-import MaintenancePage from "./pages/MaintenancePage";
+const MaintenancePage = React.lazy(() => import("./pages/MaintenancePage"));
 import { IS_MAINTENANCE_MODE } from "./config/maintenance";
 
 const PageFallback = () => (

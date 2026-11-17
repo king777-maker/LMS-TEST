@@ -537,6 +537,26 @@ export default defineConfig({
           if (id.includes("manualCertificatesData")) {
             return "certificates-registry";
           }
+          if (id.includes("node_modules")) {
+            if (id.includes("three")) {
+              return "vendor-three";
+            }
+            if (id.includes("pdfjs-dist") || id.includes("react-pdf")) {
+              return "vendor-pdf";
+            }
+            if (id.includes("html2canvas") || id.includes("html2pdf") || id.includes("jspdf")) {
+              return "vendor-pdf-tools";
+            }
+            if (id.includes("react-icons") || id.includes("lucide-react") || id.includes("@heroicons")) {
+              return "vendor-icons";
+            }
+            if (id.includes("gsap") || id.includes("aos")) {
+              return "vendor-animation";
+            }
+            if (id.includes("swiper")) {
+              return "vendor-swiper";
+            }
+          }
         },
       },
     },
