@@ -17,6 +17,7 @@ import {
 import {
     getAssessment,
     submitAssessment,
+    createCertificate,
     redeemCertificateCoupon,
 } from "../api/api";
 
@@ -907,6 +908,18 @@ const Assignment = () => {
                                     total: result?.total,
                                     percentage: result?.percentage
                                 });
+
+                                // Instant auto-issue to backend / admin store
+                                createCertificate({
+                                    user_id: uId,
+                                    certification_id: assessmentId,
+                                    student_name: studentName || "Verified Learner",
+                                    course_name: authoritativeCourse,
+                                    score: result?.score,
+                                    total: result?.total,
+                                    percentage: result?.percentage,
+                                    certificate_number: result?.certificate_number,
+                                }).catch((ce) => console.warn("Background auto certificate creation notice:", ce));
                             } catch (err) {
                                 console.error("Auto complete error:", err);
                             }

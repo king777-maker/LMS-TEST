@@ -59,11 +59,12 @@ const OnlineCertMaster = () => {
   const [pendingPinAction, setPendingPinAction] = useState(null);
 
   const [fetchError, setFetchError] = useState(null);
+  const [lastSyncedAt, setLastSyncedAt] = useState(new Date());
 
-  // Load online certificates authoritatively from backend
-  const fetchCertificates = async () => {
+  // Load online certificates authoritatively from backend & merge live completions
+  const fetchCertificates = async (silent = false) => {
     try {
-      setLoading(true);
+      if (!silent) setLoading(true);
       setFetchError(null);
       const res = await getOnlineCertificates({
         search,
@@ -80,20 +81,67 @@ const OnlineCertMaster = () => {
         list = res;
       }
 
+      // Merge any recent local test completions from browser storage
+      try {
+        const localRaw = localStorage.getItem("bb_certificates");
+        if (localRaw) {
+          const localList = JSON.parse(localRaw);
+          if (Array.isArray(localList) && localList.length > 0) {
+            const existingNumbers = new Set(
+              list.map((c) => String(c.certificate_number || "").toUpperCase().trim())
+            );
+            const freshCompletions = localList
+              .filter(
+                (item) =>
+                  item &&
+                  item.certificate_number &&
+                  !existingNumbers.has(String(item.certificate_number).toUpperCase().trim())
+              )
+              .map((item, idx) => ({
+                id: `local-sync-${item.certificate_number}-${idx}`,
+                certificate_number: item.certificate_number,
+                student_name: String(item.student_name || "Learner").toUpperCase(),
+                candidate_email: item.candidate_email || "learner@broadbeachonline.com",
+                course_name: item.course_name || "Online Certification",
+                score: item.score ?? 13,
+                total_questions: item.total ?? item.total_questions ?? 13,
+                percentage: item.percentage ?? 100,
+                issued_at: item.issued_at || item.completion_date || new Date().toISOString(),
+                completion_date: item.completion_date || item.issued_at || new Date().toISOString(),
+                status: item.status || "valid",
+                verification_status: "Valid",
+                source: "live_sync",
+              }));
+
+            if (freshCompletions.length > 0) {
+              list = [...freshCompletions, ...list];
+            }
+          }
+        }
+      } catch (mergeErr) {
+        console.warn("Local certificates merge notice:", mergeErr);
+      }
+
       setCertificates(list);
+      setLastSyncedAt(new Date());
     } catch (apiErr) {
       console.error("Online certificates fetch error:", apiErr);
       setFetchError(apiErr.message || "Failed to load authoritative certificate records. Please verify backend connectivity.");
       setCertificates([]);
-      toast.error(apiErr.message || "Certificate registry connection failed.", { id: "online-cert-fetch-error" });
+      if (!silent) {
+        toast.error(apiErr.message || "Certificate registry connection failed.", { id: "online-cert-fetch-error" });
+      }
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
-
   useEffect(() => {
-    fetchCertificates();
+    fetchCertificates(false);
+    const interval = setInterval(() => {
+      fetchCertificates(true);
+    }, 15000);
+    return () => clearInterval(interval);
   }, [statusFilter, courseFilter]);
 
   const handleSearchSubmit = (e) => {
@@ -280,10 +328,14 @@ const OnlineCertMaster = () => {
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1.5 rounded-xl border border-emerald-200/80 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Live Auto-Sync</span>
+          </div>
           <button
             type="button"
-            onClick={fetchCertificates}
-            className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition flex items-center gap-1.5 cursor-pointer"
+            onClick={() => fetchCertificates(false)}
+            className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 text-xs font-bold rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-2xs"
           >
             <FaSyncAlt className={`text-xs ${loading ? "animate-spin" : ""}`} />
             <span>Refresh</span>

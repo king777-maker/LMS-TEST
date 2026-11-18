@@ -25,6 +25,7 @@ import {
 } from "../utils/progressTracker";
 import { useAuth } from "../context/AuthContext";
 import { downloadCertificatePDF } from "../utils/certificateGenerator";
+import { createCertificate } from "../api/api";
 
 const Result = () => {
     const navigate = useNavigate();
@@ -260,6 +261,18 @@ const Result = () => {
                     total,
                     percentage,
                 });
+
+                // Auto-issue certificate to backend & admin registry immediately on landing on Result
+                createCertificate({
+                    user_id: uId,
+                    certification_id: canonicalId,
+                    student_name: resolvedStudentName,
+                    course_name: authoritativeCourseName,
+                    score,
+                    total,
+                    percentage,
+                    certificate_number: finalCertificateNumber,
+                }).catch((ce) => console.warn("Result page background certificate issuance notice:", ce));
             } catch (e) {
                 console.warn("Auto completion sync notice:", e);
             }

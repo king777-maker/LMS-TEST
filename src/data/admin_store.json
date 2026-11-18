@@ -132026,6 +132026,24 @@
   ],
   "audit_logs": [
     {
+      "id": "LOG-MWM5RLTK-812",
+      "timestamp": "2026-11-18T13:29:46.808Z",
+      "created_at": "2026-11-18T13:29:46.808Z",
+      "actor_name": "HARPREET KAUR",
+      "performed_by": "HARPREET KAUR",
+      "actor_email": "learner@broadbeach.in",
+      "performed_by_email": "learner@broadbeach.in",
+      "actor_role": "learner",
+      "action_category": "CERTIFICATE",
+      "module": "Online Cert Master",
+      "action": "ONLINE_CERTIFICATE_ISSUED",
+      "target_type": "online_certificate",
+      "target_id": "26BBTEST001",
+      "details": "Issued online certificate 26BBTEST001 for 'HARPREET KAUR' (ISO 9001:2015 Quality Management Systems, Score: 13/13, 100%). Visible in Online Cert Master.",
+      "status": "success",
+      "outcome": "Success"
+    },
+    {
       "id": "LOG-MWKSI81U-CERT",
       "timestamp": "2026-11-17T14:30:47.874Z",
       "created_at": "2026-11-17T14:30:47.893Z",
@@ -132531,5 +132549,6 @@
       "exam_bypassed": true,
       "redeemed_at": "2026-10-26T17:40:41.697Z"
     }
-  ]
+  ],
+  "admin_audit_logs": []
 }

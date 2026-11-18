@@ -534,6 +534,89 @@ export function adminDevMiddleware() {
         }
 
         // -----------------------------------------------------------------
+        // 2B. ONLINE COURSE CERTIFICATE CREATION (INSTANT SYNC TO ADMIN PANEL)
+        // -----------------------------------------------------------------
+        if (
+          method === "POST" &&
+          (pathname === "/api/create-certificate" ||
+            pathname === "/broadbeachlearning.com/broadbeach-backend/api/create-certificate")
+        ) {
+          const body = await readJsonBody(req);
+          const store = loadStore();
+          if (!Array.isArray(store.online_certificates)) store.online_certificates = [];
+
+          const userId = Number(body.user_id || 1);
+          const courseId = body.certification_id || body.course_id || 322;
+          const courseName = (body.course_name || body.course_title || "ISO Certification").trim();
+          const studentName = String(body.student_name || body.studentName || "Verified Learner").trim().toUpperCase();
+          const email = String(body.email || body.candidate_email || "learner@broadbeach.in").toLowerCase().trim();
+          const score = Number(body.score || 10);
+          const total = Number(body.total || body.total_questions || 10);
+          const percentage = Number(body.percentage || Math.round((score / Math.max(1, total)) * 100));
+
+          // Generate authoritative certificate number if not provided
+          let certNumber = body.certificate_number ? String(body.certificate_number).trim().toUpperCase() : "";
+          if (!certNumber) {
+            certNumber = `BOA${courseId}${userId}${Math.floor(100 + Math.random() * 900)}`;
+          }
+
+          // Check if already in store
+          let cert = store.online_certificates.find(
+            (c) => c.certificate_number === certNumber || (Number(c.course_id) === Number(courseId) && Number(c.user_id) === userId)
+          );
+
+          if (cert) {
+            cert.student_name = studentName;
+            cert.course_name = courseName;
+            cert.score = score;
+            cert.percentage = percentage;
+            cert.status = "valid";
+            cert.verification_status = "Valid";
+          } else {
+            cert = {
+              id: Date.now(),
+              certificate_number: certNumber,
+              user_id: userId,
+              student_name: studentName,
+              candidate_email: email,
+              course_id: courseId,
+              course_name: courseName,
+              score,
+              total_questions: total,
+              percentage,
+              completion_date: new Date().toISOString(),
+              issued_at: new Date().toISOString(),
+              status: "valid",
+              verification_status: "Valid",
+              source: "online",
+              chapters_completed: 3,
+              total_chapters: 3,
+            };
+            store.online_certificates.unshift(cert);
+          }
+
+          addAuditLog(store, {
+            actorName: studentName,
+            actorEmail: email,
+            actorRole: "learner",
+            category: "CERTIFICATE",
+            action: "ONLINE_CERTIFICATE_ISSUED",
+            targetType: "online_certificate",
+            targetId: certNumber,
+            details: `Issued online certificate ${certNumber} for '${studentName}' (${courseName}, Score: ${score}/${total}, ${percentage}%). Visible in Online Cert Master.`,
+          });
+
+          saveStore(store);
+
+          return sendJson(res, 200, {
+            success: true,
+            status: true,
+            message: "Certificate generated and registered successfully in Admin Master.",
+            data: cert,
+          });
+        }
+
+        // -----------------------------------------------------------------
         // 2A. USER PROFILE API & NAME IMMUTABILITY RESTRICTIONS (REQ 1)
         // -----------------------------------------------------------------
         const isProfileGet =
