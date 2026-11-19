@@ -3,6 +3,18 @@ import QRCode from "qrcode";
 import certificateTemplateImg from "../assets/certificate/certificate-template.png";
 
 /**
+ * Generates an authoritative Broadbeach Academy certificate number.
+ * Format: 26BB + 5 digits (e.g. 26BB03770, 26BB04821)
+ */
+export function generateOfficialCertificateNumber(courseId = 322, userId = 1) {
+  // Existing manual registry ranges up to 26BB03769.
+  // Generate valid 5-digit sequence in the 03770 - 09999 range.
+  const seed = Math.floor(3770 + Math.random() * 6200);
+  const fiveDigits = String(seed).padStart(5, "0");
+  return `26BB${fiveDigits}`;
+}
+
+/**
  * Renders the official Broadbeach Academy Certificate onto a high-res canvas
  * and returns the canvas element.
  */

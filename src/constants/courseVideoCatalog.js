@@ -234,6 +234,7 @@ const ALIAS_MAP = {
   "free-9": 328,
   "project-management-level-1": 328,
   "project-management-level-i": 328,
+  "project-management-fnd": 328,
   "project-management": 328,
 
   // Course 10
@@ -247,6 +248,8 @@ const ALIAS_MAP = {
   "11": 330,
   "free-11": 330,
   "root-cause-analysis": 330,
+  "rca-certification": 330,
+  "rca-fnd": 330,
   "rca": 330,
 };
 

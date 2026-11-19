@@ -1,4 +1,4 @@
-import { freeCoursesData, AUTHORITATIVE_FREE_COURSE_NAMES, getAuthoritativeCourseName } from "./freeCoursesData";
+import { freeCoursesData, AUTHORITATIVE_FREE_COURSE_NAMES, getAuthoritativeCourseName } from "./freeCoursesData.js";
 export { AUTHORITATIVE_FREE_COURSE_NAMES, getAuthoritativeCourseName };
 import { navigationCategories } from "./coursesData";
 import { courseData } from "./courseData";

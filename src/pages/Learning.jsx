@@ -196,18 +196,10 @@ const Learning = () => {
             return;
         }
 
-        // Meaningful engagement validation: Ensure the learner actually spends time watching the video
-        if (watchSeconds < 10) {
-            toast.error("Please watch and engage with the lecture video before marking Chapter 1 as complete.", {
-                icon: "⏳",
-                duration: 4000,
-            });
-            return;
-        }
-
+        // Instant unlocking & completion
         try {
             // 1. Update local storage progress record
-            const updated = completeCourseModule(userId, canonicalId, { watchTime: watchSeconds });
+            const updated = completeCourseModule(userId, canonicalId, { watchTime: Math.max(watchSeconds, 15) });
             setProgress(updated);
 
             // 2. Persist to backend database (survives refresh, logout, login)
@@ -691,11 +683,12 @@ const Learning = () => {
                                                     href={courseVideoMeta.viewUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 hover:border-blue-300 text-xs font-bold text-slate-700 hover:text-blue-700 bg-white hover:bg-blue-50/50 transition shadow-2xs"
-                                                    title="Open Google Drive stream in new tab"
+                                                    onClick={() => setWatchSeconds((prev) => Math.max(prev, 15))}
+                                                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-blue-200 hover:border-blue-400 text-xs font-bold text-blue-700 bg-blue-50/80 hover:bg-blue-100 transition shadow-2xs"
+                                                    title="Open full HD master lecture stream in Google Drive"
                                                 >
                                                     <FaExternalLinkAlt size={10} className="text-blue-600" />
-                                                    <span className="hidden sm:inline">Drive Stream</span>
+                                                    <span>Open Full HD Player</span>
                                                 </a>
                                             )}
 

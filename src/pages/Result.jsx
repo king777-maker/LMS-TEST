@@ -24,7 +24,7 @@ import {
     normalizeCourseId,
 } from "../utils/progressTracker";
 import { useAuth } from "../context/AuthContext";
-import { downloadCertificatePDF } from "../utils/certificateGenerator";
+import { downloadCertificatePDF, generateOfficialCertificateNumber } from "../utils/certificateGenerator";
 import { createCertificate } from "../api/api";
 
 const Result = () => {
@@ -114,26 +114,38 @@ const Result = () => {
             // 1. Gather all certificate records for this course & learner
             const matchingCerts = [];
 
-            // A. Check localStorage bb_certificates
+            // A. Check localStorage bb_certificates strictly matching current user
             try {
                 const storedCerts = JSON.parse(localStorage.getItem("bb_certificates") || "[]");
                 storedCerts.forEach((c) => {
-                    if (
+                    const matchesCourse =
                         Number(c.course_id || c.certification_id) === Number(canonicalId) ||
                         String(c.course_id) === String(id) ||
-                        String(c.course_name).toLowerCase().includes(authoritativeCourseName.toLowerCase())
-                    ) {
+                        String(c.course_name).toLowerCase().includes(authoritativeCourseName.toLowerCase());
+                    const matchesUser =
+                        !c.user_id ||
+                        Number(c.user_id) === Number(uId) ||
+                        String(c.student_name || "").toUpperCase() === resolvedStudentName.toUpperCase();
+                    if (matchesCourse && matchesUser) {
+                        // Purge any stale BBA- numbers
+                        if (String(c.certificate_number || "").startsWith("BBA-")) {
+                            c.certificate_number = generateOfficialCertificateNumber(canonicalId, uId);
+                        }
                         matchingCerts.push(c);
                     }
                 });
             } catch (e) {}
 
             // B. Check state / local certificate_number key
-            const directCertNo =
+            const rawDirectNo =
                 state?.certificate_number ||
                 state?.certificate?.certificate_number ||
                 localStorage.getItem(`certificate_number_${canonicalId}`) ||
                 sessionStorage.getItem(`certificate_number_${canonicalId}`);
+
+            const directCertNo =
+                (rawDirectNo && !rawDirectNo.startsWith("BBA-") ? rawDirectNo : null) ||
+                generateOfficialCertificateNumber(canonicalId, uId);
 
             if (directCertNo && !matchingCerts.some((c) => c.certificate_number === directCertNo)) {
                 matchingCerts.unshift({
@@ -150,13 +162,18 @@ const Result = () => {
                 });
             }
 
-            // C. In mock/dev mode, check admin_store online certificates for course 332 or current user
+            // C. In mock/dev mode, check admin_store online certificates for current user
             try {
                 const adminStore = JSON.parse(localStorage.getItem("bb_admin_store") || "{}");
                 if (Array.isArray(adminStore?.online_certificates)) {
                     adminStore.online_certificates.forEach((c) => {
+                        const matchesCourse = Number(c.course_id) === Number(canonicalId);
+                        const matchesUser =
+                            Number(c.user_id) === Number(uId) ||
+                            String(c.student_name || "").toUpperCase() === resolvedStudentName.toUpperCase();
                         if (
-                            Number(c.course_id) === Number(canonicalId) &&
+                            matchesCourse &&
+                            matchesUser &&
                             !matchingCerts.some((mc) => mc.certificate_number === c.certificate_number)
                         ) {
                             matchingCerts.push(c);
@@ -178,13 +195,14 @@ const Result = () => {
 
                 if (hasPassedProgress) {
                     const primaryCert = matchingCerts[0] || {};
+                    const fallbackCert = generateOfficialCertificateNumber(canonicalId, uId);
                     const hydrated = {
                         score: courseProg?.assessmentScore || primaryCert.score || 10,
                         total: courseProg?.assessmentTotal || primaryCert.total || primaryCert.total_questions || 10,
                         percentage: courseProg?.percentage || primaryCert.percentage || 100,
                         passed: true,
-                        certificate_number: primaryCert.certificate_number || directCertNo || `BOA${canonicalId}${uId}101`,
-                        studentName: primaryCert.student_name || resolvedStudentName,
+                        certificate_number: primaryCert.certificate_number || directCertNo || fallbackCert,
+                        studentName: resolvedStudentName || primaryCert.student_name,
                         courseName: authoritativeCourseName,
                         certificationId: canonicalId,
                         userId: uId,
@@ -240,13 +258,16 @@ const Result = () => {
     const wrongAnswers = Math.max(0, total - score);
 
     // Guaranteed authoritative certificate number
-    const finalCertificateNumber =
+    const rawFinalCert =
         activeCert?.certificate_number ||
         state?.certificate_number ||
         state?.certificate?.certificate_number ||
         localStorage.getItem(`certificate_number_${canonicalId}`) ||
-        sessionStorage.getItem(`certificate_number_${canonicalId}`) ||
-        `BOA${canonicalId}${resolveUserId(authUser?.id)}101`;
+        sessionStorage.getItem(`certificate_number_${canonicalId}`);
+
+    const finalCertificateNumber =
+        (rawFinalCert && !rawFinalCert.startsWith("BBA-") ? rawFinalCert : null) ||
+        generateOfficialCertificateNumber(canonicalId, resolveUserId(authUser?.id));
 
     // Automatically synchronize course completion when passing
     useEffect(() => {
@@ -308,7 +329,7 @@ const Result = () => {
 
             const certRecord = {
                 certificate_number: certNumber,
-                student_name: targetCert.student_name || resolvedStudentName,
+                student_name: resolvedStudentName || targetCert.student_name || "Verified Learner",
                 course_name: targetCert.course_name || authoritativeCourseName,
                 score: Number(score),
                 total: Number(total),
@@ -333,7 +354,7 @@ const Result = () => {
             score: Number(score),
             total: Number(total),
             percentage: Number(percentage),
-            studentName: targetCert.student_name || resolvedStudentName,
+            studentName: resolvedStudentName || targetCert.student_name || "Verified Learner",
             courseName: targetCert.course_name || authoritativeCourseName,
             certificate_number: certNumber,
             passed: true,

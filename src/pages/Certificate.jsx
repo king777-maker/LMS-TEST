@@ -27,6 +27,7 @@ import { FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
 import { getAuthoritativeCourseName } from "../data/freeCoursesData";
 import { resolveCourse } from "../data/coursesResolver";
 import { findManualCertificate } from "../data/manualCertificatesData";
+import { generateOfficialCertificateNumber } from "../utils/certificateGenerator";
 
 
 const Certificate = () => {
@@ -218,15 +219,15 @@ const Certificate = () => {
                     err?.message
                 );
 
-                const existingCertNumber =
+                const rawCertNum =
                     certificate_number ||
                     location.state?.certificate_number ||
                     localStorage.getItem(`certificate_number_${canonicalCourseId}`) ||
                     sessionStorage.getItem(`certificate_number_${canonicalCourseId}`);
 
                 const fallbackCertNumber =
-                    existingCertNumber ||
-                    ("BBA-" + canonicalCourseId + "-" + Date.now().toString(36).toUpperCase());
+                    (rawCertNum && !String(rawCertNum).startsWith("BBA-") ? rawCertNum : null) ||
+                    generateOfficialCertificateNumber(canonicalCourseId, resolveUserId());
 
                 const fallbackCertData = {
                     certificate_number: fallbackCertNumber,
@@ -291,7 +292,9 @@ const Certificate = () => {
                     setError("");
 
                     // Check if URL parameter is a manual certificate number (e.g. 26BB03769)
-                    const manualMatch = findManualCertificate(id);
+                    // Note: Course IDs (e.g. 322, 332, free-1) or course completion navigations must never match a manual certificate!
+                    const isCourseIdParam = /^\d{1,4}$/.test(String(id).trim()) || String(id).toLowerCase().startsWith("free-");
+                    const manualMatch = !isCourseIdParam ? findManualCertificate(id) : null;
                     if (manualMatch) {
                         if (!mounted) return;
                         setIsEligible(true);
@@ -423,9 +426,11 @@ const Certificate = () => {
         location.state?.student_name ||
         "";
 
+    const activeAuthUser = (typeof window !== "undefined" ? JSON.parse(localStorage.getItem("bb_user") || localStorage.getItem("user") || "null") : null) || user;
+
     const rawRegisteredName = [
-        user?.first_name,
-        user?.last_name,
+        activeAuthUser?.first_name,
+        activeAuthUser?.last_name,
     ]
         .filter(
             (value) =>
@@ -435,11 +440,11 @@ const Certificate = () => {
         .join(" ")
         .trim()
         ||
-        user?.full_name
+        activeAuthUser?.full_name
         ||
-        user?.name
+        activeAuthUser?.name
         ||
-        (passedStudentName && passedStudentName.trim() !== "" && passedStudentName.toLowerCase() !== "learner" ? passedStudentName.trim() : "")
+        (passedStudentName && !["learner", "student", "verified learner"].includes(passedStudentName.toLowerCase()) ? passedStudentName.trim() : "")
         ||
         certificate?.student_name
         ||
@@ -451,7 +456,7 @@ const Certificate = () => {
     // CERTIFICATE NUMBER
     // =====================================================
 
-    const certificateNumber =
+    const rawCertNumber =
         certificate?.certificate_number ||
         certificate?.certificate_no ||
         certificate?.certificate_id ||
@@ -461,6 +466,10 @@ const Certificate = () => {
         (typeof localStorage !== "undefined" && localStorage.getItem(`certificate_number_${canonicalCourseId}`)) ||
         (typeof sessionStorage !== "undefined" && sessionStorage.getItem(`certificate_number_${canonicalCourseId}`)) ||
         "";
+
+    const certificateNumber = (rawCertNumber && !String(rawCertNumber).startsWith("BBA-"))
+        ? rawCertNumber
+        : generateOfficialCertificateNumber(canonicalCourseId, resolveUserId());
 
     // =====================================================
     // GENERATE DYNAMIC VERIFICATION QR CODE

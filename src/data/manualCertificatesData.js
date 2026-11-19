@@ -60,9 +60,6 @@ const _DATA_STORE = {
             map.set(stripped, item);
           }
         }
-        if (item.id) {
-          map.set(String(item.id), item);
-        }
       }
       this.lookupMap = map;
     }
@@ -71,19 +68,25 @@ const _DATA_STORE = {
   find(query) {
     if (!query) return null;
     const clean = String(query).trim().toUpperCase();
+    // Pure course IDs (1 to 4 digits like 322, 332, 1, 2) or course slugs must never match manual certificates
+    if (/^\d{1,4}$/.test(clean) || clean.startsWith('FREE-')) {
+      return null;
+    }
     const map = this.getLookupMap();
     if (map.has(clean)) return map.get(clean);
     const stripped = clean.replace(/[^A-Z0-9]/g, '');
     if (stripped && map.has(stripped)) return map.get(stripped);
-    // Scan by name fallback
-    const list = this.getRegistry();
-    for (let i = 0; i < list.length; i++) {
-      const c = list[i];
-      if (!c) continue;
-      const cNum = String(c.certificate_number || '').trim().toUpperCase();
-      if (cNum === clean || cNum.replace(/[^A-Z0-9]/g, '') === stripped) return c;
-      const sName = String(c.student_name || '').trim().toUpperCase();
-      if (sName && sName === clean) return c;
+    // Scan by name fallback (only for full name queries with spaces)
+    if (clean.includes(' ')) {
+      const list = this.getRegistry();
+      for (let i = 0; i < list.length; i++) {
+        const c = list[i];
+        if (!c) continue;
+        const cNum = String(c.certificate_number || '').trim().toUpperCase();
+        if (cNum === clean || cNum.replace(/[^A-Z0-9]/g, '') === stripped) return c;
+        const sName = String(c.student_name || '').trim().toUpperCase();
+        if (sName && sName === clean) return c;
+      }
     }
     return null;
   }

@@ -2,6 +2,7 @@ import { markCourseCompleted, normalizeCourseId, resolveUserId, recordExamBypass
 import { FREE_COURSE_DB_MAP } from "../constants/courseAvailability";
 import { COURSE_ASSESSMENT_CATALOG, getAssessmentForCourse } from "../data/assessmentCatalog";
 import { getAuthoritativeCourseName } from "../data/freeCoursesData";
+import { generateOfficialCertificateNumber } from "../utils/certificateGenerator";
 import { useAuth } from "../context/AuthContext";
 import {
     useEffect,
@@ -142,6 +143,8 @@ const Assignment = () => {
 
     const getLoggedInUser = () => {
         if (authUser && (authUser.id || authUser.user_id)) {
+            const rName = authUser.name || authUser.full_name || `${authUser.first_name || ""} ${authUser.last_name || ""}`.trim();
+            if (rName) return { ...authUser, name: rName, full_name: rName };
             return authUser;
         }
 
@@ -149,16 +152,18 @@ const Assignment = () => {
             const bbUser = localStorage.getItem("bb_user");
             if (bbUser) {
                 const parsed = JSON.parse(bbUser);
-                if (parsed && (parsed.id || parsed.user_id)) {
-                    return parsed;
+                if (parsed && (parsed.id || parsed.user_id || parsed.email || parsed.first_name)) {
+                    const resolvedName = parsed.name || parsed.full_name || `${parsed.first_name || ""} ${parsed.last_name || ""}`.trim() || "Learner";
+                    return { ...parsed, name: resolvedName, full_name: resolvedName };
                 }
             }
 
             const savedUser = localStorage.getItem("user");
             if (savedUser) {
                 const parsed = JSON.parse(savedUser);
-                if (parsed && (parsed.id || parsed.user_id)) {
-                    return parsed;
+                if (parsed && (parsed.id || parsed.user_id || parsed.email || parsed.first_name)) {
+                    const resolvedName = parsed.name || parsed.full_name || `${parsed.first_name || ""} ${parsed.last_name || ""}`.trim() || "Learner";
+                    return { ...parsed, name: resolvedName, full_name: resolvedName };
                 }
             }
         } catch (error) {
@@ -711,11 +716,11 @@ const Assignment = () => {
                     total > 0 ? Math.round((score / total) * 100) : 0;
                 const passed =
                     percentage >= (catalogItem.passing_percentage || 70);
-                const certificateNumber = `BBA-${assessmentId}-${Date.now().toString(36).toUpperCase()}`;
+                const uId = targetUserId || resolveUserId();
+                const certificateNumber = generateOfficialCertificateNumber(assessmentId, uId);
 
                 if (passed) {
                     try {
-                        const uId = targetUserId || resolveUserId();
                         const authoritativeCourse = getAuthoritativeCourseName(
                             assessmentId,
                             catalogItem.course_title ||
@@ -724,7 +729,7 @@ const Assignment = () => {
                         );
                         markCourseCompleted(uId, assessmentId, {
                             certificate_number: certificateNumber,
-                            student_name: targetStudentName || "Verified Learner",
+                            student_name: (targetStudentName || "Verified Learner").toUpperCase().trim(),
                             course_name: authoritativeCourse,
                             score,
                             total,
@@ -800,13 +805,14 @@ const Assignment = () => {
                         13
                     );
 
-                const studentName =
+                const studentName = (
                     loggedInUser?.name ||
                     loggedInUser?.full_name ||
+                    `${loggedInUser?.first_name || ""} ${loggedInUser?.last_name || ""}`.trim() ||
                     loggedInUser?.fullName ||
                     loggedInUser?.username ||
-                    loggedInUser?.email ||
-                    "Learner";
+                    "Verified Learner"
+                ).toUpperCase().trim();
 
                 try {
 
